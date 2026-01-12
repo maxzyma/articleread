@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-此项目用于从各种来源（小红书、Twitter、博客、官方文档等）提取、整理和归档文章内容。
+此项目用于从各种来源（小红书、Twitter、博客等）提取、整理和归档有价值的文章内容。
 
 ## 核心规则
 
@@ -10,14 +10,6 @@
 
 ```
 articleread/
-├── claudecodedocs/              # Claude 相关文档
-│   ├── getting-started/         # 入门教程
-│   │   ├── claude-code-31-tips.md
-│   │   └── claude-code-31-tips.metadata.yaml
-│   └── core-features/           # 核心功能
-│       ├── build-with-claude-overview.md
-│       └── build-with-claude-overview.metadata.yaml
-│
 ├── knowledge&memory/            # 知识与记忆
 │   ├── basics/                   # 基础概念
 │   │   ├── memory-vs-rag.md
@@ -31,18 +23,13 @@ articleread/
 │       ├── rag-vs-memory-for-ai-agents.md
 │       └── rag-vs-memory-for-ai-agents.metadata.yaml
 │
-├── openapidocs/                 # OpenAI 相关文档
-│   └── openai-responses-api/
-│       ├── openai-responses-api.md
-│       └── openai-responses-api.metadata.yaml
-│
 └── general/                     # 通用主题（未分类）
     └── (预留)
 ```
 
 ### 设计原则
 
-1. **按主题分类**：文章按主题归入不同目录（如 `claudecodedocs`、`knowledge&memory`）
+1. **按主题分类**：文章按主题归入不同目录（如 `knowledge&memory`）
 2. **按子主题组织**：每个主题下可根据内容类型划分子主题（如 `basics`、`solutions`、`comparison`）
 3. **同级目录平铺**：若无子主题，文章直接放在主题目录下平铺
 4. **元数据同级**：文章和元数据放在同一目录，便于管理和引用
@@ -53,9 +40,7 @@ articleread/
 当用户要求添加新文章时：
 
 1. **确定主题**：根据文章内容选择合适的主题目录
-   - `claudecodedocs` - Claude 相关
    - `knowledge&memory` - 知识图谱、记忆、RAG
-   - `openapidocs` - OpenAI 相关
    - `general` - 其他或未分类
 
 2. **确定子主题**（如有）：
@@ -131,9 +116,7 @@ notes: |
 ### 示例
 
 **主题目录示例：**
-- `claudecodedocs/` - Claude 文档
 - `knowledge&memory/` - 知识与记忆
-- `openapidocs/` - OpenAI 文档
 
 **子主题目录示例：**
 - `knowledge&memory/basics/` - 基础概念
@@ -158,17 +141,8 @@ articleread/
 │   ├── subplans                      # 其他主题引用
 │   └── global_failed                 # 全局失败记录
 │
-├── claudecodedocs/
-│   └── extraction-plan.yaml          # Claude Code 子计划
-│
-├── claudedocs/
-│   └── extraction-plan.yaml          # Claude 文档子计划
-│
-├── knowledge&memory/
-│   └── extraction-plan.yaml          # 知识与记忆子计划
-│
-└── openapidocs/
-    └── extraction-plan.yaml          # OpenAI 文档子计划
+└── knowledge&memory/
+    └── extraction-plan.yaml          # 知识与记忆子计划
 ```
 
 ### 主计划文件（extraction-plan.yaml）
@@ -183,10 +157,7 @@ articleread/
 ### 子计划文件（主题目录/extraction-plan.yaml）
 
 每个主题目录（general 除外）都有自己的 extraction-plan.yaml 文件：
-- **claudecodedocs/extraction-plan.yaml**: Claude Code 相关文档
-- **claudedocs/extraction-plan.yaml**: Claude 官方文档
 - **knowledge&memory/extraction-plan.yaml**: 知识图谱、记忆与 RAG
-- **openapidocs/extraction-plan.yaml**: OpenAI 相关文档
 
 ### 状态类型
 
