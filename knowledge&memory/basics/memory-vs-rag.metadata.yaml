@@ -1,0 +1,56 @@
+---
+title: "Memory vs RAG: Understanding the Difference"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "文档 (Supermemory)"
+  url: "https://supermemory.ai/docs/memory-vs-rag"
+  forwarder: null
+  forwarder_note: null
+
+original_author:
+  name: "Supermemory Team"
+  title: "AI Memory Platform"
+  company: "Supermemory"
+
+content:
+  type: "技术文档"
+  topic: "AI Architecture / Memory Systems"
+  format: "技术指南"
+  language: "中文（技术术语中英对照）"
+
+extraction_method:
+  - "Chrome DevTools - Page Snapshot"
+  - "全文翻译成中文"
+  - "技术术语采用中文（英文）格式"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页 (Chrome DevTools)"
+  issues_found_and_fixed:
+    - "按照新规则重新翻译成中文"
+    - "技术术语使用中文（英文）格式，如：检索增强生成（RAG）、记忆（Memory）"
+    - "去除不必要的英文原文"
+    - "保留代码示例的英文注释"
+
+content_file: "./memory-vs-rag.md"
+
+tags:
+  - "AI"
+  - "RAG"
+  - "Memory"
+  - "Agent"
+  - "Supermemory"
+  - "Knowledge Graph"
+  - "Architecture"
+
+notes: |
+  核心洞察：
+  - RAG 用于静态知识检索（回答"我知道什么"）
+  - Memory 用于动态用户上下文（回答"我记得关于你什么"）
+  - RAG 是无状态的语义相似度搜索
+  - Memory 是有状态的知识图谱，理解时间演变和关系
+
+  与已归档的 Gibson AI 文章主题相同但视角不同：
+  - Gibson AI: 更全面的架构对比（11个维度）
+  - Supermemory: 更聚焦于产品实现和技术细节

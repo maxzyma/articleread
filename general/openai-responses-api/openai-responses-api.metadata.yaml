@@ -1,0 +1,68 @@
+---
+title: "为什么我们构建 Responses API"
+original_title: "Why we built the Responses API"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "博客 (OpenAI)"
+  url: "https://developers.openai.com/blog/responses-api/"
+  forwarder: null
+  forwarder_note: null
+
+original_author:
+  name: "Steve Coffey, Prashant Mital"
+  title: "OpenAI Team"
+  company: "OpenAI"
+
+content:
+  type: "技术博客"
+  topic: "API Design / GPT-5 / Reasoning Models"
+  format: "API 介绍"
+  language: "中文（技术术语中英对照）"
+
+extraction_method:
+  - "Chrome DevTools - Page Snapshot"
+  - "全文翻译成中文"
+  - "技术术语采用中文（英文）格式"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页 (Chrome DevTools)"
+  issues_found_and_fixed:
+    - "全文翻译成中文"
+    - "技术术语使用中文（英文）格式，如：响应 API（Responses API）、推理模型（Reasoning Models）、智能体（Agent）"
+    - "保留代码示例和 JSON 结构"
+    - "提取关键特性和对比信息"
+
+content_file: "./openai-responses-api.md"
+
+tags:
+  - "OpenAI"
+  - "API"
+  - "GPT-5"
+  - "Reasoning Models"
+  - "Agent"
+  - "Multimodal"
+  - "RAG"
+  - "MCP"
+
+notes: |
+  核心内容：
+  - OpenAI API 演进：Completions → Chat Completions → Assistants API → Responses API
+  - Responses API 的核心特性：
+    - 智能体循环（Agentic Loop）：结构化的推理和行动循环
+    - 持久推理（Persistent Reasoning）：保留推理状态（Reasoning State）跨轮次
+    - 多输出项（Multiple Output Items）：消息、工具调用、推理步骤
+    - 托管工具（Hosted Tools）：文件搜索、代码解释器、网络搜索、图像生成、模型上下文协议（MCP）
+  - 性能提升：TAUBench +5%，缓存利用率提高 40-80%
+  - 设计原则：有状态（Stateful）、多模态（Multimodal）、高效（Efficient）
+
+  与 AI 记忆（Memory）主题的关联：
+  - Responses API 的有状态设计与 AI 记忆（Memory）系统互补
+  - 推理状态（Reasoning State）保留类似于智能体记忆（Agent Memory）
+  - 托管工具如文件搜索（File Search）本质上是检索增强生成（RAG）
+
+  API 对比：
+  - Chat Completions：基于回合的简单聊天接口，推理在调用间丢失
+  - Responses：结构化循环，保留推理状态，发出多个输出项
+  - Chat Completions 不会消失，但 Responses 是未来的默认方式

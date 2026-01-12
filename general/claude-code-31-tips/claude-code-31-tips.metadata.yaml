@@ -1,0 +1,63 @@
+---
+title: "Claude Code 31条秘籍_完整版"
+original_title: "Advent of Claude: 31 Days of Claude Code"
+extraction_date: "2025-01-11"
+
+source:
+  platform: "小红书 (Xiaohongshu)"
+  url: "https://www.xiaohongshu.com/explore/..."  # 实际URL在浏览器历史中
+  forwarder: "AI智见录"
+  forwarder_note: "已去除转发者'智见君'的个人评论内容，仅保留原创技术内容"
+
+original_author:
+  name: "Ado Kukic"
+  title: "Anthropic 开发者关系负责人"
+  event: "Advent of Claude: 31 Days of Claude Code"
+  event_period: "2024年12月"
+
+content:
+  type: "技术教程"
+  topic: "Claude Code 使用技巧"
+  format: "31条技巧清单"
+  sections: 9
+  total_tips: 31
+
+  section_list:
+    - "让 AI 快速了解你的项目"
+    - "必备快捷键"
+    - "会话管理"
+    - "生产力神器"
+    - "思考与规划"
+    - "安全与控制"
+    - "自动化与 CI/CD"
+    - "浏览器集成"
+    - "进阶：智能体与扩展"
+
+extraction_method:
+  - "Chrome DevTools 页面快照"
+  - "图片识别 (13张图片OCR)"
+  - "人工校对"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页"
+  issues_found_and_fixed:
+    - "补充 Ado Kukic 关于最佳开发者的引用"
+    - "补充 Subagents 圣诞老人比喻"
+    - "去除转发者'智见君'的个人评论"
+
+content_integrity: "verified_complete"
+
+tags:
+  - "Claude Code"
+  - "AI工具"
+  - "开发效率"
+  - "Anthropic"
+  - "技术教程"
+  - "31天挑战"
+
+content_file: "./claude-code-31-tips.md"
+notes: |
+  此文档由小红书页面提取，经完整性与一致性校验。
+  原创作者为 Ado Kukic (Anthropic)，来自其"Advent of Claude"活动。
+  已去除转发者 AI智见录 的个人评论内容，保留所有技术要点。

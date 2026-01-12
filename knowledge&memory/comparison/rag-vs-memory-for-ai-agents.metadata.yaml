@@ -1,0 +1,61 @@
+---
+title: "RAG vs Memory：AI 智能体的知识架构差异"
+original_title: "RAG vs Memory for AI Agents: What's the Difference"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "博客 (Gibson AI)"
+  url: "https://gibsonai.com/blog/rag-vs-memory-for-ai-agents"
+  language: "中文翻译"
+  translation_note: "已翻译为中文，保留英文专有名词和代码"
+
+original_author:
+  name: "Bobur Umurzokov"
+  title: "Developer Advocate"
+  github: "https://github.com/Boburmirzo"
+
+content:
+  type: "技术博客"
+  topic: "AI 架构 / RAG / Memory"
+  format: "技术对比文章"
+  sections: 11
+
+  section_list:
+    - "问题：没有上下文的 LLM"
+    - "什么是 RAG？"
+    - "RAG 实际应用示例"
+    - "为什么 RAG 变得流行"
+    - "RAG 的局限性"
+    - "AI 智能体中的 Memory 是什么？"
+    - "Memory 的架构层级"
+    - "Memory 的技术实现"
+    - "Memory 的局限性"
+    - "RAG vs Memory：架构比较"
+    - "RAG + Memory：混合模式"
+
+extraction_method:
+  - "Chrome DevTools 页面快照"
+  - "全文提取"
+  - "中文翻译（保留技术术语）"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页"
+  issues_found_and_fixed: []
+
+content_integrity: "verified_complete"
+
+content_file: "./rag-vs-memory-for-ai-agents.md"
+
+tags:
+  - "RAG"
+  - "Memory"
+  - "AI Agents"
+  - "LLM"
+  - "架构设计"
+  - "向量数据库"
+
+notes: |
+  已全文翻译为中文，保留英文专有名词（RAG、Memory、LLM、向量数据库等）。
+  原文发布于 2025 年 10 月 7 日，作者 Bobur Umurzokov。
+  内容涵盖 RAG 和 Memory 两种架构模式的详细对比。

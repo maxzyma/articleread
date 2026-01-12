@@ -1,0 +1,70 @@
+---
+title: "AI 记忆（Memory）的五个场景——从通用大语言模型（GPT）到图谱检索增强（GraphRAG）的卓越之路"
+original_title: "AI Memory in 5 Scenes — From Generic GPT to GraphRAG Greatness"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "博客 (Cognee)"
+  url: "https://www.cognee.ai/blog/fundamentals/ai-memory-in-five-scenes"
+  forwarder: null
+  forwarder_note: null
+
+original_author:
+  name: "Vasilije Markovic"
+  title: "Co-Founder / CEO"
+  company: "Cognee"
+
+content:
+  type: "技术博客"
+  topic: "AI Memory / GraphRAG / Knowledge Graph"
+  format: "场景化教学"
+  language: "中文（技术术语中英对照）"
+
+extraction_method:
+  - "Chrome DevTools - Page Snapshot"
+  - "全文翻译成中文"
+  - "技术术语采用中文（英文）格式"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页 (Chrome DevTools)"
+  issues_found_and_fixed:
+    - "全文翻译成中文"
+    - "技术术语使用中文（英文）格式，如：检索增强生成（RAG）、知识图谱（Knowledge Graph）、记忆（Memory）"
+    - "保留五个场景的结构和叙事风格"
+    - "提取并翻译所有场景的核心概念"
+
+content_file: "./ai-memory-in-five-scenes.md"
+
+tags:
+  - "AI"
+  - "Memory"
+  - "RAG"
+  - "GraphRAG"
+  - "Knowledge Graph"
+  - "Entity Extraction"
+  - "Cognee"
+
+notes: |
+  核心内容：
+  - 五个场景对应 AI 记忆（Memory）框架演进的五个阶段
+  - 场景 1：图书馆 → 基础大语言模型（Base LLM）、基础检索增强生成（Basic RAG）、图感知检索（Graph-aware Retrieval）
+  - 场景 2：流媒体 → 上下文（Context）构建的重要性
+  - 场景 3：考试备考 → 块（Chunks）、向量嵌入（Vector Embeddings）、语义搜索（Semantic Search）
+  - 场景 4：找工作 → 实体提取（Entity Extraction）、知识图谱（Knowledge Graph）、子图（Subgraph）检索
+  - 场景 5：聚会对话 → 混合记忆（Hybrid Memory）架构的三大挑战：速度、质量、可衡量性
+
+  教学特色：
+  - 用生活化的场景解释技术概念
+  - 每个场景对应一个技术成熟度级别
+  - 渐进式复杂度：从孩子到 CTO
+  - 强调知识图谱（Knowledge Graph）相对于简单检索增强生成（RAG）的优势
+
+  与已归档文章的关联：
+  - Supermemory、Zep、Gibson AI、Medium (Graphiti)：从不同角度讨论 AI 记忆（Memory）
+  - Cognee (本文)：用场景化方法教学，适合初学者理解
+
+  关键概念：
+  - 图谱检索增强（GraphRAG）：实体/关系和支持片段的混合搜索
+  - 混合记忆（Hybrid Memory）：语义搜索 + 知识图谱（Knowledge Graph）结构化逻辑
+  - 结构化意义优先：知识图谱（Knowledge Graph）的优势

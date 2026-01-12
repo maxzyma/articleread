@@ -1,0 +1,68 @@
+# 知识与记忆提取计划
+# 用于追踪知识图谱、记忆、RAG 相关文章的提取状态
+
+topic: "knowledge&memory"
+description: "知识图谱、记忆与 RAG"
+maintainer: "项目维护者"
+created_date: "2025-01-12"
+
+---
+
+# 待处理队列
+pending: []
+
+# 进行中
+in_progress: []
+
+# 已完成
+completed:
+  - url: "https://supermemory.ai/docs/memory-vs-rag"
+    title: "Memory vs RAG"
+    platform: "文档 (Supermemory)"
+    added_date: "2025-01-12"
+    completed_date: "2025-01-12"
+    article_file: "knowledge&memory/basics/memory-vs-rag.md"
+    metadata_file: "knowledge&memory/basics/memory-vs-rag.metadata.yaml"
+    notes: "已提取并整理，添加中文翻译和总结"
+
+  - url: "https://www.cognee.ai/blog/fundamentals/ai-memory-in-five-scenes"
+    title: "AI Memory in Five Scenes"
+    platform: "博客 (Cognee)"
+    added_date: "2025-01-12"
+    completed_date: "2025-01-12"
+    article_file: "knowledge&memory/basics/ai-memory-in-five-scenes.md"
+    metadata_file: "knowledge&memory/basics/ai-memory-in-five-scenes.metadata.yaml"
+    notes: "全文翻译，场景化教学"
+
+  - url: "https://blog.getzep.com/stop-using-rag-for-agent-memory/"
+    title: "Stop Using RAG for Agent Memory"
+    platform: "博客 (Zep)"
+    added_date: "2025-01-12"
+    completed_date: "2025-01-12"
+    article_file: "knowledge&memory/solutions/stop-using-rag-for-agent-memory.md"
+    metadata_file: "knowledge&memory/solutions/stop-using-rag-for-agent-memory.metadata.yaml"
+    notes: "全文翻译，技术术语中英对照"
+
+  - url: "https://medium.com/@saeedhajebi/building-ai-agents-with-knowledge-graph-memory-a-comprehensive-guide-to-graphiti-3b77e6084dec"
+    title: "Building AI Agents with Knowledge Graph Memory - Guide to Graphiti"
+    platform: "Medium"
+    added_date: "2025-01-12"
+    completed_date: "2025-01-12"
+    article_file: "knowledge&memory/solutions/graphiti-knowledge-graph-memory-guide.md"
+    metadata_file: "knowledge&memory/solutions/graphiti-knowledge-graph-memory-guide.metadata.yaml"
+    notes: "全文翻译，技术术语中英对照，包含安装配置示例"
+
+  - url: "https://gibsonai.com/blog/rag-vs-memory-for-ai-agents"
+    title: "RAG vs Memory for AI Agents"
+    platform: "博客 (Gibson AI)"
+    added_date: "2025-01-12"
+    completed_date: "2025-01-12"
+    article_file: "knowledge&memory/comparison/rag-vs-memory-for-ai-agents.md"
+    metadata_file: "knowledge&memory/comparison/rag-vs-memory-for-ai-agents.metadata.yaml"
+    notes: "已全文翻译为中文"
+
+# 提取失败
+failed: []
+
+# 已跳过
+skipped: []

@@ -1,0 +1,70 @@
+---
+title: "使用知识图谱（Knowledge Graph）记忆构建 AI 智能体（Agent）：Graphiti 全面指南"
+original_title: "Building AI Agents with Knowledge Graph Memory: A Comprehensive Guide to Graphiti"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "Medium"
+  url: "https://medium.com/@saeedhajebi/building-ai-agents-with-knowledge-graph-memory-a-comprehensive-guide-to-graphiti-3b77e6084dec"
+  forwarder: null
+  forwarder_note: null
+
+original_author:
+  name: "Saeed Hajebi"
+  title: "AI 研究员/工程师"
+  company: null
+
+content:
+  type: "技术教程"
+  topic: "Knowledge Graph / Agent Memory / Graphiti"
+  format: "全面指南"
+  language: "中文（技术术语中英对照）"
+
+extraction_method:
+  - "Chrome DevTools - JavaScript 内容提取"
+  - "全文翻译成中文"
+  - "技术术语采用中文（英文）格式"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页 (Chrome DevTools)"
+  issues_found_and_fixed:
+    - "使用 JavaScript 提取 Medium 页面的文章结构"
+    - "全文翻译成中文"
+    - "技术术语使用中文（英文）格式，如：知识图谱（Knowledge Graph）、智能体（Agent）、实体（Entities）"
+    - "保留代码示例和架构图示"
+    - "整理为层次分明的结构"
+
+content_file: "./graphiti-knowledge-graph-memory-guide.md"
+
+tags:
+  - "AI"
+  - "Knowledge Graph"
+  - "Graphiti"
+  - "Agent Memory"
+  - "Temporal Knowledge Graph"
+  - "Neo4j"
+  - "Entity Resolution"
+  - "LLM"
+
+notes: |
+  核心内容：
+  - Graphiti 架构：情节管理、实体提取、关系建模、时间推理
+  - Episode 类型：Message、Document、JSON
+  - 双时间记忆模型：created_at, valid_at, invalid_at, expired_at
+  - 实体解析（Entity Resolution）：识别不同提及是否指代同一实体
+  - 关系（Relationships）结构：主体-谓语-客体-时间属性
+  - 支持多种图数据库后端（Neo4j 完全支持）
+  - LLM 无关设计：支持 OpenAI、Anthropic、Groq、Google Gemini
+
+  与已归档文章的关联：
+  - Zep (Stop Using RAG): 介绍 Graphiti 框架
+  - 本文（Medium）: Graphiti 的详细技术指南
+  - 两者互补：前者强调问题，后者提供解决方案
+
+  技术亮点：
+  - 自动从非结构化交互（Episodes）提取结构化知识
+  - 增量更新，不需要完全重新计算
+  - 毫秒级查询性能
+  - 灵活的 EpisodeType 枚举
+  - 完整的安装配置示例

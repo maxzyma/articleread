@@ -1,0 +1,126 @@
+# 文章提取计划 - 主计划文件
+# 包含 general 主题的详细计划，其他主题使用引用
+#
+# 状态说明：
+#   - pending: 待处理
+#   - in_progress: 进行中
+#   - completed: 已完成
+#   - failed: 提取失败
+#   - skipped: 已跳过
+#
+# 使用方式：
+#   - General 主题：直接在此文件中管理
+#   - 其他主题：在对应的主题目录下的 extraction-plan.yaml 中管理
+
+---
+
+# 全局统计（需要定期手动更新）
+summary:
+  total_pending: 46
+  total_in_progress: 0
+  total_completed: 22
+  total_failed: 1
+  total_skipped: 1
+  last_updated: "2025-01-12"
+
+# ============================================================================
+# General 主题详细计划
+# ============================================================================
+# General 主题的文章直接在此管理，不创建单独的子 plan 文件
+
+general:
+  # 待处理队列
+  pending: []
+
+  # 进行中
+  in_progress: []
+
+  # 已完成
+  completed: []
+
+  # 提取失败
+  failed: []
+
+  # 已跳过
+  skipped: []
+
+# ============================================================================
+# 其他主题计划（使用引用）
+# ============================================================================
+# 各主题的详细计划在对应的子目录中管理
+
+subplans:
+  - topic: "claudecodedocs"
+    description: "Claude Code 相关文档"
+    plan_file: "./claudecodedocs/extraction-plan.yaml"
+    summary:
+      pending: 0
+      in_progress: 0
+      completed: 1
+      failed: 0
+      skipped: 0
+    notes: "Claude Code 使用技巧和教程"
+
+  - topic: "claudedocs"
+    description: "Claude 官方文档"
+    plan_file: "./claudedocs/extraction-plan.yaml"
+    summary:
+      pending: 46
+      in_progress: 0
+      completed: 15
+      failed: 0
+      skipped: 1
+    notes: "Claude API 和开发文档"
+
+  - topic: "knowledge&memory"
+    description: "知识图谱、记忆与 RAG"
+    plan_file: "./knowledge&memory/extraction-plan.yaml"
+    summary:
+      pending: 0
+      in_progress: 0
+      completed: 5
+      failed: 0
+      skipped: 0
+    notes: "AI 记忆系统和 RAG 技术相关"
+
+  - topic: "openapidocs"
+    description: "OpenAI 相关文档"
+    plan_file: "./openapidocs/extraction-plan.yaml"
+    summary:
+      pending: 0
+      in_progress: 0
+      completed: 1
+      failed: 0
+      skipped: 0
+    notes: "OpenAI API 和文档"
+
+# ============================================================================
+# 全局失败记录（跨主题）
+# ============================================================================
+# 这里记录需要特殊处理的失败任务，各主题的失败任务也可在子 plan 中记录
+
+global_failed:
+  - url: "https://www.ijcai.org/proceedings/2025/0002.pdf"
+    title: "IJCAI 2025 Paper (PDF)"
+    platform: "学术论文 (IJCAI)"
+    failed_date: "2025-01-12"
+    error_reason: "网络连接失败，无法下载 PDF"
+    notes: "需要配置代理或使用其他下载方式"
+    topic: "general"  # 可以标记归属主题
+
+# ============================================================================
+# 工作流程说明
+# ============================================================================
+
+# 添加新文章时：
+#   1. General 主题：直接在此文件的 general.pending 中添加
+#   2. 其他主题：在对应的主题目录下的 extraction-plan.yaml 的 pending 中添加
+#
+# 更新状态时：
+#   1. General 主题：直接在此文件的 general 部分更新
+#   2. 其他主题：在对应的主题目录下的 extraction-plan.yaml 中更新
+#   3. 定期更新此文件的 summary 和 subplans[].summary 部分以反映最新统计
+#
+# 查看全局进度：
+#   - 查看 summary 部分了解总体进度
+#   - 查看 subplans[].summary 了解各主题进度

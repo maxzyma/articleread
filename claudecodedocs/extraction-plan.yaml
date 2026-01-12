@@ -1,0 +1,32 @@
+# Claude Code 文档提取计划
+# 用于追踪 Claude Code 相关文档的提取状态
+
+topic: "claudecodedocs"
+description: "Claude Code 相关文档"
+maintainer: "项目维护者"
+created_date: "2025-01-12"
+
+---
+
+# 待处理队列
+pending: []
+
+# 进行中
+in_progress: []
+
+# 已完成
+completed:
+  - url: "https://www.xiaohongshu.com/..."  # 示例
+    title: "Claude Code 31条秘籍"
+    platform: "小红书"
+    added_date: "2025-01-11"
+    completed_date: "2025-01-11"
+    article_file: "claudecodedocs/getting-started/claude-code-31-tips.md"
+    metadata_file: "claudecodedocs/getting-started/claude-code-31-tips.metadata.yaml"
+    notes: "已验证完整性"
+
+# 提取失败
+failed: []
+
+# 已跳过
+skipped: []

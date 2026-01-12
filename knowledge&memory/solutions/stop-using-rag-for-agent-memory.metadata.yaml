@@ -1,0 +1,66 @@
+---
+title: "停止使用检索增强生成（RAG）作为智能体记忆（Agent Memory）"
+original_title: "Stop Using RAG for Agent Memory"
+extraction_date: "2025-01-12"
+
+source:
+  platform: "博客 (Zep)"
+  url: "https://blog.getzep.com/stop-using-rag-for-agent-memory/"
+  forwarder: null
+  forwarder_note: null
+
+original_author:
+  name: "Daniel Chalef"
+  title: "Founder"
+  company: "Zep AI"
+
+content:
+  type: "技术博客"
+  topic: "Agent Memory / Knowledge Graph / RAG"
+  format: "演讲总结"
+  language: "中文（技术术语中英对照）"
+
+extraction_method:
+  - "Chrome DevTools - Page Snapshot"
+  - "全文翻译成中文"
+  - "技术术语采用中文（英文）格式"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页 (Chrome DevTools)"
+  issues_found_and_fixed:
+    - "全文翻译成中文"
+    - "技术术语使用中文（英文）格式，如：检索增强生成（RAG）、智能体（Agent）、知识图谱（Knowledge Graph）"
+    - "保留代码示例的英文内容"
+    - "保留演讲幻灯片的结构"
+
+content_file: "./stop-using-rag-for-agent-memory.md"
+
+tags:
+  - "AI"
+  - "Agent Memory"
+  - "RAG"
+  - "Knowledge Graph"
+  - "Graphiti"
+  - "Zep"
+  - "Temporal Reasoning"
+  - "Bi-Temporal Memory"
+
+notes: |
+  核心洞察：
+  - RAG 用于静态知识检索，但不适合作为动态记忆
+  - Graphiti 使用双时间记忆模型（Bi-Temporal Memory）
+  - 四个时间戳：created_at, valid_at, invalid_at, expired_at
+  - 混合检索方法：语义搜索 + 关键词搜索 + 子图遍历
+  - 基准测试结果：Zep 71.2% vs 基线 60.2%
+
+  与已归档文章的关联：
+  - Supermemory: 强调文档 vs 记忆的区别
+  - Gibson AI: 更全面的架构对比
+  - Zep (本文): 聚焦于知识图谱解决方案和双时间记忆模型
+
+  关键概念：
+  - 时间序列（Temporal Sequence）
+  - 因果关系（Causal Relationships）
+  - 事实失效（Fact Invalidation）
+  - 实体（Entities）和关系（Relationships）
