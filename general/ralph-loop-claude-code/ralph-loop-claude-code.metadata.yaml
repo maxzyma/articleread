@@ -1,0 +1,51 @@
+---
+title: "卷死你的 Claude Code，让它彻夜干活：ralph loop 插件一手体验"
+original_title: "卷死你的 Claude Code，让它彻夜干活：ralph loop 插件一手体验"
+extraction_date: "2025-01-17"
+
+source:
+  platform: "小红书"
+  url: "https://www.xiaohongshu.com/explore/69683542000000000b00bacb"
+  author: "湾仔码农"
+  publish_date: "2025-01-15"
+
+content:
+  type: "技术教程"
+  topic: "AI工具 / Claude Code / 自动化"
+  core_point: "Ralph Loop 插件让 Claude Code 实现持续循环执行，在有详细 PRD 和测试用例的场景下，可自动完成数天的人工工作量"
+  key_topics:
+    - "Ralph Loop 插件工作原理"
+    - "适用场景：详细 PRD + 测试用例"
+    - "Boris 一个月 259 个 PR 的实践案例"
+    - "提示词模板和最佳实践"
+    - "浏览器自动化测试建议"
+
+extraction_method:
+  - "Chrome DevTools - 页面文本提取"
+  - "Chrome DevTools - 页面截图"
+  - "JavaScript - 图片 URL 提取"
+  - "AI 图片 OCR - 16张图片文字识别"
+
+verification:
+  status: "completed"
+  verified_against: "小红书网页 + 16张内容图片（二次校对）"
+  notes: "已修正标题、补充完整小结部分、更正原作者信息、移除非技术细节"
+
+content_file: "./ralph-loop-claude-code.md"
+
+tags:
+  - "AI工具"
+  - "Claude Code"
+  - "Ralph Loop"
+  - "自动化开发"
+  - "VibeCoding"
+
+notes: |
+  核心观点：Ralph Loop 让 Claude Code 从"助手"变成"不知疲倦的开发者"，适合有详细需求和测试但耗时的任务。
+
+  技术背景：
+  - Claude Code 之父 Boris 一个月提交 259 个 PR，添加 40000 行代码
+  - Ralph Loop 由 Geoffrey Huntley 创建，原名 Ralph Wiggum（因版权改名）
+  - 核心机制：循环执行任务，遇到错误自动重试，直到所有测试通过
+
+  目标受众：有明确需求文档和测试用例，希望提升重复性开发效率的开发者和独立开发者

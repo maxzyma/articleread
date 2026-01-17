@@ -1,6 +1,6 @@
 # 为什么我们构建 Responses API
 
-> **核心总结**：随着 GPT-5 的发布，Responses API 为推理模型（Reasoning Models）和智能体（Agent）未来提供了最佳集成方式。相比 Chat Completions API，Responses API 提供了持久推理（Persistent Reasoning）、托管工具（Hosted Tools）和多模态工作流（Multimodal Workflows）支持。它是一个有状态的智能体循环（Agentic Loop），能够保留推理状态（Reasoning State）跨多个轮次，在 TAUBench 上提升 5% 性能，缓存利用率提高 40-80%。
+> **核心总结**：随着 GPT-5 的发布，Responses API 为推理模型（Reasoning Models）和智能体（Agent）未来提供了最佳集成方式。相比 Chat Completions API，Responses API 提供了持久推理（Persistent Reasoning）、托管工具（Hosted Tools）和多模态工作流（Multimodal Workflows）支持。它是一个有状态的智能体循环（Agentic Loop），能够保留推理状态（Reasoning State）跨多个轮次，在 TAUBench 上性能提升 5%，缓存利用率提高 40-80%。
 
 **发布日期：** 2025 年 9 月 22 日
 **分类：** OpenAI / API 设计 / GPT-5
@@ -11,7 +11,7 @@
 
 ## 引言
 
-随着 GPT-5 的发布，我们想要给出更多关于集成它的最佳方式的背景，**响应 API（Responses API）**，以及为什么 Responses 是为推理模型（Reasoning Models）和智能体（Agent）未来量身定制的。
+随着 GPT-5 的发布，我们想要提供更多关于如何最佳集成它的背景信息，**响应 API（Responses API）**，以及为什么 Responses 是为推理模型（Reasoning Models）和智能体（Agent）未来量身定制的。
 
 OpenAI API 的每一代都是围绕同一个问题构建的：**开发者与模型交谈的最简单、最强大的方式是什么？**
 
@@ -19,19 +19,19 @@ OpenAI API 的每一代都是围绕同一个问题构建的：**开发者与模�
 
 然后来了 RLHF、ChatGPT 和后训练（Post-training）时代。突然间模型不只是完成你半写成的散文——它们像对话伙伴一样**响应（Responding）**。为了跟上步伐，我们构建了 `/v1/chat/completions`（**著名的在一个周末内完成**）。通过赋予 system、user、assistant 等角色，我们提供了快速构建具有自定义指令和上下文的聊天界面的脚手架。
 
-我们的模型不断变得更好。很快，它们开始看、听和说。2023 年末的函数调用（Function-calling）成为我们最受喜爱的功能之一。大约同时，我们推出了测试版的助手 API（Assistants API）：我们第一次尝试完全智能体（Agent）界面，带有代码解释器（Code Interpreter）和文件搜索（File Search）等托管工具。一些开发者喜欢它，但由于相对于 Chat Completions 限制性强且难以采用的 API 设计，它从未实现大规模采用。
+我们的模型不断变得更好。很快，它们开始看、听和说。2023 年末的函数调用（Function-calling）成为我们最受喜爱的功能之一。大约同时，我们推出了测试版的助手 API（Assistants API）：我们第一次尝试全功能智能体（Agent）界面，带有代码解释器（Code Interpreter）和文件搜索（File Search）等托管工具。一些开发者喜欢它，但由于相对于 Chat Completions 限制性强且难以采用的 API 设计，它从未实现大规模采用。
 
-到 2024 年末，显然我们需要统一：像 Chat Completions 一样平易近人，像 Assistants 一样强大，但专门为多模态（Multimodal）和推理模型（Reasoning Models）构建。进入 `/v1/responses`。
+到 2024 年末，显然我们需要统一：像 Chat Completions 一样平易近人，像 Assistants 一样强大，但专门为多模态（Multimodal）和推理模型（Reasoning Models）构建。推出 `/v1/responses`。
 
 ---
 
 ## /v1/responses 是一个智能体循环（Agentic Loop）
 
-Chat Completions 为你提供了一个简单的基于回合的聊天界面。Responses 相反为你提供了一个用于推理和行动的结构化循环。把它想象成与侦探一起工作：你给他们证据，他们调查，他们可能咨询专家（工具），最后他们回报。侦探在步骤之间保留他们的私人笔记（推理状态，Reasoning State），但从不将它们交给客户。
+Chat Completions 为你提供了一个简单的基于回合的聊天界面。Responses 相反为你提供了一个用于推理和行动的结构化循环。把它想象成与侦探一起工作：你给他们证据，他们调查，他们可能咨询专家（工具），最后他们向你汇报。侦探在步骤之间保留他们的私人笔记（推理状态，Reasoning State），但从不将它们交给客户。
 
-这就是推理模型（Reasoning Models）真正发光的地方：Responses 在这些轮次之间保留模型的**推理状态（Reasoning State）**。在 Chat Completions 中，推理在调用之间被丢弃，就像侦探每次离开房间都忘记线索一样。Responses 保持笔记本打开；逐步的思维过程实际上存活到下一轮。这体现在基准测试中（TAUBench +5%）以及更高效的缓存利用率和延迟中。
+这就是推理模型（Reasoning Models）真正发挥优势的地方：Responses 在这些轮次之间保留模型的**推理状态（Reasoning State）**。在 Chat Completions 中，推理在调用之间被丢弃，就像侦探每次离开房间都忘记线索一样。Responses 保持笔记本打开；逐步的思维过程实际上存活到下一轮。这体现在基准测试中（TAUBench +5%）以及更高效的缓存利用率和延迟中。
 
-Responses 还可以发出多个输出项（Output Items）：不仅是模型**说了什么**，还有它**做了什么**。你获得收据——工具调用（Tool Calls）、结构化输出（Structured Outputs）、中间步骤（Intermediate Steps）。这就像得到完成的论文和草稿本数学。对调试、审计和构建更丰富的 UI 很有用。
+Responses 还可以发出多个输出项（Output Items）：不仅是模型**说了什么**，还有它**做了什么**。你获得收据——工具调用（Tool Calls）、结构化输出（Structured Outputs）、中间步骤（Intermediate Steps）。这就像既得到完成的论文，又看到草稿本上的计算过程。对调试、审计和构建更丰富的 UI 很有用。
 
 **Chat Completions 示例：**
 ```json
@@ -101,7 +101,7 @@ Responses 发出**多态项（Polymorphic Items）**列表。模型采取的行�
 
 在函数调用的早期，我们注意到一个关键模式：开发者使用模型既调用 API，也搜索文档存储以引入外部数据源——现在称为检索增强生成（RAG）。但是，如果你是一个刚刚开始的开发者，从头开始构建检索管道是一项令人生畏且昂贵的工作。使用 Assistants，我们推出了我们的第一个**托管工具**：`file_search` 和 `code_interpreter`，允许模型做检索增强生成（RAG）并编写代码来解决你问它的问题。
 
-在 Responses 中，我们更进一步，添加了网络搜索（Web Search）、图像生成（Image Gen）和模型上下文协议（MCP）。而且由于工具执行通过代码解释器或 MCP 等托管工具在服务器端发生，你不是每次调用都通过自己的后端反弹，确保更好的延迟和往返成本。
+在 Responses 中，我们更进一步，添加了网络搜索（Web Search）、图像生成（Image Gen）和模型上下文协议（MCP）。而且由于工具执行通过代码解释器或 MCP 等托管工具在服务器端发生，你无需每次调用都通过自己的后端中转，确保更好的延迟和往返成本。
 
 ---
 
@@ -125,16 +125,16 @@ Responses 通过以下方式解决了这个问题：
 
 **智能体工具使用（Agentic Tool-Use）：** Responses API 使你能够轻松地使用文件搜索（File Search）、图像生成（Image Gen）、代码解释器（Code Interpreter）和模型上下文协议（MCP）等工具增强智能体（Agent）工作流。
 
-**默认有状态（Stateful-by-Default）。** 对话和工具状态自动跟踪。这使推理和多轮工作流戏剧性地更容易。通过 Responses 集成的 GPT-5 在 TAUBench 上比 Chat Completions 得分高 5%，纯粹通过利用保留的推理。
+**默认有状态（Stateful-by-Default）。** 对话和工具状态自动跟踪。这使推理和多轮工作流显著简化。通过 Responses 集成的 GPT-5 在 TAUBench 上比 Chat Completions 得分高 5%，纯粹通过利用保留的推理。
 
-**从根本上多模态（Multimodal from the Ground Up）。** 文本、图像、音频、函数调用（Function Calls）——都是一等公民。我们没有将模态螺栓连接到文本 API 上；我们从第一天起就设计了足够的卧室。
+**从根本上多模态（Multimodal from the Ground Up）。** 文本、图像、音频、函数调用（Function Calls）——都是一等公民。我们没有将模态生硬嫁接到文本 API 上；我们从第一天起就设计了足够的空间。
 
 **更低的成本，更好的性能。** 内部基准测试显示，与 Chat Completions 相比，缓存利用率提高 40-80%。这意味着更低的延迟和更低的成本。
 
 **更好的设计：** 我们从 Chat Completions 和 Assistants API 学到了很多东西，并在 Responses API 和 SDK 中做了一些小的生活质量改进，包括：
 - 语义流事件（Semantic Streaming Events）
 - 内部标记的多态性（Internally-tagged Polymorphism）
-- SDK 中的 `output_text` 助手（不再需要 `choices.[0].message.content`）
+- SDK 中的 `output_text` 辅助属性（不再需要 `choices.[0].message.content`）
 - 更好的多模态和推理参数组织
 
 ---

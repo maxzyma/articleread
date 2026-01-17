@@ -1,0 +1,50 @@
+---
+title: "Manus创始人：Claude是做Agent的最佳模型"
+original_title: "Manus创始人：Claude是做Agent的最佳模型 #Manus #Agent #AI #Claude"
+extraction_date: "2026-01-17"
+
+source:
+  platform: "抖音 (Douyin)"
+  url: "https://v.douyin.com/4ehXpq0yhHM/"
+  video_id: "7494084867202895131"
+  author: "TechForWhat"
+  publish_date: "2025-04-17"
+
+content:
+  type: "技术观点"
+  topic: "AI Agent / Claude / 模型选择"
+  core_point: "Claude 是构建 AI Agent 应用的最佳模型"
+  key_topics:
+    - "Claude 在 Agent 场景的优势"
+    - "Claude 3.7 的编码能力"
+    - "Cursor 的成功实践"
+    - "Manus 平台的模型选择建议"
+
+extraction_method:
+  - "Chrome DevTools"
+  - "DOM 内容提取"
+
+verification:
+  status: "completed"
+  verified_against: "抖音原始网页"
+  notes: "短视频无完整字幕，基于标题、标签及技术社区讨论整理"
+
+content_file: "./manus-claude-best-agent-model.md"
+
+tags:
+  - "AI Agent"
+  - "Claude"
+  - "Manus"
+  - "Cursor"
+  - "模型选择"
+  - "Tool Use"
+
+notes: |
+  核心观点：Manus 创始人推荐 Claude 作为 AI Agent 开发的首选模型。
+
+  技术背景：
+  - Claude 3.7 在代码生成方面表现优异
+  - Cursor 等主流 AI 编程工具深度集成 Claude
+  - Claude 在工具调用（Tool Use）和多步推理方面有优势
+
+  目标受众：正在构建 AI Agent 应用的技术人员

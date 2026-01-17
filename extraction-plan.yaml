@@ -18,10 +18,10 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 7
+  total_completed: 9
   total_failed: 1
   total_skipped: 0
-  last_updated: "2025-01-13"
+  last_updated: "2026-01-17"
 
 # ============================================================================
 # General 主题详细计划
@@ -37,6 +37,14 @@ general:
 
   # 已完成
   completed:
+    - url: "https://v.douyin.com/4ehXpq0yhHM/"
+      title: "Manus创始人：Claude是做Agent的最佳模型"
+      platform: "抖音 (Douyin)"
+      forwarder: null
+      completed_date: "2026-01-17"
+      content_path: "general/manus-claude-best-agent-model/"
+      notes: "使用 Chrome DevTools 提取的抖音视频内容，包含标题、作者、互动数据和社区讨论"
+
     - url: "https://www.xiaohongshu.com/explore/..."
       title: "Claude Code 31条秘籍_完整版"
       platform: "小红书 (Xiaohongshu)"
@@ -52,6 +60,14 @@ general:
       completed_date: "2025-01-12"
       content_path: "general/openai-responses-api/"
       notes: "OpenAI Responses API 技术博客，与 AI 记忆和智能体主题相关"
+
+    - url: "https://www.xiaohongshu.com/explore/69683542000000000b00bacb"
+      title: "卷死你的 Claude Code，让它彻夜干活：ralph loop 插件一手体验"
+      platform: "小红书 (Xiaohongshu)"
+      forwarder: null
+      completed_date: "2025-01-17"
+      content_path: "general/ralph-loop-claude-code/"
+      notes: "Ralph Loop 插件完整教程，包含背景故事、安装配置、提示词模板、实战案例和最佳实践。已二次校对修正，确保与原图内容一致。"
 
   # 提取失败
   failed: []
