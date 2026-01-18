@@ -16,10 +16,10 @@
 
 # 全局统计（需要定期手动更新）
 summary:
-  total_pending: 6
+  total_pending: 0
   total_in_progress: 0
-  total_completed: 9
-  total_failed: 1
+  total_completed: 13
+  total_failed: 4
   total_skipped: 0
   last_updated: "2026-01-18"
 
@@ -30,36 +30,7 @@ summary:
 
 general:
   # 待处理队列
-  pending:
-    - url: "https://www.xiaohongshu.com/explore/69664f6b00000000220315c8?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBrtTKH9m2iNanppwN57YNQHV1gKd3QijM6K8OAJzZ7kw=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768727063&share_id=0f8042e0878245fca2bff3cca690744f&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "视频笔记，待提取"
-
-    - url: "https://www.xiaohongshu.com/explore/6965f38c000000001a023953?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBJM6KZQ3pzLe1XtAOmMdEgTsbsGSX9qpzFnXfF2943ss=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768726892&share_id=8e532e24fa934260bfe6922ad242d518&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "视频笔记，待提取"
-
-    - url: "https://www.xiaohongshu.com/explore/69698507000000001a0335b1?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBrLGpUevlbrXhT_bAW06rDeX0XW4mTfjDQnWDEvQKnHk=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768724311&share_id=01835e01bdbe4042bbbc819f146329eb&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "图文笔记，待提取"
-
-    - url: "https://www.xiaohongshu.com/explore/694be94d000000001e022378?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBkPe3Z2oPsOFbPOD77dJoJNcC6d-BLHr0jT4vGbU0pTo=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768707203&share_id=cf61ce4369cd4fffb9176bc39a503937&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "图文笔记，待提取"
-
-    - url: "https://www.xiaohongshu.com/explore/6969cdb9000000001a02eede?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBrLGpUevlbrXhT_bAW06rDb0OsjHjDWEMbyCdgfyJyew=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768670926&share_id=4ffc499447a649aea733c97f3d32afee&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "视频笔记，待提取"
-
-    - url: "https://www.xiaohongshu.com/explore/696b3ce10000000021032c33?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBRpL9XEQL56UP6afbf3-uTxlM7zufo0DlqpIXrgLIx0g=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768668646&share_id=26b5a8ce8bba46d7b2dcf3c7096d3769&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
-      platform: "小红书 (Xiaohongshu)"
-      added_date: "2026-01-18"
-      notes: "视频笔记，待提取"
+  pending: []
 
   # 进行中
   in_progress: []
@@ -98,8 +69,52 @@ general:
       content_path: "general/ralph-loop-claude-code/"
       notes: "Ralph Loop 插件完整教程，包含背景故事、安装配置、提示词模板、实战案例和最佳实践。已二次校对修正，确保与原图内容一致。"
 
+    - url: "https://www.xiaohongshu.com/explore/69664f6b00000000220315c8"
+      title: "Stitch + AI Studio：10分钟从创意到可运行的App"
+      platform: "小红书 (Xiaohongshu)"
+      forwarder: null
+      completed_date: "2026-01-18"
+      content_path: "general/stitch-ai-studio-app-development/"
+      notes: "视频笔记，已提取完整内容"
+
+    - url: "https://www.xiaohongshu.com/explore/6965f38c000000001a023953"
+      title: "Claude Cowork 实战案例集"
+      platform: "小红书 (Xiaohongshu)"
+      forwarder: null
+      completed_date: "2026-01-18"
+      content_path: "general/claude-cowork-cases/"
+      notes: "视频笔记，已提取完整内容"
+
+    - url: "https://www.xiaohongshu.com/explore/69698507000000001a0335b1"
+      title: "Claude Code 之父的工作流：740 万围观背后的秘密"
+      platform: "小红书 (Xiaohongshu)"
+      forwarder: null
+      completed_date: "2026-01-18"
+      content_path: "general/boris-claude-code-workflow/"
+      notes: "图文笔记，已提取 6 张图片的核心内容"
+
   # 提取失败
-  failed: []
+  failed:
+    - url: "https://www.xiaohongshu.com/explore/694be94d000000001e022378"
+      title: "未知标题"
+      platform: "小红书 (Xiaohongshu)"
+      failed_date: "2026-01-18"
+      error_reason: "404 错误：当前笔记暂时无法浏览"
+      notes: "可能已删除、私密或需要重新授权"
+
+    - url: "https://www.xiaohongshu.com/explore/6969cdb9000000001a02eede"
+      title: "未知标题"
+      platform: "小红书 (Xiaohongshu)"
+      failed_date: "2026-01-18"
+      error_reason: "404 错误：当前笔记暂时无法浏览"
+      notes: "可能已删除、私密或需要重新授权"
+
+    - url: "https://www.xiaohongshu.com/explore/696b3ce10000000021032c33"
+      title: "未知标题"
+      platform: "小红书 (Xiaohongshu)"
+      failed_date: "2026-01-18"
+      error_reason: "404 错误：当前笔记暂时无法浏览"
+      notes: "可能已删除、私密或需要重新授权"
 
   # 已跳过
   skipped: []

@@ -1,0 +1,55 @@
+---
+title: "Claude Code 之父的工作流：740 万围观背后的秘密"
+original_title: "740万围观！Claude Code之父的工作流火了"
+extraction_date: "2026-01-18"
+
+source:
+  platform: "小红书 (Xiaohongshu)"
+  url: "https://www.xiaohongshu.com/explore/69698507000000001a0335b1"
+  video_id: "69698507000000001a0335b1"
+  author: "未知"
+  publish_date: "2026-01-16"
+
+content:
+  type: "技术观点"
+  topic: "AI辅助开发"
+  format: "图文笔记"
+  core_point: "Boris Cherny 分享 Claude Code 工作流：15 个并行实例、Opus 4.5 Thinking 模型、团队共享 CLAUDE.md"
+  key_topics:
+    - "Claude Code"
+    - "Boris Cherny"
+    - "Opus 4.5 Thinking"
+    - "Plan Mode"
+    - "CLAUDE.md"
+    - "团队协作"
+    - "Skills 生态"
+
+extraction_method:
+  - "Chrome DevTools"
+  - "图片识别"
+
+verification:
+  status: "completed"
+  verified_against: "小红书图文笔记"
+  notes: "已提取 6 张图片的核心内容"
+
+content_file: "./boris-claude-code-workflow.md"
+
+tags:
+  - "Claude Code"
+  - "AI辅助开发"
+  - "工作流"
+  - "团队协作"
+  - "Opus 4.5"
+
+notes: |
+  核心观点：Boris Cherny（Claude Code 创造者）公开个人工作流
+
+  技术背景：
+  - 15 个并行 Claude 实例（5 终端 + 5-10 浏览器）
+  - 全程使用 Opus 4.5 Thinking 模型
+  - Plan Mode 优先（shift+tab 两次）
+  - CLAUDE.md 团队共享记忆系统
+  - 423 个可下载 Skills
+
+  目标受众：正在使用 Claude Code 的开发者，AI 辅助开发实践者
