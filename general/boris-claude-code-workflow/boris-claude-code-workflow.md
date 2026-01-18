@@ -21,6 +21,8 @@ Boris 是 Anthropic 的资深工程师，Claude Code 就是他做的。2024 年 
 
 但最让人意外的是，他的设置出奇简单。用他自己的原话说：surprisingly vanilla。
 
+![Boris Cherny 在 X 上分享 Claude Code 工作流](./images/image_cover.jpg)
+
 ---
 
 ## 01 | 15 个 Claude 并行
@@ -28,6 +30,8 @@ Boris 是 Anthropic 的资深工程师，Claude Code 就是他做的。2024 年 
 Boris 的日常是这样的：终端里开 5 个 Claude Code，浏览器里再开 5-10 个。
 
 每个标签页编号 1-5，由系统通知告诉他哪个 Claude 需要操作。
+
+![Boris Cherny 的 Claude Code 工作流](./images/image_1_boris_cherny.png)
 
 ---
 
