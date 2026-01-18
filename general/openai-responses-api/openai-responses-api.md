@@ -11,6 +11,8 @@
 
 ## 引言
 
+![Why we built the Responses API](https://developers.openai.com/images/blog/responses-api.png)
+
 随着 GPT-5 的发布，我们想要提供更多关于如何最佳集成它的背景信息，**响应 API（Responses API）**，以及为什么 Responses 是为推理模型（Reasoning Models）和智能体（Agent）未来量身定制的。
 
 OpenAI API 的每一代都是围绕同一个问题构建的：**开发者与模型交谈的最简单、最强大的方式是什么？**
@@ -26,6 +28,8 @@ OpenAI API 的每一代都是围绕同一个问题构建的：**开发者与模�
 ---
 
 ## /v1/responses 是一个智能体循环（Agentic Loop）
+
+![Responses vs Chat Completions](https://cdn.openai.com/devhub/tracks/diagram-responses-vs-cc.webp)
 
 Chat Completions 为你提供了一个简单的基于回合的聊天界面。Responses 相反为你提供了一个用于推理和行动的结构化循环。把它想象成与侦探一起工作：你给他们证据，他们调查，他们可能咨询专家（工具），最后他们向你汇报。侦探在步骤之间保留他们的私人笔记（推理状态，Reasoning State），但从不将它们交给客户。
 
