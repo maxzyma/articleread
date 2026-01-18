@@ -1,92 +1,170 @@
-# Claude Code 之父的工作流：740 万围观背后的秘密
+# Claude Code 之父的工作流火了：740 万围观的背后
 
-> 来源：小红书，2026-01-16
+> 来源：小红书 AI信息Gap，2026-01-16
 > 原文链接：https://www.xiaohongshu.com/explore/69698507000000001a0335b1
 
 ## 核心观点
 
-**Boris Cherny（Claude Code 创造者）公开个人工作流：同时运行 15 个 Claude 实例、全程使用 Opus 4.5 Thinking 模型、团队共享 CLAUDE.md 记忆系统。**
+**Boris Cherny（Claude Code 创造者）在 X 上分享个人工作流：15 个 Claude 实例并行、全程使用 Opus 4.5 Thinking 模型、Plan Mode 优先、团队共享 CLAUDE.md 记忆系统。740 万阅读量，引发开发者热议。**
 
 ---
 
-## 工作流概览
+## 背景
 
-### 1. 15 个并行 Claude 实例
+Boris Cherny 在 X 上发了一条帖子，分享自己怎么用 Claude Code，获得 740 万阅读量。
 
-- **终端中**：5 个 Claude 实例同时运行
-- **浏览器中**：5-10 个 Claude 实例并行工作
-- **用途**：不同任务使用不同实例，避免上下文干扰
+Boris 是 Anthropic 的资深工程师，Claude Code 就是他做的。2024 年 9 月加入 Anthropic，从一个内部原型开始，一路把 Claude Code 做到了 6 个月 10 亿美元 ARR。这个速度，放在整个 SaaS 历史上都是现象级的。
 
-### 2. Opus 4.5 Thinking 模型
+所以当他说「分享一下我自己怎么用 Claude Code」的时候，直接火了。
 
-- **全程使用**：即使是最简单的任务也用"最慢"的 Opus 4.5 Thinking
-- **核心理念**：更少的人工干预（less steering），更高的质量
-- **权衡**：速度 vs 质量，选择质量
+有人说这是 Anthropic 的「ChatGPT 时刻」。有人说，用了他的方法之后，「感觉更像在玩星际争霸，而不是在写代码」，从敲键盘变成了指挥团队。
 
-### 3. Plan Mode 优先
-
-- **启动方式**：`shift+tab` 两次进入 Plan Mode
-- **工作流程**：先规划，后执行
-- **优势**：避免盲目执行，减少返工
+但最让人意外的是，他的设置出奇简单。用他自己的原话说：surprisingly vanilla。
 
 ---
 
-## 团队协作：共享 AI 记忆
+## 01 | 15 个 Claude 并行
 
-### CLAUDE.md 系统
+Boris 的日常是这样的：终端里开 5 个 Claude Code，浏览器里再开 5-10 个。
 
-- **存储位置**：Git 仓库
-- **更新频率**：每周更新
-- **内容类型**：
-  - 项目背景知识
-  - 代码规范和约定
-  - 团队决策历史
-  - 最佳实践
-
-### 效果
-
-- **团队记忆**：所有 Claude 实例访问相同的知识库
-- **一致性**：不同成员获得一致的 AI 辅助
-- **迭代优化**：每周更新确保知识不过时
+每个标签页编号 1-5，由系统通知告诉他哪个 Claude 需要操作。
 
 ---
 
-## Skills 生态系统
+## 02 | 用最慢的模型，反而最快
 
-### 423 个可下载 Skills
+这条可能是整个帖子里最反直觉的。
 
-- **来源**：社区贡献的"神级" Skills 集合
-- **类型**：涵盖各种开发场景和任务
-- **可扩展性**：任何人可以创建和分享 Skills
+Boris 用的是 Opus 4.5 Thinking，Anthropic 最大、最慢的模型。
 
-### 技能价值
+不是 Sonnet。不是 Haiku。
 
-- **即插即用**：无需重复编写提示词
-- **专业级**：社区打磨的高质量技能
-- **持续进化**：生态不断完善
+他的原话：
 
----
+> 「这是我用过的最好的编程模型。虽然它比 Sonnet 更大更慢，但因为你不需要反复纠正它、它的工具使用能力更强，所以最终几乎总是比用小模型更快。」
+>
+> —— Boris Cherny (@bcherny)
 
-## 技术启示
-
-对于正在使用 Claude Code 的开发者：
-
-1. **质量优先**：Opus 4.5 Thinking 的"慢"值得等待
-2. **并行工作**：多实例并行大幅提升效率
-3. **规划先行**：Plan Mode 减少返工和试错
-4. **共享记忆**：CLAUDE.md 是团队协作的核心
-5. **生态利用**：善用 Skills 避免重复造轮子
+表面上慢，实际上省掉了来回调试的时间。
 
 ---
 
-## 背景信息
+## 03 | Plan Mode：先想清楚，再行动
 
-**Boris Cherny**：
-- Claude Code 创造者
-- Anthropic 团队成员
-- 长期探索 AI 辅助开发最佳实践
+大多数会话，Boris 都从 Plan Mode 开始。
 
-**Claude Code**：
-- Anthropic 官方 CLI 工具
-- 集成 Claude 模型的开发助手
-- 支持 Skills、Plan Mode 等高级功能
+快捷键是 shift+tab 按两次。
+
+如果目标是写一个 Pull Request，他会先在 Plan Mode 里和 Claude 反复讨论，直到计划满意。然后切换到自动接受编辑模式，让 Claude 一次性完成。
+
+他说：「一个好的计划非常重要。」
+
+强烈推荐这个 Plan Mode，谁用谁知道！
+
+---
+
+## 04 | CLAUDE.md：团队共享的 AI 记忆
+
+Boris 的团队维护一个 CLAUDE.md 文件，提交到 git 里，每周会更新几次。
+
+规则很简单：「每次看到 Claude 做错什么，就加进去。」
+
+这样 Claude 下次就知道不要再犯同样的错误。
+
+代码审查的时候，他经常在同事的 PR 里 @.claude ，让 Claude 把某条规则加进 CLAUDE.md。他们用 Claude Code 的 GitHub Action 来实现这个流程。
+
+```
+claude-cli $ cat CLAUDE.md
+# Development Workflow
+
+**Always use `bun`, not `npm`.**
+
+```sh
+# 1. Make changes
+
+# 2. Typecheck (fast)
+bun run typecheck
+
+# 3. Run tests
+bun run test -- -t "test name"    # Single suite
+bun run test:file -- "glob"      # Specific files
+
+# 4. Lint before committing
+bun run lint:file -- "file1.ts"  # Specific files
+bun run lint                    # All files
+
+# 5. Before creating PR
+bun run lint:claude && bun run test
+```
+
+每一个错误都变成了一条规则。团队合作的时间越长，AI 就越聪明。
+
+---
+
+## 05 | 423 个神级 Skills
+
+Agent 能力开始被「工程化」了！
+
+---
+
+## 06 | Subagent：让 AI 互相检查
+
+他的代码审查命令会同时启动好几个 subagent：
+
+一个检查代码风格，一个查项目历史理解上下文，一个找明显的 bug。第一轮会有误报，所以他再用 5 个 subagent 专门挑第一轮结果的毛病。
+
+```
+.claude
+├─ agents
+│  ├─ build-validator.md
+│  ├─ code-architect.md
+│  ├─ code-simplifier.md
+│  ├─ oncall-guide.md
+│  └─ verify-app.md
+```
+
+他说：「最后的结果很棒，能找到所有真正的问题，没有误报。」
+
+---
+
+## 07 | 让 Claude 用你的工具
+
+Boris 让 Claude Code 直接使用他日常的工具。
+
+主要通过 MCP server。比如连接 BigQuery 查询回答数据问题。从 Sentry 拉错误日志。
+
+相关的 MCP 配置放在 .mcp.json 里，团队共享。
+
+这意味着 Claude 不只是写代码，还能帮你查数据、找 bug。
+
+---
+
+## 08 | 权限和 Hooks
+
+Boris 不用 --dangerously-skip-permissions。
+
+他用 /permissions 预先允许那些他知道安全的常用 bash 命令，避免不必要的权限弹窗。大部分配置放在 .claude/settings.json 里，团队共享。
+
+他用 PostToolUse hook 来格式化 Claude 生成的代码。Claude 生成的代码通常格式不错，hook 处理最后 10%，避免 CI 里出格式错误。
+
+---
+
+## 关键是要让这个循环稳定可靠
+
+有人问 Boris，为什么要公开分享这些？
+
+他说 Claude Code 没有唯一正确的使用方式。他们故意把它做成可以随意定制和折腾的样子。
+
+740 万阅读量，说明开发者真的很想知道创造这个工具的人，自己是怎么用的。
+
+答案出乎意料地简单。多开几个、用最好的模型、先想清楚再动手、让 AI 能验证自己的工作。
+
+就这些。
+
+---
+
+**关于作者**
+
+我是木易，Top2 + 美国 Top10 CS 硕，现在是 AI 产品经理。
+
+关注「AI信息Gap」，让 AI 成为你的外挂。
