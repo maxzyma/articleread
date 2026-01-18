@@ -1,7 +1,7 @@
 # Claude Code 之父的工作流火了：740 万围观的背后
 
-> 来源：小红书 AI信息Gap，2026-01-16
-> 原文链接：https://www.xiaohongshu.com/explore/69698507000000001a0335b1
+> 来源：微信公众号 AI信息Gap，2026-01-16
+> 原文链接：https://mp.weixin.qq.com/s/fSAgfe2V9dUQimAkrPauqQ
 
 ## 核心观点
 
@@ -101,13 +101,17 @@ bun run lint:claude && bun run test
 
 ---
 
-## 05 | 423 个神级 Skills
+## 05 | 快捷命令：把重复的事情自动化
 
-Agent 能力开始被「工程化」了！
+Boris 用快捷命令处理每天要做很多次的「内循环」工作流。
+
+比如他有一个 `/commit-push-pr` 命令，每天要用几十次。这个命令用内联 bash 预先查询 git status 和其他信息，避免和模型来回对话。
+
+命令都放在 `.claude/commands/` 目录里，提交到 git，团队共享。
 
 ---
 
-## 06 | Subagent：让 AI 互相检查
+## 06 | Subagents：让 AI 互相检查
 
 他的代码审查命令会同时启动好几个 subagent：
 
@@ -147,9 +151,25 @@ Boris 不用 --dangerously-skip-permissions。
 
 他用 PostToolUse hook 来格式化 Claude 生成的代码。Claude 生成的代码通常格式不错，hook 处理最后 10%，避免 CI 里出格式错误。
 
+对于特别长时间运行的任务，他要么让 Claude 完成后用后台 agent 验证，要么用 Stop hook 更确定地做这件事，要么用一个叫 `ralph-wiggum` 的插件。
+
 ---
 
-## 关键是要让这个循环稳定可靠
+## 09 | 验证循环：最重要的一条
+
+Boris 说，如果只能记住一条，记住这条：
+
+> 「给 Claude 一个验证自己工作的方法。如果 Claude 有这个反馈循环，最终结果的质量会提升 2-3 倍。」
+
+他自己的做法是：Claude 用 Chrome 扩展测试每一个提交到 claude.ai/code 的改动。打开浏览器，测试 UI，反复迭代，直到代码能用、体验顺畅。
+
+验证在不同领域看起来不一样。可能是跑一个 bash 命令，可能是跑测试套件，可能是在浏览器或手机模拟器里测应用。
+
+关键是要让这个循环稳定可靠。
+
+---
+
+## 结语
 
 有人问 Boris，为什么要公开分享这些？
 
