@@ -16,12 +16,12 @@
 
 # 全局统计（需要定期手动更新）
 summary:
-  total_pending: 0
+  total_pending: 6
   total_in_progress: 0
   total_completed: 9
   total_failed: 1
   total_skipped: 0
-  last_updated: "2026-01-17"
+  last_updated: "2026-01-18"
 
 # ============================================================================
 # General 主题详细计划
@@ -30,7 +30,36 @@ summary:
 
 general:
   # 待处理队列
-  pending: []
+  pending:
+    - url: "https://www.xiaohongshu.com/explore/69664f6b00000000220315c8?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBrtTKH9m2iNanppwN57YNQHV1gKd3QijM6K8OAJzZ7kw=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768727063&share_id=0f8042e0878245fca2bff3cca690744f&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "视频笔记，待提取"
+
+    - url: "https://www.xiaohongshu.com/explore/6965f38c000000001a023953?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBJM6KZQ3pzLe1XtAOmMdEgTsbsGSX9qpzFnXfF2943ss=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768726892&share_id=8e532e24fa934260bfe6922ad242d518&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "视频笔记，待提取"
+
+    - url: "https://www.xiaohongshu.com/explore/69698507000000001a0335b1?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBrLGpUevlbrXhT_bAW06rDeX0XW4mTfjDQnWDEvQKnHk=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768724311&share_id=01835e01bdbe4042bbbc819f146329eb&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "图文笔记，待提取"
+
+    - url: "https://www.xiaohongshu.com/explore/694be94d000000001e022378?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBkPe3Z2oPsOFbPOD77dJoJNcC6d-BLHr0jT4vGbU0pTo=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768707203&share_id=cf61ce4369cd4fffb9176bc39a503937&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "图文笔记，待提取"
+
+    - url: "https://www.xiaohongshu.com/explore/6969cdb9000000001a02eede?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBrLGpUevlbrXhT_bAW06rDb0OsjHjDWEMbyCdgfyJyew=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768670926&share_id=4ffc499447a649aea733c97f3d32afee&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "视频笔记，待提取"
+
+    - url: "https://www.xiaohongshu.com/explore/696b3ce10000000021032c33?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBRpL9XEQL56UP6afbf3-uTxlM7zufo0DlqpIXrgLIx0g=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1768668646&share_id=26b5a8ce8bba46d7b2dcf3c7096d3769&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+      platform: "小红书 (Xiaohongshu)"
+      added_date: "2026-01-18"
+      notes: "视频笔记，待提取"
 
   # 进行中
   in_progress: []
