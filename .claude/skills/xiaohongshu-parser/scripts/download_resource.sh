@@ -1,20 +1,74 @@
 #!/bin/bash
-# 下载小红书资源到本地
-# 用法: ./download_resource.sh <url> <output_path> [max_retries]
+# 小红书资源下载器（带缓存）
+# 用法: ./download_resource.sh <url> [extension] [max_retries]
+# 输出: 返回本地缓存文件路径
 
 set -e
 
+# 缓存目录
+CACHE_DIR="/tmp/claude/xiaohongshu/cache"
+
 URL="$1"
-OUTPUT_PATH="$2"
+EXTENSION="${2:-}"  # 可选：文件扩展名（如 jpg, mp4）
 MAX_RETRIES="${3:-3}"
 
-if [ -z "$URL" ] || [ -z "$OUTPUT_PATH" ]; then
-    echo "用法: $0 <url> <output_path> [max_retries]"
+if [ -z "$URL" ]; then
+    echo "用法: $0 <url> [extension] [max_retries]" >&2
     exit 1
 fi
 
-# 创建输出目录
-mkdir -p "$(dirname "$OUTPUT_PATH")"
+# 创建缓存目录
+mkdir -p "$CACHE_DIR"
+
+# 从 URL 生成唯一标识（MD5）
+url_hash() {
+    # 移除 URL 中的查询参数和特殊字符，生成稳定的 hash
+    local clean_url="$1"
+    # 移除查询参数
+    clean_url="${clean_url%%\?*}"
+    # 移除片段标识符
+    clean_url="${clean_url%%#*}"
+    # 使用 md5sum 生成 hash
+    echo -n "$clean_url" | md5sum | cut -d' ' -f1
+}
+
+# 从 URL 推断扩展名
+infer_extension() {
+    local url="$1"
+    local provided_ext="$2"
+
+    # 如果提供了扩展名，直接使用
+    if [ -n "$provided_ext" ]; then
+        echo "$provided_ext"
+        return
+    fi
+
+    # 从 URL 提取扩展名
+    if echo "$url" | grep -qE '\.(jpg|jpeg|png|webp|gif|mp4|webm)'; then
+        echo "$url" | grep -oE '\.(jpg|jpeg|png|webp|gif|mp4|webm)$' | sed 's/^.//'
+    else
+        echo "bin"  # 默认扩展名
+    fi
+}
+
+# 生成缓存文件路径
+URL_HASH=$(url_hash "$URL")
+EXTENSION=$(infer_extension "$URL" "$EXTENSION")
+CACHE_FILE="$CACHE_DIR/${URL_HASH}.${EXTENSION}"
+
+# 检查缓存
+if [ -f "$CACHE_FILE" ]; then
+    # 验证文件是否有效（非空且可读）
+    if [ -s "$CACHE_FILE" ]; then
+        echo "使用缓存: $CACHE_FILE" >&2
+        echo "$CACHE_FILE"
+        exit 0
+    else
+        # 缓存文件无效，删除
+        echo "缓存文件无效，重新下载: $CACHE_FILE" >&2
+        rm -f "$CACHE_FILE"
+    fi
+fi
 
 # 下载函数
 download_with_retry() {
@@ -24,7 +78,7 @@ download_with_retry() {
     local attempt=1
 
     while [ $attempt -le $max_retries ]; do
-        echo "尝试下载 ($attempt/$max_retries): $url"
+        echo "下载中 ($attempt/$max_retries): $url" >&2
 
         # 使用 curl 下载，添加 User-Agent 避免被拦截
         if curl -L -f -o "$output" \
@@ -33,10 +87,10 @@ download_with_retry() {
             --connect-timeout 30 \
             --max-time 300 \
             "$url"; then
-            echo "下载成功: $output"
+            echo "下载成功: $output" >&2
             return 0
         else
-            echo "下载失败 (尝试 $attempt/$max_retries)"
+            echo "下载失败 (尝试 $attempt/$max_retries)" >&2
             if [ $attempt -lt $max_retries ]; then
                 sleep 2
             fi
@@ -44,9 +98,14 @@ download_with_retry() {
         ((attempt++))
     done
 
-    echo "下载失败，已达到最大重试次数"
+    echo "下载失败，已达到最大重试次数" >&2
+    # 清理失败的文件
+    rm -f "$output"
     return 1
 }
 
 # 执行下载
-download_with_retry "$URL" "$OUTPUT_PATH" "$MAX_RETRIES"
+download_with_retry "$URL" "$CACHE_FILE" "$MAX_RETRIES"
+
+# 输出缓存文件路径
+echo "$CACHE_FILE"

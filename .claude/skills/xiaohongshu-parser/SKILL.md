@@ -37,25 +37,52 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 **步骤2：下载图片到本地**
 - 使用 `scripts/download_resource.sh` 下载图片：
   ```bash
-  # 下载单张图片
-  .claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
-    "<图片URL>" \
-    "/tmp/claude/xiaohongshu/image_001.jpg"
+  # 下载单张图片（自动缓存，返回本地路径）
+  IMAGE_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
+    "<图片URL>")
+
+  # 或指定扩展名
+  IMAGE_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
+    "<图片URL>" "jpg")
   ```
-- 批量下载所有图片，按顺序命名（image_001.jpg, image_002.jpg, ...）
-- 下载失败会自动重试最多3次
+- **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
+  - 相同 URL 不会重复下载
+  - 跨任务、跨会话共享缓存
+  - 缓存位置：`/tmp/claude/xiaohongshu/cache/`
+- 批量下载：收集所有图片路径到数组
+  ```bash
+  # 批量下载示例
+  declare -a IMAGE_PATHS=()
+  for url in "${IMAGE_URLS[@]}"; do
+    path=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh "$url")
+    IMAGE_PATHS+=("$path")
+  done
+  ```
 
 **步骤3：本地图片文字提取**
 - 使用 `mcp__4_5v_mcp__analyze_image` 分析本地图片文件
 - 提示词：`"Extract all text content from this image, preserving the original structure and formatting. Be thorough and complete."`
 - 逐个处理所有本地图片文件
 
-**步骤4：清理临时文件**
-- 完成后可删除临时图片：`rm -rf /tmp/claude/xiaohongshu/`
+**步骤4：缓存管理**
+- 缓存文件会持久化保存在 `/tmp/claude/xiaohongshu/cache/`
+- **无需立即清理**：缓存可被后续任务复用
+- 手动清理缓存（可选）：
+  ```bash
+  # 清理所有缓存
+  rm -rf /tmp/claude/xiaohongshu/cache/
+
+  # 清理超过7天的缓存
+  find /tmp/claude/xiaohongshu/cache/ -type f -mtime +7 -delete
+  ```
 
 **关键要点**：
 - 核心内容通常在图片中，不是 HTML 文本
 - **必须先下载到本地**，直接使用图片URL会被防爬机制拦截
+- **自动缓存机制**：
+  - 相同 URL 只下载一次，跨任务共享
+  - 避免 403 错误和重复下载
+  - 提高多次访问时的速度
 - 使用本地文件路径进行图片识别，确保稳定性
 - 图片内容要完整提取，保留原文结构
 
@@ -73,25 +100,40 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 **步骤2：下载视频到本地**
 - 使用 `scripts/download_resource.sh` 下载视频：
   ```bash
-  # 下载视频
-  .claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
-    "<视频URL>" \
-    "/tmp/claude/xiaohongshu/video.mp4"
+  # 下载视频（自动缓存，返回本地路径）
+  VIDEO_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
+    "<视频URL>" "mp4")
   ```
-- 视频文件较大，可能需要较长时间下载
-- 下载失败会自动重试最多3次
+- **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
+  - 相同 URL 不会重复下载
+  - 跨任务、跨会话共享缓存
+  - 缓存位置：`/tmp/claude/xiaohongshu/cache/`
+- 视频文件较大，首次下载可能需要较长时间
 
 **步骤3：本地视频分析**
 - 使用本地视频路径进行内容提取
 - 记录视频元数据：格式、大小、时长
 - 如需提取视频中的文字内容，可使用本地路径进行视频分析
 
-**步骤4：清理临时文件**
-- 完成后可删除临时视频：`rm -f /tmp/claude/xiaohongshu/video.mp4`
+**步骤4：缓存管理**
+- 缓存文件会持久化保存在 `/tmp/claude/xiaohongshu/cache/`
+- **无需立即清理**：缓存可被后续任务复用
+- 手动清理缓存（可选）：
+  ```bash
+  # 清理所有缓存
+  rm -rf /tmp/claude/xiaohongshu/cache/
+
+  # 清理超过7天的缓存
+  find /tmp/claude/xiaohongshu/cache/ -type f -mtime +7 -delete
+  ```
 
 **关键要点**：
 - 视频使用 blob URL，必须通过监听网络请求获取真实 URL
 - **必须先下载到本地**，直接使用视频URL会被防爬机制拦截
+- **自动缓存机制**：
+  - 相同 URL 只下载一次，跨任务共享
+  - 避免重复下载大文件
+  - 后续访问直接使用缓存，速度更快
 - 使用本地文件路径确保稳定性和可重试性
 
 ### 2. 内容整理
