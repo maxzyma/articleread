@@ -18,8 +18,6 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 
 #### 1.1 图文笔记
 
-**重要**：小红书有严格的防爬机制，必须先下载图片到本地再进行识别。
-
 **步骤1：获取图片URL**
 - 使用 `take_snapshot` 获取页面文本（标题、作者、标签等）
 - 从 snapshot 中找到图片元素的 URL
@@ -34,45 +32,42 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
   imageUrls
   ```
 
-**步骤2：下载图片到本地**
-- 使用 `scripts/download_resource.sh` 下载图片：
+**步骤2：缓存图片URL**
+- 使用 `scripts/cache_image_urls.sh` 缓存图片 URL 列表：
   ```bash
-  # 下载单张图片（自动缓存，返回本地路径）
-  IMAGE_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
-    "<图片URL>")
+  # 检查是否有缓存
+  CACHED_URLS=$(.claude/skills/xiaohongshu-parser/scripts/cache_image_urls.sh \
+    "<文章URL>" "get")
 
-  # 或指定扩展名
-  IMAGE_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
-    "<图片URL>" "jpg")
+  if [ $? -eq 0 ]; then
+    # 使用缓存的 URL
+    IMAGE_URLS=($CACHED_URLS)
+    echo "使用缓存的 ${#IMAGE_URLS[@]} 个图片 URL"
+  else
+    # 从页面提取 URL 并保存到缓存
+    # 假设 IMAGE_URLS 是从 JavaScript 提取的数组
+    .claude/skills/xiaohongshu-parser/scripts/cache_image_urls.sh \
+      "<文章URL>" "save" "${IMAGE_URLS[@]}"
+  fi
   ```
-- **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
-  - 相同 URL 不会重复下载
+- **缓存机制**：基于文章 URL 的 MD5 哈希生成缓存文件
+  - 相同文章不会重复提取 URL
   - 跨任务、跨会话共享缓存
-  - 缓存位置：项目目录 `.cache/xiaohongshu/`（已在 .gitignore 中）
-- 批量下载：收集所有图片路径到数组
-  ```bash
-  # 批量下载示例
-  declare -a IMAGE_PATHS=()
-  for url in "${IMAGE_URLS[@]}"; do
-    path=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh "$url")
-    IMAGE_PATHS+=("$path")
-  done
-  ```
+  - 缓存位置：项目目录 `.cache/xiaohongshu/{hash}_image_urls.txt`
+  - 已在 `.gitignore` 中，不会被提交到 git
 
 **步骤3：图片文字提取**
-- **注意**：由于 `mcp__4_5v_mcp__analyze_image` 工具只支持远程 URL，不支持本地文件路径，当前需要直接使用原始图片 URL
 - 使用 `mcp__4_5v_mcp__analyze_image` 分析图片（使用原始 URL）
 - 提示词：`"Extract all text content from this image, preserving the original structure and formatting. Be thorough and complete."`
-- 逐个处理所有图片
+- 逐个处理所有图片 URL
 - **防爬注意事项**：如果遇到 403 错误或访问失败，可能需要：
-  - 添加合适的 HTTP headers（Referer、User-Agent）
-  - 使用代理或重试机制
-  - 考虑使用浏览器截图方式提取内容
+  - 使用 `take_screenshot` 工具截取页面图片，然后进行 OCR
+  - 或者等待一段时间后重试
 
-**重要提示**：
+**关键要点**：
 - 核心内容通常在图片中，不是 HTML 文本
-- 小红书有严格的防爬机制，直接访问图片 URL 可能被拦截
-- 如果频繁遇到防爬问题，考虑使用 `take_screenshot` 工具截取页面图片，然后进行 OCR
+- 缓存图片 URL 可以避免重复提取，提高效率
+- 小红书有防爬机制，如果直接访问图片 URL 失败，使用截图方式
 - 图片内容要完整提取，保留原文结构
 
 #### 1.2 视频笔记
@@ -84,24 +79,28 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 - 查找以 `sns-video-al.xhscdn.com` 或 `sns-video-hw.xhscdn.com` 开头的 MP4 请求
 - 使用 `get_network_request` 获取详细信息并提取视频 URL
 
-**步骤2：（可选）下载视频到本地**
-- 如果需要本地保存视频，使用 `scripts/download_resource.sh`：
+**步骤2：缓存视频URL**
+- 使用 `scripts/cache_image_urls.sh` 缓存视频 URL（复用同一个脚本）：
   ```bash
-  # 下载视频（自动缓存，返回本地路径）
-  VIDEO_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
-    "<视频URL>" "mp4")
+  # 保存视频 URL 到缓存
+  .claude/skills/xiaohongshu-parser/scripts/cache_image_urls.sh \
+    "<文章URL>" "save" "<视频URL>"
+
+  # 或检查缓存
+  CACHED_URL=$(.claude/skills/xiaohongshu-parser/scripts/cache_image_urls.sh \
+    "<文章URL>" "get")
   ```
-- **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
-  - 相同 URL 不会重复下载
+- **缓存机制**：基于文章 URL 的 MD5 哈希生成缓存文件
+  - 相同文章不会重复提取 URL
   - 跨任务、跨会话共享缓存
-  - 缓存位置：项目目录 `.cache/xiaohongshu/`（已在 .gitignore 中）
-- 视频文件较大，首次下载可能需要较长时间
+  - 缓存位置：项目目录 `.cache/xiaohongshu/{hash}_image_urls.txt`
+  - 已在 `.gitignore` 中，不会被提交到 git
 
 **关键要点**：
 - 视频使用 blob URL，必须通过监听网络请求获取真实 URL
 - 视频笔记的主要内容通常在文本信息中（标题、作者、描述、标签）
-- 如需下载视频供本地查看，使用 download_resource.sh 脚本
-- 避免重复下载大文件，缓存机制会自动处理
+- 缓存视频 URL 可以避免重复提取，提高效率
+- 元数据中记录视频 URL 供后续查看或下载
 
 ### 2. 内容整理
 
@@ -191,6 +190,13 @@ general/YYYY-MM-DD/article-slug.metadata.yaml    # 元数据（与正文同目�
 **文件命名**：使用小写字母、连字符（如 `vibe-animation-tutorial.md`）
 
 ## 资源
+
+### scripts/
+
+- **cache_image_urls.sh**：图片/视频 URL 缓存管理脚本
+  - 用法：`./cache_image_urls.sh <文章URL> <action> [urls...]`
+  - action: `get` (获取缓存), `save` (保存URL), `clear` (清除缓存)
+  - 基于文章 URL 的 MD5 哈希生成缓存文件
 
 ### references/
 
