@@ -100,21 +100,21 @@ general:
       platform: "小红书 (Xiaohongshu)"
       failed_date: "2026-01-18"
       error_reason: "404 错误：当前笔记暂时无法浏览"
-      notes: "可能已删除、私密或需要重新授权"
+      notes: "已重试但仍返回 404。可能已删除、私密或需要重新授权"
 
     - url: "https://www.xiaohongshu.com/explore/6969cdb9000000001a02eede"
       title: "未知标题"
       platform: "小红书 (Xiaohongshu)"
       failed_date: "2026-01-18"
       error_reason: "404 错误：当前笔记暂时无法浏览"
-      notes: "可能已删除、私密或需要重新授权"
+      notes: "已重试但仍返回 404。可能已删除、私密或需要重新授权"
 
     - url: "https://www.xiaohongshu.com/explore/696b3ce10000000021032c33"
       title: "未知标题"
       platform: "小红书 (Xiaohongshu)"
       failed_date: "2026-01-18"
       error_reason: "404 错误：当前笔记暂时无法浏览"
-      notes: "可能已删除、私密或需要重新授权"
+      notes: "已重试但仍返回 404。可能已删除、私密或需要重新授权"
 
   # 已跳过
   skipped: []
@@ -145,9 +145,9 @@ global_failed:
   - url: "https://www.ijcai.org/proceedings/2025/0002.pdf"
     title: "IJCAI 2025 Paper (PDF)"
     platform: "学术论文 (IJCAI)"
-    failed_date: "2025-01-12"
-    error_reason: "网络连接失败，无法下载 PDF"
-    notes: "需要配置代理或使用其他下载方式"
+    failed_date: "2026-01-18"
+    error_reason: "网络连接失败：无法解析域名"
+    notes: "已重试但仍失败。需要配置网络代理或 DNS"
     topic: "general"  # 可以标记归属主题
 
 # ============================================================================
