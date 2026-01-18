@@ -48,7 +48,7 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 - **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
   - 相同 URL 不会重复下载
   - 跨任务、跨会话共享缓存
-  - 缓存位置：`/tmp/claude/xiaohongshu/cache/`
+  - 缓存位置：项目目录 `.cache/xiaohongshu/`（已在 .gitignore 中）
 - 批量下载：收集所有图片路径到数组
   ```bash
   # 批量下载示例
@@ -59,46 +59,33 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
   done
   ```
 
-**步骤3：本地图片文字提取**
-- 使用 `mcp__4_5v_mcp__analyze_image` 分析本地图片文件
+**步骤3：图片文字提取**
+- **注意**：由于 `mcp__4_5v_mcp__analyze_image` 工具只支持远程 URL，不支持本地文件路径，当前需要直接使用原始图片 URL
+- 使用 `mcp__4_5v_mcp__analyze_image` 分析图片（使用原始 URL）
 - 提示词：`"Extract all text content from this image, preserving the original structure and formatting. Be thorough and complete."`
-- 逐个处理所有本地图片文件
+- 逐个处理所有图片
+- **防爬注意事项**：如果遇到 403 错误或访问失败，可能需要：
+  - 添加合适的 HTTP headers（Referer、User-Agent）
+  - 使用代理或重试机制
+  - 考虑使用浏览器截图方式提取内容
 
-**步骤4：缓存管理**
-- 缓存文件会持久化保存在 `/tmp/claude/xiaohongshu/cache/`
-- **无需立即清理**：缓存可被后续任务复用
-- 手动清理缓存（可选）：
-  ```bash
-  # 清理所有缓存
-  rm -rf /tmp/claude/xiaohongshu/cache/
-
-  # 清理超过7天的缓存
-  find /tmp/claude/xiaohongshu/cache/ -type f -mtime +7 -delete
-  ```
-
-**关键要点**：
+**重要提示**：
 - 核心内容通常在图片中，不是 HTML 文本
-- **必须先下载到本地**，直接使用图片URL会被防爬机制拦截
-- **自动缓存机制**：
-  - 相同 URL 只下载一次，跨任务共享
-  - 避免 403 错误和重复下载
-  - 提高多次访问时的速度
-- 使用本地文件路径进行图片识别，确保稳定性
+- 小红书有严格的防爬机制，直接访问图片 URL 可能被拦截
+- 如果频繁遇到防爬问题，考虑使用 `take_screenshot` 工具截取页面图片，然后进行 OCR
 - 图片内容要完整提取，保留原文结构
 
 #### 1.2 视频笔记
 
-**重要**：小红书有严格的防爬机制，必须先下载视频到本地再进行分析。
-
-**步骤1：获取视频URL**
+**步骤1：获取视频URL和文本内容**
 - 使用 `take_snapshot` 获取标题、作者、描述、标签等文本信息
 - 导航到小红书视频页面
 - 使用 `list_network_requests` 监听网络请求（过滤 `media`、`xhr`、`fetch` 类型）
 - 查找以 `sns-video-al.xhscdn.com` 或 `sns-video-hw.xhscdn.com` 开头的 MP4 请求
 - 使用 `get_network_request` 获取详细信息并提取视频 URL
 
-**步骤2：下载视频到本地**
-- 使用 `scripts/download_resource.sh` 下载视频：
+**步骤2：（可选）下载视频到本地**
+- 如果需要本地保存视频，使用 `scripts/download_resource.sh`：
   ```bash
   # 下载视频（自动缓存，返回本地路径）
   VIDEO_PATH=$(.claude/skills/xiaohongshu-parser/scripts/download_resource.sh \
@@ -107,34 +94,14 @@ description: 从小红书提取和整理文章内容到本地文档系统。支�
 - **缓存机制**：基于 URL 的 MD5 哈希生成唯一文件名
   - 相同 URL 不会重复下载
   - 跨任务、跨会话共享缓存
-  - 缓存位置：`/tmp/claude/xiaohongshu/cache/`
+  - 缓存位置：项目目录 `.cache/xiaohongshu/`（已在 .gitignore 中）
 - 视频文件较大，首次下载可能需要较长时间
-
-**步骤3：本地视频分析**
-- 使用本地视频路径进行内容提取
-- 记录视频元数据：格式、大小、时长
-- 如需提取视频中的文字内容，可使用本地路径进行视频分析
-
-**步骤4：缓存管理**
-- 缓存文件会持久化保存在 `/tmp/claude/xiaohongshu/cache/`
-- **无需立即清理**：缓存可被后续任务复用
-- 手动清理缓存（可选）：
-  ```bash
-  # 清理所有缓存
-  rm -rf /tmp/claude/xiaohongshu/cache/
-
-  # 清理超过7天的缓存
-  find /tmp/claude/xiaohongshu/cache/ -type f -mtime +7 -delete
-  ```
 
 **关键要点**：
 - 视频使用 blob URL，必须通过监听网络请求获取真实 URL
-- **必须先下载到本地**，直接使用视频URL会被防爬机制拦截
-- **自动缓存机制**：
-  - 相同 URL 只下载一次，跨任务共享
-  - 避免重复下载大文件
-  - 后续访问直接使用缓存，速度更快
-- 使用本地文件路径确保稳定性和可重试性
+- 视频笔记的主要内容通常在文本信息中（标题、作者、描述、标签）
+- 如需下载视频供本地查看，使用 download_resource.sh 脚本
+- 避免重复下载大文件，缓存机制会自动处理
 
 ### 2. 内容整理
 
