@@ -89,15 +89,41 @@ articleImages;
 - 尺寸过小的图片（宽度 < 200px）
 - 明显的广告图片
 
-**下载并保存配图**：
+**判断图片引用限制**：
+
+根据图片来源判断是否需要下载：
+
+| 图片来源 | 是否受限 | 处理方式 |
+|---------|---------|---------|
+| `mmbiz.qpic.cn` | ✅ 有防盗链 | 下载到本地 |
+| `sns-*pic.xhscdn.com` | ✅ 有防盗链 | 下载到本地 |
+| `github.com` | ❌ 无限制 | 保留链接 |
+| `imgur.com` | ❌ 无限制 | 保留链接 |
+| `unsplash.com` | ❌ 无限制 | 保留链接 |
+| CDN 链接（`cdn.*`） | ⚠️ 待确认 | 先尝试链接 |
+| 其他 | ⚠️ 待确认 | 先尝试链接 |
+
+**处理配图（分两种情况）**：
+
+**情况1：无引用限制 - 保留链接**
+
+```markdown
+## 正文内容
+
+![配图说明](https://example.com/image.jpg)
+
+继续文本内容...
+```
+
+**情况2：有引用限制 - 下载到本地**
 
 ```bash
-# 创建图片目录
+# 1. 创建图片目录（仅在有需要时创建）
 mkdir -p general/YYYY-MM-DD/article-slug/images/
 
-# 下载必要配图到本地
-for img_url in "${NECESSARY_IMAGES[@]}"; do
-  # 使用 curl 下载，添加微信 referer
+# 2. 下载受限制的图片到本地
+for img_url in "${RESTRICTED_IMAGES[@]}"; do
+  # 使用 curl 下载，添加正确的 referer
   curl -s \
     -H "Referer: https://mp.weixin.qq.com/" \
     -H "User-Agent: Mozilla/5.0" \
@@ -106,7 +132,7 @@ for img_url in "${NECESSARY_IMAGES[@]}"; do
 done
 ```
 
-**在 Markdown 中引用配图**：
+**在 Markdown 中引用本地图片**：
 
 ```markdown
 ## 正文内容
@@ -117,10 +143,22 @@ done
 ```
 
 **图片存储规则**：
+
+| 存储方式 | 适用场景 | 优点 | 缺点 |
+|---------|---------|------|------|
+| 远程链接 | GitHub、Imgur、Unsplash 等 | 节省空间 | 依赖外部服务 |
+| 本地存储 | 微信图片、小红书图片 | 独立稳定 | 占用空间 |
+
+**本地图片目录结构**：
 - 存储位置：`文章目录/images/`
 - 命名格式：`image_1.jpg`, `image_2.png`, ...
+- 仅在必要时创建（有受限制图片时）
 - 已在 `.gitignore` 中排除（避免提交大文件）
-- 如需长期保存，考虑使用图床或 CDN
+
+**建议**：
+- 优先使用远程链接（快速、节省空间）
+- 仅对有防盗链的图片使用本地存储
+- 大文件可考虑上传到图床后使用远程链接
 
 #### 0.2 搜索技巧
 
