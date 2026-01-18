@@ -49,3 +49,7 @@ yarn-error.log*
 
 # Resource cache
 .cache/
+
+# Article images (large files, better stored in CDN or external storage)
+general/*/images/
+knowledge*/*/images/

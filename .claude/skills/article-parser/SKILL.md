@@ -54,6 +54,74 @@ navigate_page -> <微信文章URL>
 take_snapshot -> 提取所有文本内容
 ```
 
+**步骤4：提取并保存必要配图**
+
+对于非图片/视频识别的文章（如微信公众号），提取并保存必要的配图：
+
+```javascript
+// 使用 JavaScript 获取文章中的所有图片
+const images = Array.from(document.querySelectorAll('img'));
+const articleImages = images
+  .map(img => ({
+    url: img.src || img['data-src'],
+    alt: img.alt || '',
+    width: img.width || img.naturalWidth || 0,
+    height: img.height || img.naturalHeight || 0
+  }))
+  .filter(img => img.url && (img.url.includes('mmbiz') || img.url.includes('wx_fmt')));
+articleImages;
+```
+
+**判断是否为必要配图**：
+
+✅ **应该保留的配图**：
+- 技术架构图、流程图
+- 界面截图、代码运行效果图
+- 数据图表、统计图
+- 示意图、说明图
+- 文章中的关键配图
+
+❌ **应该忽略的图片**：
+- 作者头像
+- 公众号二维码
+- 分享引导图（"关注我"、"点赞"等）
+- 装饰性小图标
+- 尺寸过小的图片（宽度 < 200px）
+- 明显的广告图片
+
+**下载并保存配图**：
+
+```bash
+# 创建图片目录
+mkdir -p general/YYYY-MM-DD/article-slug/images/
+
+# 下载必要配图到本地
+for img_url in "${NECESSARY_IMAGES[@]}"; do
+  # 使用 curl 下载，添加微信 referer
+  curl -s \
+    -H "Referer: https://mp.weixin.qq.com/" \
+    -H "User-Agent: Mozilla/5.0" \
+    "$img_url" \
+    -o "general/YYYY-MM-DD/article-slug/images/image_${index}.jpg"
+done
+```
+
+**在 Markdown 中引用配图**：
+
+```markdown
+## 正文内容
+
+![配图说明](./images/image_1.jpg)
+
+继续文本内容...
+```
+
+**图片存储规则**：
+- 存储位置：`文章目录/images/`
+- 命名格式：`image_1.jpg`, `image_2.png`, ...
+- 已在 `.gitignore` 中排除（避免提交大文件）
+- 如需长期保存，考虑使用图床或 CDN
+
 #### 0.2 搜索技巧
 
 | 场景 | 搜索策略 |
