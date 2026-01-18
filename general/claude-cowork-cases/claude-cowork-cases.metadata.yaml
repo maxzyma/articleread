@@ -1,0 +1,67 @@
+---
+title: "Claude Cowork 发布 6 小时后：职场人案例盘点"
+original_title: "Claude Cowork发布6小时后，盘点职场人案例"
+extraction_date: "2026-01-18"
+
+source:
+  platform: "小红书 (Xiaohongshu)"
+  url: "https://www.xiaohongshu.com/explore/6965f38c000000001a023953"
+  video_id: "6965f38c000000001a023953"
+  author: "李博科技圈"
+  publish_date: "2026-01-13"
+
+content:
+  type: "技术观点"
+  topic: "AI协作工具"
+  core_point: "Claude Cowork 发布6小时内,职场人开始尝试各种应用场景,从报税到职场沟通"
+  key_topics:
+    - "Claude Cowork"
+    - "AI协作"
+    - "职场应用"
+    - "报税自动化"
+    - "Anthropic"
+    - "竞品对比"
+
+extraction_method:
+  - "Chrome DevTools 页面快照"
+  - "网络请求监听获取视频URL"
+  - "评论区技术信息提取"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页、视频和评论区"
+  notes: "已提取视频URL、标题、作者、描述、标签和评论区用户反馈"
+
+content_file: "./claude-cowork-cases.md"
+
+tags:
+  - "Claude"
+  - "AI工具"
+  - "协作工具"
+  - "Anthropic"
+  - "职场效率"
+  - "报税"
+  - "AIGC"
+
+video:
+  url: "https://sns-video-hw.xhscdn.com/stream/1/110/115/01e965f38c197d0b010370019bb6404e6f_115.mp4"
+  format: "mp4"
+  size_bytes: 4441937
+  duration: "未知"
+
+notes: |
+  核心观点：Claude Cowork发布6小时内的职场应用案例
+
+  技术背景：
+  - Claude Cowork：Anthropic发布的AI协作功能
+  - 应用场景：报税、职场沟通、任务管理
+  - 竞品对比：比Claude Code友好,但付费门槛高
+  - 用户反馈：部分质疑真实性,部分认可功能价值
+
+  目标受众：AI工具用户、职场人士、开发者
+
+  技术限制：
+  - 付费门槛和账号门槛较高
+  - 还在测试摸索阶段
+  - 部分任务不如GPT处理得好
+  - 用户对AI生成内容真实性持怀疑态度

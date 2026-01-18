@@ -1,0 +1,53 @@
+---
+title: "Vibe Animation：AI + 手势识别的矢量动画新流派"
+extraction_date: "2026-01-18"
+
+source:
+  platform: "小红书"
+  url: "https://www.xiaohongshu.com/explore/69647aee000000001a01d889"
+  video_url: "https://sns-video-al.xhscdn.com/stream/1/110/115/01e9647aefec6b11010370019bb081f8d1_115.mp4"
+  video_id: "69647aee000000001a01d889"
+  author: "浙大猫学长"
+  publish_date: "2026-01-16"
+
+content:
+  type: "技术教程"
+  topic: "AI动画制作"
+  format: "视频教程"
+  core_point: "Vibe Animation 是通过 AI 生成代码 + 手势识别实现流畅矢量动画的新方法"
+  key_topics:
+    - "MediaPipe 手势识别"
+    - "Gemini AI 代码生成"
+    - "鱼骨架动画（Bone-based Animation）"
+    - "矢量动画技术"
+
+extraction_method:
+  - "小红书解析"
+
+verification:
+  status: "completed"
+  verified_against: "小红书视频"
+  notes: "已提取视频核心内容和技术要点"
+
+content_file: "./vibe-animation-tutorial.md"
+
+tags:
+  - "AI动画"
+  - "手势识别"
+  - "MediaPipe"
+  - "Gemini"
+  - "矢量动画"
+  - "鱼骨架动画"
+  - "技术教程"
+
+notes: |
+  核心观点：通过 AI 生成代码 + 手势识别实现矢量动画，以"锦鲤跟随手指"为例演示完整流程
+
+  技术背景：
+  - MediaPipe：手势识别，提取指尖运动轨迹
+  - Gemini：将视觉描述转换为动画代码
+  - 骨骼动画：基于"鱼骨架运动"的矢量形变
+
+  目标受众：对 AI 动画制作、交互式媒体开发感兴趣的技术人员
+
+  注意：本教程为事后处理，非实时跟随（作者预告下期会出实时版本）

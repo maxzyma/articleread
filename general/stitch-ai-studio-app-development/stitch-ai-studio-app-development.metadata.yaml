@@ -1,0 +1,66 @@
+---
+title: "Stitch + AI Studio：10分钟从创意到可运行的App"
+original_title: "跪着看完了全程！这也太丝滑了"
+extraction_date: "2026-01-18"
+
+source:
+  platform: "小红书 (Xiaohongshu)"
+  url: "https://www.xiaohongshu.com/explore/69664f6b00000000220315c8"
+  video_id: "69664f6b00000000220315c8"
+  author: "赛博自由老爹"
+  publish_date: "2026-01-14"
+
+content:
+  type: "技术教程"
+  topic: "无代码开发"
+  core_point: "使用 Stitch + Google AI Studio 可在10分钟内完成从创意到可运行App的全流程，无需编程基础"
+  key_topics:
+    - "Stitch 工具"
+    - "Google AI Studio"
+    - "Gemini API"
+    - "无代码 App 开发"
+    - "提示词工程"
+    - "快速原型验证"
+
+extraction_method:
+  - "Chrome DevTools 页面快照"
+  - "网络请求监听获取视频URL"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页和视频"
+  notes: "已提取视频URL、标题、作者、描述和标签信息"
+
+content_file: "./stitch-ai-studio-app-development.md"
+
+tags:
+  - "AI工具"
+  - "无代码开发"
+  - "App开发"
+  - "Stitch"
+  - "Google AI Studio"
+  - "Gemini"
+  - "提示词工程"
+  - "快速原型"
+
+video:
+  url: "https://sns-video-hw.xhscdn.com/stream/1/110/115/01e9664ed5049251010370019bb7a7af6c_115.mp4"
+  format: "mp4"
+  size_bytes: 4441937
+  duration: "00:49"
+
+notes: |
+  核心观点：无需编程基础，10分钟完成从创意到可运行App
+
+  技术背景：
+  - Stitch：AI驱动的UI生成工具
+  - Google AI Studio：AI应用开发和部署平台
+  - 通过提示词生成UI，导出到AI Studio实现功能
+  - 支持一键部署，可在手机下载使用
+
+  目标受众：无编程基础用户、需要快速原型验证的开发者
+
+  技术限制：
+  - 需要Google账号和Gemini API访问权限
+  - 需要绑卡（有免费额度）
+  - 部分功能可能受地域限制
