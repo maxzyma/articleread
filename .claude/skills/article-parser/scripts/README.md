@@ -9,8 +9,9 @@
 ```bash
 # 在 ~/.zshrc 中添加
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxx"
-export GITHUB_IMAGE_REPO="maxzyma/articleread"
 ```
+
+**注意**：`GITHUB_IMAGE_REPO` 是可选的！脚本会自动检测当前 git 仓库。
 
 ### 2. 上传图片
 

@@ -76,8 +76,9 @@ nano ~/.bashrc
 ```bash
 # GitHub Image Host Configuration
 export GITHUB_TOKEN="ghp_你的token"
-export GITHUB_IMAGE_REPO="maxzyma/articleread"  # 你的用户名/仓库名
 ```
+
+**重要**：只需要配置 `GITHUB_TOKEN`！`GITHUB_IMAGE_REPO` 会自动检测当前 git 仓库。
 
 ### 2.3 保存并生效
 
@@ -96,10 +97,28 @@ source ~/.bashrc  # bash
 ```bash
 # 检查环境变量是否设置成功
 echo $GITHUB_TOKEN
-echo $GITHUB_IMAGE_REPO
 
-# 应该输出你的 token 和仓库名
+# 检查能否自动检测仓库
+cd /path/to/your/git/repo
+git remote -v
+
+# 应该输出你的 token 和 git remote 信息
 ```
+
+### 关于仓库自动检测
+
+脚本会自动从当前 git 仓库的 `origin` remote 中提取仓库信息：
+
+```bash
+# 自动检测支持的 URL 格式：
+# HTTPS: https://github.com/username/repo.git
+# SSH:   git@github.com:username/repo.git
+```
+
+**优先级**：
+1. 手动传入参数（`--repo username/repo`）
+2. 环境变量 `GITHUB_IMAGE_REPO`
+3. 自动检测 git 仓库（推荐）
 
 ---
 

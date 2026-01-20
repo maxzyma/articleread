@@ -221,14 +221,20 @@ python3 .claude/skills/article-parser/scripts/upload_to_github.py \
 **配置要求**：
 
 ```bash
-# 1. 创建 GitHub Personal Access Token
+# 创建 GitHub Personal Access Token
 # 访问: https://github.com/settings/tokens
 # 权限: repo (full control)
 
-# 2. 设置环境变量（在 ~/.zshrc 或 ~/.bashrc 中添加）
+# 设置环境变量（只需配置 GITHUB_TOKEN！）
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxx"
-export GITHUB_IMAGE_REPO="maxzyma/articleread"
+
+# 注意：GITHUB_IMAGE_REPO 会自动检测当前 git 仓库，无需手动配置
 ```
+
+**仓库自动检测**：
+- 脚本会自动从 `git remote -v` 检测仓库地址
+- 支持 HTTPS 和 SSH 两种 URL 格式
+- 如果自动检测失败，可手动设置 `GITHUB_IMAGE_REPO` 环境变量
 
 **本地图片目录结构**（仅作为降级方案）：
 - 存储位置：`文章目录/images/`

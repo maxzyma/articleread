@@ -10,19 +10,28 @@
     platform: 平台类型（wechat | xiaohongshu），默认为 wechat
 
 环境变量：
-    GITHUB_TOKEN: GitHub Personal Access Token
-    GITHUB_IMAGE_REPO: 仓库名称（默认：maxzyma/articleread）
+    GITHUB_TOKEN: GitHub Personal Access Token（必需）
+    GITHUB_IMAGE_REPO: 仓库名称（可选，默认自动检测当前 git 仓库）
+
+仓库检测优先级：
+    1. 参数传入的 repo
+    2. 环境变量 GITHUB_IMAGE_REPO
+    3. 自动检测当前 git 仓库的 origin remote
 
 输出：
     CDN 加速的图片 URL
 
 示例：
+    # 在 git 仓库中运行（自动检测仓库）
     python3 upload_to_github.py "https://mmbiz.qpic.cn/xxx.jpg" wechat
-    # 输出: https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/uuid.jpg
+
+    # 手动指定仓库
+    python3 upload_to_github.py "https://mmbiz.qpic.cn/xxx.jpg" wechat --repo username/repo
 """
 
 import sys
 import os
+import subprocess
 import requests
 import base64
 import uuid
@@ -37,16 +46,82 @@ class GitHubImageHost:
 
         Args:
             token: GitHub Personal Access Token（从环境变量读取）
-            repo: 仓库名称，格式 "username/repo"（从环境变量读取）
+            repo: 仓库名称，格式 "username/repo"（从环境变量读取或自动检测）
             branch: 分支名，默认 'main'
         """
         self.token = token or os.getenv('GITHUB_TOKEN')
         if not self.token:
-            raise ValueError("缺少 GITHUB_TOKEN 环境变量")
+            raise ValueError("缺少 GITHUB_TOKEN 环境变量。请先设置：export GITHUB_TOKEN=\"ghp_xxx\"")
 
-        self.repo = repo or os.getenv('GITHUB_IMAGE_REPO', 'maxzyma/articleread')
+        # 优先级：参数传入 > 环境变量 > 自动检测 git remote
+        self.repo = repo or os.getenv('GITHUB_IMAGE_REPO') or self._detect_git_repo()
+        if not self.repo or self.repo == 'unknown/unknown':
+            raise ValueError("无法检测到 git 仓库。请设置 GITHUB_IMAGE_REPO 环境变量或在 git 仓库中运行此脚本")
+
         self.branch = branch
         self.api_base = "https://api.github.com"
+
+    def _detect_git_repo(self):
+        """
+        自动检测当前 git 仓库信息
+
+        Returns:
+            仓库名称，格式 "username/repo"
+            如果检测失败，返回 None
+        """
+        try:
+            # 获取 git remote 信息
+            result = subprocess.run(
+                ['git', 'remote', '-v'],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+
+            if result.returncode != 0:
+                return None
+
+            # 解析输出，找到 origin
+            for line in result.stdout.split('\n'):
+                if line.startswith('origin\t'):
+                    # 格式: origin  https://github.com/username/repo.git (fetch)
+                    #       origin  git@github.com:username/repo.git (fetch)
+                    url = line.split()[1]
+                    repo = self._parse_github_url(url)
+                    if repo:
+                        print(f"自动检测到仓库: {repo}")
+                        return repo
+
+            return None
+
+        except (subprocess.TimeoutExpired, FileNotFoundError, Exception):
+            return None
+
+    def _parse_github_url(self, url):
+        """
+        解析 GitHub URL，提取 username/repo
+
+        Args:
+            url: git remote URL
+
+        Returns:
+            仓库名称 "username/repo" 或 None
+        """
+        # HTTPS 格式: https://github.com/username/repo.git
+        if 'github.com/' in url:
+            parts = url.split('github.com/')[1].split('/')
+            if len(parts) >= 2:
+                repo_name = parts[1].replace('.git', '')
+                return repo_name
+
+        # SSH 格式: git@github.com:username/repo.git
+        elif url.startswith('git@github.com:'):
+            parts = url.split(':')[1].split('/')
+            if len(parts) >= 1:
+                repo_name = parts[0].replace('.git', '')
+                return repo_name
+
+        return None
 
     def upload_image(self, image_path_or_url, platform='wechat'):
         """
