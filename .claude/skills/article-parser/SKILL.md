@@ -199,21 +199,47 @@ done
 
 **图片存储规则**：
 
-| 存储方式 | 适用场景 | 优点 | 缺点 |
-|---------|---------|------|------|
-| 远程链接 | GitHub、Imgur、Unsplash 等 | 节省空间 | 依赖外部服务 |
-| 本地存储 | 微信图片、小红书图片 | 独立稳定 | 占用空间 |
+**推荐策略（优先级从高到低）**：
 
-**本地图片目录结构**：
+| 优先级 | 存储方式 | 适用场景 | 优点 | 缺点 |
+|--------|---------|---------|------|------|
+| 🥇 1 | **GitHub 图床** | 微信、小红书等有防盗链的图片 | 免费稳定、CDN加速、版本控制 | 需要配置 token |
+| 🥈 2 | 远程链接 | GitHub、Imgur、Unsplash 等无防盗链图片 | 节省空间、无需上传 | 依赖外部服务 |
+| 🥉 3 | 本地存储 | 图床上传失败时的降级方案 | 独立稳定 | 占用空间、不在版本控制中 |
+
+**GitHub 图床使用方式**：
+
+```bash
+# 上传单张图片
+python3 .claude/skills/article-parser/scripts/upload_to_github.py \
+  "https://mmbiz.qpic.cn/xxx.jpg" \
+  wechat
+
+# 输出: https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/uuid.jpg
+```
+
+**配置要求**：
+
+```bash
+# 1. 创建 GitHub Personal Access Token
+# 访问: https://github.com/settings/tokens
+# 权限: repo (full control)
+
+# 2. 设置环境变量（在 ~/.zshrc 或 ~/.bashrc 中添加）
+export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxx"
+export GITHUB_IMAGE_REPO="maxzyma/articleread"
+```
+
+**本地图片目录结构**（仅作为降级方案）：
 - 存储位置：`文章目录/images/`
 - 命名格式：`image_1.jpg`, `image_2.png`, ...
-- 仅在必要时创建（有受限制图片时）
+- 仅在图床上传失败时使用
 - 已在 `.gitignore` 中排除（避免提交大文件）
 
 **建议**：
-- 优先使用远程链接（快速、节省空间）
-- 仅对有防盗链的图片使用本地存储
-- 大文件可考虑上传到图床后使用远程链接
+- ✅ 优先使用 GitHub 图床（免费、稳定、CDN 加速）
+- ✅ 远程链接图片无需上传
+- ⚠️ 本地存储仅作为降级方案
 
 **⚠️ 微信公众号图片提取最佳实践（重要）**
 
