@@ -3,7 +3,9 @@
 > 来源：微信公众号「AI实用工具汇」译者：雷小锋，2026-01-13
 > 原作者：Ado Kukic (Anthropic 开发者关系负责人)
 > 原文活动：Advent of Claude: 31 Days of Claude Code (2024年12月)
-> 原文链接：https://mp.weixin.qq.com/s/QeQcZqm6P-8uCcZ87g8ESw
+> 原文链接：https://mp.weixin.qq.com/s?src=11&timestamp=1768923760&ver=6492&signature=W0j*cCYUGLFALdq*BIPpsRDfcBivbat-qu8xnaJLBNzlGSp748KqM9SanFWEvuSqdfk4zAobUhgzENmP-9Ix*XMhHisRxtA1r6EihbjhIReREQClHjYNZIkBjjazkFJq&new=1
+>
+> **注意**：微信公众号文章链接为临时链接，可能随时间失效。如无法访问，请通过搜狗微信搜索或关注公众号「AI实用工具汇」查找原文。
 
 ---
 
