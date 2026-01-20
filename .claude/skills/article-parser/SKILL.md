@@ -974,9 +974,204 @@ done
 按照项目 CLAUDE.md 中定义的结构创建文件：
 
 ```
-general/YYYY-MM-DD/article-slug.md              # 正文
+general/YYYY-MM-DD/article-slug.md              # 正文（本地版本）
+general/YYYY-MM-DD/article-slug-remote.md        # 正文（远程版本，使用图床）
 general/YYYY-MM-DD/article-slug.metadata.yaml    # 元数据（与正文同目录）
 ```
+
+#### 4.1 双版本 Markdown 策略
+
+**为什么需要两个版本？**
+
+| 版本 | 文件名 | 图片路径 | 使用场景 |
+|------|--------|---------|---------|
+| **本地版本** | `article-slug.md` | `./images/xxx.jpg` | 本地预览、离线查看 |
+| **远程版本** | `article-slug-remote.md` | `https://cdn.jsdelivr.net/gh/...` | 分享、发布、在线文档 |
+
+**本地版本**：
+- 图片使用相对路径：`![图片](./images/00_cover.jpg)`
+- 优点：无网络时也能预览，加载速度快
+- 缺点：不能分享给别人（图片是本地的）
+- 适用：个人笔记、本地归档
+
+**远程版本**：
+- 图片使用 CDN URL：`![图片](https://cdn.jsdelivr.net/gh/...)`
+- 优点：可以分享，任何人都能看到图片
+- 缺点：需要网络连接
+- 适用：发布到博客、分享给他人、在线文档
+
+#### 4.2 生成双版本的工作流程
+
+**步骤 1：上传图片到图床**
+
+```bash
+# 假设已提取微信图片 URL
+IMAGE_URLS=(
+  "https://mmbiz.qpic.cn/xxx.jpg"
+  "https://mmbiz.qpic.cn/yyy.jpg"
+)
+
+# 上传并记录 CDN URL
+declare -A CDN_MAP
+for i in "${!IMAGE_URLS[@]}"; do
+  CDN_URL=$(python3 upload_to_github.py "${IMAGE_URLS[$i]}" wechat)
+  CDN_MAP[$i]=$CDN_URL
+  echo "图片 $i: $CDN_URL"
+done
+```
+
+**步骤 2：生成本地版本**
+
+```markdown
+# Claude Code 之父的工作流火了：740 万围观的背后
+
+![Boris Cherny 在 X 上分享](./images/00_cover.jpg)
+
+## 01｜15 个 Claude 并行
+
+![工作流截图](./images/01_section01.jpg)
+```
+
+**步骤 3：生成远程版本**
+
+```bash
+# 创建远程版本（替换图片路径）
+sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/|g' \
+  article-slug.md > article-slug-remote.md
+```
+
+或使用 Python 脚本：
+
+```python
+def generate_remote_version(content, cdn_base_url):
+    """生成远程版本"""
+    import re
+
+    # 替换本地图片路径为 CDN URL
+    pattern = r'\(\.\/images\/([^)]+)\)'
+
+    def replace_with_cdn(match):
+        filename = match.group(1)
+        return f'({cdn_base_url}/{filename})'
+
+    return re.sub(pattern, replace_with_cdn, content)
+
+# 使用示例
+with open('article-slug.md', 'r') as f:
+    local_content = f.read()
+
+remote_content = generate_remote_version(
+    local_content,
+    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01'
+)
+
+with open('article-slug-remote.md', 'w') as f:
+    f.write(remote_content)
+```
+
+#### 4.3 文件组织示例
+
+```
+general/boris-claude-code-workflow/
+├── boris-claude-code-workflow.md              # 本地版本（主要文件）
+├── boris-claude-code-workflow-remote.md        # 远程版本（可分享）
+├── boris-claude-code-workflow.metadata.yaml    # 元数据
+└── images/                                     # 本地图片（可选）
+    ├── 00_cover.jpg
+    ├── 01_section01.jpg
+    └── ...
+```
+
+#### 4.4 推荐的 Git 策略
+
+**方案 A：只提交远程版本**（推荐）
+
+```bash
+# .gitignore
+general/*/images/
+general/*-remote.md
+
+# 只提交本地版本（使用本地图片）
+git add article-slug.md
+git commit -m "Add article"
+
+# 远程版本按需生成，不提交到 git
+# 或者单独提交到 gh-pages 分支
+```
+
+**方案 B：双版本都提交**
+
+```bash
+# 提交所有文件
+git add article-slug.md article-slug-remote.md
+git commit -m "Add article (local + remote versions)"
+```
+
+**方案 C：使用不同的分支**
+
+```bash
+# main 分支：本地版本
+git checkout main
+git add article-slug.md
+git commit -m "Add article"
+
+# gh-pages 分支：远程版本（用于 GitHub Pages）
+git checkout gh-pages
+git add article-slug-remote.md
+git commit -m "Add remote version for GitHub Pages"
+```
+
+#### 4.5 自动化脚本示例
+
+创建 `scripts/generate_dual_version.sh`：
+
+```bash
+#!/bin/bash
+#!/bin/bash
+# 生成双版本 Markdown 文件
+
+ARTICLE_FILE="$1"
+CDN_BASE_URL="$2"  # https://cdn.jsdelivr.net/gh/user/repo/assets/images/platform/YYYY-MM
+
+if [ -z "$ARTICLE_FILE" ]; then
+  echo "Usage: $0 <article.md> [cdn_base_url]"
+  exit 1
+fi
+
+# 提取文件名（不含扩展名）
+BASE_NAME="${ARTICLE_FILE%.md}"
+
+# 生成远程版本
+echo "生成远程版本: ${BASE_NAME}-remote.md"
+sed 's|(\./images/|('"$CDN_BASE_URL"'/|g' "$ARTICLE_FILE" > "${BASE_NAME}-remote.md"
+
+echo "✅ 双版本生成完成："
+echo "  本地版本: $ARTICLE_FILE"
+echo "  远程版本: ${BASE_NAME}-remote.md"
+```
+
+使用示例：
+
+```bash
+bash scripts/generate_dual_version.sh \
+  general/boris-claude-code-workflow/boris-claude-code-workflow.md \
+  "https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01"
+```
+
+#### 4.6 最佳实践建议
+
+✅ **推荐做法**：
+1. 默认使用本地版本（`article-slug.md`）作为主文件
+2. 远程版本按需生成，不需要时可不生成
+3. 使用自动化脚本确保两个版本同步
+4. 在元数据中记录图片的 CDN URL
+5. 定期清理不再使用的图片
+
+❌ **避免做法**：
+1. 不要在两个版本中手动修改内容（难以同步）
+2. 不要提交 images/ 目录到 git（文件太大）
+3. 不要混用两种图片路径格式
+4. 不要忘记更新远程版本
 
 **重要**：
 - 元数据和正文放在同一目录，便于管理
