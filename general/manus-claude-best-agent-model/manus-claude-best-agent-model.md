@@ -9,6 +9,12 @@ Manus 创始人认为 **Claude 是构建 AI Agent 应用的最佳模型选择**�
 
 ---
 
+## 📹 完整视频
+
+[观看完整视频](https://v26-web.douyinvod.com/f5aae379181a750b8d5cbf0f70792d55/696fd85e/video/tos/cn/tos-cn-ve-15c001-alinc2/o0BiAQEYw5AdWiIwQIAtnIElvuXSBa7BEAaPi/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0%7C0%7C0%7C3&cv=1&br=270&bt=270&cs=2&ds=4&ft=khyHAB1UiiuGzJrZ~d_C~49Zyo3nOz7LRY1opMyAlG5fCKQ2B22qgMLAcuOvVLd.o~&mime_type=video_mp4&qs=15&rc=NjVpNGYzO2doOWk4NThnNEBpM3JzbGo5cjo4MzMzNGkzM0A1MC0xXzU1NWAxYjJhYDFiYSMvbjJxMmRrYS1hLS1kLTBzcw%3D%3D&btag=80000e00020000&cquery=100H_100K_100o_100w_100B&dy_q=1768926709&feature_id=d25ea033481b28b23c6860d19885cf8f&l=202601210031495C3E1DBFCA461D973974&__vid=7494084867202895131)
+
+---
+
 ## 背景：什么是 Manus？
 
 Manus 是一个 AI Agent（智能体）开发平台/工具，专注于帮助开发者构建能够自主执行复杂任务的 AI 应用。
