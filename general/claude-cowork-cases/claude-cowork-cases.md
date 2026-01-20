@@ -2,11 +2,16 @@
 
 > 来源：小红书 李博科技圈，2026-01-13
 > 原文链接：https://www.xiaohongshu.com/explore/6965f38c000000001a023953
-> 视频链接：https://sns-video-hw.xhscdn.com/stream/1/110/115/01e965f38c197d0b010370019bb6404e6f_115.mp4
 
 ## 核心观点
 
 **Claude Cowork 发布 6 小时内,职场人已经开始尝试各种实际应用场景,从报税到职场沟通,展现了 AI 协作工具的巨大潜力。**
+
+---
+
+## 📹 完整视频
+
+[观看完整视频（15分钟）](https://sns-video-hw.xhscdn.com/stream/1/110/115/01e965f38c197d0b010370019bb6404e6f_115.mp4)
 
 ---
 
