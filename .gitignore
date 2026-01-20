@@ -51,5 +51,6 @@ yarn-error.log*
 .cache/
 
 # Article images (large files, better stored in CDN or external storage)
-general/*/images/
-knowledge*/*/images/
+# Temporarily disabled - using GitHub for image hosting
+# general/*/images/
+# knowledge*/*/images/
