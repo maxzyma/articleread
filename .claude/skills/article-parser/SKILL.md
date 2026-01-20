@@ -215,6 +215,107 @@ done
 - 仅对有防盗链的图片使用本地存储
 - 大文件可考虑上传到图床后使用远程链接
 
+**⚠️ 微信公众号图片提取最佳实践（重要）**
+
+根据实际案例（Boris Cherny Claude Code 工作流文章提取），总结了以下关键教训：
+
+**问题1：懒加载导致图片不完整**
+- **原因**：微信公众号使用懒加载，初始状态下只有首屏图片加载
+- **解决**：必须先滚动到页面底部触发所有懒加载，再提取图片URL
+- **操作**：
+  ```javascript
+  // 滚动到页面底部
+  window.scrollTo(0, document.body.scrollHeight);
+  // 等待2秒让图片加载
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  // 再提取图片
+  ```
+
+**问题2：占位符 SVG 被误认为真实图片**
+- **原因**：未加载的图片显示为 `data:image/svg+xml` 占位符
+- **解决**：过滤掉所有 SVG 图片，只保留 `mmbiz.qpic.cn` 的真实图片
+- **判断条件**：
+  ```javascript
+  // ✅ 保留：真实微信图片
+  url.includes('mmbiz.qpic.cn') && !url.includes('svg')
+  // ❌ 排除：占位符
+  url.includes('data:image/svg')
+  ```
+
+**问题3：imgIndex 编号不连续**
+- **原因**：微信图片的 `#imgIndex=N` 编号不一定连续
+- **陷阱**：imgIndex 可能是 0,1,2,3,4,5,6,7（跳过某些数字）
+- **解决**：不要假设 imgIndex 连续，必须通过 URL 中的 imgIndex 参数匹配章节
+
+**问题4：广告图片被误当作正文内容**
+- **原因**：文章末尾的"推荐阅读"图片也是 mmbiz 域名
+- **识别**：通常在倒数第二、第三个 H3 标题之后出现
+- **解决**：
+  - 检查图片位置：如果在"结语"或"关于作者"之后，很可能是广告
+  - 查看图片上下文：如果有链接到其他文章，是推荐图片
+  - 人工确认：用 `take_screenshot` 查看图片内容
+
+**问题5：图片位置与章节对应混乱**
+- **原因**：图片的 DOM 顺序与文本顺序不一定一致
+- **解决方法**：
+  1. **方法A：按 imgIndex 匹配**（推荐）
+     ```javascript
+     // 提取所有图片的 imgIndex
+     const imgIndex = url.match(/imgIndex=(\d+)/)?.[1];
+     // 按章节顺序分配图片
+     ```
+  2. **方法B：截图验证**
+     - 对每个章节使用 `take_screenshot` 确认是否有图片
+     - 逐个对比，确保图片位置正确
+
+**问题6：部分图片需要多次检查**
+- **现象**：第03节和第05节最初检查显示"无图片"，但实际有图片
+- **原因**：可能是懒加载触发时机不对，或者检查方法有误
+- **解决**：
+  - 用户反馈"图片遗漏"时，重新用截图验证
+  - 使用 `take_snapshot` 查看该章节的完整内容
+  - 滚动到该章节位置后再检查
+
+**完整提取流程（推荐）**：
+
+```javascript
+// 步骤1：滚动页面触发懒加载
+window.scrollTo(0, document.body.scrollHeight);
+await new Promise(resolve => setTimeout(resolve, 2000));
+window.scrollTo(0, 0);
+
+// 步骤2：提取所有图片URL
+const content = document.querySelector('#js_content');
+const images = Array.from(content.querySelectorAll('img'));
+
+const mmbizImages = images
+  .map((img, idx) => {
+    const url = img['data-src'] || img.src;
+    const imgIndex = url.match(/imgIndex=(\d+)/)?.[1];
+    return {
+      index: idx,
+      imgIndex: imgIndex,
+      url: url,
+      isMmbiz: url.includes('mmbiz.qpic.cn') && !url.includes('svg'),
+      isPlaceholder: url.includes('data:image/svg')
+    };
+  })
+  .filter(img => img.isMmbiz && !img.isPlaceholder);
+
+// 步骤3：下载图片到本地（带 referer）
+// 步骤4：逐个章节截图验证图片位置
+// 步骤5：人工确认广告图片并移除
+```
+
+**检查清单**：
+- [ ] 滚动页面触发懒加载
+- [ ] 过滤掉 SVG 占位符
+- [ ] 提取所有真实 mmbiz 图片
+- [ ] 下载图片到本地并重命名（按 imgIndex）
+- [ ] 逐个章节截图验证图片位置
+- [ ] 移除文章末尾的广告图片
+- [ ] 让用户验证结果
+
 #### 0.2 搜索技巧和具体方法
 
 **从小红书/抖音链接寻找微信公众号版本**：
