@@ -2,7 +2,7 @@
 
 > 来源：微信公众号 Decoder Only（转载湾仔码农），2026-01-15
 > 原文作者：湾仔码农
-> 原文链接：https://www.xiaohongshu.com/explore/69683542000000000b00bacb（已失效）
+> 原文链接：https://mp.weixin.qq.com/s/fSAgfe2V9dUQimAkrPauqQ
 
 ## 核心观点
 
