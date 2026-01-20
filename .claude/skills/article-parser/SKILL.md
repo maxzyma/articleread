@@ -349,6 +349,96 @@ export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxx"
   - 使用 `take_snapshot` 查看该章节的完整内容
   - 滚动到该章节位置后再检查
 
+**问题7：通过图片内容推断位置导致错误（常见误区）** ⚠️ **重要**
+- **错误做法**：通过 OCR 或视觉分析理解图片内容，然后推断它应该在哪个章节
+- **错误原因**：
+  - 图片内容可能相似（如多个代码示例、多个对比图）
+  - 不同图片可能有相似的内容描述
+  - 人工分析耗时且容易出错
+- **正确做法**：**按照网页中图片的出现顺序（imgIndex）确定位置**
+- **微信公众号图片的 imgIndex 机制**：
+  - 微信图片 URL 包含 `#imgIndex=0`, `#imgIndex=1`, `#imgIndex=2` 等参数
+  - imgIndex 直接对应图片在文章中的出现顺序
+  - 应该按照 imgIndex 的顺序来下载和引用图片
+- **正确流程**：
+  ```javascript
+  // 步骤1：提取所有图片及其 imgIndex
+  const images = Array.from(document.querySelectorAll('img'));
+  const articleImages = images
+    .map(img => {
+      const url = img.src || img['data-src'];
+      const match = url.match(/imgIndex=(\d+)/);
+      return {
+        url: url,
+        imgIndex: match ? match[1] : 'cover'  // 'cover' 是封面图
+      };
+    })
+    .filter(img => img.url && img.url.includes('mmbiz.qpic.cn'));
+
+  // 步骤2：按照 imgIndex 顺序下载
+  // imgIndex=0 → image_0.png
+  // imgIndex=1 → image_1.png
+  // imgIndex=2 → image_2.png
+  // ...
+
+  // 步骤3：根据网页快照中的文本位置确定图片位置
+  // 使用 take_snapshot 查看图片出现在哪个章节之后
+  // 不要尝试理解图片内容！
+  ```
+
+**微信公众号图片位置确定的最佳实践（2026-01-20 更新）**：
+
+根据实战经验（Browser Use Agent SDK 文章提取），总结了以下关键教训：
+
+**❌ 错误方法（浪费时间和精力）**：
+1. 通过视觉分析（OCR）理解图片内容
+2. 根据图片内容推断它应该在哪个章节
+3. 对比图片尺寸、格式来推测顺序
+4. 使用 AI 图像理解工具分析图片
+
+**✅ 正确方法（高效且准确）**：
+1. 使用 JavaScript 提取所有图片的 `imgIndex` 参数
+2. 按照 `imgIndex=0, 1, 2, 3...` 的顺序下载图片
+3. 使用 `take_snapshot` 查看网页结构，找到每张图片前后的文本
+4. 按照文本位置确定图片应该插入的章节
+
+**示例对比**：
+
+| 方法 | 步骤 | 耗时 | 准确率 | 推荐 |
+|------|------|------|--------|------|
+| ❌ 图片内容分析 | 1. OCR 分析每张图片<br>2. 理解图片内容<br>3. 推断章节对应关系 | 长 | ~70% | ❌ 不推荐 |
+| ✅ 网页结构分析 | 1. 提取 imgIndex<br>2. 查看网页快照<br>3. 按文本位置确定 | 短 | ~100% | ✅ 强烈推荐 |
+
+**实际案例**：
+
+Browser Use Agent SDK 文章提取过程中：
+- **错误做法**：通过分析图片内容，误将 image_2.png（99% model 图）放在"逆向思维"部分
+- **正确做法**：查看网页快照，发现 imgIndex=1 的图片出现在"The Bitter Lesson"之后
+- **结果**：按照网页结构调整图片位置，无需分析图片内容
+
+**核心原则**：
+> **在微信公众号这种富文本文章中，图片的位置由它们在文章中出现的顺序决定，而不是由图片内容决定。**
+
+**工作流程（推荐）**：
+
+```bash
+# 1. 提取图片 URL 和 imgIndex
+js: getImagesWithIndex()
+
+# 2. 按照 imgIndex 下载图片
+curl -H "Referer: https://mp.weixin.qq.com/" \
+  "url_with_imgIndex=0" -o image_0.png
+curl -H "Referer: https://mp.weixin.qq.com/" \
+  "url_with_imgIndex=1" -o image_1.png
+# ...
+
+# 3. 查看网页快照，确定图片位置
+take_snapshot → 找到每张图片前后的文本
+
+# 4. 在 Markdown 中按正确位置引用
+# 不要通过分析图片内容来推断位置！
+```
+
 **完整提取流程（推荐）**：
 
 ```javascript
