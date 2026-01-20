@@ -537,6 +537,331 @@ click -> <文章标题链接>
 - 缓存视频 URL 可以避免重复提取，提高效率
 - 元数据中记录视频 URL 供后续查看或下载
 
+### 1.5 验证环节（Validation）⭐ 重要
+
+**目的**：在内容整理之前，对照原文验证提取结果的完整性和准确性，及时发现并修复问题。
+
+#### 验证流程（三步走）
+
+```
+提取内容 → 自动验证 → 发现问题 → 修复问题 → 重新验证 → 完成
+```
+
+#### 步骤1：自动验证检查清单
+
+**A. 基础信息验证**
+
+```javascript
+// 检查标题、作者、发布时间是否完整
+const validation = {
+  hasTitle: articleContent.includes('## ') || articleContent.includes('# '),
+  hasSource: articleContent.includes('> 来源：'),
+  hasAuthor: articleContent.includes('作者') || articleContent.includes('原创'),
+  hasDate: articleContent.match(/\d{4}年\d{1,2}月/),
+};
+```
+
+**检查项**：
+- [ ] 标题是否提取（一级标题）
+- [ ] 来源信息是否完整（平台、作者、时间）
+- [ ] 原文链接是否包含
+
+**B. 章节完整性验证**
+
+```javascript
+// 检查章节是否完整（以微信公众号为例）
+const sections = articleContent.match(/## \d+｜.+/g);
+const expectedSectionCount = 9; // 根据原文预期章节数
+
+console.log(`提取章节数: ${sections?.length || 0}，预期: ${expectedSectionCount}`);
+```
+
+**检查项**：
+- [ ] 章节数量是否合理（不应突然中断）
+- [ ] 章节编号是否连续（01, 02, 03...）
+- [ ] 是否有截断痕迹（如：段落突然结束）
+
+**C. 图片完整性验证**
+
+```javascript
+// 检查图片引用是否正确
+const imageRefs = articleContent.match(/!\[.*\]\(\.\/images\/.+\)/g) || [];
+const imageFiles = getImageFilesInDirectory(); // 读取 images/ 目录
+
+console.log(`Markdown引用图片: ${imageRefs.length}，实际图片文件: ${imageFiles.length}`);
+```
+
+**检查项**：
+- [ ] Markdown 中的图片引用数量是否与实际文件数量一致
+- [ ] 图片文件是否存在（检查 `./images/xxx.jpg`）
+- [ ] 图片命名是否规范（是否有 `image_1_boris_cherny.png` 这样的临时命名）
+- [ ] 是否有断开的图片链接（404）
+
+**D. 广告图片检测**
+
+```javascript
+// 检测文章末尾可能的广告图片
+const lines = articleContent.split('\n');
+let foundAdImage = false;
+let inConclusion = false;
+
+for (let i = 0; i < lines.length; i++) {
+  const line = lines[i];
+  if (line.includes('## 结语') || line.includes('## 结尾')) {
+    inConclusion = true;
+  }
+  if (inConclusion && line.match(/!\[.*\]\(\.\/images\/.+\)/)) {
+    // 结语之后还有图片，可能是广告
+    foundAdImage = true;
+    console.warn(`发现可能的广告图片（第${i+1}行）: ${line}`);
+  }
+}
+```
+
+**检查项**：
+- [ ] "结语"、"关于作者" 之后是否还有图片
+- [ ] 倒数第二个章节之后的图片是否为广告
+- [ ] 图片上下文是否有链接到其他文章
+
+**E. 文字内容完整性验证**
+
+```javascript
+// 检查可能的截断
+const lastLines = lines.slice(-10).join('\n');
+const truncationPatterns = [
+  /…+$/,           // 省略号结尾
+  /\[未完\]$/,      // [未完]
+  /待续$/,          // 待续
+  /\[全文完\]/,     // [全文完]
+];
+
+const mightBeTruncated = truncationPatterns.some(p => p.test(lastLines));
+```
+
+**检查项**：
+- [ ] 文章结尾是否完整（是否有"未完待续"等）
+- [ ] 最后一段是否突然中断
+- [ ] 是否有明显的截断标记
+
+**F. 格式验证**
+
+```javascript
+// 检查 Markdown 格式问题
+const formatIssues = [];
+
+// 检查代码块是否闭合
+const codeBlocks = articleContent.match(/```/g);
+if (codeBlocks && codeBlocks.length % 2 !== 0) {
+  formatIssues.push('代码块未闭合');
+}
+
+// 检查引用块格式
+const quoteMarks = articleContent.match(/^> /gm);
+if (quoteMarks && quoteMarks.length > 50) {
+  formatIssues.push('引用块可能过长（是否误将正文当作引用？）');
+}
+```
+
+**检查项**：
+- [ ] 代码块是否闭合（``` 成对出现）
+- [ ] 引用块格式是否正确
+- [ ] 标题层级是否合理（# ## ### 使用正确）
+
+#### 步骤2：发现问题时自动修复
+
+**问题1：图片不完整**
+```javascript
+// 修复：重新触发懒加载并提取
+if (imageFiles.length < expectedImageCount) {
+  console.log('⚠️ 图片不完整，重新提取...');
+  // 重新滚动页面、提取图片
+  await reExtractImages();
+}
+```
+
+**问题2：章节截断**
+```javascript
+// 修复：提示需要重新提取文本
+if (sections.length < expectedSectionCount - 2) {
+  console.log('⚠️ 章节可能截断，请检查原文');
+  // 滚动到页面底部重新获取快照
+}
+```
+
+**问题3：广告图片未移除**
+```javascript
+// 修复：自动移除结语后的图片
+if (foundAdImage) {
+  console.log('⚠️ 发现广告图片，自动移除');
+  articleContent = removeAdImages(articleContent);
+}
+```
+
+**问题4：图片引用错误**
+```javascript
+// 修复：更新图片路径
+if (imageRefs.length !== imageFiles.length) {
+  console.log('⚠️ 图片引用不匹配，重新命名...');
+  await renameAndUpdateImages();
+}
+```
+
+#### 步骤3：生成验证报告
+
+```javascript
+const validationReport = {
+  timestamp: new Date().toISOString(),
+  articleUrl: currentArticleUrl,
+  summary: {
+    totalChecks: 20,
+    passed: 18,
+    failed: 2,
+    warnings: 1
+  },
+  details: {
+    basicInfo: { status: 'pass', items: [...] },
+    sections: { status: 'pass', count: 9 },
+    images: { status: 'fail', expected: 8, found: 6, missing: [3, 5] },
+    format: { status: 'pass', issues: [] }
+  },
+  recommendations: [
+    '图片 #3 (第03节) 缺失，建议重新提取',
+    '图片 #5 (第05节) 缺失，建议重新提取'
+  ]
+};
+```
+
+#### 自动化验证脚本（参考）
+
+```bash
+#!/bin/bash
+# validate_article.sh
+
+echo "🔍 开始验证文章提取结果..."
+
+ARTICLE_FILE="$1"
+IMAGES_DIR="$(dirname "$ARTICLE_FILE")/images"
+
+# 1. 检查图片引用
+IMAGE_REFS=$(grep -o '\.\.\/images\/[^)]*' "$ARTICLE_FILE" | sort -u)
+IMAGE_COUNT=$(echo "$IMAGE_REFS" | wc -l)
+FILE_COUNT=$(ls "$IMAGES_DIR"/*.jpg 2>/dev/null | wc -l)
+
+echo "📊 图片统计：引用 $IMAGE_COUNT 张，实际文件 $FILE_COUNT 个"
+
+if [ $IMAGE_COUNT -ne $FILE_COUNT ]; then
+  echo "⚠️  图片数量不匹配！"
+  echo "引用的图片："
+  echo "$IMAGE_REFS"
+  echo "实际的文件："
+  ls "$IMAGES_DIR"
+fi
+
+# 2. 检查章节完整性
+SECTIONS=$(grep -c '^## ' "$ARTICLE_FILE")
+echo "📚 章节数：$SECTIONS"
+
+# 3. 检查基础信息
+echo "📝 基础信息检查："
+grep -q '^# ' "$ARTICLE_FILE" && echo "  ✅ 标题" || echo "  ❌ 缺少标题"
+grep -q '> 来源：' "$ARTICLE_FILE" && echo "  ✅ 来源" || echo "  ❌ 缺少来源"
+
+# 4. 检查格式
+echo "🎨 格式检查："
+grep -c '^```$' "$ARTICLE_FILE" | awk '{if ($1 % 2 == 0) print "  ✅ 代码块闭合"; else print "  ❌ 代码块未闭合"}'
+
+echo "✅ 验证完成"
+```
+
+#### 使用场景
+
+**场景1：提取完成后自动验证**
+```javascript
+// 完成提取后立即验证
+await extractArticleContent(url);
+const validationResult = await validateArticle(content);
+
+if (validationResult.hasErrors) {
+  console.log('发现错误，自动修复...');
+  await autoFix(validationResult.issues);
+}
+```
+
+**场景2：用户反馈问题时重新验证**
+```javascript
+// 用户说"第3节的图片漏了"
+await scrollToSection(3);
+const screenshot = await takeScreenshot();
+if (screenshot.containsImage()) {
+  await downloadImage(3);
+  await updateMarkdown();
+}
+```
+
+**场景3：批量提取时抽检**
+```bash
+# 随机抽检 10% 的文章
+for article in $(find . -name "*.md" | shuf | head -n 5); do
+  ./validate_article.sh "$article"
+done
+```
+
+#### 验证最佳实践
+
+✅ **应该做的**：
+- 提取完成后立即验证
+- 发现问题立即修复，不要等用户反馈
+- 保留验证报告（记录问题和修复过程）
+- 对于复杂文章，逐个章节截图对照
+
+❌ **不应该做的**：
+- 不要假设第一次提取就是完美的
+- 不要跳过验证环节直接提交
+- 不要忽略用户的反馈（即使看起来是小问题）
+- 不要完全依赖自动化，关键部分需要人工确认
+
+#### 验报告模板
+
+```markdown
+## 文章提取验证报告
+
+**文章**：Boris Cherny Claude Code 工作流
+**验证时间**：2026-01-20 14:00
+**验证者**：Claude Code
+
+### 验证结果
+
+✅ **通过** (18/20)
+
+| 检查项 | 状态 | 说明 |
+|--------|------|------|
+| 标题 | ✅ | 已提取 |
+| 来源 | ✅ | 完整 |
+| 章节 | ✅ | 9个章节完整 |
+| 图片 | ❌ | 缺少第3、5节图片 |
+| 格式 | ✅ | Markdown格式正确 |
+| 广告 | ✅ | 已移除 |
+
+### 发现的问题
+
+1. **图片不完整**：缺少第03节和第05节的图片
+   - 原因：懒加载未触发
+   - 修复：重新滚动页面并下载
+
+2. **图片命名不规范**：存在 `image_1_boris_cherny.png`
+   - 修复：重命名为 `03_section03.jpg`
+
+### 修复记录
+
+- 14:05 - 重新提取第03节图片 ✅
+- 14:07 - 重新提取第05节图片 ✅
+- 14:10 - 更新 Markdown 引用 ✅
+
+### 最终状态
+
+✅ 所有问题已修复，可以提交
+```
+
 ### 2. 内容整理
 
 #### 2.1 图文笔记
