@@ -199,6 +199,35 @@ done
 
 **图片存储规则**：
 
+**jsDelivr CDN 格式说明**：
+
+jsDelivr 是一个免费的公共 CDN，支持直接访问 GitHub 仓库文件。
+
+**URL 格式**：
+```
+https://cdn.jsdelivr.net/gh/[用户名]/[仓库名]/[文件路径]
+```
+
+**重要**：
+- ✅ 无需指定分支名（默认使用主分支）
+- ✅ 文件路径是仓库根目录后的完整路径
+- ✅ 首次访问后自动缓存（1-2分钟生效）
+
+**示例**：
+
+对于仓库中的文件 `general/article-name/images/00_cover.jpg`：
+
+```bash
+# 正确的 CDN URL
+https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images/00_cover.jpg
+
+# ❌ 错误：不要加分支名
+https://cdn.jsdelivr.net/gh/maxzyma/articleread/main/general/article-name/images/00_cover.jpg
+
+# ❌ 错误：路径不匹配实际文件位置
+https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/00_cover.jpg
+```
+
 **推荐策略（优先级从高到低）**：
 
 | 优先级 | 存储方式 | 适用场景 | 优点 | 缺点 |
@@ -209,13 +238,25 @@ done
 
 **GitHub 图床使用方式**：
 
+**方案 A：使用集中图床**（需要脚本支持）
+
 ```bash
-# 上传单张图片
+# 上传单张图片到集中图床目录
 python3 .claude/skills/article-parser/scripts/upload_to_github.py \
   "https://mmbiz.qpic.cn/xxx.jpg" \
   wechat
 
-# 输出: https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/uuid.jpg
+# 输出示例: https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/uuid.jpg
+```
+
+**方案 B：使用文章目录**（推荐）
+
+```bash
+# 将图片下载到文章目录的 images/ 文件夹
+# CDN 路径即为实际文件路径
+curl "https://mmbiz.qpic.cn/xxx.jpg" -o general/article-name/images/00_cover.jpg
+
+# CDN 链接: https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images/00_cover.jpg
 ```
 
 **配置要求**：
@@ -1057,8 +1098,9 @@ done
 **步骤 3：生成远程版本**
 
 ```bash
-# 创建远程版本（替换图片路径）
-sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/|g' \
+# 创建远程版本（替换图片路径为 CDN 链接）
+# 注意：jsDelivr 格式为 gh/[用户名]/[仓库名]/[文件路径]（无需分支名）
+sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images/|g' \
   article-slug.md > article-slug-remote.md
 ```
 
@@ -1066,10 +1108,11 @@ sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/
 
 ```python
 def generate_remote_version(content, cdn_base_url):
-    """生成远程版本"""
+    """生成远程版本（jsDelivr CDN）"""
     import re
 
     # 替换本地图片路径为 CDN URL
+    # 注意：jsDelivr 格式为 gh/[用户名]/[仓库名]/[文件路径]（无需分支名）
     pattern = r'\(\.\/images\/([^)]+)\)'
 
     def replace_with_cdn(match):
@@ -1082,9 +1125,10 @@ def generate_remote_version(content, cdn_base_url):
 with open('article-slug.md', 'r') as f:
     local_content = f.read()
 
+# CDN 格式：https://cdn.jsdelivr.net/gh/user/repo/path/to/images
 remote_content = generate_remote_version(
     local_content,
-    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01'
+    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images'
 )
 
 with open('article-slug-remote.md', 'w') as f:
@@ -1160,7 +1204,7 @@ git commit -m "Add remote version for GitHub Pages"
 # 生成双版本 Markdown 文件
 
 ARTICLE_FILE="$1"
-CDN_BASE_URL="$2"  # https://cdn.jsdelivr.net/gh/user/repo/assets/images/platform/YYYY-MM
+CDN_BASE_URL="$2"  # https://cdn.jsdelivr.net/gh/user/repo/path/to/images (无需分支名)
 
 if [ -z "$ARTICLE_FILE" ]; then
   echo "Usage: $0 <article.md> [cdn_base_url]"
@@ -1184,7 +1228,7 @@ echo "  远程版本: ${BASE_NAME}-remote.md"
 ```bash
 bash scripts/generate_dual_version.sh \
   general/boris-claude-code-workflow/boris-claude-code-workflow.md \
-  "https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01"
+  "https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images"
 ```
 
 #### 4.6 最佳实践建议
