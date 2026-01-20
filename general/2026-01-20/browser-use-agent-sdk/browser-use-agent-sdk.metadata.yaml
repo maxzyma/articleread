@@ -1,0 +1,50 @@
+---
+title: "你那上万行 Agent 代码都是垃圾！Browser Use 开源 Manus 级内核"
+original_title: "你那上万行Agent代码都是垃圾！Browser Use作者骑脸输出，开源了Manus级内核。"
+extraction_date: "2026-01-20"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/QeQcZqm6P-8uCcZ87g8ESw"
+  author: "猕猴桃的探索AGI"
+  publish_date: "2026-01-20"
+
+content:
+  type: "技术观点"
+  topic: "AI Agent 开发"
+  format: "长文"
+  core_point: "Browser Use 开源极简 Agent 内核：一个 for 循环 + 3 大支柱（逆向思维、上下文管理、强制结束）"
+  key_topics:
+    - "Browser Use"
+    - "Agent SDK"
+    - "Chrome DevTools Protocol"
+    - "The Bitter Lesson"
+    - "极简 Agent 设计"
+
+extraction_method:
+  - "Chrome DevTools"
+  - "微信公众号内容提取"
+
+verification:
+  status: "completed"
+  verified_against: "微信公众号原文"
+  notes: "已提取完整内容，包含 2 张配图"
+
+content_file: "./browser-use-agent-sdk.md"
+
+tags:
+  - "AI Agent"
+  - "Browser Use"
+  - "Agent SDK"
+  - "极简设计"
+  - "CDP"
+
+notes: |
+  核心观点：Browser Use 开源极简 Agent 内核
+
+  技术背景：
+  - 一个 for 循环死循环：让 AI 说话、干活、再说话
+  - 3 大支柱：逆向思维（CDP 底层权限）、上下文管理（保留最近 3 次）、强制结束（done 工具）
+  - The Bitter Lesson：少即是多，模型足够强大时最简单的框架最有效
+
+  目标受众：正在开发 AI Agent 的工程师，对极简设计感兴趣的开发者
