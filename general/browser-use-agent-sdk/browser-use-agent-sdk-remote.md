@@ -9,7 +9,7 @@
 
 ---
 
-![Browser Use 作者在 X 上分享](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/browser-use-agent-sdk/images/image_cover.jpg)
+![Browser Use 项目界面](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/browser-use-agent-sdk/images/image_cover.jpg)
 
 ## 背景
 
@@ -18,8 +18,6 @@ Browser Use 表示最近要发布他们的 Manus：BU.app，但他们提前把�
 它的核心设计理念，简单到近乎是一种嘲讽。
 
 作者 Gregor Zunic 直接在 X 上骑脸输出：
-
-> "所有的价值都在 RL 过的模型里，不在你那上万行的垃圾抽象代码里。"
 
 ![Browser Use 作者在 X 上的发言](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/browser-use-agent-sdk/images/image_1.png)
 
