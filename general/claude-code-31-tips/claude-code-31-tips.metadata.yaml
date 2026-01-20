@@ -5,7 +5,7 @@ extraction_date: "2026-01-20"
 
 source:
   platform: "微信公众号"
-  url: "https://mp.weixin.qq.com/s/QeQcZqm6P-8uCcZ87g8ESw"
+  url: "https://mp.weixin.qq.com/s?src=11&timestamp=1768923760&ver=6492&signature=W0j*cCYUGLFALdq*BIPpsRDfcBivbat-qu8xnaJLBNzlGSp748KqM9SanFWEvuSqdfk4zAobUhgzENmP-9Ix*XMhHisRxtA1r6EihbjhIReREQClHjYNZIkBjjazkFJq&new=1"
   account: "AI实用工具汇"
   translator: "雷小锋"
   publish_date: "2026-01-13"
@@ -22,24 +22,25 @@ content:
   format: "31条技巧清单"
   sections: 9
   total_tips: 31
+  word_count: 8000
 
   section_list:
-    - "让 AI 快速了解你的项目"
-    - "必备快捷键"
-    - "会话管理"
-    - "生产力功能"
-    - "思考与规划"
-    - "权限与安全"
-    - "自动化与 CI/CD"
-    - "浏览器集成"
+    - "入门指南 (Getting Started)"
+    - "必备快捷键 (Essential Shortcuts)"
+    - "会话管理 (Session Management)"
+    - "生产力功能 (Productivity Features)"
+    - "思考与规划 (Thinking & Planning)"
+    - "权限与安全 (Permissions & Safety)"
+    - "自动化与 CI/CD (Automation & CI/CD)"
+    - "浏览器集成 (Browser Integration)"
     - "高级功能：Agents 与扩展性"
 
-  core_point: "Claude Code 是一个可深度定制、可自动化、可编程的开发环境，而不仅仅是一个 AI 编程助手。通过掌握 31 个实战技巧，开发者可以构建属于自己的 AI 辅助开发工作流。"
+  core_point: "Claude Code 是一个可深度定制、可自动化、可编程的开发环境，而不仅仅是一个 AI 编程助手。通过掌握 31 个实战技巧，从 /init 自动入职到 Agent Skills 和 MCP 集成，开发者可以构建属于自己的 AI 辅助开发工作流。"
 
 extraction_method:
   - "搜狗微信搜索"
   - "微信公众号文章提取"
-  - "人工校对"
+  - "内容验证与完整性检查"
 
 verification:
   status: "completed"
@@ -55,6 +56,7 @@ tags:
   - "Anthropic"
   - "技术教程"
   - "31天挑战"
+  - "Advent of Claude"
 
 content_file: "./claude-code-31-tips.md"
 
@@ -65,7 +67,13 @@ notes: |
   - 31 个实战技巧，从入门到精通
   - 涵盖快捷键、会话管理、自动化、浏览器集成、Agents 等全方位内容
   - 提供快速参考表（键盘快捷键、必备命令、CLI 标志）
+  - 完整内容约 8000 字
 
   目标受众：
   - 正在使用或打算使用 Claude Code 的开发者
   - 希望提升 AI 辅助开发效率的技术人员
+
+  URL 说明：
+  - 微信公众号文章的 URL 是带时间戳和签名的临时链接
+  - 该 URL 在提取时有效，可能随时间失效
+  - 建议通过搜狗微信搜索或公众号名称查找文章
