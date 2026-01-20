@@ -1104,11 +1104,11 @@ done
 - ✅ 放在核心观点之后、正文之前
 - ✅ 使用视频 emoji（📹）提高可见性
 - ✅ 链接文字格式：`观看完整视频（平台名）` 或 `观看完整视频（时长）`
-- ✅ 优先使用视频页面链接（而非直接视频文件 URL）
-  - 抖音：`https://www.douyin.com/video/VIDEO_ID`
-  - 小红书：`https://www.xiaohongshu.com/explore/NOTE_ID`
-  - B站：`https://www.bilibili.com/video/BV_ID`
-- ⚠️ 直接视频文件 URL 通常有时效性和安全限制，不建议使用
+- ✅ 视频链接选择策略：
+  - **抖音**：使用页面链接 `https://www.douyin.com/video/VIDEO_ID`
+  - **小红书**：使用直接视频文件 URL（页面链接有访问限制）
+  - **B站**：使用页面链接 `https://www.bilibili.com/video/BV_ID`
+- ⚠️ 直接视频文件 URL 通常有时效性和安全限制，但小红书除外
 
 **内容取舍原则**：
 
