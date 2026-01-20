@@ -418,3 +418,74 @@ articleread/
 **相关文档**：
 - skill-creator 技能路径：`.claude/skills/skill-creator/`
 - 技能示例：`xiaohongshu-parser.skill`（已打包）
+
+## Ralph Loop 集成
+
+article-parser 技能与 Ralph Loop 可以配合使用，实现自动化迭代提取。
+
+### 适用场景
+
+| 场景 | 说明 | 推荐迭代次数 |
+|------|------|------------|
+| **批量处理待提取文章** | 持续处理 extraction-plan.yaml 中的 pending 列表 | 10-20 次 |
+| **单个复杂文章** | 针对难以提取的文章多次尝试和优化 | 5-10 次 |
+| **质量优化迭代** | 重新提取和改进已存在文章的格式、翻译或结构 | 3-5 次 |
+| **监控特定平台** | 持续监控并提取特定平台（小红书、Twitter）的新文章 | 无限制（使用完成信号） |
+
+### 使用示例
+
+#### 1. 批量处理待提取文章
+
+```bash
+/ralph-loop "使用 article-parser 技能继续处理 extraction-plan.yaml 中的待提取文章列表。完成后输出 <promise>批量提取完成</promise>。" --completion-promise "批量提取完成" --max-iterations 10
+```
+
+#### 2. 复杂网页多次尝试
+
+```bash
+/ralph-loop "使用 article-parser 技能提取 https://example.com/article。如果提取失败，分析原因并调整策略继续提取。输出 <promise>文章提取完成</promise>。" --completion-promise "文章提取完成" --max-iterations 5
+```
+
+#### 3. 优化已有文章
+
+```bash
+/ralph-loop "使用 article-parser 技能重新提取并优化已提取文章的格式和质量。输出 <promise>优化完成</promise>。" --completion-promise "优化完成" --max-iterations 3
+```
+
+#### 4. 无限制迭代（仅依赖完成信号）
+
+```bash
+/ralph-loop "使用 article-parser 技能处理所有待提取文章，直到 extraction-plan.yaml 中没有 pending 状态的任务。输出 <promise>所有文章已提取完成</promise>。" --completion-promise "所有文章已提取完成"
+```
+
+### 工作原理
+
+1. **迭代改进**：Ralph Loop 重复相同提示词，每次迭代都能看到上次的文件修改
+2. **自动重试**：如果提取失败（网络问题、格式错误等），下次迭代会继续尝试
+3. **进度跟踪**：通过修改 `extraction-plan.yaml` 和创建文件，每次迭代都能看到进度
+4. **完成控制**：
+   - 使用 `<promise>` 标签信号停止
+   - 使用 `--max-iterations` 设置最大迭代次数
+   - 两者满足任一条件即可停止
+
+### 注意事项
+
+✅ **推荐使用 Ralph Loop 的场景**：
+- 需要多次尝试的复杂提取任务
+- 批量处理多个文章
+- 需要迭代优化格式和质量的场景
+- 网络不稳定可能导致重试的任务
+
+❌ **不推荐使用 Ralph Loop 的场景**：
+- 简单的单次提取任务（直接使用 article-parser 更高效）
+- 需要人工判断或设计决策的任务
+- 一次性操作
+- 不明确成功标准的调试任务
+
+### 最佳实践
+
+1. **设置合理的迭代次数**：根据任务复杂度设置 `--max-iterations`，避免无限循环
+2. **使用明确的完成信号**：提供清晰的 `<promise>` 标签内容
+3. **监控进度**：Ralph Loop 会自动显示迭代次数，便于跟踪
+4. **随时取消**：使用 `/cancel-ralph` 可随时停止循环
+5. **结合 extraction-plan**：让 Ralph Loop 通过更新 extraction-plan.yaml 来跟踪进度
