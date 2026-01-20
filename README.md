@@ -35,7 +35,7 @@ articleread/
 ### CDN 链接格式
 
 ```
-https://cdn.jsdelivr.net/gh/[用户名]/[仓库名]/[分支名]/[文件在仓库中的路径]
+https://cdn.jsdelivr.net/gh/[用户名]/[仓库名]/[文件在仓库中的路径]
 ```
 
 ### 示例
@@ -43,18 +43,18 @@ https://cdn.jsdelivr.net/gh/[用户名]/[仓库名]/[分支名]/[文件在仓库
 对于文件 `general/boris-claude-code-workflow/images/00_cover.jpg`：
 
 ```
-https://cdn.jsdelivr.net/gh/maxzyma/articleread/main/general/boris-claude-code-workflow/images/00_cover.jpg
+https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/00_cover.jpg
 ```
 
 ### 在 Markdown 中使用
 
 ```markdown
-![封面](https://cdn.jsdelivr.net/gh/maxzyma/articleread/main/general/article-name/images/00_cover.jpg)
+![封面](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images/00_cover.jpg)
 ```
 
 ### 快速生成 CDN 链接
 
-1. **基础 URL**: `https://cdn.jsdelivr.net/gh/maxzyma/articleread/main/`
+1. **基础 URL**: `https://cdn.jsdelivr.net/gh/maxzyma/articleread/`
 2. **文件路径**: 仓库根目录后的完整路径
 3. **拼接**: 基础 URL + 文件路径
 
