@@ -1,0 +1,55 @@
+---
+title: "迁移到 Responses API 指南"
+extraction_date: "2026-01-20"
+
+source:
+  platform: "OpenAI 官方文档"
+  url: "https://platform.openai.com/docs/guides/migrate-to-responses"
+  author: "OpenAI"
+  publish_date: "2026-01-20"
+
+content:
+  type: "技术文档"
+  topic: "API 迁移"
+  core_point: "Responses API 是 OpenAI 新一代 API，相比 Chat Completions API 提供更强的智能体能力、更低成本和更好的性能"
+  key_topics:
+    - "Responses API 介绍"
+    - "与 Chat Completions API 对比"
+    - "迁移步骤指南"
+    - "原生工具支持"
+    - "Assistants API 弃用通知"
+
+extraction_method:
+  - "Chrome DevTools 网页提取"
+  - "人工翻译和整理"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页"
+  notes: "已完整翻译并按照项目规范整理，保留所有技术细节和代码示例"
+
+content_file: "./openai-responses-api-migration-guide.md"
+
+tags:
+  - "OpenAI"
+  - "API"
+  - "Responses API"
+  - "Chat Completions"
+  - "迁移指南"
+  - "智能体"
+  - "函数调用"
+  - "结构化输出"
+
+notes: |
+  核心观点：
+  - Responses API 是 Chat Completions API 的演进版本
+  - 提供内置工具、更好的性能、更低的成本
+  - 默认支持智能体循环和多轮对话
+  - Assistants API 将于 2026年8月26日 停用
+
+  技术背景：
+  - Responses API 是 OpenAI 推荐的新项目 API
+  - Chat Completions API 仍受支持，但不推荐新项目使用
+  - 支持增量迁移策略，降低迁移风险
+
+  目标受众：正在使用 OpenAI Chat Completions API 或 Assistants API 的开发者
