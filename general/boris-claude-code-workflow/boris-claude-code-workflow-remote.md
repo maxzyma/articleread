@@ -15,7 +15,7 @@ Boris Cherny 在 X 上发了一条帖子，分享自己怎么用 Claude Code。
 
 740 万阅读量。
 
-![Boris Cherny 在 X 上分享 Claude Code 工作流](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/00_cover.jpg)
+![Boris Cherny 在 X 上分享 Claude Code 工作流](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/00_cover.jpg)
 
 Boris 是 Anthropic 的资深工程师，Claude Code 就是他做的。2024 年 9 月加入 Anthropic，从一个内部原型开始，一路把 Claude Code 做到了 6 个月 10 亿美元 ARR。这个速度，放在整个 SaaS 历史上都是现象级的。
 
@@ -37,7 +37,7 @@ Boris 的日常是这样的：终端里开 5 个 Claude Code，浏览器里再�
 
 每个标签页编号 1-5，由系统通知告诉他哪个 Claude 需要操作。
 
-![Boris Cherny 的 Claude Code 工作流](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/01_section01.jpg)
+![Boris Cherny 的 Claude Code 工作流](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/01_section01.jpg)
 
 一个 Claude 在跑测试，另一个在重构代码，第三个在写文档。
 
@@ -61,7 +61,7 @@ Boris 用的是 **Opus 4.5 Thinking**，Anthropic 最大、最慢的模型。
 
 > 「这是我用过的最好的编程模型。虽然它比 Sonnet 更大更慢，但因为你不需要反复纠正它、它的工具使用能力更强，所以最终几乎总是比用小模型更快。」
 
-![Boris 关于使用 Opus 4.5 Thinking 的说明](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/02_section02.jpg)
+![Boris 关于使用 Opus 4.5 Thinking 的说明](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/02_section02.jpg)
 
 表面上慢，实际上省掉了来回调试的时间。
 
@@ -77,7 +77,7 @@ Boris 用的是 **Opus 4.5 Thinking**，Anthropic 最大、最慢的模型。
 
 他说：「一个好的计划非常重要。」
 
-![Plan Mode 工作流程](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/03_section03.jpg)
+![Plan Mode 工作流程](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/03_section03.jpg)
 
 强烈推荐这个 Plan Mode，谁用都知道！
 
@@ -93,7 +93,7 @@ Boris 的团队维护一个 `CLAUDE.md` 文件，提交到 git 里，每周会�
 
 代码审查的时候，他经常在同事的 PR 里 @.claude，让 Claude 把某条规则加进 `CLAUDE.md`。他们用 Claude Code 的 GitHub Action 来实现这个流程。
 
-![CLAUDE.md 文件示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/04_section04.jpg)
+![CLAUDE.md 文件示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/04_section04.jpg)
 
 每一个错误都变成了一条规则。团队合作的时间越长，AI 就越聪明。
 
@@ -105,7 +105,7 @@ Boris 用快捷命令处理每天要做很多次的「内循环」工作流。
 
 比如他有一个 `/commit-push-pr` 命令，每天要用几十次。这个命令用内联 bash 预先查询 git status 和其他信息，避免和模型来回对话。
 
-![快捷命令配置示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/05_section05.jpg)
+![快捷命令配置示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/05_section05.jpg)
 
 命令都放在 `.claude/commands/` 目录里，提交到 git，团队共享。
 
@@ -121,7 +121,7 @@ Boris 用 subagent 来处理开发周期的不同阶段。
 
 他的代码审查命令会同时启动好几个 subagent：一个检查代码风格，一个查项目历史理解上下文，一个找明显的 bug。第一轮会有误报，所以他再用 5 个 subagent 专门挑第一轮结果的毛病。
 
-![Subagents 目录结构](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/06_section06.jpg)
+![Subagents 目录结构](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/06_section06.jpg)
 
 他说：「最后的结果很棒，能找到所有真正的问题，没有误报。」
 
@@ -149,7 +149,7 @@ Boris 不用 `--dangerously-skip-permissions`。
 
 对于特别长时间运行的任务，他要么让 Claude 完成后用后台 agent 验证，要么用 Stop hook 更确定地做这件事，要么用一个叫 `ralph-wiggum` 的插件。
 
-![Hooks 配置示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/assets/images/wechat/2026-01/08_section08.jpg)
+![Hooks 配置示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/boris-claude-code-workflow/images/08_section08.jpg)
 
 ---
 
