@@ -1084,6 +1084,13 @@ general/boris-claude-code-workflow/
 
 #### 4.4 推荐的 Git 策略
 
+**重要**：由于 sandbox 环境的网络限制，以下步骤只执行 `git add` 和 `git commit`。最后一步 `git push` 需要你在终端中手动执行。
+
+```bash
+# 完成本地提交后，在终端中执行：
+git push origin main
+```
+
 **方案 A：只提交远程版本**（推荐）
 
 ```bash

@@ -383,9 +383,13 @@ echo ""
 ```
 提取文章 → 上传图片 → 创建本地版本 → 生成远程版本 → 提交 Git
     ↓           ↓              ↓                ↓              ↓
-  浏览器     GitHub      ./images/      -remote.md     git push
-           图床
+  浏览器     GitHub      ./images/      -remote.md     git commit
+           图床                                   ↓
+                                              手动推送
+                                              git push
 ```
+
+**注意**：由于 sandbox 环境的网络限制，最后一步 `git push` 需要你在终端中手动执行。
 
 ### 文件对应关系
 
