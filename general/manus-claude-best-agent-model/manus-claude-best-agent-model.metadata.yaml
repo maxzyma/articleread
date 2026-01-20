@@ -1,50 +1,63 @@
 ---
-title: "Manus创始人：Claude是做Agent的最佳模型"
-original_title: "Manus创始人：Claude是做Agent的最佳模型 #Manus #Agent #AI #Claude"
-extraction_date: "2026-01-17"
+title: "Manus 联合创始人张涛：Claude 是做 Agent 的最佳模型"
+original_title: "Manus联合创始人张涛：Claude是做Agent的最佳模型"
+extraction_date: "2026-01-21"
 
 source:
-  platform: "抖音 (Douyin)"
-  url: "https://v.douyin.com/4ehXpq0yhHM/"
-  video_id: "7494084867202895131"
-  author: "TechForWhat"
-  publish_date: "2025-04-17"
+  platform: "钛媒体 APP (via 搜狐)"
+  url: "https://www.sohu.com/a/885147068_116132"
+  author: "张帅"
+  editor: "盖虹达"
+  speaker: "张涛 (Manus 联合创始人)"
+  event: "亚马逊云科技大会"
+  publish_date: "2025-04-16"
 
 content:
-  type: "技术观点"
-  topic: "AI Agent / Claude / 模型选择"
-  core_point: "Claude 是构建 AI Agent 应用的最佳模型"
+  type: "技术演讲"
+  topic: "AI Agent / Claude / 模型选择 / Manus 产品理念"
+  core_point: "Claude 3.7 Sonnet 是目前市面上做 AI Agent 的最佳模型，因为其他模型在训练时都以 Chatbot 为目标（快速回答问题），而 Claude 投入更早、更深地针对 Agent 场景进行了优化。"
   key_topics:
-    - "Claude 在 Agent 场景的优势"
-    - "Claude 3.7 的编码能力"
-    - "Cursor 的成功实践"
-    - "Manus 平台的模型选择建议"
+    - "Chatbot vs Agent 的本质差异"
+    - "Claude 在 Agent 场景的投入和优势"
+    - "Claude 3.7 Sonnet 的多步推理能力"
+    - "Manus 产品理念: Less Structure, More Intelligence"
+    - "Manus 三个关键点: 虚拟机隔离、权限资源、训练磨合"
 
 extraction_method:
   - "Chrome DevTools"
-  - "DOM 内容提取"
+  - "Google 搜索"
+  - "JavaScript 提取文章内容"
 
 verification:
   status: "completed"
-  verified_against: "抖音原始网页"
-  notes: "短视频无完整字幕，基于标题、标签及技术社区讨论整理"
+  verified_against: "钛媒体 APP (搜狐)"
+  issues_found_and_fixed:
+    - "纠正了创始人信息错误：演讲者是张涛（联合创始人），而非季逸超（首席科学家）"
+    - "补充了完整的演讲内容，而非短视频标题"
 
 content_file: "./manus-claude-best-agent-model.md"
 
 tags:
   - "AI Agent"
   - "Claude"
+  - "Claude 3.7 Sonnet"
   - "Manus"
-  - "Cursor"
+  - "张涛"
   - "模型选择"
-  - "Tool Use"
+  - "Chatbot vs Agent"
+  - "Less Structure More Intelligence"
 
 notes: |
-  核心观点：Manus 创始人推荐 Claude 作为 AI Agent 开发的首选模型。
+  核心观点：Manus 联合创始人张涛明确指出 Claude 3.7 Sonnet 是目前市面上做 AI Agent 的最佳模型。
 
-  技术背景：
-  - Claude 3.7 在代码生成方面表现优异
-  - Cursor 等主流 AI 编程工具深度集成 Claude
-  - Claude 在工具调用（Tool Use）和多步推理方面有优势
+  关键洞察：
+  - 大部分 LLM 训练目标都是 Chatbot（快速回答），不适合 Agent 多步任务
+  - Claude 投入更早、更深地针对 Agent 场景进行优化
+  - Claude 不会急于在一轮对话中给出答案，能够处理复杂的多步骤任务
+  - Manus 理念：Less Structure, More Intelligence（少一点结构，多一点智能）
+
+  演讲者背景：
+  - 张涛：Manus 联合创始人，前字节跳动国际化产品战略负责人，前光年之外产品负责人
+  - 2024 年 7 月与季逸超、肖弘共同创立 Manus AI
 
   目标受众：正在构建 AI Agent 应用的技术人员
