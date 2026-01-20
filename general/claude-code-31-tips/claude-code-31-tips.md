@@ -1,233 +1,622 @@
-# Anthropic 大佬连发 31 条 Claude Code 秘籍
+# Claude 降临：Claude Code 31 天实战指南 (Advent of Claude)
 
-**Ado Kukic - Anthropic 开发者关系负责人**
-
-**Advent of Claude: 31 Days of Claude Code**
-
-Claude Code 最强大功能的全面指南，从快速快捷键到高级智能体模式。
+> 来源：微信公众号「AI实用工具汇」译者：雷小锋，2026-01-13
+> 原作者：Ado Kukic (Anthropic 开发者关系负责人)
+> 原文活动：Advent of Claude: 31 Days of Claude Code (2024年12月)
+> 原文链接：https://mp.weixin.qq.com/s/QeQcZqm6P-8uCcZ87g8ESw
 
 ---
 
-## 背景
+## 核心观点
+
+**Claude Code 是一个可深度定制、可自动化、可编程的开发环境**，而不仅仅是一个 AI 编程助手。通过掌握 31 个实战技巧，从 `/init` 自动入职到 Agent Skills 和 MCP 集成，开发者可以构建属于自己的 AI 辅助开发工作流。
+
+---
+
+## 背景：什么是 Advent of Claude？
 
 在刚刚过去的 12 月，Anthropic 的开发者关系负责人 Ado Kukic 发起了一项名为 "Advent of Claude"（Claude 降临）的活动。
 
-他每天在社交媒体上分享一个 Claude Code 的使用技巧，连更 31 天。Ado Kukic 整理的这 31 条技巧告诉我们：Claude Code 其实是一个可深度定制、可自动化、甚至可编程的开发环境。
+他每天在 X/Twitter 和 LinkedIn 上分享一个 Claude Code 的使用技巧，连更 31 天。起初这只是一个简单的降临节日历（Advent Calendar），最终变成了一张描绘那些彻底改变软件开发方式的功能图谱。
+
+这篇文章将 31 个技巧汇编成综合指南，按照从入门到精通的顺序重新编排。
 
 ---
 
-## 让 AI 快速了解你的项目
+## 一、让 AI 快速了解你的项目
 
-### 1. /init：自动生成项目说明书
+### 1. `/init`：让 Claude 自动入职你的项目
 
-在一个新项目中，直接运行 /init 命令。Claude 会自动阅读你的代码库，并生成一个 CLAUDE.md 文件。这个文件是你的项目说明书，里面包含了：
+**每个人都需要入职文档**。有了 `/init`，Claude 会自己编写它。
 
+Claude 会读取你的代码库并生成一个 `CLAUDE.md` 文件，其中包含：
 - 构建和测试命令
-- 目录结构说明
-- 代码规范和架构决策
-- ...
+- 关键目录及其用途
+- 代码规范和模式
+- 重要的架构决策
 
-有了这个文件，Claude 每次启动时都会自动读取。对于大型项目，你还可以创建 .claude/rules/目录，通过 Front Matter 指定规则生效的路径，实现模块化的上下文管理。
+**这是我在任何新项目中运行的第一条命令。**
+
+对于大型项目，你还可以创建一个 `.claude/rules/` 目录，用于存放模块化的、特定主题的指令。该目录中的每个 `.md` 文件都会作为 Project Memory（项目记忆）与 `CLAUDE.md` 一起自动加载。
+
+你甚至可以使用 YAML Frontmatter 根据文件路径有条件地应用规则：
+
+```yaml
+---
+paths:
+  - src/api/**/*.ts
+---
+
+# API Development Rules
+
+All API endpoints must include input validation
+```
+
+**把 `CLAUDE.md` 想象成你的通用项目指南**，而把 `.claude/rules/` 想象成针对测试、安全性、API 设计或任何其他值得单独列出的内容的专项补充。
+
+---
 
 ### 2. Memory Updates：动态更新记忆
 
-直接告诉 Claude："Update Claude.md: always use bun instead of npm"。它会自动把这条新知识写入记忆文件，不用打断你的心流。
+想在不手动编辑 `CLAUDE.md` 的情况下保存某些内容到 Claude 的记忆中吗？
 
-### 3. @ Mentions：极速引用上下文
+直接告诉 Claude 更新文件即可：
 
-使用 @ 符号可以像在社交软件里 @ 人一样方便地引用代码：
+```
+Update Claude.md: always use bun instead of npm in this project
+```
 
-- **@src/auth.ts**：引用特定文件
-- **@src/components/**: 引用整个目录
-- **@mcp:github**: 启用或禁用工具（MCP Server）
-
-文件建议支持模糊匹配，这是从"我需要上下文"到"Claude 获得上下文"的最快路径。
+保持编码流畅，不要打断你的心流。
 
 ---
 
-## 必备快捷键
+### 3. `@` Mentions：即时添加上下文
 
-### 4. ! Prefix：直接运行 Shell
+**`@` 提及是给 Claude 提供上下文的最快方式**：
 
-不用切换终端窗口，直接输入 `! git status` 或 `! npm test`。
+- `@src/auth.ts` — 将文件即时添加到上下文
+- `@src/components/` — 引用整个目录
+- `@mcp:github` — 启用或禁用 MCP servers
 
-这不仅是运行命令，更重要的是命令的输出结果会直接进入 Claude 的上下文。Claude 马上就能根据报错信息给出修复建议，无缝衔接。
+在 Git 仓库中，文件建议的速度提高了约 3 倍，并且支持模糊匹配。
 
-### 5. Double Esc：时光倒流
-
-尝试了一个新思路，结果代码改乱了？别慌，双击 Esc 键，直接回退到上一个检查点。你可以选择回退对话，或者回退代码变更。
-
-### 6. Ctrl + R：反向搜索
-
-就像 Shell 里的反向搜索一样，按 Ctrl + R 可以搜索你之前的 Prompt（提示词）。
-
-### 7. Prompt Stashing：暂存提示词
-
-打字打到一半想看个别的东西？按 Ctrl + S 暂存当前的 Prompt。等你准备好了，它会自动恢复。再也不用把草稿复制到记事本里了。
-
-### 8. Prompt Suggestions：智能补全
-
-Claude 甚至能预测你接下来想问什么。当你看到灰色的建议文字时，按 Tab 键接受并编辑，或者按 Enter 直接运行。
+**`@` 是从"我需要上下文"到"Claude 已获取上下文"的最短路径。**
 
 ---
 
-## 会话管理
+## 二、必备快捷键
 
-Claude Code 不仅仅是一次性的对话，它是一个持久的开发环境。
-
-### 9. Continue & Resume：无缝续关
-
-终端意外关闭？电脑没电了？
-
-- **claude --continue**：瞬间恢复上一次的对话。
-- **claude --resume**：显示历史会话列表供你选择。
-
-上下文完美保留，工作流永不丢失。
-
-### 10. Named Sessions：给会话起个名
-
-像管理 Git 分支一样管理你的会话：
-
-- **/rename api-migration**：给当前会话命名。
-- **/resume api-migration**：按名称恢复会话。
-
-### 11. Claude Code Remote：远程传送
-
-在网页版 claude.ai/code 上开始任务，回家后用 `claude --teleport session_id` 直接把云端会话"拉"到本地终端继续开发。无缝切换设备。
-
-### 12. /export：留下证据
-
-需要记录刚才发生了什么？/export 命令可以将整个对话（包括提示词、回复、工具调用结果）导出为 Markdown 文件。用于写文档或复盘非常完美。
+这些是你会频繁使用的命令。请将它们刻入肌肉记忆。
 
 ---
 
-## 生产力神器
+### 4. `!` 前缀：即时运行 Bash
 
-### 13. Vim Mode: 极客模式
+不要浪费 Token 去问"你能运行 git status 吗？"。只需键入 `!` 加上你的 Bash 命令：
 
-如果你是 Vim 党，输入 /vim 即可开启 Vim 模式。用 h j k l 移动光标，用 ciw 修改单词。在 AI 工具里体验指尖起舞的快感。
+```bash
+! git status
+! npm test
+! ls -la src/
+```
 
-### 14. /statusline: 自定义状态栏
+`!` 前缀会立即执行 Bash 并将输出注入到上下文中：
+- 没有模型处理延迟
+- 没有 Token 浪费
+- 不需要切换多个终端窗口
 
-底部状态栏显示什么由你定：Git 分支、当前模型、Token 使用量、上下文占用率等。信息一目了然。
-
-### 15. /context: Token 透视眼
-
-担心 Token 用超了？输入 /context，Claude 会列出 System Prompt、MCP Server、记忆文件、对话历史分别占用了多少空间，帮你精准"瘦身"。
-
-### 16. /stats: 使用统计
-
-输入 /stats 查看你的使用习惯、最爱用的模型、连续使用天数等。
-
-### 17. /usage: 额度监控
-
-通过 /usage 随时查看当前的费率限制和使用进度，做到心中有数。
+**这看起来很微小，直到你发现自己每天要用它五十次。**
 
 ---
 
-## 思考与规划
+### 5. Double Esc（双击 Esc）：倒带 (Rewind)
 
-### 18. ultrathink：深度思考模式
+想尝试一种"如果我们这样...会怎样"的方法，但又不想承诺后果？
 
-当你需要设计复杂的缓存层或重构架构时，在提示词中加上 ultrathink。Claude 会分配高达 32k 的 Token 进行内部推理。虽然反应慢一点，但逻辑准确率大幅提升。
+**尽管去试。如果情况变得奇怪，按两次 `Esc` 键跳回到干净的检查点 (Checkpoint)。**
 
-### 19. Plan Mode：计划模式
-
-按两次 Shift + Tab 进入。
-
-在这个模式下，Claude 会阅读代码、分析架构、起草计划，但绝不修改代码。直到你批准计划，它才会动手。你是架构师，它是执行者。
-
-### 20. Extended Thinking (API)：透明化思考
-
-通过 API 调用时，开启 Extended Thinking 可以看到 Claude 的逐步推理过程（Thinking Blocks）。这对调试复杂逻辑非常有帮助。
+你可以回滚对话、代码更改，或者两者都回滚。需要注意的是，通过 Bash 运行的命令无法撤销。
 
 ---
 
-## 安全与控制
+### 6. Ctrl + R：反向搜索 (Reverse Search)
 
-### 21. Sandbox Mode：沙箱模式
+你可以搜索过去的 Prompt：
 
-用 /sandbox 一次性定义边界。比如：允许读取所有文件，允许运行 npm test，但禁止网络请求。
+| 按键 | 动作 |
+|------|------|
+| Ctrl+R | 开始反向搜索 |
+| Ctrl+R (再次) | 循环浏览匹配项 |
+| Enter | 运行它 |
+| Tab | 编辑选中的内容 |
 
-### 22. YOLO Mode：狂飙模式
-
-如果你在隔离环境或完全信任操作，使用 --dangerously-skip-permissions。
-
-YOLO (You Only Live Once)——它将跳过所有权限询问，直接执行。慎用！
-
-### 23. Hooks：生命周期钩子
-
-你可以在 PreToolUse（工具使用前）、SubagentStart（子智能体启动时）等事件上挂载 Shell 脚本。
-
-比如：每当 Claude 想运行 rm -rf，自动触发脚本拦截并报警。这是对概率性 AI 的确定性控制。
+**不要重新输入。使用回溯。** 这也适用于 Slash 命令。
 
 ---
 
-## 自动化与 CI/CD
+### 7. Prompt Stashing：暂存
+
+这就像 `git stash`，但是用于你的 Prompt。
+
+`Ctrl+S` 保存你的草稿。发送其他内容。当你准备好时，你的草稿会自动恢复。
+
+**再也不用复制到临时记事本了。再也不会在对话中途打断思路了。**
+
+---
+
+### 8. Prompt Suggestions：智能建议
+
+Claude 可以预测你接下来要问什么。完成一个任务后，有时你会看到一个灰色的后续建议出现：
+
+- `Tab`：接受并编辑
+- `Enter`：接受并立即运行
+
+以前 `Tab` 用于自动补全你的代码。**现在它自动补全你的工作流。** 可以通过 `/config` 切换此功能。
+
+---
+
+## 三、会话管理
+
+**Claude Code 是一个持久化的开发环境**，针对你的工作流进行优化可以让你事半功倍。
+
+---
+
+### 9. 继续上次的工作
+
+不小心关闭了终端？笔记本电脑中途没电了？没问题。
+
+```bash
+claude --continue          # 立即恢复你上一次的对话
+claude --resume            # 显示一个选择器，选择任何过去的会话
+```
+
+上下文得以保留。势头得以恢复。你的工作永远不会丢失。
+
+你还可以通过 `cleanupPeriodDays` 设置自定义会话保留时间。默认为 30 天，但你可以将其设置为任意时长，如果不希望保留会话，甚至可以设置为 0。
+
+---
+
+### 10. Named Sessions：命名会话
+
+**你的 Git 分支有名字。你的 Claude 会话也应该有。**
+
+```bash
+/rename api-migration           # 为当前会话命名
+/resume api-migration           # 按名称恢复
+claude --resume api-migration   # 从命令行也可以工作
+```
+
+`/resume` 界面会对 Fork 的会话进行分组，并支持快捷键：
+- `P`：预览
+- `R`：重命名
+
+---
+
+### 11. Claude Code Remote：远程模式
+
+在网页上开始任务，在终端里完成：
+
+```bash
+# 在 claude.ai/code 上，开启一个 Claude Code 会话
+# 当你离开时它在后台运行
+
+# 稍后，在你的终端：
+claude --teleport session_abc123
+```
+
+这会将远程会话拉取并恢复到本地。无论在家还是在路上，Claude 都在。
+
+这也支持通过 iOS 和 Android 的 Claude 移动应用以及 Claude Desktop 应用程序使用。
+
+---
+
+### 12. `/export`：获取凭证
+
+有时你需要一份发生过的事情的记录。
+
+`/export` 将你的整个对话导出为 Markdown：
+- 你发送的每一个 Prompt
+- Claude 给出的每一个回复
+- 每一次工具调用及其输出
+
+非常适合用于文档编写、培训，或者向过去的自己证明，是的，你确实已经尝试过那种方法了。
+
+---
+
+## 四、生产力功能
+
+这些功能消除了摩擦，帮助你行动得更快。
+
+---
+
+### 13. Vim Mode
+
+厌倦了伸手去拿鼠标来编辑 Prompt？
+
+输入 `/vim` 解锁完整的 Vim 风格编辑：
+
+- `h j k l`：导航
+- `ciw`：更改单词
+- `dd`：删除行
+- `w b`：按单词跳转
+- `A`：在行尾追加
+
+**以思维的速度编辑 Prompt。** 你几十年 Vim 使用积累的肌肉记忆终于在 AI 工具中得到了回报。
+
+退出 Vim 模式也从未如此简单，只需再次输入 `/vim`。
+
+---
+
+### 14. `/statusline`：自定义你的视图
+
+Claude Code 在终端底部有一个可自定义的状态栏。
+
+`/statusline` 允许你配置那里显示的内容：
+- Git 分支和状态
+- 当前模型
+- Token 使用情况
+- Context Window（上下文窗口）百分比
+- 自定义脚本
+
+**一目了然的信息意味着更少的手动检查中断。**
+
+---
+
+### 15. `/context`：Token 的 X 射线视觉
+
+想知道是什么在吞噬你的上下文窗口吗？
+
+输入 `/context` 准确查看是什么在消耗 Token：
+- System prompt 大小
+- MCP server prompts
+- Memory files (`CLAUDE.md`)
+- 加载的 Skills 和 Agents
+- 对话历史
+
+**当你的上下文开始填满时，这就是你找出它去向的方法。**
+
+---
+
+### 16. `/stats`：你的使用仪表板
+
+> 2023: "Check out my GitHub contribution graph"<br/>
+> 2025: "Check out my Claude Code stats"
+
+输入 `/stats` 查看你的使用模式、最常用的模型、使用连胜纪录等。**橙色是新的绿色。**
+
+---
+
+### 17. `/usage`：了解你的极限
+
+"我快达到限额了吗？"
+
+```bash
+/usage         # 通过可视化进度条检查当前使用情况
+/extra-usage   # 购买额外容量
+```
+
+**了解你的极限。然后超越它们。**
+
+---
+
+## 五、思考与规划
+
+控制 Claude 处理问题的方式。
+
+---
+
+### 18. Ultrathink：深度思考
+
+通过单个关键字按需触发扩展思考：
+
+```
+> ultrathink: design a caching layer for our API
+```
+
+当你在 Prompt 中包含 `ultrathink` 时，Claude 在响应之前会分配最多 32k token 进行内部推理。
+
+**对于复杂的架构决策或棘手的调试会话**，这可能是肤浅答案与真正洞察力之间的区别。
+
+> **注意**：过去你可以指定 `think`、`think harder` 和 `ultrathink` 来分配不同数量的思考 Token，但现在我们将其简化为一个单一的思考预算。仅当未设置 `MAX_THINKING_TOKENS` 时，`ultrathink` 关键字才起作用。配置 `MAX_THINKING_TOKENS` 后，它将优先控制所有请求的思考预算。
+
+---
+
+### 19. Plan Mode：规划模式
+
+先清除战争迷雾。
+
+按 `Shift+Tab` 两次进入 Plan 模式。Claude 可以：
+- 阅读和搜索你的代码库
+- 分析架构
+- 探索依赖关系
+- 起草实施计划
+
+**但在你批准计划之前，它不会编辑任何内容。**
+
+**三思而后行 (Think twice. Execute once)。**
+
+我有 90% 的时间默认使用 Plan 模式。最新版本允许你在拒绝计划时提供反馈，使迭代更快。
+
+---
+
+### 20. Extended Thinking (API)
+
+直接使用 Claude API 时，你可以启用扩展思考以查看 Claude 的逐步推理：
+
+```javascript
+thinking: {
+  type: "enabled",
+  budget_tokens: 5000
+}
+```
+
+Claude 在响应之前会在 Thinking Block 中展示其推理过程。
+
+**这对于调试复杂逻辑或理解 Claude 的决策非常有用。**
+
+---
+
+## 六、权限与安全
+
+**没有控制的权力只是混乱**。这些功能让你设定界限。
+
+---
+
+### 21. Sandbox Mode：沙盒模式
+
+```
+"Can I run npm install?" [Allow]
+"Can I run npm test?" [Allow]
+"Can I cat this file?" [Allow]
+"Can I pet that dawg?" [Allow] ×100
+```
+
+`/sandbox` 让你一次性定义边界。Claude 在其中自由工作。
+
+**你获得了速度，同时拥有真正的安全性。** 最新版本支持通配符语法，如 `mcp__server__*`，用于允许整个 MCP server。
+
+---
+
+### 22. YOLO Mode
+
+厌倦了 Claude Code 为每件事都请求许可？
+
+```bash
+claude --dangerously-skip-permissions
+```
+
+这个标志对一切说 Yes。**它的名字里有"danger（危险）"是有原因的**——请明智地使用它，最好是在隔离环境或受信任的操作中使用。
+
+---
+
+### 23. Hooks：钩子
+
+Hooks 是在预定的生命周期事件中运行的 Shell 命令：
+
+- `PreToolUse` / `PostToolUse`：工具执行前后
+- `PermissionRequest`：自动批准或拒绝许可请求
+- `Notification`：对 Claude 的通知做出反应
+- `SubagentStart` / `SubagentStop`：监控 Agent 的生成
+
+通过 `/hooks` 或在 `.claude/settings.json` 中配置它们。
+
+**使用 Hooks 阻止危险命令、发送通知、记录操作或与外部系统集成。这是对概率性 AI 的确定性控制。**
+
+---
+
+## 七、自动化与 CI/CD
+
+Claude Code 的工作不仅仅局限于交互式会话。
+
+---
 
 ### 24. Headless Mode：无头模式
 
-通过 -p 参数，Claude 可以变成一个 CLI 工具集成到流水线中：
+你可以将 Claude Code 用作强大的 CLI 工具来进行脚本编写和自动化：
 
 ```bash
+claude -p "Fix the lint errors"
+claude -p "List all the functions" | grep "async"
 git diff | claude -p "Explain these changes"
+echo "Review this PR" | claude -p --json
 ```
 
-它在后台静默运行，结果直接输出到标准输出。
+**管道中的 AI。**
 
-### 25. Commands：可复用指令
-
-把常用的 Prompt 保存为 Markdown 文件，它就变成了自定义命令。
-
-比如写一个 daily-standup.md，以后只需输入 /daily-standup 就能自动运行日报生成流程。
+`-p` 标志以非交互方式运行 Claude 并直接输出到标准输出 (stdout)。
 
 ---
 
-## 浏览器集成
+### 25. Commands：可重用提示
+
+将任何 Prompt 保存为可重用的命令：
+
+```markdown
+<!-- .claude/commands/daily-standup.md -->
+Generate a daily standup summary based on recent git commits...
+```
+
+创建一个 Markdown 文件，它就会变成一个 Slash 命令，并且可以额外接受参数：
+
+```bash
+/daily-standup                    # 运行你的早会流程 Prompt
+/explain $ARGUMENTS               # /explain src/auth.ts
+```
+
+**停止重复自己。你最好的 Prompts 值得被重用。**
+
+---
+
+## 八、浏览器集成
+
+Claude Code 可以看到并在浏览器中交互。
+
+---
 
 ### 26. Claude Code + Chrome
 
-安装 Chrome 扩展后，Claude 可以直接操控浏览器：点击按钮、填写表单、查看控制台报错、截图。
+Claude 现在可以直接与 Chrome 交互：
+- 导航页面
+- 点击按钮并填写表单
+- 读取控制台错误
+- 检查 DOM
+- 截图
 
-"修复 Bug 并验证"现在变成了一个指令。
+**"修复 Bug 并验证它能工作"现在只需一个 Prompt。**
+
+从 `claude.ai/chrome` 安装 Chrome 扩展。
 
 ---
 
-## 进阶：智能体与扩展
+## 九、高级功能：Agents 与扩展性
+
+这是 Claude Code 真正变得强大的地方。
+
+---
 
 ### 27. Subagents：子智能体
 
-Claude 可以像圣诞老人分派任务给精灵一样，启动多个"子智能体"并行工作。每个子智能体有独立的 200k 上下文，处理完任务后将结果汇总。
+**圣诞老人不会自己包装每一个礼物。他有精灵。**
 
-### 28. Agent Skills：技能包
+Subagents 就是 Claude 的精灵。每一个都：
+- 拥有自己的 200k Context Window
+- 执行专门的任务
+- 与其他 Agent 并行运行
+- 将输出合并回主 Agent
 
-Skills 是打包好的指令和脚本文件夹。你可以把公司的部署流程封装成一个 Skill，团队成员安装后即可直接拥有这项"专家技能"，无需重复教导。
-
-### 29. Plugins：插件市场
-
-不再需要发送几十个文件来分享配置。/plugin install 一键安装打包好的命令、Skill、Hook 和 MCP Server。
-
-### 30. LSP Integration：IDE 级智能
-
-通过集成语言服务器协议（LSP），Claude 现在的代码理解能力达到了 IDE 级别。它能看到实时报错、跳转定义、查看类型信息。
-
-### 31. Claude Agent SDK
-
-Claude Code 的核心能力（Agent Loop、工具管理、上下文管理）现在作为一个 SDK 开放了。你可以用几十行代码构建一个像 Claude Code 一样强大的自定义智能体。
+**像圣诞老人一样授权。** Subagents 可以在后台运行，而你继续工作，并且它们拥有对 MCP 工具的完全访问权限。
 
 ---
 
-## 设计哲学
+### 28. Agent Skills：技能
 
-看完这 31 条技巧，你会发现 Claude Code 的设计哲学非常有意思。
+Skills 是包含指令、脚本和资源的文件夹，用于教授 Claude 专门的任务。
 
-- 通过 Plan Mode，它尊重人的决策权；
-- 通过 Hooks 和 Sandbox，它给人提供了控制权；
-- 通过 Subagents 和 Automation，它帮人分担了繁琐的执行工作。
+它们一次打包，随处可用。而且由于 Agent Skills 现在是一个开放标准，它们可以在任何支持它们的工具中工作。
 
-正如 Ado Kukic 所说："用得最好的开发者，不是那些把所有事情都丢给 AI 的人，而是那些懂得何时使用计划模式、何时开启深度思考、如何设置安全边界的人。"
+**把 Skills 想象成给 Claude 按需提供的专业知识**。无论是你公司特定的部署流程、测试方法，还是文档标准。
 
-Claude Code 不是要取代开发者，而是要放大开发者的能力。
+---
+
+### 29. Plugins：插件
+
+还记得分享 Claude Code 设置意味着要在 12 个目录中发送 47 个文件吗？
+
+**那个时代结束了。**
+
+```bash
+/plugin install my-setup
+```
+
+Plugins 将 Commands、Agents、Skills、Hooks 和 MCP servers 捆绑在一个包中。通过市场发现新的工作流，其中包括搜索过滤以便更容易发现。
+
+---
+
+### 30. Language Server Protocol (LSP) 集成
+
+LSP 支持赋予了 Claude IDE 级别的代码智能：
+
+- **即时诊断**：Claude 在每次编辑后立即看到错误和警告
+- **代码导航**：跳转到定义、查找引用和悬停信息
+- **语言感知**：代码符号的类型信息和文档
+
+**Claude Code 现在像你的 IDE 一样理解你的代码。**
+
+---
+
+### 31. Claude Agent SDK
+
+驱动 Claude Code 的相同 Agent 循环、工具和上下文管理现在作为 SDK 提供。
+
+**只需 10 行代码即可构建像 Claude Code 一样工作的 Agent：**
+
+```javascript
+import { query } from '@anthropic-ai/claude-agent-sdk';
+
+for await (const msg of query({
+  prompt: "Generate markdown API docs for all public functions in src/",
+  options: {
+    allowedTools: ["Read", "Write", "Glob"],
+    permissionMode: "acceptEdits"
+  }
+})) {
+  if (msg.type === 'result') {
+    console.log("Docs generated:", msg.result);
+  }
+}
+```
+
+**这仅仅是个开始。**
+
+---
+
+## 快速参考
+
+### Keyboard Shortcuts（键盘快捷键）
+
+| 快捷键 | 动作 |
+|--------|------|
+| `!command` | 立即执行 Bash |
+| `Esc Esc` | 倒带对话/代码 |
+| `Ctrl+R` | 反向搜索历史 |
+| `Ctrl+S` | 暂存当前 Prompt |
+| `Shift+Tab` (×2) | 切换 Plan 模式 |
+| `Alt+P` / `Option+P` | 切换模型 |
+| `Ctrl+O` | 切换详细模式 |
+| `Tab` / `Enter` | 接受 Prompt 建议 |
+
+---
+
+### Essential Commands（必备命令）
+
+| 命令 | 用途 |
+|------|------|
+| `/init` | 为你的项目生成 CLAUDE.md |
+| `/context` | 查看 Token 消耗 |
+| `/stats` | 查看使用统计 |
+| `/usage` | 检查速率限制 |
+| `/vim` | 启用 Vim 模式 |
+| `/config` | 打开配置 |
+| `/hooks` | 配置生命周期钩子 |
+| `/sandbox` | 设置权限边界 |
+| `/export` | 导出对话为 Markdown |
+| `/resume` | 恢复过去的会话 |
+| `/rename` | 命名当前会话 |
+| `/theme` | 打开主题选择器 |
+| `/terminal-setup` | 配置终端集成 |
+
+---
+
+### CLI Flags（命令行标志）
+
+| 标志 | 用途 |
+|------|------|
+| `-p "prompt"` | 无头/打印模式 |
+| `--continue` | 恢复上一次会话 |
+| `--resume` | 选择要恢复的会话 |
+| `--resume name` | 按名称恢复会话 |
+| `--teleport id` | 恢复网页会话 |
+| `--dangerously-skip-permissions` | YOLO 模式 |
+
+---
+
+## 结语
+
+当我开始这个降临日历时，我以为我只是在分享技巧。但回顾这 31 天，我看到了更多的东西：**一种人机协作的哲学。**
+
+Claude Code 最好的功能在于给你控制权。Plan Mode、Agent Skills、Hooks、Sandbox 边界、Session Management。
+
+**这些是与 AI 合作的工具，而不是向它投降。**
+
+那些从 Claude Code 中获得最大收益的开发者，并不是那些输入"为我做所有事"的人。而是那些学会了：
+- 何时使用 Plan Mode
+- 如何构建 Prompt
+- 何时调用 Ultrathink
+- 如何设置 Hooks 以在错误发生前捕获它们
+
+**AI 是一个杠杆。这些功能帮助你找到正确的抓手。**
+
+致 2026。
 
 ---
 
