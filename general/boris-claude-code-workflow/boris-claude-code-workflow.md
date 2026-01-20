@@ -77,6 +77,8 @@ Boris 用的是 **Opus 4.5 Thinking**，Anthropic 最大、最慢的模型。
 
 他说：「一个好的计划非常重要。」
 
+![Plan Mode 工作流程](./images/03_section03.jpg)
+
 强烈推荐这个 Plan Mode，谁用都知道！
 
 ---
