@@ -59,7 +59,11 @@ BU.app 第一版也这么干的，写几千行来管理 AI，结果变成了：
 
 传统的 Agent 设计思路是：我要让 AI 能点击，我就给它写个 Click 函数；我要让它输入，我就写一个 Type 函数。
 
+![传统思路 vs 逆向思维对比](./images/image_2.png)
+
 逆向思维是，反过来，**直接把 Chrome DevTools Protocol (CDP) 的底层权限给 AI。**
+
+![Chrome DevTools Protocol 底层权限](./images/image_3.png)
 
 让 AI 拥有上帝视角，如果 A 路不通，它自己会找 B 路。这才是真正的智能，而不是我们预设好的程序。
 
@@ -90,6 +94,8 @@ async def get_state() -> str:
 过去我们用的框架，都是，没有工具调用就算结束了，让 AI 输出结果。
 
 他们发现，这样可能会有很多遗漏，所以，增加一个 done 工具，强制要求 AI 显式完成。
+
+![强制结束机制示例代码](./images/image_4.png)
 
 ```python
 @tool("Signal completion")
