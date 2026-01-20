@@ -105,6 +105,8 @@ Boris 用快捷命令处理每天要做很多次的「内循环」工作流。
 
 比如他有一个 `/commit-push-pr` 命令，每天要用几十次。这个命令用内联 bash 预先查询 git status 和其他信息，避免和模型来回对话。
 
+![快捷命令配置示例](./images/05_section05.jpg)
+
 命令都放在 `.claude/commands/` 目录里，提交到 git，团队共享。
 
 ---
