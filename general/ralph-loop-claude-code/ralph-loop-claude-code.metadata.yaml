@@ -6,17 +6,18 @@ updated_date: "2025-01-21"
 
 source:
   primary:
+    platform: "微信公众号"
+    url: "https://mp.weixin.qq.com/s?src=11&timestamp=1768930253"
+    account: "Decoder Only"
+    author: "湾仔码农"
+    publish_date: "2026-01-15"
+    status: "已验证，可访问"
+  secondary:
     platform: "小红书"
     url: "https://www.xiaohongshu.com/explore/69683542000000000b00bacb"
     author: "湾仔码农"
     publish_date: "2025-01-15"
-    status: "已失效（2025-01-21）"
-  secondary:
-    platform: "微信公众号"
-    account: "Decoder Only"
-    publish_date: "2026-01-15"
-    search_url: "https://weixin.sogou.com/weixin?type=2&query=%E5%8D%A1%E6%AD%BB%E4%BD%A0%E7%9A%84%20Claude%20Code"
-    status: "标题相同，内容待验证"
+    status: "已失效（404）"
 
 content:
   type: "技术教程"
@@ -24,25 +25,22 @@ content:
   core_point: "Ralph Loop 插件让 Claude Code 实现持续循环执行，在有详细 PRD 和测试用例的场景下，可自动完成数天的人工工作量"
   key_topics:
     - "Ralph Loop 插件工作原理"
+    - "Geoffrey Huntley 的 5 行脚本理念"
     - "适用场景：详细 PRD + 测试用例"
     - "Boris 一个月 259 个 PR 的实践案例"
-    - "提示词模板和最佳实践"
+    - "make it better 模糊需求测试"
     - "浏览器自动化测试建议"
 
 extraction_method:
-  - "Git 历史恢复（原始提取于 2025-01-17）"
-  - "Chrome DevTools - 页面文本提取"
-  - "Chrome DevTools - 页面截图"
-  - "JavaScript - 图片 URL 提取"
-  - "AI 图片 OCR - 16张图片文字识别"
+  - "Chrome DevTools - 微信公众号页面文本提取"
 
 verification:
   status: "completed"
-  verified_against: "小红书网页 + 16张内容图片（二次校对）"
+  verified_against: "微信公众号原文（Decoder Only）"
   notes: |
-    - 原文已失效，从 git 历史恢复 2025-01-17 版本
-    - 已修正标题、补充完整小结部分、更正原作者信息、移除非技术细节
-    - 2025-01-21：验证发现同名微信公众号版本，由 Decoder Only 发布
+    - 微信公众号版本内容更完整，包含原始版本没有的实战细节
+    - 新增 Geoffrey Huntley 故事、安装命令、详细耗时数据
+    - 新增 make it better 测试的完整过程记录
 
 content_file: "./ralph-loop-claude-code.md"
 
@@ -59,11 +57,15 @@ notes: |
   技术背景：
   - Claude Code 之父 Boris 一个月提交 259 个 PR，添加 40000 行代码
   - Ralph Loop 由 Geoffrey Huntley 创建，原名 Ralph Wiggum（因版权改名）
+  - Geoffrey Huntley 是澳洲码农，之前写代码，最近在养山羊
   - 核心机制：循环执行任务，遇到错误自动重试，直到所有测试通过
+
+  实战案例数据：
+  - MVP 开发：9 分 31 秒完成 20 轮迭代
+  - 模板丰富：5 分多钟实现 10 个模板
+  - make it better：一夜迭代 14+ 轮，产出大量功能
 
   目标受众：有明确需求文档和测试用例，希望提升重复性开发效率的开发者和独立开发者
 
-  状态更新（2025-01-21）：
-  - 小红书原文已失效（404 错误）
-  - 发现微信公众号同名文章，由 Decoder Only 发布（2026-01-15）
-  - 当前版本从 git 历史恢复，已重新整理格式
+  更新记录：
+  - 2025-01-21：从微信公众号（Decoder Only）获取完整版本，更新内容
