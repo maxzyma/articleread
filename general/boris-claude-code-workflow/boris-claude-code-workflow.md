@@ -11,73 +11,91 @@
 
 ## 背景
 
-Boris Cherny 在 X 上发了一条帖子，分享自己怎么用 Claude Code，获得 740 万阅读量。
+Boris Cherny 在 X 上发了一条帖子，分享自己怎么用 Claude Code。
+
+740 万阅读量。
+
+![Boris Cherny 在 X 上分享 Claude Code 工作流](./images/image_cover.jpg)
 
 Boris 是 Anthropic 的资深工程师，Claude Code 就是他做的。2024 年 9 月加入 Anthropic，从一个内部原型开始，一路把 Claude Code 做到了 6 个月 10 亿美元 ARR。这个速度，放在整个 SaaS 历史上都是现象级的。
 
 所以当他说「分享一下我自己怎么用 Claude Code」的时候，直接火了。
 
-有人说这是 Anthropic 的「ChatGPT 时刻」。有人说，用了他的方法之后，「感觉更像在玩星际争霸，而不是在写代码」，从敲键盘变成了指挥团队。
+有人说这是 Anthropic 的「ChatGPT 时刻」。
 
-但最让人意外的是，他的设置出奇简单。用他自己的原话说：surprisingly vanilla。
+有人说，用了他的方法之后，「感觉更像在玩星际争霸，而不是在写代码」，从敲键盘变成了指挥部队。
 
-![Boris Cherny 在 X 上分享 Claude Code 工作流](./images/image_cover.jpg)
+但最让人意外的是，他的设置出奇简单。
+
+用他自己的原话说：surprisingly vanilla。
 
 ---
 
-## 01 | 15 个 Claude 并行
+## 01｜15 个 Claude 并行
 
 Boris 的日常是这样的：终端里开 5 个 Claude Code，浏览器里再开 5-10 个。
 
 每个标签页编号 1-5，由系统通知告诉他哪个 Claude 需要操作。
 
-![Boris Cherny 的 Claude Code 工作流](./images/image_1_boris_cherny.png)
+![Boris Cherny 的 Claude Code 工作流](./images/image_1_workflow.png)
+
+一个 Claude 在跑测试，另一个在重构代码，第三个在写文档。
+
+他还会在手机上（用 Claude iOS app）启动几个会话，早上开始，白天随时查看进度。
+
+需要的时候，用 `--teleport` 命令把会话在本地和网页之间来回转移。
+
+这验证了 Anthropic 联合创始人 Daniela Amodei 说的策略：用更好的编排，而不是更多的算力。
 
 ---
 
-## 02 | 用最慢的模型，反而最快
+## 02｜用最慢的模型，反而最快
 
 这条可能是整个帖子里最反直觉的。
 
-Boris 用的是 Opus 4.5 Thinking，Anthropic 最大、最慢的模型。
+Boris 用的是 **Opus 4.5 Thinking**，Anthropic 最大、最慢的模型。
 
-不是 Sonnet。不是 Haiku。
+不是 **Sonnet**。不是 **Haiku**。
 
 他的原话：
 
 > 「这是我用过的最好的编程模型。虽然它比 Sonnet 更大更慢，但因为你不需要反复纠正它、它的工具使用能力更强，所以最终几乎总是比用小模型更快。」
->
-> —— Boris Cherny (@bcherny)
+
+![Boris 关于使用 Opus 4.5 Thinking 的说明](./images/image_2_opus.png)
 
 表面上慢，实际上省掉了来回调试的时间。
 
 ---
 
-## 03 | Plan Mode：先想清楚，再行动
+## 03｜Plan Mode：先想清楚，再行动
 
 大多数会话，Boris 都从 Plan Mode 开始。
 
-快捷键是 shift+tab 按两次。
+快捷键是 `shift+tab` 按两次。
 
 如果目标是写一个 Pull Request，他会先在 Plan Mode 里和 Claude 反复讨论，直到计划满意。然后切换到自动接受编辑模式，让 Claude 一次性完成。
 
 他说：「一个好的计划非常重要。」
 
+![Plan Mode 工作流程](./images/image_3_planmode.png)
+
 强烈推荐这个 Plan Mode，谁用谁知道！
 
 ---
 
-## 04 | CLAUDE.md：团队共享的 AI 记忆
+## 04｜CLAUDE.md：团队共享的 AI 记忆
 
-Boris 的团队维护一个 CLAUDE.md 文件，提交到 git 里，每周会更新几次。
+Boris 的团队维护一个 `CLAUDE.md` 文件，提交到 git 里，每周会更新几次。
 
 规则很简单：「每次看到 Claude 做错什么，就加进去。」
 
 这样 Claude 下次就知道不要再犯同样的错误。
 
-代码审查的时候，他经常在同事的 PR 里 @.claude ，让 Claude 把某条规则加进 CLAUDE.md。他们用 Claude Code 的 GitHub Action 来实现这个流程。
+代码审查的时候，他经常在同事的 PR 里 @.claude，让 Claude 把某条规则加进 `CLAUDE.md`。他们用 Claude Code 的 GitHub Action 来实现这个流程。
 
-```
+![CLAUDE.md 文件示例](./images/image_4_claudemd.png)
+
+```bash
 claude-cli $ cat CLAUDE.md
 # Development Workflow
 
@@ -105,23 +123,31 @@ bun run lint:claude && bun run test
 
 ---
 
-## 05 | 快捷命令：把重复的事情自动化
+## 05｜快捷命令：把重复的事情自动化
 
 Boris 用快捷命令处理每天要做很多次的「内循环」工作流。
 
 比如他有一个 `/commit-push-pr` 命令，每天要用几十次。这个命令用内联 bash 预先查询 git status 和其他信息，避免和模型来回对话。
 
+![快捷命令配置示例](./images/image_5_commands.png)
+
 命令都放在 `.claude/commands/` 目录里，提交到 git，团队共享。
 
 ---
 
-## 06 | Subagents：让 AI 互相检查
+## 06｜Subagents：让 AI 互相检查
 
-他的代码审查命令会同时启动好几个 subagent：
+Boris 用 subagent 来处理开发周期的不同阶段。
 
-一个检查代码风格，一个查项目历史理解上下文，一个找明显的 bug。第一轮会有误报，所以他再用 5 个 subagent 专门挑第一轮结果的毛病。
+`code-simplifier` 负责在主要工作完成后简化代码架构。
 
-```
+`verify-app` 负责端到端测试。
+
+他的代码审查命令会同时启动好几个 subagent：一个检查代码风格，一个查项目历史理解上下文，一个找明显的 bug。第一轮会有误报，所以他再用 5 个 subagent 专门挑第一轮结果的毛病。
+
+![Subagents 目录结构](./images/image_6_subagents.png)
+
+```bash
 .claude
 ├─ agents
 │  ├─ build-validator.md
@@ -135,31 +161,33 @@ Boris 用快捷命令处理每天要做很多次的「内循环」工作流。
 
 ---
 
-## 07 | 让 Claude 用你的工具
+## 07｜让 Claude 用你的工具
 
 Boris 让 Claude Code 直接使用他日常的工具。
 
 主要通过 MCP server。比如连接 BigQuery 查询回答数据问题。从 Sentry 拉错误日志。
 
-相关的 MCP 配置放在 .mcp.json 里，团队共享。
+相关的 MCP 配置放在 `.mcp.json` 里，团队共享。
 
 这意味着 Claude 不只是写代码，还能帮你查数据、找 bug。
 
 ---
 
-## 08 | 权限和 Hooks
+## 08｜权限和 Hooks
 
-Boris 不用 --dangerously-skip-permissions。
+Boris 不用 `--dangerously-skip-permissions`。
 
-他用 /permissions 预先允许那些他知道安全的常用 bash 命令，避免不必要的权限弹窗。大部分配置放在 .claude/settings.json 里，团队共享。
+他用 `/permissions` 预先允许那些他知道安全的常用 bash 命令，避免不必要的权限弹窗。大部分配置放在 `.claude/settings.json` 里，团队共享。
 
 他用 PostToolUse hook 来格式化 Claude 生成的代码。Claude 生成的代码通常格式不错，hook 处理最后 10%，避免 CI 里出格式错误。
 
 对于特别长时间运行的任务，他要么让 Claude 完成后用后台 agent 验证，要么用 Stop hook 更确定地做这件事，要么用一个叫 `ralph-wiggum` 的插件。
 
+![Hooks 配置示例](./images/image_7_hooks.png)
+
 ---
 
-## 09 | 验证循环：最重要的一条
+## 09｜验证循环：最重要的一条
 
 Boris 说，如果只能记住一条，记住这条：
 
