@@ -18,10 +18,10 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 13
+  total_completed: 14
   total_failed: 4
   total_skipped: 0
-  last_updated: "2026-01-18"
+  last_updated: "2026-01-21"
 
 # ============================================================================
 # General 主题详细计划
@@ -92,6 +92,14 @@ general:
       completed_date: "2026-01-18"
       content_path: "general/boris-claude-code-workflow/"
       notes: "图文笔记，已提取 6 张图片的核心内容"
+
+    - url: "https://mp.weixin.qq.com/s/TdrESuxl-SWxfIUg9EMLZg"
+      title: "怎么做 Long-running Agents，Cursor、Anthropic 给了两种截然不同的思路"
+      platform: "微信公众号 (Founder Park)"
+      forwarder: null
+      completed_date: "2026-01-21"
+      content_path: "general/long-running-agents-cursor-anthropic/"
+      notes: "对比分析 Cursor 和 Anthropic 在 Long-running Agents 上的两种不同实现思路。包含多 Agent 并行协作和单 Agent 记忆连续性的技术细节。"
 
   # 提取失败
   failed:

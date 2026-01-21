@@ -1,0 +1,55 @@
+---
+title: "怎么做 Long-running Agents，Cursor、Anthropic 给了两种截然不同的思路"
+original_title: "怎么做 Long-running Agents，Cursor、Anthropic 给了两种截然不同的思路"
+extraction_date: "2026-01-21"
+
+source:
+  platform: "微信公众号 (Founder Park)"
+  url: "https://mp.weixin.qq.com/s/TdrESuxl-SWxfIUg9EMLZg"
+  author: "Founder Park (极客公园)"
+  publish_date: "2026-01-20"
+
+content:
+  type: "技术分析"
+  topic: "Agent 系统 (Agent Systems)"
+  format: "长文分析"
+  core_point: "Cursor 和 Anthropic 在实现 Long-running Agents 上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。"
+  key_topics:
+    - "Long-running Agents"
+    - "多 Agent 协作 (Multi-Agent Collaboration)"
+    - "角色分工 (Role Division)"
+    - "记忆连续性 (Memory Continuity)"
+    - "渐进式推进 (Incremental Progress)"
+
+extraction_method:
+  - "Chrome DevTools 浏览页面"
+  - "滚动触发懒加载"
+  - "JavaScript 提取图片 URL"
+  - "curl 下载图片"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页"
+  issues_found_and_fixed:
+    - "过滤掉 SVG 占位符图片"
+    - "移除公众号推广信息和群二维码"
+    - "保留技术核心内容和代码示例"
+
+content_file: "./long-running-agents-cursor-anthropic.md"
+
+tags:
+  - "Agent"
+  - "Long-running"
+  - "Cursor"
+  - "Anthropic"
+  - "Multi-Agent"
+  - "Claude Code"
+
+notes: |
+  核心观点：两种截然不同的 Long-running Agents 实现思路
+
+  技术背景：
+  - Cursor：通过大规模并行运行多个 Agent 执行复杂长时任务，采用规划者-工作者-裁判角色分工
+  - Anthropic：解决单个 Agent 跨上下文窗口的记忆连续性问题，采用初始化 Agent + 编码 Agent 双层结构
+
+  目标受众：Agent 系统、AI 工程化、长期运行任务的开发者和研究人员
