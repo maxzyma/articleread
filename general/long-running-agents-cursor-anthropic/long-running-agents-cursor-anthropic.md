@@ -157,7 +157,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - Agent 偶尔会出现运行时间过长的问题
 - 我们仍需通过定期重启来对抗系统性的目标偏离和「隧道视野」
 
-![Cursor CEO Michael Truell 的回应](./images/img-4.jpg)
+![Cursor CEO Michael Truell 的回应](./images/img-6.png)
 
 ---
 
