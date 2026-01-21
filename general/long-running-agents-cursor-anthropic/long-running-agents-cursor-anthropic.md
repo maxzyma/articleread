@@ -7,8 +7,6 @@
 
 **Cursor 和 Anthropic 在实现「Long-running Agents」上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。**
 
-![Agent 并行协作演示](./images/img-0.gif)
-
 ---
 
 ## 背景
@@ -117,7 +115,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 这个任务耗时三周多，产生了 **+266,000 行新增** 和 **-193,000 行删除**
 - 虽然这些代码仍然需要人类进行最终的细致审查，但它已经成功通过了「持续集成（CI）」系统和初步的自动化检查
 
-![从 Solid 迁移到 React 的代码合并请求](./images/img-1.jpg)
+![从 Solid 迁移到 React 的代码合并请求](./images/img-3.png)
 
 **产品性能与功能优化**
 - 还有一个实验是改进 Cursor 即将发布的一款新产品
@@ -159,7 +157,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - Agent 偶尔会出现运行时间过长的问题
 - 我们仍需通过定期重启来对抗系统性的目标偏离和「隧道视野」
 
-![Cursor CEO Michael Truell 的回应](./images/img-3.jpg)
+![Cursor CEO Michael Truell 的回应](./images/img-4.jpg)
 
 ---
 
