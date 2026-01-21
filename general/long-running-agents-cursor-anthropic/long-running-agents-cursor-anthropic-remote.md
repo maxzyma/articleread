@@ -7,6 +7,8 @@
 
 **Cursor 和 Anthropic 在实现「Long-running Agents」上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。**
 
+![Agent 并行协作演示](https://mmbiz.qpic.cn/sz_mmbiz_gif/qpAK9iaV2O3sAVsSPfCN9UX44XiaoicbUJIrOGuaujdMNY6iaQewDZEX1GY3tcVk3QGeKJyUMMHBSMALvO8B7DZwsA/640?wx_fmt=gif)
+
 ---
 
 ## 背景
@@ -99,7 +101,11 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 尽管代码库规模惊人，新加入的 Agent 依然能够快速理解上下文并做出有意义的贡献
 - 数百个「工作者（Agent）」能同时向同一个代码分支提交代码，且冲突率极低
 
-虽然看起来像是一张简单的截图，但从零开始构建浏览器极其困难。
+> 📹 **演示视频**：Agent 团队从零构建网页浏览器（8秒）
+>
+> 虽然看起来像是一张简单的截图，但从零开始构建浏览器极其困难。
+
+![视频封面：从零构建网页浏览器](http://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3s94X0IUaBsEzKyRKyjWbTicbmJ1TNFEYic8icnRyzDo1JjlRGo4LeLG9WxCKAFBI9GJ0xDewk6FgSGQ/0?wx_fmt=jpeg&wxfrom=16)
 
 **大型代码库原地迁移**
 - 另一项实验是在 Cursor 自己的代码库中
