@@ -204,11 +204,24 @@ general/boris-claude-code-workflow/
 ├── boris-claude-code-workflow.md              # 本地版本（主要文件）
 ├── boris-claude-code-workflow-remote.md        # 远程版本（可分享）
 ├── boris-claude-code-workflow.metadata.yaml    # 元数据
-└── images/                                     # 本地图片（可选）
-    ├── 00_cover.jpg
-    ├── 01_section01.jpg
-    └── ...
+└── images/                                     # 本地图片
+    ├── cover.jpg                               # 封面图
+    ├── claude-parallel-workflow.png            # Claude 并行工作流截图
+    └── x-post-screenshot.png                   # X 平台帖子截图
 ```
+
+**图片命名规范**（推荐使用描述性名称）：
+
+| 旧方式（不推荐） | 新方式（推荐） | 说明 |
+|-----------------|---------------|------|
+| `00_cover.jpg` | `cover.jpg` | 封面图 |
+| `01_section01.jpg` | `claude-parallel-workflow.png` | 按内容命名 |
+| `02_section02.jpg` | `x-post-screenshot.png` | 按内容命名 |
+
+**命名原则**：
+- 使用描述性名称，直接反映图片内容
+- 全部小写，空格用连字符替换
+- 避免使用纯数字索引
 
 #### 4.4 推荐的 Git 策略
 

@@ -151,8 +151,32 @@ console.log(`Markdown引用图片: ${imageRefs.length}，实际图片文件: ${i
 **检查项**：
 - [ ] Markdown 中的图片引用数量是否与实际文件数量一致
 - [ ] 图片文件是否存在（检查 `./images/xxx.jpg`）
-- [ ] 图片命名是否规范（是否有 `image_1_boris_cherny.png` 这样的临时命名）
+- [ ] 图片命名是否规范（推荐使用描述性名称，如 `stripe-ceo-evaluation.png`）
+- [ ] 避免使用数字索引命名（如 `img-1.jpg`, `image_0.png`）
 - [ ] 是否有断开的图片链接（404）
+
+**命名规范检查**：
+
+```javascript
+// 检查是否使用描述性命名
+const descriptivePattern = /^[a-z][a-z0-9-]+\.(jpg|png|gif)$/;
+const numericPattern = /^(img-|image_|#)\d+\.(jpg|png|gif)$/;
+
+imageFiles.forEach(file => {
+  if (numericPattern.test(file)) {
+    console.warn(`⚠️ 使用数字索引命名，建议改为描述性名称: ${file}`);
+  } else if (!descriptivePattern.test(file)) {
+    console.warn(`⚠️ 文件名不规范: ${file}`);
+  }
+});
+```
+
+**推荐的命名方式**：
+| 场景 | 推荐名称 | 不推荐 |
+|------|---------|--------|
+| 人物评价 | `stripe-ceo-evaluation.png` | `img-2.jpg` |
+| 代码迁移 | `solid-react-migration.png` | `image_3.png` |
+| 测试截图 | `agent-testing-demo.png` | `img-4.png` |
 
 **D. 广告图片检测**
 

@@ -320,3 +320,117 @@ export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxx"
   // ...
 
   // 步骤3：根据网页快照中的文本位置确定图片位置
+
+---
+
+## 新增：广告图片自动过滤（2026-01 更新）
+
+### 广告图片识别规则
+
+**需要过滤的图片类型**：
+
+| 类型 | 特征 | 识别方法 |
+|------|------|----------|
+| 进群/关注二维码 | "进群后有机会得到"区域 | 检查图片前后的文本 |
+| 推荐阅读缩略图 | "更多阅读"区域 | 检查是否链接到其他文章 |
+| 公众号 Logo/头像 | 尺寸通常较小（<100px） | 检查 naturalWidth |
+| 装饰性图标 | 与文章内容无关 | 检查上下文 |
+
+### 自动过滤脚本
+
+```javascript
+// 识别并过滤广告图片
+function isAdImage(imgElement, precedingText, followingText) {
+    const adKeywords = [
+        '进群后', '关注我们', '扫码加入',
+        '更多阅读', '推荐阅读', '相关文章',
+        '长按识别', '扫码关注', '二维码'
+    ];
+
+    // 1. 检查尺寸（太小的可能是二维码/Logo）
+    if (imgElement.naturalWidth < 100 || imgElement.naturalHeight < 100) {
+        return true;
+    }
+
+    // 2. 检查上下文是否包含广告关键词
+    const context = (precedingText + ' ' + followingText).toLowerCase();
+    for (const keyword of adKeywords) {
+        if (context.includes(keyword.toLowerCase())) {
+            return true;
+        }
+    }
+
+    // 3. 检查是否是"更多阅读"区域的图片
+    if (context.includes('更多阅读') || context.includes('推荐阅读')) {
+        // 如果图片后面紧跟链接到其他微信文章，是推荐图片
+        const nextLink = imgElement.nextElementSibling?.closest('a');
+        if (nextLink && nextLink.href?.includes('mp.weixin.qq.com')) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// 使用示例
+const allImages = Array.from(document.querySelectorAll('img'));
+const contentImages = allImages.filter(img => {
+    const url = img.src || img['data-src'];
+    if (!url?.includes('mmbiz.qpic.cn')) return false;
+    if (url.includes('data:image/svg')) return false;
+
+    // 获取图片前后的文本
+    const precedingText = img.previousElementSibling?.textContent || '';
+    const followingText = img.nextElementSibling?.textContent || '';
+
+    return !isAdImage(img, precedingText, followingText);
+});
+```
+
+### 描述性命名规则（推荐）
+
+**❌ 旧方式（易混淆）**：
+```
+img-0.gif, img-1.jpg, img-2.jpg, img-3.jpg, img-4.jpg
+```
+- 顺序调整时容易混淆
+- 文件名无语义
+
+**✅ 新方式（推荐）**：
+```
+stripe-ceo-evaluation.png      # Stripe CEO 评价
+solid-react-migration.png       # Solid→React 迁移
+agent-testing-demo.png          # Agent 测试动图
+failure-modes-summary.png       # 四种失败模式
+michael-truell-response.png     # Michael Truell 回应
+```
+- 文件名直接对应内容含义
+- 顺序调整不影响文件语义
+
+**生成描述性名称**：
+
+```javascript
+// 根据上下文生成描述性名称
+function generateImageName(contextText, index) {
+    // 提取上下文中的关键词
+    const cleanText = contextText.replace(/<[^>]*>/g, '')
+        .replace(/&[a-z]+;/g, ' ')
+        .trim();
+
+    // 提取2-4个词作为名称
+    const words = cleanText.split(/\s+/)
+        .filter(w => w.length > 3 && /^[a-zA-Z\u4e00-\u9fa5]/.test(w))
+        .slice(0, 4);
+
+    if (words.length > 0) {
+        return words.join('-').toLowerCase().substring(0, 50);
+    }
+    return `image-${index}`;
+}
+```
+
+**命名最佳实践**：
+1. 使用短格式（3-5个词）
+2. 全部小写，空格用连字符替换
+3. 避免特殊字符
+4. 保持简洁但有意义
