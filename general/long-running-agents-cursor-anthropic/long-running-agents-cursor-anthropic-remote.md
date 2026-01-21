@@ -7,7 +7,7 @@
 
 **Cursor 和 Anthropic 在实现「Long-running Agents」上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。**
 
-![Agent 并行协作演示](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-0.gif)
+![Agent 并行协作演示](./images/img-0.gif)
 
 ---
 
@@ -34,6 +34,10 @@ Cursor 的思路是，通过大规模并行地运行多个 Agent 来执行复杂
 Cursor 认为，目前单个 Agent 在处理目标明确、范围有限的「单点任务」时，已经表现得相当出色了。但是针对复杂「项目」时（比如从零开始搭一个全新的软件），能力存在上限。
 
 下一步的方向是像组建人类团队一样，投入成百上千个 Agent 并行工作。但这里的难题是：如何有效地协调这些 Agent，写下超过一百万行代码，处理数以万亿计的 Token（Token）。
+
+### Stripe CEO 对这项研究的评价
+
+![Stripe CEO 对这项研究的评价](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-2.jpg)
 
 ### 1.1 在失败中学习：协调机制的两次迭代
 
@@ -105,7 +109,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 >
 > 虽然看起来像是一张简单的截图，但从零开始构建浏览器极其困难。
 
-![视频封面：从零构建网页浏览器](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/video-poster.jpg)
+![视频封面：从零构建网页浏览器](./images/video-poster.jpg)
 
 **大型代码库原地迁移**
 - 另一项实验是在 Cursor 自己的代码库中
@@ -113,7 +117,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 这个任务耗时三周多，产生了 **+266,000 行新增** 和 **-193,000 行删除**
 - 虽然这些代码仍然需要人类进行最终的细致审查，但它已经成功通过了「持续集成（CI）」系统和初步的自动化检查
 
-![从 Solid 迁移到 React 的代码合并请求](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-1.jpg)
+![从 Solid 迁移到 React 的代码合并请求](./images/img-1.jpg)
 
 **产品性能与功能优化**
 - 还有一个实验是改进 Cursor 即将发布的一款新产品
