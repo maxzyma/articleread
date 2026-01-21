@@ -7,8 +7,6 @@
 
 **Cursor 和 Anthropic 在实现「Long-running Agents」上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。**
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_gif/qpAK9iaV2O3sAVsSPfCN9UX44XiaoicbUJIrOGuaujdMNY6iaQewDZEX1GY3tcVk3QGeKJyUMMHBSMALvO8B7DZwsA/640?wx_fmt=gif)
-
 ---
 
 ## 背景
@@ -101,7 +99,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 尽管代码库规模惊人，新加入的 Agent 依然能够快速理解上下文并做出有意义的贡献
 - 数百个「工作者（Agent）」能同时向同一个代码分支提交代码，且冲突率极低
 
-![从 Solid 迁移到 React 的代码合并请求](https://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3u2fI9s28mn09TnD4aChWibVHIyyBzPC2GibicVQ57QYiaEw6yibwy9zhkB7aFajGpNtBru6icEFuibRKXwA/640?wx_fmt=jpeg)
+虽然看起来像是一张简单的截图，但从零开始构建浏览器极其困难。
 
 **大型代码库原地迁移**
 - 另一项实验是在 Cursor 自己的代码库中
@@ -109,7 +107,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 这个任务耗时三周多，产生了 **+266,000 行新增** 和 **-193,000 行删除**
 - 虽然这些代码仍然需要人类进行最终的细致审查，但它已经成功通过了「持续集成（CI）」系统和初步的自动化检查
 
-![从 Solid 迁移到 React 的代码合并请求](https://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3s94X0IUaBsEzKyRKyjWbTicQamSgbUzXBg1v3cS5HNrIyMzIDCvUTxowVt2EEeTz1vZcWnmtMnN3A/0?wx_fmt=jpeg)
+![从 Solid 迁移到 React 的代码合并请求](https://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3u2fI9s28mn09TnD4aChWibVHIyyBzPC2GibicVQ57QYiaEw6yibwy9zhkB7aFajGpNtBru6icEFuibRKXwA/640?wx_fmt=jpeg)
 
 **产品性能与功能优化**
 - 还有一个实验是改进 Cursor 即将发布的一款新产品
@@ -150,8 +148,6 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 「规划者」应该在任务完成后被自动唤醒，以规划下一步工作
 - Agent 偶尔会出现运行时间过长的问题
 - 我们仍需通过定期重启来对抗系统性的目标偏离和「隧道视野」
-
-![Stripe CEO 对这项研究的评价](http://mmbiz.qpic.cn/mmbiz_png/qpAK9iaV2O3sJgoBraTTtb4HvpIUu0gjF1iaeu47FWB2mazlo7BSDYJJYk3Td5HVich4ag1IUbv1T7208rVBVqg5w/0?wx_fmt=png)
 
 ---
 
@@ -258,8 +254,6 @@ Agent 改完代码，跑几个单元测试或者 curl 一下接口就觉得万�
 
 Agent 像真人一样打开浏览器、点按钮、填表单、看页面渲染结果。
 
-![Agent 测试克隆版 claude.ai 时的截图](https://mmbiz.qpic.cn/mmbiz_png/qpAK9iaV2O3sJgoBraTTtb4HvpIUu0gjF1iaeu47FWB2mazlo7BSDYJJYk3Td5HVich4ag1IUbv1T7208rVBVqg5w/300?wx_fmt=png)
-
 这个方法大幅提升了功能验证的准确率。很多只看代码发现不了的 Bug，Agent 自己能定位并修复。
 
 当然也有盲区，比如浏览器原生的 alert 弹窗，Puppeteer 捕捉不到，依赖弹窗的功能容易出 bug。
@@ -303,9 +297,7 @@ Agent 像真人一样打开浏览器、点按钮、填表单、看页面渲染�
 <Starts work on a new feature>
 ```
 
-此外，研究员还总结了，长时间运行的 AI Agent 中四种常见的失败模式和解决方案：
-
-![长时间运行的 AI Agent 中四种常见的失败模式和解决方案](http://mmbiz.qpic.cn/mmbiz_png/qpAK9iaV2O3sJgoBraTTtb4HvpIUu0gjF1iaeu47FWB2mazlo7BSDYJJYk3Td5HVich4ag1IUbv1T7208rVBVqg5w/0?wx_fmt=png)
+此外，研究员还总结了，长时间运行的 AI Agent 中四种常见的失败模式和解决方案，包括：过度承诺、过早退出、测试不足和状态不一致等问题。
 
 ### 2.4 开放性问题
 
