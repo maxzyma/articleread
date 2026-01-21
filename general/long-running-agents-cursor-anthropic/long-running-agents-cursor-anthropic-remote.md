@@ -266,6 +266,8 @@ Agent 改完代码，跑几个单元测试或者 curl 一下接口就觉得万�
 
 Agent 像真人一样打开浏览器、点按钮、填表单、看页面渲染结果。
 
+![Agent 测试克隆版 claude.ai 的动图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-4.png)
+
 这个方法大幅提升了功能验证的准确率。很多只看代码发现不了的 Bug，Agent 自己能定位并修复。
 
 当然也有盲区，比如浏览器原生的 alert 弹窗，Puppeteer 捕捉不到，依赖弹窗的功能容易出 bug。
@@ -311,7 +313,7 @@ Agent 像真人一样打开浏览器、点按钮、填表单、看页面渲染�
 
 此外，研究员还总结了，长时间运行的 AI Agent 中四种常见的失败模式和解决方案，包括：过度承诺、过早退出、测试不足和状态不一致等问题。
 
-![Agent 失败模式总结](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-4.jpg)
+![长时间运行的 AI Agent 中四种常见的失败模式和解决方案](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-5.png)
 
 ### 2.4 开放性问题
 
