@@ -106,12 +106,12 @@ general/YYYY-MM-DD/article-slug.metadata.yaml    # 元数据（与正文同目�
 
 #### 4.1 双版本 Markdown 策略
 
-**为什么需要两个版本？**
+**重要**：必须同时创建两个版本，remote 版本不是可选的！
 
-| 版本 | 文件名 | 图片路径 | 使用场景 |
-|------|--------|---------|---------|
-| **本地版本** | `article-slug.md` | `./images/xxx.jpg` | 本地预览、离线查看 |
-| **远程版本** | `article-slug-remote.md` | `https://cdn.jsdelivr.net/gh/...` | 分享、发布、在线文档 |
+| 版本 | 文件名 | 图片路径 | 使用场景 | 必须性 |
+|------|--------|---------|---------|--------|
+| **本地版本** | `article-slug.md` | `./images/xxx.jpg` | 本地预览、离线查看 | ✅ 必须 |
+| **远程版本** | `article-slug-remote.md` | 原始 CDN URL | 分享、发布、在线文档 | ✅ 必须 |
 
 **本地版本**：
 - 图片使用相对路径：`![图片](./images/00_cover.jpg)`

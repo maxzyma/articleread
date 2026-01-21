@@ -100,17 +100,19 @@ description: 从多个平台提取和整理文章内容到本地文档系统。�
 
 ### 文件归档
 
-**文件结构**：
+**必须创建三个文件**：
 ```
 general/YYYY-MM-DD/article-slug/
-├── article-slug.md              # 正文（本地版本）
-├── article-slug-remote.md        # 正文（远程版本，可选）
-└── article-slug.metadata.yaml    # 元数据
+├── article-slug.md              # 正文（本地版本）- 必须
+├── article-slug-remote.md        # 正文（远程版本）- 必须
+└── article-slug.metadata.yaml    # 元数据 - 必须
 ```
 
-**双版本策略**：
-- 本地版本：图片使用 `./images/xxx.jpg`（本地预览）
-- 远程版本：图片使用 CDN URL（分享、发布）
+**双版本策略**（必须同时创建）：
+- **本地版本**：图片使用 `./images/xxx.jpg`（本地预览）
+- **远程版本**：图片使用原始 CDN URL（分享、发布）
+
+**重要**：remote 版本不是可选的，必须创建！用于在线分享和发布。
 
 详细说明：见 [文件归档](references/file-archiving.md)
 

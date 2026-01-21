@@ -224,6 +224,42 @@ if (quoteMarks && quoteMarks.length > 50) {
 - [ ] 引用块格式是否正确
 - [ ] 标题层级是否合理（# ## ### 使用正确）
 
+**G. Remote 版本验证** ⭐ 重要
+
+```javascript
+// 检查 remote 版本是否已创建
+const fs = require('fs');
+const path = require('path');
+
+const remoteFilePath = path.join(
+  articleDir,
+  articleSlug + '-remote.md'
+);
+
+const hasRemoteVersion = fs.existsSync(remoteFilePath);
+
+if (!hasRemoteVersion) {
+  console.error('❌ 缺少 remote 版本！');
+  console.error('   必须创建 ' + articleSlug + '-remote.md');
+  console.error('   图片使用原始 CDN URL，用于在线分享');
+} else {
+  // 检查 remote 版本中的图片链接是否正确
+  const remoteContent = fs.readFileSync(remoteFilePath, 'utf8');
+  const cdnImageLinks = remoteContent.match(/https:\/\/mmbiz\.qpic\.cn\/[^)]+/g) || [];
+
+  if (cdnImageLinks.length === 0) {
+    console.warn('⚠️ remote 版本未使用 CDN URL');
+  }
+}
+```
+
+**检查项**：
+- [ ] remote 版本文件是否存在（`article-slug-remote.md`）
+- [ ] remote 版本是否使用原始 CDN URL（不是 `./images/`）
+- [ ] remote 版本内容是否与本地版本一致（除图片路径外）
+
+**重要**：remote 版本不是可选的，必须创建！
+
 #### 步骤2：发现问题时自动修复
 
 **问题1：图片不完整**
