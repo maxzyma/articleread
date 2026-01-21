@@ -159,6 +159,8 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - Agent 偶尔会出现运行时间过长的问题
 - 我们仍需通过定期重启来对抗系统性的目标偏离和「隧道视野」
 
+![Cursor CEO Michael Truell 的回应](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-3.jpg)
+
 ---
 
 ## 02 Claude Code：解决单个 Agent 跨上下文窗口的记忆问题
