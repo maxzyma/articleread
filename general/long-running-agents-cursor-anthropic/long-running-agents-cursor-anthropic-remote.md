@@ -7,7 +7,7 @@
 
 **Cursor 和 Anthropic 在实现「Long-running Agents」上采用了两种不同的思路：Cursor 通过多 Agent 并行协作扩展规模；Anthropic 则聚焦于单个 Agent 跨上下文窗口的记忆连续性。**
 
-![Agent 并行协作演示](https://mmbiz.qpic.cn/sz_mmbiz_gif/qpAK9iaV2O3sAVsSPfCN9UX44XiaoicbUJIrOGuaujdMNY6iaQewDZEX1GY3tcVk3QGeKJyUMMHBSMALvO8B7DZwsA/640?wx_fmt=gif)
+![Agent 并行协作演示](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-0.gif)
 
 ---
 
@@ -105,7 +105,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 >
 > 虽然看起来像是一张简单的截图，但从零开始构建浏览器极其困难。
 
-![视频封面：从零构建网页浏览器](http://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3s94X0IUaBsEzKyRKyjWbTicbmJ1TNFEYic8icnRyzDo1JjlRGo4LeLG9WxCKAFBI9GJ0xDewk6FgSGQ/0?wx_fmt=jpeg&wxfrom=16)
+![视频封面：从零构建网页浏览器](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/video-poster.jpg)
 
 **大型代码库原地迁移**
 - 另一项实验是在 Cursor 自己的代码库中
@@ -113,7 +113,7 @@ Cursor 构建了一个完全扁平化的系统，在这个系统里，所有 Age
 - 这个任务耗时三周多，产生了 **+266,000 行新增** 和 **-193,000 行删除**
 - 虽然这些代码仍然需要人类进行最终的细致审查，但它已经成功通过了「持续集成（CI）」系统和初步的自动化检查
 
-![从 Solid 迁移到 React 的代码合并请求](https://mmbiz.qpic.cn/sz_mmbiz_jpg/qpAK9iaV2O3u2fI9s28mn09TnD4aChWibVHIyyBzPC2GibicVQ57QYiaEw6yibwy9zhkB7aFajGpNtBru6icEFuibRKXwA/640?wx_fmt=jpeg)
+![从 Solid 迁移到 React 的代码合并请求](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/long-running-agents-cursor-anthropic/images/img-1.jpg)
 
 **产品性能与功能优化**
 - 还有一个实验是改进 Cursor 即将发布的一款新产品
