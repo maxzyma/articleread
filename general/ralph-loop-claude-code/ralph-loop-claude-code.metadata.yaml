@@ -5,7 +5,7 @@ extraction_date: "2026-01-21"
 
 source:
   platform: "微信公众号"
-  url: "https://mp.weixin.qq.com/s?src=11&timestamp=1768930464&ver=6492&signature=..."
+  url: "https://mp.weixin.qq.com/s/TsMOxgEJwWlVnDHWoWP6MQ"
   author: "湾仔码农"
   publish_date: "2026-01-15"
 
@@ -22,12 +22,11 @@ content:
 extraction_method:
   - "Chrome DevTools 提取微信公众号内容"
   - "滚动触发懒加载获取图片"
-  - "OCR 识别图片中的文字"
 
 verification:
   status: "completed"
   verified_against: "原文链接"
-  notes: "已对照原文提取全部内容"
+  notes: "已对照原文提取全部内容，包含 20 张配图（img-0.png 到 img-19.png）"
 
 content_file: "./ralph-loop-claude-code.md"
 

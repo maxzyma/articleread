@@ -15,7 +15,7 @@ Ralph Loop 插件让 Claude Code 能够"天真执着"地持续执行长任务，
 
 最近 Claude Code 之父 Boris 分享了一个数字，过去 1 个月内，提交了 259 个 PR，添加了 40000 行代码。而这背后，是 Claude Code 不眠不休地在帮他干活。
 
-![文章开头](images/img-0.png)
+![文章开头](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklpa7pJQLklz31oRGgrw6lnEZ5y9FI6dO4YHpVdiclobllCxRJrhnZ7Ow/640?wx_fmt=png)
 
 你可能好奇，怎么让 Claude 持续不间断运行长任务？这背后的秘密就是 Anthropic 近期开放的一个插件 —— ralph wiggum（最近因为版权原因，改名为 ralph loop 了）。
 
@@ -61,7 +61,7 @@ ralph loop 最厉害的地方，就像动画片的主人公一样，会"天真�
 
 注意要用 ralph-loop，而不是 ralph-wiggum 了，最早装了这个后面导致还得重来一下。
 
-![安装截图](images/img-1.png)
+![安装截图](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklamD0miaa4oN40jicAnud38JNribw8ialdQVIbvAAGGoX8EyzOmxju14kiaA/640?wx_fmt=png)
 
 ### 小试牛刀
 
@@ -69,7 +69,7 @@ ralph loop 最厉害的地方，就像动画片的主人公一样，会"天真�
 
 不过这个需求还是有些复杂，我们先让 AI 帮我们写个 PRD 吧。打开 raycast，把需求丢进去，我们就得到了一个 PRD 初稿，然后复制粘贴到项目目录，命名为 prd.md。
 
-![PRD 文档](images/img-2.png)
+![PRD 文档](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklZbhOAQH8taAunL6EBSREfIEiahYD2D2DheTBKXjUyvclgvZJ5xkW21Q/640?wx_fmt=png)
 
 这里之所以写个 PRD，主要是想测试 ralph 在复杂任务下的表现。你可以采用类似的方法，把你某个想做的 idea 也转成 PRD。
 
@@ -81,29 +81,29 @@ ralph loop 最厉害的地方，就像动画片的主人公一样，会"天真�
 
 这里设定了 20 轮的循环，它开始干活了。按理来说，这时候可以睡觉去了，不过因为是第一次用，还是耐心看下有没有磨洋工。
 
-![开始执行](images/img-3.png)
+![开始执行](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklUgWrY5qhHvj2dVlPx8LsytuJx1lVapuYWq5z3vMiajnibRM6Q9GW7U9A/640?wx_fmt=png)
 
 自己发现了一些语法错误，开始在修复。整体还是按 Claude Code 的任务驱动在往前跑。成功了，开始自己测试，进入循环模式。
 
-![修复错误](images/img-4.png)
+![修复错误](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklRYwUxXobANDsSrQlrjc8cfoqSwe34n2qKpIicXd4ps6sLGddm74YkGA/640?wx_fmt=png)
 
-![开始测试](images/img-5.png)
+![开始测试](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklthyNTviaCeYWiaIYG4dwgkR0qy4wla7yvfSiap3VjnicDWXwmcapRvNaeQ/640?wx_fmt=png)
 
 但不知道为啥 stop hook 一直报错，结果真的跑了 20 个循环，花了 9 分钟 31 秒。
 
-![循环执行](images/img-6.png)
+![循环执行](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklUbReSd3ibXSqUpA5LnlhmUrjibJ91KYLfV727icUj5nInzUibADhNTcTTQ/640?wx_fmt=png)
 
 启动下服务器，看看效果。默认做了 3 个模板，图片粘贴过来也都正常渲染了。
 
-![服务器启动](images/img-7.png)
+![服务器启动](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklukL5x6wqiaQxh5YymSaLRg1Z2lYLF6NtYRWvrwH7DViczlVJBblOM1vA/640?wx_fmt=png)
 
 我最看重的标题格式，也都有了。
 
-![标题格式](images/img-8.png)
+![标题格式](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklUXria5S4WFiatxmAI2tTLpEEtl9avhdg4gXeTITMZnNHTvP85rMMGPJw/640?wx_fmt=png)
 
 分级标题格式、代码块，也都映射好了；就是代码块的稍微丑了点。
 
-![代码块样式](images/img-9.png)
+![代码块样式](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXkl3dDLlBAw31teRSw7DbHoOFvCzP7czCL7zxicHGP2CumUsCITEkpPYPA/640?wx_fmt=png)
 
 另外，居然都给我做了首行缩进，真是个好学生啊。不过这种排版早就不流行了。
 
@@ -119,15 +119,15 @@ ralph loop 最厉害的地方，就像动画片的主人公一样，会"天真�
 
 这次更快，5 分多钟就搞完了，模板也都有了，看来难度不够啊。
 
-![模板完成](images/img-10.png)
+![模板完成](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXkl2hYtLRhYlUsgNXxd3YouFSicZetsMCiaWaa2C4d3WRFsvdmTyRj3Ok7g/640?wx_fmt=png)
 
 我们试试看效果。
 
-![测试效果](images/img-11.png)
+![测试效果](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklhPopxshK5FusCFibGvuBjjJNeOkyg7w1KNpja5iaibKWecpDVLicmJxczQ/640?wx_fmt=png)
 
 不错，确实搞了 10 个模板出来，这个绿色的还挺好看的，完美兼容。
 
-![绿色模板](images/img-12.png)
+![绿色模板](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXkllWkBBtCpA1Tp7FHhG2DgicXlQPeg9KuenjA0nzj14VyXWEQk1iaFallw/640?wx_fmt=png)
 
 ---
 
@@ -141,33 +141,33 @@ ralph loop 最厉害的地方，就像动画片的主人公一样，会"天真�
 
 上了个厕所回来，发现搞了 8 个任务，然后开始执行第二次循环了。看着它分解的任务，有点慌，字数统计、移动端响应式、常用模板都整上了，会不会开始屎上雕花了啊。
 
-![任务分解](images/img-13.png)
+![任务分解](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklkibGG9dPiaSu7YrETKLaCZib4tMOuE6RBG6zu3mAkl54eHIsc6Hn6WP2g/640?wx_fmt=png)
 
 不管。。。反正是测试，先让它继续跑着，看着就这样，跑了 4 轮，花了 22 分钟。已经有点困了，决定睡觉去，明早再来检验。
 
 早上起来，claude code 比我还早，都自己切到 light mode 了，看了下，跑到第 14 轮就停了，不知道为啥 npm run test 这里卡死了，按理说应该自己能拿到错误自己解决啊。浏览器也有些报错，把错误贴给它看看。
 
-![持续运行](images/img-14.png)
+![持续运行](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXkl9hOnqzbYqpYTeewkvV3JWfO7iar6j06oEwvRBMcia1S7xE97o2kUvnwg/640?wx_fmt=png)
 
-![错误修复](images/img-15.png)
+![错误修复](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklIjHyLJucf323GDkdSv5hOe2BnIHjlKdl4aw9ZaT0wDQsCrK0ibW9HyA/640?wx_fmt=png)
 
 是个转义字符解析的问题，很快就修好了。然后它就继续第 15 个循环了。它干活的同时，我们来验收下，到底一个晚上都做了啥优化。
 
-![功能概览](images/img-16.png)
+![功能概览](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXkljvaKp8o6jLo2xAVPibw9DRtIQMTtK5I8IcYcO1FA9NhGMWhCWadcqSg/640?wx_fmt=png)
 
 看了下，还真是雕花到了极致：暗黑模式、导入 HTML、快捷键、模板预览、模板搜索、常用模板、分类筛选，啥都整上了。不过这些在我看来都不是核心啊，最最重要的还是那个模板要好看。
 
 我们挑几个模板看看是否有进步。
 
-![模板展示](images/img-17.png)
+![模板展示](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklWLicmCQYGribzZKCtJAEHcBcRPGkQWrIzVZtibgicuOmLBXFVLjOAnwARg/640?wx_fmt=png)
 
 哈，有点东西，连字数统计、阅读时间都给我加上了。
 
-![字数统计](images/img-18.png)
+![字数统计](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklicAdhynupECHJDQKBtETs9ZJmEkDCy5wkqc5zBpV13dw2Qw22DItiaPg/640?wx_fmt=png)
 
 底部也给我加了些快捷操作按钮。
 
-![快捷按钮](images/img-19.png)
+![快捷按钮](https://mmbiz.qpic.cn/mmbiz_png/GlJ1Y2icNzcC1fRY7g1owRHwcF5ywOXklxnHw1l3eh0Fj5hRQ7NYKKMNccfFkPiawvMObXbYT2kOYMXYYnuiclvmA/640?wx_fmt=png)
 
 ---
 

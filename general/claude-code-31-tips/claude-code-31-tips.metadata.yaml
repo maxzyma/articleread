@@ -1,11 +1,12 @@
 ---
 title: "Claude 降临：Claude Code 31 天实战指南"
 original_title: "Advent of Claude: 31 Days of Claude Code"
-extraction_date: "2026-01-20"
+extraction_date: "2026-01-13"
+updated_date: "2025-01-21"
 
 source:
   platform: "微信公众号"
-  url: "https://mp.weixin.qq.com/s?src=11&timestamp=1768923760&ver=6492&signature=W0j*cCYUGLFALdq*BIPpsRDfcBivbat-qu8xnaJLBNzlGSp748KqM9SanFWEvuSqdfk4zAobUhgzENmP-9Ix*XMhHisRxtA1r6EihbjhIReREQClHjYNZIkBjjazkFJq&new=1"
+  url: "https://mp.weixin.qq.com/s/qCsfa5oxXeAEMwwKtoI4bg"
   account: "AI实用工具汇"
   translator: "雷小锋"
   publish_date: "2026-01-13"
@@ -59,6 +60,7 @@ tags:
   - "Advent of Claude"
 
 content_file: "./claude-code-31-tips.md"
+remote_file: "./claude-code-31-tips-remote.md"
 
 notes: |
   核心观点：Claude Code 是一个可深度定制、可自动化、可编程的开发环境
