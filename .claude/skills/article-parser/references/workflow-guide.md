@@ -61,11 +61,11 @@ mcp__chrome-devtools__take_snapshot
 
 #### 4.1 创建正文文件
 
-1. **确定日期**：使用当前日期（YYYY-MM-DD）
+1. **确定文章 slug**：基于标题生成描述性 slug
 
 2. **创建目录**：
    ```bash
-   mkdir -p general/YYYY-MM-DD/
+   mkdir -p general/article-slug/images/
    ```
 
 3. **整理内容规则**：
@@ -74,14 +74,14 @@ mcp__chrome-devtools__take_snapshot
    - 结构化：使用 Markdown 标题（# ## ###）
    - 完整性：确保开头结尾无遗漏
 
-4. **创建正文文件**：`general/YYYY-MM-DD/article-slug.md`
+4. **创建正文文件**：`general/article-slug/article-slug.md`
    - 文件命名：小写字母、连字符、描述性
    - 末尾保留：`*来源：原作者信息*`
    - 不包含：元数据引用
 
 #### 4.2 创建元数据文件
 
-参考 `metadata-template.yaml` 模板，创建 `general/YYYY-MM-DD/article-slug.metadata.yaml`
+参考 `metadata-template.yaml` 模板，创建 `general/article-slug/article-slug.metadata.yaml`
 
 **关键字段**：
 - `source.content_type`: "图文笔记"

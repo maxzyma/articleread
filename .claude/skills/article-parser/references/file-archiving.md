@@ -99,9 +99,13 @@
 按照项目 CLAUDE.md 中定义的结构创建文件：
 
 ```
-general/YYYY-MM-DD/article-slug.md              # 正文（本地版本）
-general/YYYY-MM-DD/article-slug-remote.md        # 正文（远程版本，使用图床）
-general/YYYY-MM-DD/article-slug.metadata.yaml    # 元数据（与正文同目录）
+general/article-slug/
+├── article-slug.md              # 正文（本地版本）
+├── article-slug-remote.md        # 正文（远程版本，使用图床）
+├── article-slug.metadata.yaml    # 元数据（与正文同目录）
+└── images/                       # 本地图片目录
+    ├── cover.jpg
+    └── section-01.png
 ```
 
 #### 4.1 双版本 Markdown 策略
@@ -162,7 +166,7 @@ done
 ```bash
 # 创建远程版本（替换图片路径为 CDN 链接）
 # 注意：jsDelivr 格式为 gh/[用户名]/[仓库名]/[文件路径]（无需分支名）
-sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images/|g' \
+sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-slug/images/|g' \
   article-slug.md > article-slug-remote.md
 ```
 
@@ -190,7 +194,7 @@ with open('article-slug.md', 'r') as f:
 # CDN 格式：https://cdn.jsdelivr.net/gh/user/repo/path/to/images
 remote_content = generate_remote_version(
     local_content,
-    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-name/images'
+    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-slug/images'
 )
 
 with open('article-slug-remote.md', 'w') as f:

@@ -46,7 +46,7 @@ verification:
   issues_found_and_fixed:
     - "发现的问题及修复（如有）"
 
-content_file: "../../articles/YYYY-MM-DD/article-slug.md"
+content_file: "./article-slug.md"
 
 tags:
   - "标签1"

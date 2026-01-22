@@ -112,7 +112,7 @@ articleImages;
 
 ```bash
 # 1. 创建图片目录（仅在有需要时创建）
-mkdir -p general/YYYY-MM-DD/article-slug/images/
+mkdir -p general/article-slug/images/
 
 # 2. 下载受限制的图片到本地
 for img_url in "${RESTRICTED_IMAGES[@]}"; do
@@ -121,7 +121,7 @@ for img_url in "${RESTRICTED_IMAGES[@]}"; do
     -H "Referer: https://mp.weixin.qq.com/" \
     -H "User-Agent: Mozilla/5.0" \
     "$img_url" \
-    -o "general/YYYY-MM-DD/article-slug/images/image_${index}.jpg"
+    -o "general/article-slug/images/image_${index}.jpg"
 done
 ```
 
