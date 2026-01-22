@@ -2,33 +2,45 @@
 
 ## 核心原则
 
-### 1. 外链友好平台优先使用原始 URL
+### 三版本策略
 
-**适用平台**：Twitter/X、微信公众号、知乎等提供稳定 CDN 的平台
+所有文章创建三个版本：
 
-**优点**：
-- ✅ 减少本地存储需求
-- ✅ 避免下载失败或网络问题
-- ✅ 原始 URL 通常包含更多元数据（media ID、格式等）
-- ✅ 减少手动编号错误
+| 版本 | 文件名 | 图片处理 | 适用场景 |
+|------|--------|----------|----------|
+| **原始版** | `article.md` | `./images/` 相对路径 | 日常阅读、编辑、本地预览 |
+| **standalone 版** | `article-standalone.md` | base64 嵌入 | 离线分享、长期归档 |
+| **remote 版** | `article-remote.md` | jsDelivr CDN URL | 在线分享、博客发布 |
 
-**示例**：
+**工作流程**：
 
-```markdown
-# Twitter/X 文章（推荐：直接使用原始 URL）
-
-![正向反馈](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
-
-![我的技能库](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
+```
+1. 下载所有图片 → images/
+2. 创建原始版本 → article.md（引用 ./images/）
+3. 生成 standalone 版本 → article-standalone.md（base64 嵌入）
+4. 生成 remote 版本 → article-remote.md（jsDelivr CDN）
 ```
 
-**平台 URL 特征**：
+### 统一下载策略
 
-| 平台 | CDN 域名 | URL 特征 | 稳定性 |
-|------|---------|---------|--------|
-| Twitter/X | `pbs.twimg.com` | 包含 media ID | ⭐⭐⭐⭐⭐ |
-| 微信公众号 | `mmbiz.qpic.cn` | 包含 wx_fmt 参数 | ⭐⭐⭐⭐⭐ |
-| 知乎 | `zxpic.cn` | 包含图片 ID | ⭐⭐⭐⭐ |
+**所有平台都下载图片到本地** `images/` 目录：
+
+```
+article-slug/
+├── article-slug.md              # 原始版本
+├── article-slug-standalone.md   # standalone 版本
+├── article-slug.metadata.yaml
+└── images/
+    ├── G_J7mLHXsAA0gNV.jpg     # Twitter media ID
+    ├── google-search.png        # 描述性命名
+    └── ...
+```
+
+**优点**：
+- ✅ 避免外链失效风险
+- ✅ 统一的工作流程
+- ✅ 便于生成 standalone 版本
+- ✅ 本地预览不依赖网络
 
 ---
 
@@ -269,8 +281,9 @@ def verify_image_position(markdown_content, image_mapping):
 **原因**：某些平台的图片 URL 有时效性。
 
 **解决方案**：
-- ✅ 对于 Twitter/X、微信公众号等稳定平台，直接使用原始 URL
-- ⚠️ 对于小红书等可能失效的平台，下载到本地并使用描述性命名
+- ✅ **统一下载到本地** `images/` 目录（不再区分平台）
+- ✅ 原始版本使用 `./images/` 相对路径
+- ✅ standalone 版本嵌入 base64 数据
 
 ### 问题 3：无法追溯图片来源
 
@@ -283,52 +296,107 @@ def verify_image_position(markdown_content, image_mapping):
 
 ---
 
-## 5. 提取工作流程（推荐）
+## 5. 提取工作流程（双版本策略）
 
-### Twitter/X 文章
+### 通用工作流程
 
 ```python
-# 1. 提取文章内容和图片
-article_url = "https://x.com/Khazix0918/status/2013812311388229792"
-content = extract_twitter_article(article_url)
+import base64
+import hashlib
+from pathlib import Path
 
-# 2. 收集图片信息（保留原始 URL）
-images = []
-for img in content.images:
-    images.append({
-        'url': img.url,  # 直接使用原始 URL
-        'alt_text': img.alt_text,
-        'description': extract_description_from_context(img)
-    })
+def extract_article(article_url, article_dir):
+    """统一的文章提取工作流程"""
 
-# 3. 创建图片映射缓存
-create_image_mapping(article_url, images, article_dir)
+    # 1. 提取文章内容和图片 URL
+    content = extract_article_content(article_url)
 
-# 4. 生成 markdown（直接使用原始 URL）
-markdown_content = generate_markdown(content, use_original_urls=True)
+    # 2. 下载所有图片到 images/ 目录
+    images_dir = Path(article_dir) / 'images'
+    images_dir.mkdir(exist_ok=True)
 
-# 5. 验证图片顺序
-verify_image_order(markdown_content, images)
+    image_mapping = []
+    for i, img in enumerate(content.images, 1):
+        # 生成文件名（Media ID 或描述性命名）
+        if 'pbs.twimg.com' in img.url:
+            media_id = img.url.split('/')[-1].split('?')[0]
+            filename = f"{media_id}.jpg"
+        else:
+            url_hash = hashlib.md5(img.url.encode()).hexdigest()[:12]
+            filename = f"{url_hash}.jpg"
+
+        # 下载图片
+        download_image(img.url, images_dir / filename)
+
+        # 记录映射
+        image_mapping.append({
+            'index': i,
+            'original_url': img.url,
+            'local_filename': filename,
+            'context_before': img.context_before,  # 重要！
+            'alt_text': img.alt_text
+        })
+
+    # 3. 创建缓存映射
+    create_image_mapping(article_url, image_mapping, article_dir)
+
+    # 4. 生成原始版本（使用 ./images/ 路径）
+    original_md = generate_markdown(content, image_prefix='./images/')
+    write_file(article_dir / 'article.md', original_md)
+
+    # 5. 生成 standalone 版本（嵌入 base64）
+    standalone_md = convert_to_base64(original_md, images_dir)
+    write_file(article_dir / 'article-standalone.md', standalone_md)
+
+    # 6. 生成 remote 版本（jsDelivr CDN）
+    remote_md = convert_to_cdn(original_md, user, repo, rel_path)
+    write_file(article_dir / 'article-remote.md', remote_md)
+
+    # 7. 验证
+    verify_image_positions(original_md, image_mapping)
+
+def convert_to_base64(markdown_content, images_dir):
+    """将 markdown 中的本地图片转换为 base64"""
+    import re
+
+    def replace_image(match):
+        alt_text = match.group(1)
+        image_path = match.group(2)
+
+        if image_path.startswith('./images/'):
+            filename = image_path.replace('./images/', '')
+            full_path = images_dir / filename
+
+            if full_path.exists():
+                with open(full_path, 'rb') as f:
+                    data = base64.b64encode(f.read()).decode('utf-8')
+
+                # 确定 MIME 类型
+                suffix = full_path.suffix.lower()
+                mime_map = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+                           '.png': 'image/png', '.gif': 'image/gif',
+                           '.webp': 'image/webp'}
+                mime_type = mime_map.get(suffix, 'image/jpeg')
+
+                return f'![{alt_text}](data:{mime_type};base64,{data})'
+
+        return match.group(0)
+
+    return re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', replace_image, markdown_content)
 ```
 
-### 小红书图文笔记
+### 使用脚本生成版本
 
-```python
-# 1. 提取图片 URL
-image_urls = extract_xiaohongshu_images(article_url)
+```bash
+# 生成 standalone 版本（base64 嵌入）
+python scripts/generate_standalone.py article-slug/article-slug.md
 
-# 2. 下载图片并使用描述性命名
-for i, url in enumerate(image_urls):
-    # 从 OCR 或上下文中提取描述
-    description = ocr_image(url)
-    filename = f"{description.lower().replace(' ', '-')}.jpg"
-    download_image(url, f"images/{filename}")
+# 生成 remote 版本（jsDelivr CDN）
+python scripts/generate_remote.py article-slug/article-slug.md
 
-# 3. 创建缓存映射
-create_image_mapping(article_url, image_data, article_dir)
-
-# 4. 生成 markdown
-markdown_content = generate_markdown(content, image_dir='images')
+# 批量处理目录
+python scripts/generate_standalone.py article-slug/ --recursive
+python scripts/generate_remote.py article-slug/ --recursive
 ```
 
 ---
@@ -339,22 +407,24 @@ markdown_content = generate_markdown(content, image_dir='images')
 
 ### 图片完整性
 
+- [ ] 所有图片都已下载到 `images/` 目录
 - [ ] 所有图片都有对应的描述
 - [ ] 图片顺序与原文一致
 - [ ] 没有重复的图片文件名
-- [ ] 外链图片 URL 可访问
 
 ### 缓存完整性
 
 - [ ] `.cache/` 目录中有映射文件
-- [ ] 映射文件包含所有图片信息
+- [ ] 映射文件包含所有图片的 `context_before`
 - [ ] 原始 URL 记录完整
 
-### 文件组织
+### 三版本验证
 
-- [ ] 图片使用描述性命名或 Media ID
-- [ ] 外链友好平台直接使用原始 URL
-- [ ] 本地图片有清晰的目录结构
+- [ ] 原始版本 `article.md` 图片引用 `./images/` 路径
+- [ ] standalone 版本 `article-standalone.md` 图片嵌入 base64
+- [ ] remote 版本 `article-remote.md` 图片使用 jsDelivr CDN URL
+- [ ] 三个版本的图片数量一致
+- [ ] standalone 版本文件大小合理（检查是否有图片遗漏）
 
 ---
 
@@ -421,16 +491,20 @@ verify_images(
 
 ### 核心建议
 
-1. **外链优先**：Twitter/X、微信公众号等平台直接使用原始 URL
-2. **描述命名**：避免 image-01 这种编号，使用描述性名称或 Media ID
-3. **缓存映射**：在 `.cache/` 记录图片映射关系，便于追溯和验证
-4. **工具验证**：使用脚本自动化验证，避免手动错误
+1. **统一下载**：所有平台图片都下载到本地 `images/` 目录
+2. **三版本输出**：原始版本（本地路径）、standalone（base64）、remote（CDN）
+3. **描述命名**：避免 image-01 这种编号，使用描述性名称或 Media ID
+4. **缓存映射**：在 `.cache/` 记录图片映射关系，包含 `context_before` 便于验证
+5. **工具验证**：使用脚本自动化生成版本和验证
 
-### 对比
+### 策略对比
 
-| 维度 | 旧方式 | 新方式 |
+| 维度 | 旧方式（外链优先） | 新方式（统一下载） |
 |------|--------|--------|
-| 命名 | `image-01.jpg` | `G_J8qXqaoAQ2xhu.jpg` 或 `user-comment.jpg` |
-| 存储 | 必须下载 | 外链平台直接用 URL |
+| 命名 | `image-01.jpg` | `G_J8qXqaoAQ2xhu.jpg` 或描述性命名 |
+| 存储 | 外链平台直接用 URL | 统一下载到 `images/` |
+| 版本 | local / remote | original / standalone / remote |
+| 离线分享 | ❌ 不支持 | ✅ standalone 版本 |
+| 在线分享 | 依赖外链稳定性 | ✅ remote 版本（jsDelivr CDN） |
 | 追溯 | 无记录 | `.cache/` 映射文件 |
 | 验证 | 人工检查 | 脚本自动化 |

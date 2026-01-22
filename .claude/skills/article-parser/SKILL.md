@@ -103,18 +103,28 @@ description: 从多个平台提取和整理文章内容到本地文档系统。�
 **必须创建的文件**：
 ```
 general/article-slug/
-├── article-slug.md              # 正文（本地版本）- 必须
-├── article-slug-remote.md        # 正文（远程版本）- 必须
-├── article-slug.metadata.yaml    # 元数据 - 必须
-└── images/                       # 图片目录（非外链友好平台需要）
+├── article-slug.md              # 原始版本（图片引用 ./images/）- 必须
+├── article-slug-standalone.md   # standalone 版本（图片 base64 嵌入）- 必须
+├── article-slug-remote.md       # remote 版本（图片用 jsDelivr CDN）- 必须
+├── article-slug.metadata.yaml   # 元数据 - 必须
+└── images/                      # 图片目录 - 必须
+    ├── G_J7mLHXsAA0gNV.jpg
+    └── ...
 ```
 
-**图片处理策略**（按平台区分）：
+**三版本策略**：
 
-| 平台类型 | 代表平台 | 策略 | 本地/远程版本 |
-|---------|---------|------|--------------|
-| 外链友好 | Twitter/X、微信公众号、知乎 | 直接用原始 URL，不下载 | **两个版本内容一致** |
-| 非外链友好 | 小红书、抖音 | 下载到 images/ 目录 | 本地用相对路径，远程用 CDN |
+| 版本 | 文件名 | 图片处理 | 适用场景 |
+|------|--------|----------|----------|
+| **原始版** | `article.md` | `./images/` 相对路径 | 日常阅读、编辑、本地预览 |
+| **standalone 版** | `article-standalone.md` | base64 嵌入 | 离线分享、长期归档 |
+| **remote 版** | `article-remote.md` | jsDelivr CDN URL | 在线分享、博客发布 |
+
+**工作流程**：
+1. 下载所有图片到 `images/` 目录
+2. 创建原始版本（引用 `./images/`）
+3. 运行 `generate_standalone.py` 生成 standalone 版本
+4. 运行 `generate_remote.py` 生成 remote 版本
 
 **图片命名规则**：
 - ❌ 不要用编号：`image-01.jpg`、`image-02.jpg`
@@ -155,6 +165,28 @@ general/article-slug/
 ---
 
 ## Scripts
+
+### generate_standalone.py
+
+将原始版本（`./images/` 路径）转换为 standalone 版本（base64 嵌入）。
+
+**用法**：
+```bash
+python scripts/generate_standalone.py article-slug/article-slug.md
+```
+
+### generate_remote.py
+
+将原始版本（`./images/` 路径）转换为 remote 版本（jsDelivr CDN URL）。
+
+**用法**：
+```bash
+# 自动检测仓库信息
+python scripts/generate_remote.py article-slug/article-slug.md
+
+# 指定仓库
+python scripts/generate_remote.py article-slug/article-slug.md --repo user/repo
+```
 
 ### cache_image_urls.sh
 

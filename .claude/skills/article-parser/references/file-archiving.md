@@ -100,166 +100,142 @@
 
 ```
 general/article-slug/
-├── article-slug.md              # 正文（本地版本）
-├── article-slug-remote.md        # 正文（远程版本，使用图床）
-├── article-slug.metadata.yaml    # 元数据（与正文同目录）
-└── images/                       # 本地图片目录
-    ├── cover.jpg
-    └── section-01.png
+├── article-slug.md              # 原始版本（图片引用 ./images/）
+├── article-slug-standalone.md   # standalone 版本（图片 base64 嵌入）
+├── article-slug-remote.md       # remote 版本（图片用 jsDelivr CDN）
+├── article-slug.metadata.yaml   # 元数据
+└── images/                      # 本地图片目录
+    ├── G_J7mLHXsAA0gNV.jpg     # Twitter Media ID 命名
+    ├── cover.jpg                # 或描述性命名
+    └── workflow-diagram.png
 ```
 
-#### 4.1 双版本 Markdown 策略
+#### 4.1 三版本策略
 
-**重要**：必须同时创建两个版本，remote 版本不是可选的！
+**必须同时创建三个版本**！
 
-##### 外链友好平台（简化策略）
+| 版本 | 文件名 | 图片处理 | 适用场景 |
+|------|--------|----------|----------|
+| **原始版** | `article-slug.md` | `./images/` 相对路径 | 日常阅读、编辑、本地预览 |
+| **standalone 版** | `article-slug-standalone.md` | base64 数据嵌入 | 离线分享、长期归档、邮件发送 |
+| **remote 版** | `article-slug-remote.md` | jsDelivr CDN URL | 在线分享、博客发布、GitHub 预览 |
 
-对于 **Twitter/X、微信公众号、知乎** 等外链友好平台：
-
-| 特征 | 说明 |
-|------|------|
-| CDN 稳定性 | ⭐⭐⭐⭐⭐ |
-| 图片时效 | 长期有效 |
-| 推荐策略 | **本地版本和远程版本内容一致**，直接使用原始 URL |
-| 优点 | 无需下载图片、无需维护 images 目录、减少存储 |
-
-**操作**：本地版本直接使用原始 URL，remote 版本复制本地版本即可。
-
-**示例**（Twitter 文章）：
-```markdown
-![示例图片](https://pbs.twimg.com/media/G_J7mLHXsAA0gNV?format=png&name=900x900)
-```
-
-##### 非外链友好平台（标准策略）
-
-对于 **小红书、抖音** 等图片 URL 可能失效的平台：
-
-| 版本 | 文件名 | 图片路径 | 使用场景 | 必须性 |
-|------|--------|---------|---------|--------|
-| **本地版本** | `article-slug.md` | `./images/xxx.jpg` | 本地预览、离线查看 | ✅ 必须 |
-| **远程版本** | `article-slug-remote.md` | jsDelivr CDN URL | 分享、发布、在线文档 | ✅ 必须 |
-
-**本地版本**：
+**原始版本**：
 - 图片使用相对路径：`![图片](./images/cover.jpg)`
-- 优点：无网络时也能预览，加载速度快
-- 缺点：不能分享给别人（图片是本地的）
-- 适用：个人笔记、本地归档
+- 优点：文件小、编辑方便、加载速度快
+- 缺点：分享时对方看不到图片
+- 适用：个人笔记、本地归档、日常编辑
 
-**远程版本**：
-- 图片使用 CDN URL：`![图片](https://cdn.jsdelivr.net/gh/...)`
-- 优点：可以分享，任何人都能看到图片
-- 缺点：需要网络连接
-- 适用：发布到博客、分享给他人、在线文档
+**standalone 版本**：
+- 图片嵌入 base64：`![图片](data:image/jpeg;base64,...)`
+- 优点：完全自包含，无需网络，任何人都能看到图片
+- 缺点：文件较大
+- 适用：离线分享、邮件附件、长期归档
 
-##### 平台 URL 稳定性参考
+**remote 版本**：
+- 图片使用 CDN：`![图片](https://cdn.jsdelivr.net/gh/user/repo/path/images/xxx.jpg)`
+- 优点：文件小、加载快、可在线预览
+- 缺点：需要网络连接、需要先 push 到 GitHub
+- 适用：博客发布、在线文档、GitHub 预览
 
-| 平台 | CDN 域名 | 稳定性 | 策略 |
-|------|---------|--------|------|
-| Twitter/X | `pbs.twimg.com` | ⭐⭐⭐⭐⭐ | 直接用原始 URL |
-| 微信公众号 | `mmbiz.qpic.cn` | ⭐⭐⭐⭐⭐ | 直接用原始 URL |
-| 知乎 | `zxpic.cn` | ⭐⭐⭐⭐ | 直接用原始 URL |
-| 小红书 | `sns-webpic-qc.xhscdn.com` | ⭐⭐ | 下载到本地 |
-| 抖音 | 多种域名 | ⭐⭐ | 下载到本地 |
+#### 4.2 统一下载策略
 
-#### 4.2 生成双版本的工作流程
+**所有平台的图片都下载到本地** `images/` 目录，不再区分外链友好与否：
 
-**步骤 1：上传图片到图床**
+| 平台 | 原始 URL | 本地策略 |
+|------|---------|----------|
+| Twitter/X | `pbs.twimg.com/media/G_xxx` | 下载到 `images/G_xxx.jpg` |
+| 微信公众号 | `mmbiz.qpic.cn/xxx` | 下载到 `images/xxx.jpg` |
+| 知乎 | `zxpic.cn/xxx` | 下载到 `images/xxx.jpg` |
+| 小红书 | `sns-webpic-qc.xhscdn.com/xxx` | 下载到 `images/xxx.jpg` |
 
-```bash
-# 假设已提取微信图片 URL
-IMAGE_URLS=(
-  "https://mmbiz.qpic.cn/xxx.jpg"
-  "https://mmbiz.qpic.cn/yyy.jpg"
-)
+**优点**：
+- ✅ 统一的工作流程，无需判断平台
+- ✅ 避免外链失效风险
+- ✅ 便于生成 standalone 版本
+- ✅ 本地预览不依赖网络
 
-# 上传并记录 CDN URL
-declare -A CDN_MAP
-for i in "${!IMAGE_URLS[@]}"; do
-  CDN_URL=$(python3 upload_to_github.py "${IMAGE_URLS[$i]}" wechat)
-  CDN_MAP[$i]=$CDN_URL
-  echo "图片 $i: $CDN_URL"
-done
+#### 4.3 生成双版本的工作流程
+
+**步骤 1：下载所有图片**
+
+```python
+import hashlib
+from pathlib import Path
+
+def download_image(url: str, save_dir: Path) -> str:
+    """下载图片并返回本地文件名"""
+    # Twitter Media ID 命名
+    if 'pbs.twimg.com' in url:
+        media_id = url.split('/')[-1].split('?')[0]
+        filename = f"{media_id}.jpg"
+    else:
+        # 其他平台使用 URL hash
+        url_hash = hashlib.md5(url.encode()).hexdigest()[:12]
+        filename = f"{url_hash}.jpg"
+
+    # 下载图片
+    response = requests.get(url)
+    (save_dir / filename).write_bytes(response.content)
+
+    return filename
 ```
 
-**步骤 2：生成本地版本**
+**步骤 2：生成原始版本**
 
 ```markdown
-# Claude Code 之父的工作流火了：740 万围观的背后
+# Claude Code 之父的工作流火了
 
-![Boris Cherny 在 X 上分享](./images/00_cover.jpg)
+![Boris Cherny 在 X 上分享](./images/G_J7mLHXsAA0gNV.jpg)
 
 ## 01｜15 个 Claude 并行
 
-![工作流截图](./images/01_section01.jpg)
+![工作流截图](./images/G_J8qXqaoAQ2xhu.png)
 ```
 
-**步骤 3：生成远程版本**
+**步骤 3：生成 standalone 和 remote 版本**
 
 ```bash
-# 创建远程版本（替换图片路径为 CDN 链接）
-# 注意：jsDelivr 格式为 gh/[用户名]/[仓库名]/[文件路径]（无需分支名）
-sed 's|\./images/|https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-slug/images/|g' \
-  article-slug.md > article-slug-remote.md
+# 生成 standalone 版本（base64 嵌入）
+python scripts/generate_standalone.py article-slug/article-slug.md
+
+# 生成 remote 版本（jsDelivr CDN）
+python scripts/generate_remote.py article-slug/article-slug.md
 ```
 
-或使用 Python 脚本：
+脚本会自动：
+1. 读取原始版本中的 `./images/xxx.jpg` 引用
+2. standalone: 将图片转换为 base64，替换为 `data:image/jpeg;base64,...`
+3. remote: 替换为 jsDelivr CDN URL `https://cdn.jsdelivr.net/gh/user/repo/path/images/xxx.jpg`
 
-```python
-def generate_remote_version(content, cdn_base_url):
-    """生成远程版本（jsDelivr CDN）"""
-    import re
-
-    # 替换本地图片路径为 CDN URL
-    # 注意：jsDelivr 格式为 gh/[用户名]/[仓库名]/[文件路径]（无需分支名）
-    pattern = r'\(\.\/images\/([^)]+)\)'
-
-    def replace_with_cdn(match):
-        filename = match.group(1)
-        return f'({cdn_base_url}/{filename})'
-
-    return re.sub(pattern, replace_with_cdn, content)
-
-# 使用示例
-with open('article-slug.md', 'r') as f:
-    local_content = f.read()
-
-# CDN 格式：https://cdn.jsdelivr.net/gh/user/repo/path/to/images
-remote_content = generate_remote_version(
-    local_content,
-    'https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/article-slug/images'
-)
-
-with open('article-slug-remote.md', 'w') as f:
-    f.write(remote_content)
-```
-
-#### 4.3 文件组织示例
+#### 4.4 文件组织示例
 
 ```
 general/boris-claude-code-workflow/
-├── boris-claude-code-workflow.md              # 本地版本（主要文件）
-├── boris-claude-code-workflow-remote.md        # 远程版本（可分享）
-├── boris-claude-code-workflow.metadata.yaml    # 元数据
-└── images/                                     # 本地图片
-    ├── cover.jpg                               # 封面图
-    ├── claude-parallel-workflow.png            # Claude 并行工作流截图
-    └── x-post-screenshot.png                   # X 平台帖子截图
+├── boris-claude-code-workflow.md              # 原始版本（主要文件）
+├── boris-claude-code-workflow-standalone.md   # standalone 版本（离线分享）
+├── boris-claude-code-workflow-remote.md       # remote 版本（在线分享）
+├── boris-claude-code-workflow.metadata.yaml   # 元数据
+└── images/                                    # 本地图片
+    ├── G_J7mLHXsAA0gNV.jpg                   # Twitter Media ID
+    ├── G_J8qXqaoAQ2xhu.png                   # Twitter Media ID
+    └── cover.jpg                              # 描述性命名
 ```
 
-**图片命名规范**（推荐使用描述性名称）：
+**图片命名规范**：
 
-| 旧方式（不推荐） | 新方式（推荐） | 说明 |
-|-----------------|---------------|------|
-| `00_cover.jpg` | `cover.jpg` | 封面图 |
-| `01_section01.jpg` | `claude-parallel-workflow.png` | 按内容命名 |
-| `02_section02.jpg` | `x-post-screenshot.png` | 按内容命名 |
+| 策略 | 示例 | 适用场景 |
+|------|------|----------|
+| Media ID | `G_J8qXqaoAQ2xhu.jpg` | Twitter/X（自动提取） |
+| URL Hash | `a1b2c3d4e5f6.jpg` | 其他平台（自动生成） |
+| 描述性命名 | `workflow-diagram.png` | 手动整理时 |
 
 **命名原则**：
-- 使用描述性名称，直接反映图片内容
-- 全部小写，空格用连字符替换
-- 避免使用纯数字索引
+- ❌ 不要用纯数字索引：`image-01.jpg`、`image-02.jpg`
+- ✅ 优先使用 Media ID 或描述性名称
+- ✅ 全部小写，空格用连字符替换
 
-#### 4.4 推荐的 Git 策略
+#### 4.5 推荐的 Git 策略
 
 **重要**：由于 sandbox 环境的网络限制，以下步骤只执行 `git add` 和 `git commit`。最后一步 `git push` 需要你在终端中手动执行。
 

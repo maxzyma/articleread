@@ -1,6 +1,64 @@
-# GitHub 图床使用指南
+# 脚本使用指南
 
-## 快速开始
+## 核心脚本
+
+### generate_standalone.py
+
+将原始版本（`./images/` 路径）转换为 standalone 版本（base64 嵌入）。
+
+**用法**：
+
+```bash
+python3 generate_standalone.py article-slug/article-slug.md
+python3 generate_standalone.py article-slug/ --recursive
+```
+
+**支持格式**：jpg, jpeg, png, gif, webp, svg, bmp
+
+### generate_remote.py
+
+将原始版本（`./images/` 路径）转换为 remote 版本（jsDelivr CDN URL）。
+
+**用法**：
+
+```bash
+# 自动检测仓库信息
+python3 generate_remote.py article-slug/article-slug.md
+
+# 指定仓库
+python3 generate_remote.py article-slug/article-slug.md --repo user/repo
+
+# 批量处理
+python3 generate_remote.py article-slug/ --recursive
+```
+
+**输出示例**：
+
+```
+处理文件: article-slug/article-slug.md
+
+结果:
+  输出: article-slug/article-slug-remote.md
+  转换: 5/5 图片
+  CDN: https://cdn.jsdelivr.net/gh/user/repo/general/article-slug/images
+```
+
+### cache_image_urls.sh
+
+图片/视频 URL 缓存管理脚本，避免重复提取。
+
+**用法**：
+
+```bash
+./cache_image_urls.sh <文章URL> get           # 获取缓存
+./cache_image_urls.sh <文章URL> save <URLS>   # 保存URL
+```
+
+---
+
+## 可选：GitHub 图床上传
+
+> **注意**：新的三版本策略中，remote 版本自动使用 jsDelivr CDN 引用仓库中的图片，无需单独上传到图床。以下内容仅供特殊情况参考。
 
 ### 1. 配置 GitHub Token
 
