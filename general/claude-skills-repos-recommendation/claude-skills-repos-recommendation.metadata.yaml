@@ -1,0 +1,55 @@
+---
+title: "提升 Claude 效率的优质 Skills 仓库推荐"
+original_title: "🤗提升 Claude 效率的优质 Skills 仓库推荐"
+extraction_date: "2025-01-23"
+
+source:
+  platform: "微信公众号"
+  account: "已知"
+  url: "https://mp.weixin.qq.com/s?src=11&timestamp=1769098921&ver=6496&signature=jLd78lKdBpTQI68pFueee-0uYBAj0y6xOUgBcKU8QrAs91lgTUJFo8iNN8Dc2cJV9Er1kq0uXSdm*hLkcb*O3izIyUpqOIAIQOuUuO-huUalbSq1f7r3QbMtPn46scOR"
+  original_source: "小红书"
+  original_url: "https://www.xiaohongshu.com/explore/696ed9a1000000000b00a4af"
+  author: "有点儿西东"
+  publish_date: "2025-01-20"
+
+content:
+  type: "资源推荐"
+  topic: "Claude Skills"
+  core_point: "精选6个高质量 Claude Skills 仓库，帮助开发者快速提升 AI 编程效率"
+  key_topics:
+    - "Claude Skills"
+    - "AI 编程助手"
+    - "GitHub 开源项目"
+    - "Anthropic 官方资源"
+
+extraction_method:
+  - "搜狗微信搜索定位公众号版本"
+  - "微信公众号网页提取"
+  - "图片直接下载"
+
+verification:
+  status: "completed"
+  verified_against: "微信公众号原文"
+  notes: "内容完整，6个 Skills 推荐全部提取"
+
+content_file: "./claude-skills-repos-recommendation.md"
+
+tags:
+  - "Claude Skills"
+  - "AI工具"
+  - "GitHub"
+  - "开源项目"
+  - "AI编程助手"
+
+notes: |
+  核心观点：精选6个高质量 Claude Skills 仓库推荐
+
+  推荐列表：
+  1. Anthropic 官方 Skills (45.2k stars) - 官方模板和规范
+  2. Superpowers (29.2k stars) - 软件开发全流程框架
+  3. Planning-with-files (10k stars) - 多文件任务规划
+  4. NotebookLM Skill (2.1k stars) - 文档查询问答
+  5. UI-UX-Pro-Max-Skill (17.8k stars) - UI/UX 设计智能
+  6. Awesome-Claude-Skills (21.6k stars) - 资源索引列表
+
+  目标受众：使用 Claude Code 的开发者、AI 编程爱好者
