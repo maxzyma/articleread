@@ -100,25 +100,28 @@ description: 从多个平台提取和整理文章内容到本地文档系统。�
 
 ### 文件归档
 
-**必须创建三个文件**：
+**必须创建的文件**：
 ```
 general/article-slug/
 ├── article-slug.md              # 正文（本地版本）- 必须
 ├── article-slug-remote.md        # 正文（远程版本）- 必须
 ├── article-slug.metadata.yaml    # 元数据 - 必须
-└── images/                       # 图片目录 - 必须
+└── images/                       # 图片目录（非外链友好平台需要）
 ```
 
-**双版本策略**（必须同时创建）：
-- **本地版本**：图片使用 `./images/xxx.jpg`（本地预览）
-- **远程版本**：图片使用原始 CDN URL（分享、发布）
+**图片处理策略**（按平台区分）：
 
-**重要**：remote 版本不是可选的，必须创建！用于在线分享和发布。
+| 平台类型 | 代表平台 | 策略 | 本地/远程版本 |
+|---------|---------|------|--------------|
+| 外链友好 | Twitter/X、微信公众号、知乎 | 直接用原始 URL，不下载 | **两个版本内容一致** |
+| 非外链友好 | 小红书、抖音 | 下载到 images/ 目录 | 本地用相对路径，远程用 CDN |
 
-**图片处理最佳实践**：
-- Twitter/X、微信公众号等外链友好平台，直接使用原始 URL
-- 避免使用 image-01.jpg 这种编号，改用描述性命名或 Media ID
-- 在 `.cache/` 目录记录图片映射关系，便于追溯和验证
+**图片命名规则**：
+- ❌ 不要用编号：`image-01.jpg`、`image-02.jpg`
+- ✅ 用描述性名称：`cover.jpg`、`workflow-diagram.png`
+- ✅ 或用 Media ID：`G_J8qXqaoAQ2xhu.jpg`（Twitter）
+
+**缓存映射**：在 `.cache/images/{article-slug}/` 创建 `image-mapping.json` 记录图片对应关系
 
 详细说明：见 [文件归档](references/file-archiving.md)、[图片处理最佳实践](references/image-handling-best-practices.md)
 
