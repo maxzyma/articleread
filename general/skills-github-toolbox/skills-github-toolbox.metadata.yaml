@@ -1,0 +1,71 @@
+---
+title: "Skills 最正确用法：将整个 GitHub 压缩成你自己的超级技能库"
+original_title: "Skills超绝用法！万能工具箱来啦！"
+extraction_date: "2026-01-22"
+
+source:
+  platform: "Twitter/X"
+  url: "https://x.com/Khazix0918/status/2013812311388229792"
+  author: "数字生命卡兹克"
+  username: "@Khazix0918"
+  publish_date: "2026-01-21"
+
+content:
+  type: "技术教程/观点文章"
+  topic: "AI Agent / Skills / GitHub"
+  core_point: "Skills 的真正威力在于将 GitHub 上的开源项目打包成可复用的技能库，让每个人都能站在巨人的肩膀上。"
+  key_topics:
+    - "Claude Skills"
+    - "GitHub 开源项目"
+    - "skill-creator 工具"
+    - "Agent 开发"
+    - "yt-dlp"
+    - "OpenCode / Claude Code"
+
+extraction_method:
+  - "Twitter/X 文章提取"
+  - "Google 搜索策略"
+  - "多级搜索流程验证"
+
+verification:
+  status: "completed"
+  verified_against: "Twitter/X 原文"
+  notes: "通过多级搜索策略成功找到文章。搜狗微信搜索未找到，Google 全网搜索成功定位到 Twitter 作者主页。"
+
+content_file: "./skills-github-toolbox.md"
+
+tags:
+  - "Claude Skills"
+  - "GitHub"
+  - "Agent"
+  - "skill-creator"
+  - "OpenCode"
+  - "Claude Code"
+  - "yt-dlp"
+  - "开源项目"
+  - "AI 工具"
+
+notes: |
+  核心观点：Skills 让普通人也能轻松将 GitHub 开源项目封装成 Agent 可用的技能。
+
+  技术背景：
+  - Skills 可以将脚本和 Prompt 打包在一起
+  - skill-creator 是 Claude 官方的 Skill 生成工具
+  - 支持的工具：OpenCode、Claude Code
+  - 模型选择策略：构建时用 Claude 4.5 Opus，首次运行时用 GPT 5.2 Codex
+
+  核心方法论：
+  1. 根据需求，用 AI 搜索 GitHub 上的开源项目
+  2. 使用 AI 将开源项目 Skill 化
+  3. 首次运行后寻找 BUG 和问题
+  4. 重新迭代 Skill
+  5. Skill 固化，形成可靠的技能
+
+  应用场景：
+  - 视频下载（yt-dlp）
+  - Web 项目转桌面 APP（Pake）
+  - 万能格式转换
+  - 网页归档（ArchiveBox）
+  - 密码破译（Ciphey）
+
+  目标受众：正在探索 Claude Skills 和 Agent 开发的技术人员

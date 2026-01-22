@@ -1,0 +1,242 @@
+# Skills 最正确用法：将整个 GitHub 压缩成你自己的超级技能库
+
+> 来源：Twitter/X 数字生命卡兹克，2026-01-21
+> 原文链接：https://x.com/Khazix0918/status/2013812311388229792
+
+## 核心观点
+
+**Skills 的真正威力在于将 GitHub 上的开源项目打包成可复用的技能库**，让每个人都能站在巨人的肩膀上，将全人类的代码积累转化为自己的超能力。通过 skill-creator 这样的工具，普通人也能轻松将复杂的技术项目封装成 Agent 可用的技能，从而获得三头六臂般的能力。
+
+---
+
+## 背景思考
+
+我一直觉得，重复造轮子是一件特别没有意义的事情。互联网三十年，开源世界大神这么多，其实你能想象到的绝大多数需求，都有大佬和真神们在前方铺路，做出了现成的产品，然后开源出来，给非常非常多的人用。
+
+其实现在非常多的商业 APP，特别是一些所谓的格式工厂、压缩之类的，绝大多数都是把一些大佬的开源工具，做个前端，给大家用。
+
+之前我觉得没啥问题。确实，GitHub 上很多的开源项目，都是没有 GUI（Graphical User Interface，图形用户界面）的，全部需要部署，部署以后还是用命令行操作，真的，光环境这一条，就能卡死绝大多数的普通用户。
+
+我自己，之前就是被挡在门外的普通用户。有太多太多好玩的、实用的、很酷的开源项目，我用不了了。
+
+比如格式转化这破事，没有 AI 之前，我每次就是去 Google 搜，"MP3 转 WAV"...
+
+然后就看着各种各样你也不知道是不是有刺客的链接，在向你招手。。![示例图片](https://pbs.twimg.com/media/G_J7mLHXsAA0gNV?format=png&name=900x900)
+
+---
+
+## Skills 的优势
+
+所以，Skills 一来，从文件结构上，它是可以把脚本（Script）和 Prompt（提示词）打包在一起的，这一点，跟单 Prompt 或者脚本完全不一样。
+
+再加上现在一些 Coding 能力强的基模（Foundation Model，基础模型）和 Agent（智能体），我觉得，它天然的擅长把很多的大佬们的开源项目 Skill 化，从而在 Agent 里面，为我所用。
+
+而且你要相信那些历史悠久的经典开源项目，经历了无数的时间和使用者的考验，不管是成功率还是稳定性还是效率，都远超绝大多数的你根据需求，让 AI 临时去写的一些代码...![优势说明](https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg&name=medium)
+
+所以就搞了这么个东西，当你在 OpenCode 或者 Claude Code 这种支持 Skills 的产品里，只要你装了那个 Claude 官方那个能生成 Skills 的 Skill，也就是 skill-creator，打包 GitHub 上的开源项目，也是完全没问题的。![skill-creator](https://pbs.twimg.com/media/G_J73fXaMAA0lsd?format=jpg&name=medium)
+
+这种方式，就能最快速度，越过所谓的本地整合包，变成一个类似于 Agent 的产物，让你能快速的用上。
+
+---
+
+## 实例演示
+
+比如，我把视频处理的开源项目 FFmpeg 和图片视频处理项目 ImageMagick，封装成了一个多模态素材处理的 Skill，它大概就是这个效果。![多模态素材处理](https://pbs.twimg.com/media/G_J7_rEaAAAtnwW?format=jpg&name=medium)
+
+我在我的文章中发现一个有趣的评论，引起了我的注意。![用户评论](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
+
+这个评论的问题没啥毛病，因为 GitHub 上那么多开源项目，离大众肯定还是非常的遥远。我因为知道有特定的项目可以去处理特定的事，所以封装成 Skill 就特别的简单，但是大多数的普通人，可能连 GitHub 是什么都不知道，那怎么封装呢？
+
+这确实是个问题。我当时想了两分钟，然后我一寻思，不对啊，这不都有 AI 了吗...
+
+于是，我就回了一句，然后没想到，引起了好几个朋友非常正向的反馈。![正向反馈](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
+
+这个时候，我才意识到，其实，我的很多的小技巧，对于蛮多人来说，还是挺有价值的。
+
+所以这块，我觉得可以单独拎一篇文章，来给大家讲一讲，普通人怎么把整个 GitHub，当成自己的弹药库，做成 skill，让自己真正的，变得三头六臂无所不能。
+
+比如，我自己现在，就已经封装了很多的 skills。![我的技能库](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
+
+这个管理 skills 的 skill，也是我自己建的一个 skill，要不然感觉每次进到文件里看太麻烦了，我就可以直接用这个 skill，对我本地的所有 skill 进行卸载删除修改优化操作...
+
+---
+
+## 完整工作流程
+
+举一个例子。我相信大家经常都有一个需求，就是去各种视频网站上，下载视频，比如 YouTube、B 站等等。
+
+我自己也有。
+
+那我们就可以直接打开 ChatGPT，选中 GPT-5.2 Thinking（目前我认为搜索能力最好、幻觉程度最低的模型），当然，你用别的也行，一般来说问题都不大。
+
+然后直接提出你的问题：
+
+**"有没有那种就是去各种视频网站上，下载视频，比如 YouTube、B 站等等的 github 上的开源项目。"**
+
+在 GPT 搜索了一阵子以后，就会给你推荐一个，在 GitHub 上，几乎封神的项目。![yt-dlp 项目](https://pbs.twimg.com/media/G_J8leeaoAMqMk4?format=jpg&name=large)
+
+它叫做，**yt-dlp**。
+
+GitHub 上 143k 的 star，说是真神，也不为过。![yt-dlp 统计](https://pbs.twimg.com/media/G_J8yuuaoAMMRs3?format=jpg&name=medium)
+
+支持上千个网站。![支持网站](https://pbs.twimg.com/media/G_J83y1agAAsT_x?format=jpg&name=medium)
+
+这，就是 yt-dlp，我觉得最伟大的项目之一。
+
+你要相信，在这个世界上，在这个互联网上，有无数的大神和前人，已经为你铺好了前路。你要相信，你的需求，永远不是这个世界上第一个提出这个需求的人，也绝对不是最后一个。你要相信，人类在这几十年所积攒的历史，几乎覆盖了世界所有的领域，互联网，永远都是那个最深、最广的宝藏。
+
+你要相信，在这一刻，你搜出来这个开源项目的这一刻，这就是人类开源精神的涓涓长河，在你面前展开的绝美的画卷。
+
+我时常赞美这世界上，每一个愿意开源、每一个无私的将自己的知识分享出来的前辈们，正是因为他们，才让我们，能站在他们的肩上，去摘更美的星辰。
+
+---
+
+### 步骤 1：复制项目链接
+
+我们直接复制 yt-dlp 的 GitHub 链接：https://github.com/yt-dlp/yt-dlp
+
+### 步骤 2：使用 skill-creator 打包
+
+然后把这段 Prompt 发给你装好了 skill-creator 的 OpenCode 或者 Claude Code：
+
+> **帮我把这个开源工具：** https://github.com/yt-dlp/yt-dlp
+> **打包成一个 Skill，只要我后续给出视频链接，就可以帮我下载视频。**
+
+这块如果还不懂或者不知道 skill-creator 是啥的，可以去看我之前的那篇文章：一文带你看懂，火爆全网的 Skills 到底是个啥。
+
+一般我的做法是，先让 Agent 进行规划，然后再去写整个的 Skill，这样我自己感觉，成功率会高一点、后期稳定性也会更强一点。
+
+相对应的，OpenCode 就是开启 Plan 模式。![Plan 模式](https://pbs.twimg.com/media/G_J9KOjX0AE5wTS?format=png&name=small)
+
+然后，Agent 就会开始调用 skill-creator 这个生成器，开始分析 yt-dlp 这个项目，然后开始规划要怎么打包封装成一个 Skill。![规划过程](https://pbs.twimg.com/media/G_J9N9ebQAA0KHq?format=jpg&name=medium)
+
+规划了一通以后，OpenCode 就分析完了，向我提出了几个问题。我也给出了我的回答。![回答问题](https://pbs.twimg.com/media/G_J_QqgaoAEc3Np?format=jpg&name=large)
+
+然后它就会继续规划，最终给我一个非常明确的计划。![最终计划](https://pbs.twimg.com/media/G_J9dRuaoAMTXAN?format=jpg&name=medium)
+
+我觉得没有问题了，这个时候，我就会切换到正式的开发模式。也就是这个模式，然后发一句话，**开始开发！**![开发模式](https://pbs.twimg.com/media/G_J9hNraYAAL0gY?format=png&name=small)
+
+OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 yt-dlp 的视频下载 Skill，就开发完成了。![开发完成](https://pbs.twimg.com/media/G_J9ldkakAAC9xn?format=jpg&name=medium)
+
+---
+
+### 步骤 3：测试使用
+
+我们试一试。
+
+比如 OpenAI 刚刚出的 YouTube 访谈视频，我想下载下来。![示例视频](https://pbs.twimg.com/media/G_J9p86WwAAaqrZ?format=jpg&name=medium)
+
+直接就把链接扔给 OpenCode 就行。这里可以注意一个小技巧，就是所有的涉及到这种需要运行程序的 Skills，在第一次运行的时候，都无脑推荐在 OpenCode 里使用 **GPT 5.2 Codex**（如果你有的话），体验会比 Claude 4.5 Opus 好 N 倍。
+
+大概就是：**构建 Skills 的时候用 Claude 4.5 Opus，如果这些开源项目封装好了，在第一次运行的时候用 GPT 5.2 Codex，后续就无所谓了。**![模型选择](https://pbs.twimg.com/media/G_J9to9aoAc5LLV?format=png&name=small)
+
+第一次运行，其实会遇到很多问题，比如说 YouTube 防爬机制很强，需要你装个浏览器扩展导出 Cookie，比如要安装一些其他的项目等等，不过这些 AI 都会指导你干好。![解决问题](https://pbs.twimg.com/media/G_J9wnAa0AA1O8v?format=jpg&name=medium)
+
+然后一顿操作，这个项目，就下载好了，全程大概也就几分钟。![下载完成](https://pbs.twimg.com/media/G_J90H6aoAEDih1?format=jpg&name=medium)
+
+之所以是几分钟，还是因为，这是第一次。
+
+**而后续，只需要，十几秒。**
+
+---
+
+### 步骤 4：优化迭代
+
+这时候，其实你还可以做一个事，就是，把前面的那些为了下载视频而做的一些事情和经验，直接跟 AI 说：
+
+> **把这些经验，都更新到 video-downloader 这个 skill 里，下次就别这么慢了。**
+
+然后，它就会自己对他的 Skill 文件进行修改，下次，这些事情，就不用干了，随开随下，快到起飞。![优化迭代](https://pbs.twimg.com/media/G_J99E5WEAALLgF?format=png&name=900x900)
+
+---
+
+## 核心方法论
+
+这就是我的自己纯为了自己方便的一个 skill 全流程：
+
+1. **根据一个需求**，用 AI 搜索 GitHub 上的开源项目
+2. **把开源项目使用 AI 进行 Skill 化**
+3. **首次运行后，寻找 BUG 和问题**
+4. **重新迭代 Skill**
+5. **至此，Skill 固化，形成我的主 Agent 中一个可靠的技能**
+
+不止是一个下载视频的需求。
+
+---
+
+## 更多应用场景
+
+### 场景 1：Web 项目打包成桌面 APP
+
+还可以是，把一个 web 项目，打包成一个轻量级的桌面 APP（Desktop Application）。![Pake 示例 1](https://pbs.twimg.com/media/G_J-ImsaoAITHR1?format=png&name=900x900)
+
+于是，找到了 **Pake**。![Pake 项目](https://pbs.twimg.com/media/G_J-MMgXIAAIAEe?format=png&name=900x900)
+
+GitHub 上一个 45k 的超棒的项目，那就，直接 Skill 化，以后，你的网页开发完，直接就可以用 Pake skill，一句话变成桌面 APP。
+
+### 场景 2：万能格式转换工厂
+
+你还可以，直接做一个究极万能的格式转化工厂。![格式转换](https://pbs.twimg.com/media/G_J-SxjXQAAgkSE?format=jpg&name=medium)
+
+直接把这些最牛逼的格式转化项目，直接封装在一起，做成一个万能的格式转化 Skill。
+
+从此，你无需各种奇怪的格式转化器，一个 skill，解决所有。
+
+### 场景 3：网页归档
+
+你还可以，把 ArchiveBox 转成 Skill，从此，你有想保存下来的网页，都可以发送给 ArchiveBox Skill 来以无数种你想要的格式，帮你保存下来。
+
+支持 N 种格式，真的。![ArchiveBox](https://pbs.twimg.com/media/G_J-cFmbMAAqqIQ?format=jpg&name=large)
+
+### 场景 4：密码破译
+
+甚至，你可以把著名的 Ciphey，转成一个 Skill。
+
+从此，你就可以，在你的本地，配合 Agent，直接破译密码。。。![Ciphey](https://pbs.twimg.com/media/G_J_DPfaoAEWuSN?format=jpg&name=medium)
+
+---
+
+## 总结
+
+这些，全部都可以 Skill 化，全部都可以加入到你的 Agent 之中，成为，你最坚实的技能，成为，你最恐怖的弹药库。
+
+而我提到的这些，仅仅只是 GitHub 上开源项目的冰山一角。
+
+GitHub 上牛逼的开源项目，那些人类的经验、人类的光芒。
+
+**本就灿烂如星海。**
+
+因为 Skills 的诞生，因为 Agent 的强大，现在，每个人、每个普通人，你的背后，都是全人类过去数十年的积累，只要你想，他就可以为你所用。
+
+你无需三头六臂，你无需头上长角，你已经拥有了海量的知识和技能。
+
+如果回到 3 年前的你的面前，你觉得，他跟你如今可以做到的事、如今的能力边界，还有任何可比性吗？
+
+朋友，这样璀璨、这样伟大、这样能让你成为超人的时代。
+
+**真的不会让你兴奋吗？**
+
+---
+
+## 技术启示
+
+对于正在探索 Skills 和 Agent 的开发者：
+
+1. **不要重复造轮子**：GitHub 上有无数成熟的开源项目，优先将它们 Skill 化
+2. **使用 skill-creator**：官方的 skill-creator 工具可以轻松打包 GitHub 项目
+3. **模型选择策略**：构建时用 Claude 4.5 Opus，首次运行时用 GPT 5.2 Codex
+4. **迭代优化**：首次运行后会遇到问题，将经验反馈给 AI 进行优化
+5. **构建自己的弹药库**：逐步将常用功能都封装成 Skills，形成个人技能库
+
+### 关键工具
+
+- **skill-creator**：Claude 官方的 Skill 生成工具
+- **OpenCode** / **Claude Code**：支持 Skills 的开发环境
+- **yt-dlp**：视频下载工具（143k stars）
+- **Pake**：Web 项目转桌面 APP（45k stars）
+- **ArchiveBox**：网页归档工具
+- **Ciphey**：密码破译工具
+
+---
+
+*来源：数字生命卡兹克 的 "Skills超绝用法！万能工具箱来啦！"*
