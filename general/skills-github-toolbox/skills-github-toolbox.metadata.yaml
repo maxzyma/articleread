@@ -24,15 +24,21 @@ content:
 
 extraction_method:
   - "Twitter/X 文章提取"
-  - "Google 搜索策略"
-  - "多级搜索流程验证"
+  - "图片下载到本地"
+  - "双版本策略（原始版 + standalone 版）"
 
 verification:
   status: "completed"
   verified_against: "Twitter/X 原文"
-  notes: "通过多级搜索策略成功找到文章。搜狗微信搜索未找到，Google 全网搜索成功定位到 Twitter 作者主页。"
+  notes: "25 张图片全部下载到本地，使用 Media ID 命名"
 
 content_file: "./skills-github-toolbox.md"
+
+images:
+  count: 25
+  directory: "./images/"
+  naming: "Media ID (Twitter)"
+  standalone_version: "./skills-github-toolbox-standalone.md"
 
 tags:
   - "Claude Skills"

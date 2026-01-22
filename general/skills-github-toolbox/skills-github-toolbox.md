@@ -21,7 +21,7 @@
 
 比如格式转化这破事，没有 AI 之前，我每次就是去 Google 搜，"MP3 转 WAV"...
 
-然后就看着各种各样你也不知道是不是有刺客的链接，在向你招手。。![示例图片](https://pbs.twimg.com/media/G_J7mLHXsAA0gNV?format=png&name=900x900)
+然后就看着各种各样你也不知道是不是有刺客的链接，在向你招手。。![示例图片](./images/G_J7mLHXsAA0gNV.png)
 
 ---
 
@@ -33,7 +33,7 @@
 
 而且你要相信那些历史悠久的经典开源项目，经历了无数的时间和使用者的考验，不管是成功率还是稳定性还是效率，都远超绝大多数的你根据需求，让 AI 临时去写的一些代码...
 
-所以就搞了这么个东西，当你在 OpenCode 或者 Claude Code 这种支持 Skills 的产品里，只要你装了那个 Claude 官方那个能生成 Skills 的 Skill，也就是 skill-creator，打包 GitHub 上的开源项目，也是完全没问题的。![skill-creator](https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg&name=medium)
+所以就搞了这么个东西，当你在 OpenCode 或者 Claude Code 这种支持 Skills 的产品里，只要你装了那个 Claude 官方那个能生成 Skills 的 Skill，也就是 skill-creator，打包 GitHub 上的开源项目，也是完全没问题的。![skill-creator](./images/G_J7wRIaoAI5VxQ.jpg)
 
 这种方式，就能最快速度，越过所谓的本地整合包，变成一个类似于 Agent 的产物，让你能快速的用上。
 
@@ -41,21 +41,21 @@
 
 ## 实例演示
 
-比如，我把视频处理的开源项目 FFmpeg 和图片视频处理项目 ImageMagick，封装成了一个多模态素材处理的 Skill，它大概就是这个效果。![多模态素材处理](https://pbs.twimg.com/media/G_J73fXaMAA0lsd?format=jpg&name=medium)
+比如，我把视频处理的开源项目 FFmpeg 和图片视频处理项目 ImageMagick，封装成了一个多模态素材处理的 Skill，它大概就是这个效果。![多模态素材处理](./images/G_J73fXaMAA0lsd.jpg)
 
-我在我的文章中发现一个有趣的评论，引起了我的注意。![用户评论](https://pbs.twimg.com/media/G_J7_rEaAAAtnwW?format=jpg&name=medium)
+我在我的文章中发现一个有趣的评论，引起了我的注意。![用户评论](./images/G_J7_rEaAAAtnwW.jpg)
 
 这个评论的问题没啥毛病，因为 GitHub 上那么多开源项目，离大众肯定还是非常的遥远。我因为知道有特定的项目可以去处理特定的事，所以封装成 Skill 就特别的简单，但是大多数的普通人，可能连 GitHub 是什么都不知道，那怎么封装呢？
 
 这确实是个问题。我当时想了两分钟，然后我一寻思，不对啊，这不都有 AI 了吗...
 
-于是，我就回了一句，然后没想到，引起了好几个朋友非常正向的反馈。![正向反馈](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
+于是，我就回了一句，然后没想到，引起了好几个朋友非常正向的反馈。![正向反馈](./images/G_J8qXqaoAQ2xhu.jpg)
 
 这个时候，我才意识到，其实，我的很多的小技巧，对于蛮多人来说，还是挺有价值的。
 
 所以这块，我觉得可以单独拎一篇文章，来给大家讲一讲，普通人怎么把整个 GitHub，当成自己的弹药库，做成 skill，让自己真正的，变得三头六臂无所不能。
 
-比如，我自己现在，就已经封装了很多的 skills。![我的技能库](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
+比如，我自己现在，就已经封装了很多的 skills。![我的技能库](./images/G_J8RtCaoAEX3ST.png)
 
 这个管理 skills 的 skill，也是我自己建的一个 skill，要不然感觉每次进到文件里看太麻烦了，我就可以直接用这个 skill，对我本地的所有 skill 进行卸载删除修改优化操作...
 
@@ -73,13 +73,13 @@
 
 **"有没有那种就是去各种视频网站上，下载视频，比如 YouTube、B 站等等的 github 上的开源项目。"**
 
-在 GPT 搜索了一阵子以后，就会给你推荐一个，在 GitHub 上，几乎封神的项目。![yt-dlp 项目](https://pbs.twimg.com/media/G_J8leeaoAMqMk4?format=jpg&name=large)
+在 GPT 搜索了一阵子以后，就会给你推荐一个，在 GitHub 上，几乎封神的项目。![yt-dlp 项目](./images/G_J8leeaoAMqMk4.jpg)
 
 它叫做，**yt-dlp**。
 
-GitHub 上 143k 的 star，说是真神，也不为过。![yt-dlp 统计](https://pbs.twimg.com/media/G_J8yuuaoAMMRs3?format=jpg&name=medium)
+GitHub 上 143k 的 star，说是真神，也不为过。![yt-dlp 统计](./images/G_J8yuuaoAMMRs3.jpg)
 
-支持上千个网站。![支持网站](https://pbs.twimg.com/media/G_J83y1agAAsT_x?format=jpg&name=medium)
+支持上千个网站。![支持网站](./images/G_J83y1agAAsT_x.jpg)
 
 这，就是 yt-dlp，我觉得最伟大的项目之一。
 
@@ -106,17 +106,17 @@ GitHub 上 143k 的 star，说是真神，也不为过。![yt-dlp 统计](https:
 
 一般我的做法是，先让 Agent 进行规划，然后再去写整个的 Skill，这样我自己感觉，成功率会高一点、后期稳定性也会更强一点。
 
-相对应的，OpenCode 就是开启 Plan 模式。![Plan 模式](https://pbs.twimg.com/media/G_J9KOjX0AE5wTS?format=png&name=small)
+相对应的，OpenCode 就是开启 Plan 模式。![Plan 模式](./images/G_J9KOjX0AE5wTS.png)
 
-然后，Agent 就会开始调用 skill-creator 这个生成器，开始分析 yt-dlp 这个项目，然后开始规划要怎么打包封装成一个 Skill。![规划过程](https://pbs.twimg.com/media/G_J9N9ebQAA0KHq?format=jpg&name=medium)
+然后，Agent 就会开始调用 skill-creator 这个生成器，开始分析 yt-dlp 这个项目，然后开始规划要怎么打包封装成一个 Skill。![规划过程](./images/G_J9N9ebQAA0KHq.jpg)
 
-规划了一通以后，OpenCode 就分析完了，向我提出了几个问题。我也给出了我的回答。![回答问题](https://pbs.twimg.com/media/G_J_QqgaoAEc3Np?format=jpg&name=large)
+规划了一通以后，OpenCode 就分析完了，向我提出了几个问题。我也给出了我的回答。![回答问题](./images/G_J_QqgaoAEc3Np.jpg)
 
-然后它就会继续规划，最终给我一个非常明确的计划。![最终计划](https://pbs.twimg.com/media/G_J9dRuaoAMTXAN?format=jpg&name=medium)
+然后它就会继续规划，最终给我一个非常明确的计划。![最终计划](./images/G_J9dRuaoAMTXAN.jpg)
 
-我觉得没有问题了，这个时候，我就会切换到正式的开发模式。也就是这个模式，然后发一句话，**开始开发！**![开发模式](https://pbs.twimg.com/media/G_J9hNraYAAL0gY?format=png&name=small)
+我觉得没有问题了，这个时候，我就会切换到正式的开发模式。也就是这个模式，然后发一句话，**开始开发！**![开发模式](./images/G_J9hNraYAAL0gY.png)
 
-OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 yt-dlp 的视频下载 Skill，就开发完成了。![开发完成](https://pbs.twimg.com/media/G_J9ldkakAAC9xn?format=jpg&name=medium)
+OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 yt-dlp 的视频下载 Skill，就开发完成了。![开发完成](./images/G_J9ldkakAAC9xn.jpg)
 
 ---
 
@@ -124,15 +124,15 @@ OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 y
 
 我们试一试。
 
-比如 OpenAI 刚刚出的 YouTube 访谈视频，我想下载下来。![示例视频](https://pbs.twimg.com/media/G_J9p86WwAAaqrZ?format=jpg&name=medium)
+比如 OpenAI 刚刚出的 YouTube 访谈视频，我想下载下来。![示例视频](./images/G_J9p86WwAAaqrZ.jpg)
 
 直接就把链接扔给 OpenCode 就行。这里可以注意一个小技巧，就是所有的涉及到这种需要运行程序的 Skills，在第一次运行的时候，都无脑推荐在 OpenCode 里使用 **GPT 5.2 Codex**（如果你有的话），体验会比 Claude 4.5 Opus 好 N 倍。
 
-大概就是：**构建 Skills 的时候用 Claude 4.5 Opus，如果这些开源项目封装好了，在第一次运行的时候用 GPT 5.2 Codex，后续就无所谓了。**![模型选择](https://pbs.twimg.com/media/G_J9to9aoAc5LLV?format=png&name=small)
+大概就是：**构建 Skills 的时候用 Claude 4.5 Opus，如果这些开源项目封装好了，在第一次运行的时候用 GPT 5.2 Codex，后续就无所谓了。**![模型选择](./images/G_J9to9aoAc5LLV.png)
 
-第一次运行，其实会遇到很多问题，比如说 YouTube 防爬机制很强，需要你装个浏览器扩展导出 Cookie，比如要安装一些其他的项目等等，不过这些 AI 都会指导你干好。![解决问题](https://pbs.twimg.com/media/G_J9wnAa0AA1O8v?format=jpg&name=medium)
+第一次运行，其实会遇到很多问题，比如说 YouTube 防爬机制很强，需要你装个浏览器扩展导出 Cookie，比如要安装一些其他的项目等等，不过这些 AI 都会指导你干好。![解决问题](./images/G_J9wnAa0AA1O8v.jpg)
 
-然后一顿操作，这个项目，就下载好了，全程大概也就几分钟。![下载完成](https://pbs.twimg.com/media/G_J90H6aoAEDih1?format=jpg&name=medium)
+然后一顿操作，这个项目，就下载好了，全程大概也就几分钟。![下载完成](./images/G_J90H6aoAEDih1.jpg)
 
 之所以是几分钟，还是因为，这是第一次。
 
@@ -146,7 +146,7 @@ OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 y
 
 > **把这些经验，都更新到 video-downloader 这个 skill 里，下次就别这么慢了。**
 
-然后，它就会自己对他的 Skill 文件进行修改，下次，这些事情，就不用干了，随开随下，快到起飞。![优化迭代](https://pbs.twimg.com/media/G_J99E5WEAALLgF?format=png&name=900x900)
+然后，它就会自己对他的 Skill 文件进行修改，下次，这些事情，就不用干了，随开随下，快到起飞。![优化迭代](./images/G_J99E5WEAALLgF.png)
 
 ---
 
@@ -168,15 +168,15 @@ OpenCode 就会开始了。过了一会，大概 2 分钟以后，这个基于 y
 
 ### 场景 1：Web 项目打包成桌面 APP
 
-还可以是，把一个 web 项目，打包成一个轻量级的桌面 APP（Desktop Application）。![Pake 示例 1](https://pbs.twimg.com/media/G_J-ImsaoAITHR1?format=png&name=900x900)
+还可以是，把一个 web 项目，打包成一个轻量级的桌面 APP（Desktop Application）。![Pake 示例 1](./images/G_J-ImsaoAITHR1.png)
 
-于是，找到了 **Pake**。![Pake 项目](https://pbs.twimg.com/media/G_J-MMgXIAAIAEe?format=png&name=900x900)
+于是，找到了 **Pake**。![Pake 项目](./images/G_J-MMgXIAAIAEe.png)
 
 GitHub 上一个 45k 的超棒的项目，那就，直接 Skill 化，以后，你的网页开发完，直接就可以用 Pake skill，一句话变成桌面 APP。
 
 ### 场景 2：万能格式转换工厂
 
-你还可以，直接做一个究极万能的格式转化工厂。![格式转换](https://pbs.twimg.com/media/G_J-SxjXQAAgkSE?format=jpg&name=medium)
+你还可以，直接做一个究极万能的格式转化工厂。![格式转换](./images/G_J-SxjXQAAgkSE.jpg)
 
 直接把这些最牛逼的格式转化项目，直接封装在一起，做成一个万能的格式转化 Skill。
 
@@ -186,13 +186,13 @@ GitHub 上一个 45k 的超棒的项目，那就，直接 Skill 化，以后，�
 
 你还可以，把 ArchiveBox 转成 Skill，从此，你有想保存下来的网页，都可以发送给 ArchiveBox Skill 来以无数种你想要的格式，帮你保存下来。
 
-支持 N 种格式，真的。![ArchiveBox](https://pbs.twimg.com/media/G_J-cFmbMAAqqIQ?format=jpg&name=large)
+支持 N 种格式，真的。![ArchiveBox](./images/G_J-cFmbMAAqqIQ.jpg)
 
 ### 场景 4：密码破译
 
 甚至，你可以把著名的 Ciphey，转成一个 Skill。
 
-从此，你就可以，在你的本地，配合 Agent，直接破译密码。。。![Ciphey](https://pbs.twimg.com/media/G_J_DPfaoAEWuSN?format=jpg&name=medium)
+从此，你就可以，在你的本地，配合 Agent，直接破译密码。。。![Ciphey](./images/G_J_DPfaoAEWuSN.jpg)
 
 ---
 
