@@ -11,7 +11,7 @@
 
 ## 1. Anthropic 官方 Skills
 
-![Anthropic 官方 Skills](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/anthropic-skills.png)
+![Anthropic 官方 Skills](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/anthropic-skills.png)
 
 Anthropic 官方发布的 Skills 示例集合，包含创意、技术、企业和文档等类别。里面有完整的规范和模板，几乎所有社区 Skill 都以此为基础构建。先看这里能快速掌握标准写法。
 
@@ -22,7 +22,7 @@ Anthropic 官方发布的 Skills 示例集合，包含创意、技术、企业�
 
 ## 2. Superpowers
 
-![Superpowers](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/superpowers.png)
+![Superpowers](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/superpowers.png)
 
 Superpowers 提供一套完整的 agentic 技能框架，针对软件开发流程。从头脑风暴、设计验证到规划、实现、测试、重构和代码审查，全程强制结构化。很多人用它搭配 Claude Code 做项目，稳定性较高。
 
@@ -33,7 +33,7 @@ Superpowers 提供一套完整的 agentic 技能框架，针对软件开发流�
 
 ## 3. Planning-with-files
 
-![Planning-with-files](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/planning-with-files.png)
+![Planning-with-files](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/planning-with-files.png)
 
 这个 Skill 让 Claude 在处理多文件任务时先用持久化 markdown 文件记录完整规划，再逐步执行。开发者用它改代码或建架构时，逻辑更清晰，出错少。
 
@@ -44,7 +44,7 @@ Superpowers 提供一套完整的 agentic 技能框架，针对软件开发流�
 
 ## 4. NotebookLM Skill
 
-![NotebookLM Skill](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/notebooklm-skill.png)
+![NotebookLM Skill](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/notebooklm-skill.png)
 
 它让 Claude 直接连接 Google NotebookLM，针对你上传的文档进行查询，返回带引用的答案。适合快速消化论文、报告或个人知识库，答案来源可控。
 
@@ -55,7 +55,7 @@ Superpowers 提供一套完整的 agentic 技能框架，针对软件开发流�
 
 ## 5. UI-UX-Pro-Max-Skill
 
-![UI-UX-Pro-Max-Skill](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/ui-ux-pro-max-skill.png)
+![UI-UX-Pro-Max-Skill](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/ui-ux-pro-max-skill.png)
 
 专注提供跨平台 UI/UX 设计智能。输入需求后输出布局建议、组件选择和交互细节，前端和产品团队用得频繁，输出质量接近专业水准。
 
@@ -66,7 +66,7 @@ Superpowers 提供一套完整的 agentic 技能框架，针对软件开发流�
 
 ## 6. Awesome-Claude-Skills
 
-![Awesome-Claude-Skills](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-skills-repos-recommendation/images/awesome-claude-skills.png)
+![Awesome-Claude-Skills](https://cdn.jsdelivr.net/gh/maxzyma/articleread/general/claude-skills-repos-recommendation/images/awesome-claude-skills.png)
 
 这是一个精选资源列表，收录大量 Claude Skills、工具和教程。找特定领域扩展时，先来这里，基本能覆盖最新社区成果。
 
