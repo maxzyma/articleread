@@ -135,7 +135,7 @@ general/article-slug/
 2. **Google/Bing 全网搜索** - 搜索其他平台版本
    - Google: `<作者名称> "<文章标题/关键词>"`
    - Bing: `<作者名称> "<文章标题/关键词>"`
-   - 目标平台：个人博客、Medium、Dev.to、知乎等
+   - 目标平台：Twitter、个人博客、Medium、Dev.to、知乎等
    - ✅ 找到 → 访问并提取内容（文字平台优先）
    - ❌ 未找到 → 继续第3步
 
