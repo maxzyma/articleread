@@ -31,9 +31,9 @@
 
 再加上现在一些 Coding 能力强的基模（Foundation Model，基础模型）和 Agent（智能体），我觉得，它天然的擅长把很多的大佬们的开源项目 Skill 化，从而在 Agent 里面，为我所用。
 
-而且你要相信那些历史悠久的经典开源项目，经历了无数的时间和使用者的考验，不管是成功率还是稳定性还是效率，都远超绝大多数的你根据需求，让 AI 临时去写的一些代码...![优势说明](https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg&name=medium)
+而且你要相信那些历史悠久的经典开源项目，经历了无数的时间和使用者的考验，不管是成功率还是稳定性还是效率，都远超绝大多数的你根据需求，让 AI 临时去写的一些代码...
 
-所以就搞了这么个东西，当你在 OpenCode 或者 Claude Code 这种支持 Skills 的产品里，只要你装了那个 Claude 官方那个能生成 Skills 的 Skill，也就是 skill-creator，打包 GitHub 上的开源项目，也是完全没问题的。![skill-creator](https://pbs.twimg.com/media/G_J73fXaMAA0lsd?format=jpg&name=medium)
+所以就搞了这么个东西，当你在 OpenCode 或者 Claude Code 这种支持 Skills 的产品里，只要你装了那个 Claude 官方那个能生成 Skills 的 Skill，也就是 skill-creator，打包 GitHub 上的开源项目，也是完全没问题的。![skill-creator](https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg&name=medium)
 
 这种方式，就能最快速度，越过所谓的本地整合包，变成一个类似于 Agent 的产物，让你能快速的用上。
 
@@ -41,9 +41,9 @@
 
 ## 实例演示
 
-比如，我把视频处理的开源项目 FFmpeg 和图片视频处理项目 ImageMagick，封装成了一个多模态素材处理的 Skill，它大概就是这个效果。![多模态素材处理](https://pbs.twimg.com/media/G_J7_rEaAAAtnwW?format=jpg&name=medium)
+比如，我把视频处理的开源项目 FFmpeg 和图片视频处理项目 ImageMagick，封装成了一个多模态素材处理的 Skill，它大概就是这个效果。![多模态素材处理](https://pbs.twimg.com/media/G_J73fXaMAA0lsd?format=jpg&name=medium)
 
-我在我的文章中发现一个有趣的评论，引起了我的注意。![用户评论](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
+我在我的文章中发现一个有趣的评论，引起了我的注意。![用户评论](https://pbs.twimg.com/media/G_J7_rEaAAAtnwW?format=jpg&name=medium)
 
 这个评论的问题没啥毛病，因为 GitHub 上那么多开源项目，离大众肯定还是非常的遥远。我因为知道有特定的项目可以去处理特定的事，所以封装成 Skill 就特别的简单，但是大多数的普通人，可能连 GitHub 是什么都不知道，那怎么封装呢？
 

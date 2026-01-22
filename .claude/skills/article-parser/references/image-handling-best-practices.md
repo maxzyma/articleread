@@ -104,23 +104,33 @@
       "index": 1,
       "original_url": "https://pbs.twimg.com/media/G_J7mLHXsAA0gNV?format=png&name=900x900",
       "media_id": "G_J7mLHXsAA0gNV",
-      "description": "示例图片 - Google搜索",
-      "local_filename": "google-search-mp3-to-wav.png",
+      "description": "Google 搜索 MP3 转 WAV",
       "alt_text": "示例图片",
-      "position_in_article": "背景思考章节"
+      "context_before": "比如格式转化这破事，没有AI之前，我每次就是去Google搜，MP3转WAV...",
+      "context_after": "然后就看着各种各样你也不知道是不是有刺客的链接..."
     },
     {
       "index": 2,
-      "original_url": "https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large",
-      "media_id": "G_J8qXqaoAQ2xhu",
-      "description": "正向反馈",
-      "local_filename": "G_J8qXqaoAQ2xhu.jpg",
-      "alt_text": "正向反馈",
-      "position_in_article": "实例演示章节"
+      "original_url": "https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg&name=medium",
+      "media_id": "G_J7wRIaoAI5VxQ",
+      "description": "skill-creator 打包开源项目",
+      "alt_text": "skill-creator",
+      "context_before": "skill-creator，打包Github上的开源项目，也是完全没问题的。",
+      "context_after": "这种方式，就能最快速度，越过所谓的本地整合包..."
     }
   ]
 }
 ```
+
+**关键字段说明**：
+
+| 字段 | 必填 | 说明 |
+|------|-----|------|
+| `index` | ✅ | 图片在原文中的顺序 |
+| `original_url` | ✅ | 图片原始 URL |
+| `media_id` | ⚠️ | Twitter 等平台的媒体 ID |
+| `context_before` | ✅ | **图片前的文字**（用于精确定位） |
+| `context_after` | ⚠️ | 图片后的文字（辅助验证） |
 
 ### 生成映射文件的脚本示例
 
@@ -192,14 +202,67 @@ def create_image_mapping(article_url, images_data, article_dir):
 
 ## 4. 常见问题与解决方案
 
-### 问题 1：图片顺序错位
+### 问题 1：图片顺序错位（重要！）
 
-**原因**：使用 image-01, image-02 等编号时，手动整理容易出错。
+**典型错误模式**：
 
-**解决方案**：
-- ✅ 使用描述性名称或 Media ID
-- ✅ 在缓存中记录图片顺序
-- ✅ 使用脚本自动化验证
+```
+原文顺序：                          文章中的错误：
+"经典开源项目..." → 无图片          → 放了图片A ❌
+"skill-creator"  → 图片A           → 放了图片B ❌
+"FFmpeg多模态"   → 图片B           → 放了图片C ❌
+"发现评论"       → 图片C           → 放了图片D ❌
+```
+
+**图片整体向前错位一位！**
+
+**根本原因**：
+
+1. **图片和文字分离提取**：先拿到所有图片 URL 列表，再单独整理文字，然后靠"感觉"匹配
+2. **缺少精确位置锚点**：只记录顺序索引（index: 1, 2, 3...），没有记录图片**紧跟在哪句话后面**
+3. **验证环节缺失**：没有逐张对照原文验证"这张图是否紧跟在这段文字后面"
+
+**解决方案：使用上下文锚点**
+
+在缓存映射中记录图片的**上下文文字**，而不仅是顺序号：
+
+```json
+{
+  "index": 3,
+  "media_id": "G_J7wRIaoAI5VxQ",
+  "original_url": "https://pbs.twimg.com/media/G_J7wRIaoAI5VxQ?format=jpg",
+  "context_before": "skill-creator，打包Github上的开源项目，也是完全没问题的。",
+  "context_after": "这种方式，就能最快速度，越过所谓的本地整合包..."
+}
+```
+
+**验证方法**：
+
+```python
+def verify_image_position(markdown_content, image_mapping):
+    """通过上下文锚点验证图片位置"""
+    for img in image_mapping['images']:
+        context_before = img.get('context_before', '')
+        image_url = img['original_url']
+
+        # 在 markdown 中查找：context_before 后面是否紧跟着这张图片
+        pattern = re.escape(context_before[:50]) + r'.*?' + re.escape(image_url)
+        if not re.search(pattern, markdown_content, re.DOTALL):
+            print(f"❌ 图片位置错误: {img['media_id']}")
+            print(f"   应该在: '{context_before[:30]}...' 之后")
+```
+
+**提取时的正确做法**：
+
+1. 在浏览器中滚动原文，**边看边记录**每张图片的上下文
+2. 记录格式：`"...这段文字之后" → 图片URL`
+3. 整理文章时，通过上下文文字精确定位，而不是靠顺序号
+
+**检查清单**：
+
+- [ ] 每张图片都记录了 `context_before`（图片前的文字）
+- [ ] 整理文章时，逐张对照上下文放置图片
+- [ ] 完成后运行验证脚本确认位置正确
 
 ### 问题 2：外链图片失效
 
