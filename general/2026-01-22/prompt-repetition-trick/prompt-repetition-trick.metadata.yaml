@@ -1,0 +1,53 @@
+---
+title: "一个被忽视的 Prompt 技巧：重复提示词"
+original_title: "一个被忽视的Prompt技巧，居然是复制+粘贴。"
+extraction_date: "2026-01-22"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/jlpaO-piFqvnxAgVJ47wyw"
+  author: "数字生命卡兹克"
+  publish_date: "2026-01-22"
+
+content:
+  type: "技术分析"
+  topic: "Prompt Engineering"
+  core_point: "通过重复提示词，非推理模型的准确率可从21.33%提升至97.33%"
+  key_topics:
+    - "Prompt Repetition"
+    - "非推理模型优化"
+    - "大语言模型技巧"
+    - "Google研究"
+    - "模型准确率提升"
+
+extraction_method:
+  - "Chrome DevTools 网页提取"
+  - "手动内容整理"
+  - "图片下载和本地化"
+
+verification:
+  status: "completed"
+  verified_against: "微信公众号原文"
+  notes: "已提取全部正文内容和5张图片，创建本地版本和远程版本"
+
+content_file: "./prompt-repetition-trick.md"
+
+tags:
+  - "Prompt Engineering"
+  - "LLM"
+  - "Google"
+  - "非推理模型"
+  - "模型优化"
+
+notes: |
+  核心观点：重复提示词可将非推理模型准确率从21.33%提升至97.33%
+
+  技术背景：
+  - Google 论文《Prompt Repetition Improves Non-Reasoning LLMs》
+  - 测试模型：Gemini 2.0 Flash、GPT-4o、Claude 3、DeepSeek V3
+  - 适用场景：短问题、选择题、事实性问答
+  - 不适用：推理模型（已自动学会此技巧）
+
+  原理：大模型是因果语言模型，重复让后续token能"回头看"前面的内容
+
+  目标受众：AI开发者、Prompt工程师、对LLM优化感兴趣的技术人员
