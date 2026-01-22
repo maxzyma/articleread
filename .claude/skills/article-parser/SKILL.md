@@ -115,7 +115,12 @@ general/article-slug/
 
 **重要**：remote 版本不是可选的，必须创建！用于在线分享和发布。
 
-详细说明：见 [文件归档](references/file-archiving.md)
+**图片处理最佳实践**：
+- Twitter/X、微信公众号等外链友好平台，直接使用原始 URL
+- 避免使用 image-01.jpg 这种编号，改用描述性命名或 Media ID
+- 在 `.cache/` 目录记录图片映射关系，便于追溯和验证
+
+详细说明：见 [文件归档](references/file-archiving.md)、[图片处理最佳实践](references/image-handling-best-practices.md)
 
 ---
 
@@ -170,6 +175,7 @@ general/article-slug/
 - [验证环节](references/validation.md) - 完整性验证检查清单
 - [内容整理](references/content-organization.md) - 忠于原文原则
 - [文件归档](references/file-archiving.md) - 双版本策略、Git 策略
+- [图片处理最佳实践](references/image-handling-best-practices.md) - **图片命名、外链策略、缓存映射**
 - [图片位置确定](references/image-position-determination.md) - 微信图片位置最佳实践
 
 ### 示例

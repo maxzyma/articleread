@@ -49,7 +49,7 @@
 
 这确实是个问题。我当时想了两分钟，然后我一寻思，不对啊，这不都有 AI 了吗...
 
-于是，我就回了一句，然后没想到，引起了好几个朋友非常正向的反馈。![正向反馈](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
+于是，我就回了一句，然后没想到，引起了好几个朋友非常正向的反馈。![正向反馈](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
 
 这个时候，我才意识到，其实，我的很多的小技巧，对于蛮多人来说，还是挺有价值的。
 
