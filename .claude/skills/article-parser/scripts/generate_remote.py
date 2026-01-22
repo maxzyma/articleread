@@ -104,8 +104,14 @@ def generate_remote(md_file: Path, output_file: Path = None, repo: str = None) -
     # 获取相对路径
     rel_path = get_relative_path_from_repo_root(md_file)
     if not rel_path:
-        print("  [WARN] 无法获取相对路径，使用文件所在目录")
-        rel_path = md_file.parent.name
+        # 尝试从当前工作目录计算相对路径
+        try:
+            cwd = Path.cwd()
+            rel_path = str(md_file.parent.relative_to(cwd))
+            print(f"  [INFO] 使用相对于工作目录的路径: {rel_path}")
+        except ValueError:
+            print("  [WARN] 无法获取相对路径，使用文件所在目录")
+            rel_path = md_file.parent.name
 
     # 构建 CDN base URL
     # jsDelivr 格式: https://cdn.jsdelivr.net/gh/user/repo/path/to/images
