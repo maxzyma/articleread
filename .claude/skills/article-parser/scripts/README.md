@@ -2,6 +2,42 @@
 
 ## 核心脚本
 
+### extract_wechat_images.js ⚠️ 微信公众号专用
+
+**重要**：提取微信公众号文章图片时，必须使用此脚本！
+
+**问题**：微信公众号使用图片懒加载，`take_snapshot` 只能获取占位符。
+
+**解决**：此脚本自动滚动页面触发懒加载，从 `data-src` 属性提取真实图片 URL。
+
+**使用方法**：
+
+```javascript
+// 1. 在 Chrome DevTools 中打开微信文章
+navigate_page -> <微信文章URL>
+
+// 2. 打开 Console，运行脚本
+// 复制 extract_wechat_images.js 全部内容到 Console
+
+// 3. 脚本会自动：
+//    - 滚动页面触发懒加载
+//    - 提取所有图片 URL
+//    - 按 imgIndex 排序
+//    - 输出下载命令
+
+// 4. 复制输出的下载命令到终端执行
+```
+
+**输出内容**：
+- 图片信息列表（URL、尺寸、imgIndex）
+- 逐个下载命令
+- 批量下载 Shell 脚本
+- JSON 格式数据
+
+详见：[微信公众号全文提取最佳实践](../references/wechat-article-best-practices.md)
+
+---
+
 ### generate_standalone.py
 
 将原始版本（`./images/` 路径）转换为 standalone 版本（base64 嵌入）。

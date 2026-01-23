@@ -33,12 +33,37 @@
   - ✅ 使用描述性名称（`workflow-diagram.png`）或 Media ID（`G_xxx.jpg`）
   - ❌ 避免数字索引（`img-1.jpg`、`image_2.png`）
 
+### 微信公众号特有验证 ⚠️
+
+**微信公众号文章必须使用 JavaScript 提取，不要只用 `take_snapshot`！**
+
+- [ ] **使用 JavaScript 提取**：运行 `extract_wechat_images.js` 脚本
+- [ ] **检查 data-src 属性**：确保从 `data-src` 而非 `src` 获取图片 URL
+- [ ] **验证 imgIndex 连续性**：检查 imgIndex 参数是否连续（0, 1, 2, ...）
+- [ ] **触发懒加载**：滚动到页面底部后再提取图片
+- [ ] **过滤占位符**：排除 `data:image/svg` 的占位符图片
+
+**常见错误**：
+- ❌ 使用 `take_snapshot` 提取 → 只能获取 `src` 属性（占位符）
+- ❌ 未滚动页面 → 懒加载图片未触发
+- ❌ 忽略 `data-src` → 遗漏真实图片 URL
+
+**正确流程**：
+1. 打开微信文章
+2. 运行 `extract_wechat_images.js`
+3. 检查输出的图片数量和 URL
+4. 复制下载命令批量下载
+5. 验证图片完整性
+
 ### 4. 三版本验证
 
 - [ ] **原始版本**：`article-slug.md` 存在
-- [ ] **standalone 版本**：`article-slug-standalone.md` 存在，图片使用 base64 格式
+- [ ] **standalone 版本**：`article-slug-standalone.md` 存在（⚠️ **不读取验证**：文件可能很大，会导致卡死）
 - [ ] **remote 版本**：`article-slug-remote.md` 存在，图片使用原始 CDN URL
-- [ ] **内容一致性**：三个版本的文字内容完全一致（仅图片路径不同）
+- [ ] **内容一致性**：原始版本和 remote 版本的文字内容一致（仅图片路径不同）
+
+> **为什么 standalone 版本不读取验证？**
+> standalone 版本使用 base64 嵌入图片，文件可能达到数 MB。读取验证会消耗大量内存和上下文，导致响应卡死。验证时仅检查文件存在性即可。
 
 ### 5. 格式验证
 

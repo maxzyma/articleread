@@ -134,6 +134,31 @@ general/article-slug/
 
 详见：[图片处理最佳实践](references/image-handling-best-practices.md)
 
+#### ⚠️ 微信公众号图片提取（重要）
+
+**微信公众号使用懒加载，必须使用 JavaScript 提取图片！**
+
+| 错误做法 | 正确做法 |
+|---------|---------|
+| ❌ 使用 `take_snapshot` | ✅ 运行 `extract_wechat_images.js` |
+| ❌ 只获取 `src` 属性 | ✅ 获取 `data-src` 属性 |
+| ❌ 未滚动页面 | ✅ 滚动触发懒加载 |
+
+**正确流程**：
+1. 打开微信文章页面
+2. 在 Console 运行：
+   ```javascript
+   // 复制 scripts/extract_wechat_images.js 内容到 Console
+   ```
+3. 等待脚本自动滚动和提取
+4. 复制输出的下载命令
+5. 批量下载图片到 `images/` 目录
+
+**为什么不能用 `take_snapshot`**？
+- 微信公众号图片使用懒加载：`src` 是 SVG 占位符
+- 真实 URL 存储在 `data-src` 属性中
+- 快照只能获取已渲染的 `src`，无法获取 `data-src`
+
 ### 验证清单
 
 提取完成后必须验证：
@@ -152,9 +177,27 @@ general/article-slug/
 
 | 脚本 | 用途 |
 |------|------|
+| `scripts/extract_wechat_images.js` | **微信图片提取**（必须在 Console 运行） |
 | `scripts/generate_standalone.py <file.md>` | 生成 base64 嵌入版 |
 | `scripts/generate_remote.py <file.md>` | 生成 CDN 版本 |
 | `scripts/cache_image_urls.sh <url> get/save` | 图片 URL 缓存 |
+
+### extract_wechat_images.js 使用说明
+
+**用途**：自动提取微信公众号文章中的所有图片（包括懒加载图片）
+
+**使用方法**：
+```bash
+# 1. 在 Chrome DevTools 中打开微信文章
+navigate_page -> <微信文章URL>
+
+# 2. 打开 Console，运行脚本
+evaluate_script -> 复制 extract_wechat_images.js 全部内容
+
+# 3. 等待脚本执行（自动滚动 + 提取）
+
+# 4. 复制输出的下载命令到终端执行
+```
 
 ---
 
