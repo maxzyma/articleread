@@ -1,17 +1,18 @@
 ---
 title: "2026年Claude Code Skills排行榜：Top 20完整版（已去重）"
+original_title: "2026年Claude Code Skills排行榜：Top 20完整版（已去重）"
 extraction_date: "2026-01-23"
 
 source:
   platform: "微信公众号"
   url: "https://mp.weixin.qq.com/s/DZMbz7rJ4hjEl7NhCA9OqQ"
-  author: "未来的回响"
+  author: "全金属外壳AI"
   publish_date: "2026-01-19"
 
 content:
   type: "排行榜/技术指南"
   topic: "Claude Code Skills"
-  core_point: "持续更新的Claude Code Skills排行榜，收录官方和社区Top 20热门项目，帮助开发者快速了解值得安装的Skills"
+  core_point: "2026年1月Claude Code Skills GitHub排行榜，收录官方仓库和社区热门项目Top 20"
   key_topics:
     - "Claude Code Skills"
     - "GitHub排行榜"
@@ -21,47 +22,29 @@ content:
 
 extraction_method:
   - "Chrome DevTools提取微信公众号文章"
-  - "懒加载滚动触发"
-  - "图片按imgIndex参数排序"
+  - "创建图片映射缓存记录上下文"
+  - "使用描述性命名（cover.png, qrcode-wechat.jpg, qrcode-planet.jpg）"
 
 verification:
   status: "completed"
   verified_against: "微信公众号原文"
-  notes: "提取3张正文图片，内容完整"
+  notes: "验证图片位置：1张头图在标题下方，2张二维码在文章末尾"
 
 content_file: "./claude-code-skills-ranking-2026.md"
 
 tags:
   - "Claude Code"
   - "Skills"
+  - "GitHub"
   - "排行榜"
-  - "开发工具"
-  - "AI编程"
+  - "AI工具"
 
 notes: |
-  核心观点：这是一份持续更新的Claude Code Skills GitHub排行榜（数据更新至2026年1月19日）
+  核心观点：持续更新的Claude Code Skills GitHub排行榜
 
-  技术背景：
-  - Skills是Agent Skills系统，Claude自动识别并触发
-  - Skills ≠ Slash Commands（后者需要手动输入）
-  - 官方仓库：anthropics/skills（45.1k stars）
-  - 社区生态爆发式增长
+  图片信息：
+  - cover.png: 文章头图（1080x603 PNG）
+  - qrcode-wechat.jpg: 微信交流群二维码
+  - qrcode-planet.jpg: 知识星球二维码
 
-  热门Skills分类：
-  - 开发工作流类：create-pr、skill-lookup、frontend-code-review
-  - AI/LLM开发类：cache-components-expert、opus-4.5-migration
-  - 专项技术类：electron-chromium-upgrade、cloudflare-skill
-  - 技能创作类：skill-writer、skill-creator
-  - 综合框架类：obra/superpowers、awesome-claude-skills
-
-  重点项目：
-  - obra/superpowers（29.1k stars）：TDD+YAGNI+DRY方法论全家桶
-  - awesome-claude-skills（21.6k stars）：50+经过验证的Skills合集
-  - cloudflare-skill（2.8k stars）：60+产品一站式指南
-
-  安装方式：
-  - Plugin形式：claude /install-plugin obra/superpowers
-  - 手动复制：项目级（.claude/skills/）或个人级（~/.claude/skills/）
-  - SkillPort工具：pip install skillport
-
-  目标受众：Claude Code用户、AI开发者、关注AI编程工具的技术人员
+  目标受众：Claude Code用户、AI开发者、技术团队

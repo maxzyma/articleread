@@ -1,7 +1,9 @@
 # 2026年Claude Code Skills排行榜：Top 20完整版（已去重）
 
-> 来源：微信公众号 未来的回响，2026-01-19
+> 来源：微信公众号 全金属外壳AI，2026-01-19
 > 原文链接：https://mp.weixin.qq.com/s/DZMbz7rJ4hjEl7NhCA9OqQ
+
+![头图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/cover.png)
 
 ## 核心观点
 
@@ -27,7 +29,10 @@ Skills是一个`SKILL.md`文件，里面写着某个领域的专业知识和操�
 
 这两个是Anthropic官方维护的，质量有保障。
 
-![图片](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/image-0.jpg)
+| 排名 | 仓库名称 | Stars | 功能定位 |
+|------|----------|-------|----------|
+| 1 | anthropics/claude-code | 58.1k ⭐ | Claude Code主程序 |
+| 2 | anthropics/skills | 45.1k ⭐ | 官方Skills仓库 |
 
 ### 官方Skills包含什么？
 
@@ -216,7 +221,14 @@ skillport install skill-name
 
 数据来源：2026年1月第三周SkillsMP趋势
 
-![图片](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/image-1.jpg)
+| 项目 | 周涨幅 | 原因 |
+|------|--------|------|
+| create-pr | +12.3k | PR自动化需求爆发 |
+| skill-lookup | +8.7k | Skills生态入口 |
+| cache-components-expert | +6.2k | LLM应用性能优化热 |
+| skill-writer | +5.8k | 越来越多人创建自己的Skill |
+| obra/superpowers | +4.2k | 登顶GitHub Trending |
+| frontend-code-review | +3.9k | 前端团队刚需 |
 
 ---
 
@@ -237,8 +249,28 @@ skillport install skill-name
 | 视觉目录 | awesomeclaude.ai/awesome-claude-skills |
 | Skills市场 | skillsmp.com |
 
-![图片](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/image-2.jpg)
-
 ---
 
 **本文数据截至2026年1月19日，Stars数会持续变动，以GitHub实时数据为准。**
+
+---
+
+更多关于AI工具、Cursor、MCP相关的教程和资讯请持续关注后续分享！
+
+本文完整版详见公众号：未来的回响
+
+文章精校版参见知识星球：AI工具实战派
+
+**【限时开放】**欢迎加入**AI工具实战派**交流群一起学习进步～
+
+![二维码 - 微信交流群](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/qrcode-wechat.jpg)
+
+AI编程、AI运营、工具资料分享
+
+请加入知识星球
+
+![二维码 - 知识星球](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/qrcode-planet.jpg)
+
+---
+
+- **推荐阅读** -
