@@ -1,0 +1,49 @@
+---
+title: "AI编码实践：从Vibe Coding到SDD"
+extraction_date: "2026-01-23"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/W6-e-uSPcGCqQAXxx_PDgA"
+  author: "式遂"
+  publish_date: "2026-01-23"
+
+content:
+  type: "技术实践"
+  topic: "AI编程"
+  core_point: "淘特导购团队系统性回顾AI编程实践演进历程，从代码补全到Agentic Coding再到Rules约束和SDD，最终形成融合策略的最佳实践"
+  key_topics:
+    - "Agentic Coding"
+    - "SDD（规格驱动开发）"
+    - "Rules约束"
+    - "AI辅助编程"
+    - "淘特导购团队"
+
+extraction_method:
+  - "Chrome DevTools (evaluate_script)"
+
+verification:
+  status: "completed"
+  verified_against: "微信公众号原始页面"
+  notes: "已获取完整文章内容，图片使用微信原始URL"
+
+content_file: "./ai-coding-vibe-to-sdd.md"
+
+tags:
+  - "AI编程"
+  - "Agentic Coding"
+  - "SDD"
+  - "代码规范"
+  - "淘特"
+
+notes: |
+  核心观点：
+  淘特导购团队系统性回顾AI编程实践演进历程，从代码智能补全到Agentic Coding，再到Rules约束和SDD（规格驱动开发）。
+
+  技术背景：
+  - Agentic Coding：通过详细Prompt让AI一次性实现整个功能
+  - Rules约束：将项目规范、架构模式固化到Rules文件中
+  - SDD：规格驱动开发，规格是唯一真理源
+  - 融合策略：技术方案模板 + Rules约束 + Agent Coding + AI文档汇总
+
+  目标受众：正在探索AI编程实践的团队和开发者
