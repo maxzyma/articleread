@@ -74,6 +74,11 @@ articleread/
    - 正文文件：`主题/子主题/文章名.md`
    - 元数据文件：`主题/子主题/文章名.metadata.yaml`
 
+6. **更新索引**（重要）：
+   - 运行 `python3 scripts/update_article_index.py` 更新 `article-index.md`
+   - 索引包含：日期、标题、来源、文件路径
+   - 按时间倒序排列，方便查找
+
 ### 文章格式规范
 
 **目标受众**：技术人员，希望高效获取新知识
@@ -380,6 +385,7 @@ articleread/
 6. 执行提取流程
 7. 完成后移至 `completed` 并记录文件路径
 8. 更新主计划文件的统计信息
+9. **更新文章索引**：运行 `python3 scripts/update_article_index.py`
 
 ## 注意事项
 
@@ -388,6 +394,7 @@ articleread/
 - 主题和子主题的划分应根据内容的相关性和数量来决定
 - 验证内容完整性时，应对照原始来源检查是否有遗漏
 - 提取任务过程中及时更新 `extraction-plan.yaml` 的状态
+- **每次新增文章后必须更新 `article-index.md`**，保持索引同步
 
 ## 技能管理
 
