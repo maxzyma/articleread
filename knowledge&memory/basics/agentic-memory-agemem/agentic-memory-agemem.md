@@ -4,6 +4,8 @@
 > 原文链接：https://mp.weixin.qq.com/s/dUajr-DP0fW7Lstn2dD2Kg
 > 论文链接：http://arxiv.org/abs/2601.01885v1
 
+![AgeMem 架构](https://mmbiz.qpic.cn/sz_mmbiz_png/2zicyah61YSBmOUh1cXTxVSHPWJcDiaSbhYZoyibDMVFAWeKa1Oow3FUibNwpmUhQZm9Za3PbgL3GYjj7OrNiaUsiadg/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=0)
+
 ## 核心观点
 
 **Agentic Memory (AgeMem) 将记忆管理权力交还给 Agent 自己，通过工具调用（Tool Use）让 LLM 自主决定何时记忆、何时遗忘，在 Qwen2.5-7B 模型上实现性能暴涨 49.59%。**
@@ -15,6 +17,14 @@
 无论是 RAG（检索增强生成）还是各种外挂记忆库，往往都是"硬塞"给模型：要么是机械地检索，要么是基于死板的规则触发。
 
 **模型本身并不知道它该记住什么，该忘掉什么。**
+
+今天我们要解读的这篇论文 **Agentic Memory (AgeMem)**，来自阿里巴巴和武汉大学的研究团队，它提出了一种革命性的思路：
+
+**把记忆管理的权力交还给 Agent 自己。**
+
+这就好比从"填鸭式教育"变成了"自主学习"。Agent 不再是被动地接收信息，而是像人一样，拥有了决定"此时此刻我需要记笔记（LTM）"还是"这段对话没用可以删了（STM）"的能力。
+
+![AgeMem 工作流程](https://mmbiz.qpic.cn/sz_mmbiz_png/2zicyah61YSBmOUh1cXTxVSHPWJcDiaSbhtfzutmIJ6gqxTvh8881o0Og4qGRTxHMlqP813VcJ45EmSqv1GibKsXQ/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=1)
 
 ---
 
@@ -37,8 +47,6 @@
 
 ---
 
-![AgeMem 架构](https://mmbiz.qpic.cn/sz_mmbiz_png/2zicyah61YSBmOUh1cXTxVSHPWJcDiaSbhYZoyibDMVFAWeKa1Oow3FUibNwpmUhQZm9Za3PbgL3GYjj7OrNiaUsiadg/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=0)
-
 ## AgeMem：让记忆成为一种"工具"
 
 AgeMem 的核心思想非常直观且优雅：
@@ -56,10 +64,6 @@ AgeMem 的核心思想非常直观且优雅：
 ### 针对短期记忆（STM）
 - **`Summary`**：刚才聊得太啰嗦了，我总结一下要点，把原话删了省空间
 - **`Filter`**：这几句话是废话，直接过滤掉
-
----
-
-![AgeMem 工作流程](https://mmbiz.qpic.cn/sz_mmbiz_png/2zicyah61YSBmOUh1cXTxVSHPWJcDiaSbhtfzutmIJ6gqxTvh8881o0Og4qGRTxHMlqP813VcJ45EmSqv1GibKsXQ/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=1)
 
 通过这种方式，Agent 在思考问题时，会像下面这样进行自我对话：
 
@@ -81,8 +85,6 @@ AgeMem 的核心思想非常直观且优雅：
 
 ### 阶段三：统筹兼顾（Unified Management）
 在完整的长程任务中，让 Agent 同时协调 LTM 和 STM，实现端到端的优化。
-
----
 
 ### Step-wise GRPO 算法
 
