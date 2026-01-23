@@ -82,7 +82,11 @@ npx skills add remotion-dev/skills
 
 安装后，就可以在终端里对 Claude 发号施令了。
 
-官方还提供了安装使用过程的演示视频（时长 01:14）供参考。
+官方还提供了安装使用过程的演示视频供参考：
+
+> **演示视频**（时长 01:14）
+>
+> [安装使用演示视频](https://mpvideo.qpic.cn/0bc3raabuaaaqeab24lshzuvbcgddkeaagqa.f10002.mp4?dis_k=50a2072905e19c5598df474dfb40752a&dis_t=1769146238&play_scene=10120&auth_info=YvKlj7N+EwVg27P3tlMvO25HCSw6R15AcSJ/CjJPWmpZNzttBHBOagI3Om9IdzgBZA==&auth_key=12e04342f75808e0c211b91ee863986a&vid=wxv_4353491493605556231&format_id=10002&support_redirect=0&mmversion=false)
 
 ---
 

@@ -28,7 +28,7 @@ extraction_method:
 verification:
   status: "completed"
   verified_against: "原始网页"
-  notes: "内容已重新提取完整，4张图片使用微信CDN原始URL"
+  notes: "内容已重新提取完整，4张图片使用微信CDN原始URL，包含1个演示视频链接"
 
 content_file: "./remotion-agent-skills-video-generation.md"
 
