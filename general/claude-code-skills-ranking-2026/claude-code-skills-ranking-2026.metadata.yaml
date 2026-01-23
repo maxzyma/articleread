@@ -23,12 +23,13 @@ content:
 extraction_method:
   - "Chrome DevTools提取微信公众号文章"
   - "创建图片映射缓存记录上下文"
-  - "使用描述性命名（cover.png, qrcode-wechat.jpg, qrcode-planet.jpg）"
+  - "使用描述性命名（cover.png）"
+  - "移除文末二维码图片"
 
 verification:
   status: "completed"
   verified_against: "微信公众号原文"
-  notes: "验证图片位置：1张头图在标题下方，2张二维码在文章末尾"
+  notes: "移除文末二维码图片，仅保留头图"
 
 content_file: "./claude-code-skills-ranking-2026.md"
 
@@ -44,7 +45,5 @@ notes: |
 
   图片信息：
   - cover.png: 文章头图（1080x603 PNG）
-  - qrcode-wechat.jpg: 微信交流群二维码
-  - qrcode-planet.jpg: 知识星球二维码
 
   目标受众：Claude Code用户、AI开发者、技术团队

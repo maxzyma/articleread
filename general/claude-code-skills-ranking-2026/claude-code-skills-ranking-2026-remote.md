@@ -260,17 +260,3 @@ skillport install skill-name
 本文完整版详见公众号：未来的回响
 
 文章精校版参见知识星球：AI工具实战派
-
-**【限时开放】**欢迎加入**AI工具实战派**交流群一起学习进步～
-
-![二维码 - 微信交流群](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/qrcode-wechat.jpg)
-
-AI编程、AI运营、工具资料分享
-
-请加入知识星球
-
-![二维码 - 知识星球](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-code-skills-ranking-2026/images/qrcode-planet.jpg)
-
----
-
-- **推荐阅读** -
