@@ -217,13 +217,14 @@ python scripts/generate_remote.py article-slug/article-slug.md --repo user/repo
 ### References（详细文档）
 
 - [微信最佳实践](references/wechat-best-practices.md) - 图片提取、懒加载处理、位置确定
-- [小红书提取](references/xiaohongshu-workflow.md) - 图文/视频笔记提取流程
+- [小红书提取](references/xiaohongshu-workflow.md) - 元信息提取、访问绕过、OCR提取
 - [双来源处理](references/dual-source.md) - 视频+文章双来源处理
 - [验证环节](references/validation.md) - 完整性验证检查清单
 - [内容整理](references/content-organization.md) - 忠于原文原则
 - [文件归档](references/file-archiving.md) - 双版本策略、Git 策略
-- [图片处理最佳实践](references/image-handling-best-practices.md) - **图片命名、外链策略、缓存映射**
+- [图片处理最佳实践](references/image-handling-best-practices.md) - 图片命名、外链策略、缓存映射
 - [图片位置确定](references/image-position-determination.md) - 微信图片位置最佳实践
+- [元数据模板](references/metadata-template.yaml) - 小红书文章元数据模板
 
 ### 示例
 
