@@ -1,95 +1,29 @@
 # 图片处理最佳实践
 
+本文档详细说明图片处理的高级技术实现。
+
 ## 核心原则
 
-### 1. 外链友好平台优先使用原始 URL
+**外链友好平台优先使用原始 URL**：Twitter/X、微信公众号、知乎等平台提供稳定 CDN，直接使用原始 URL 可减少本地存储需求。
 
-**适用平台**：Twitter/X、微信公众号、知乎等提供稳定 CDN 的平台
-
-**优点**：
-- ✅ 减少本地存储需求
-- ✅ 避免下载失败或网络问题
-- ✅ 原始 URL 通常包含更多元数据（media ID、格式等）
-- ✅ 减少手动编号错误
-
-**示例**：
-
-```markdown
-# Twitter/X 文章（推荐：直接使用原始 URL）
-
-![正向反馈](https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large)
-
-![我的技能库](https://pbs.twimg.com/media/G_J8RtCaoAEX3ST?format=png&name=small)
-```
-
-**平台 URL 特征**：
-
-| 平台 | CDN 域名 | URL 特征 | 稳定性 |
-|------|---------|---------|--------|
-| Twitter/X | `pbs.twimg.com` | 包含 media ID | ⭐⭐⭐⭐⭐ |
-| 微信公众号 | `mmbiz.qpic.cn` | 包含 wx_fmt 参数 | ⭐⭐⭐⭐⭐ |
-| 知乎 | `zxpic.cn` | 包含图片 ID | ⭐⭐⭐⭐ |
+详见 SKILL.md 的 [图片处理章节](../SKILL.md#图片处理) 了解外链策略和命名规范。
 
 ---
 
-## 2. 图片命名策略
-
-### ❌ 不推荐：顺序编号
-
-```markdown
-![示例图片](./images/image-01.jpg)
-![优势说明](./images/image-02.jpg)
-![用户评论](./images/image-03.jpg)  # 容易出错！
-```
-
-**问题**：
-- 手动编号容易跳号、重号
-- 不便于查找和验证
-- 插入新图片需要重新编号
-
-### ✅ 推荐：描述性命名或 Media ID
-
-#### 方案 A：使用描述性名称（适合本地保存）
-
-```markdown
-![Google 搜索截图](./images/google-search-mp3-to-wav.png)
-![Skill 优势说明](./images/skill-advantage.jpg)
-![用户评论截图](./images/user-comment-tom.jpg)
-```
-
-**命名规则**：
-- 使用描述性名称，直接反映图片内容
-- 全部小写，空格用连字符替换
-- 可以包含来源、场景等信息
-- 格式：`{描述}-{来源/场景}.{ext}`
-
-#### 方案 B：使用 Media ID（适合 Twitter 等平台）
-
-```markdown
-![正向反馈](./images/G_J8qXqaoAQ2xhu.jpg)
-![我的技能库](./images/G_J8RtCaoAEX3ST.png)
-```
-
-**优点**：
-- Media ID 天然唯一，避免冲突
-- 易于从原始 URL 提取
-- 便于追溯原文
-
----
-
-## 3. 缓存映射关系
+## 缓存映射关系（防止图片顺序错位）
 
 ### 目的
 
-记录原文 URL、图片描述和文件名的对应关系，方便后续验证和追溯。
+记录图片与上下文的精确对应关系，防止图片顺序错位。
+
+**核心规则**：使用 `context_before` 和 `context_after` 作为锚点，精确定位图片在文章中的位置。
 
 ### 缓存文件结构
 
 ```
-.claude/skills/article-parser/.cache/
-└── images/
-    └── {article-slug}/
-        └── image-mapping.json
+.claude/skills/article-parser/.cache/images/
+└── {article-slug}/
+    └── image-mapping.json
 ```
 
 ### 映射文件格式
@@ -97,7 +31,7 @@
 ```json
 {
   "article_url": "https://x.com/Khazix0918/status/2013812311388229792",
-  "article_title": "Skills的最正确用法，是将整个Github压缩成你自己的超级技能库",
+  "article_title": "Skills的最正确用法",
   "extraction_date": "2026-01-22",
   "images": [
     {
@@ -107,7 +41,8 @@
       "description": "示例图片 - Google搜索",
       "local_filename": "google-search-mp3-to-wav.png",
       "alt_text": "示例图片",
-      "position_in_article": "背景思考章节"
+      "context_before": "skill-creator，打包Github上的开源项目",
+      "context_after": "可以快速创建技能包"
     },
     {
       "index": 2,
@@ -116,13 +51,18 @@
       "description": "正向反馈",
       "local_filename": "G_J8qXqaoAQ2xhu.jpg",
       "alt_text": "正向反馈",
-      "position_in_article": "实例演示章节"
+      "context_before": "用户反馈非常好",
+      "context_after": "提升了效率"
     }
   ]
 }
 ```
 
-### 生成映射文件的脚本示例
+**关键字段**：
+- `context_before`（必需）：图片前的文字片段，作为关键锚点
+- `context_after`（可选）：图片后的文字片段，辅助验证
+
+### 生成映射文件的脚本
 
 ```python
 import json
@@ -140,7 +80,8 @@ def create_image_mapping(article_url, images_data, article_dir):
                 'media_id': '媒体ID（如果有）',
                 'description': '图片描述',
                 'alt_text': 'Alt 文本',
-                'position': '在文章中的位置'
+                'context_before': '图片前的文字',
+                'context_after': '图片后的文字（可选）'
             }]
         article_dir: 文章目录路径
     """
@@ -161,14 +102,12 @@ def create_image_mapping(article_url, images_data, article_dir):
         # 从 URL 提取 media_id（Twitter）
         media_id = None
         if 'pbs.twimg.com' in img['url']:
-            # Twitter URL: https://pbs.twimg.com/media/G_J8qXqaoAQ2xhu?format=jpg&name=large
             media_id = img['url'].split('/')[-1].split('?')[0]
 
         # 生成本地文件名（使用 media_id 或描述性名称）
         if media_id:
             local_filename = f"{media_id}.jpg"
         else:
-            # 使用描述性名称
             desc = img['description'].lower().replace(' ', '-').replace('/', '-')
             local_filename = f"{desc}.jpg"
 
@@ -179,7 +118,8 @@ def create_image_mapping(article_url, images_data, article_dir):
             'description': img['description'],
             'local_filename': local_filename,
             'alt_text': img.get('alt_text', ''),
-            'position_in_article': img.get('position', '')
+            'context_before': img.get('context_before', ''),
+            'context_after': img.get('context_after', '')
         })
 
     with open(mapping_file, 'w', encoding='utf-8') as f:
@@ -190,116 +130,14 @@ def create_image_mapping(article_url, images_data, article_dir):
 
 ---
 
-## 4. 常见问题与解决方案
-
-### 问题 1：图片顺序错位
-
-**原因**：使用 image-01, image-02 等编号时，手动整理容易出错。
-
-**解决方案**：
-- ✅ 使用描述性名称或 Media ID
-- ✅ 在缓存中记录图片顺序
-- ✅ 使用脚本自动化验证
-
-### 问题 2：外链图片失效
-
-**原因**：某些平台的图片 URL 有时效性。
-
-**解决方案**：
-- ✅ 对于 Twitter/X、微信公众号等稳定平台，直接使用原始 URL
-- ⚠️ 对于小红书等可能失效的平台，下载到本地并使用描述性命名
-
-### 问题 3：无法追溯图片来源
-
-**原因**：没有记录原文 URL 和图片的对应关系。
-
-**解决方案**：
-- ✅ 在 `.cache/` 目录创建映射文件
-- ✅ 记录原文 URL、media ID、描述等信息
-- ✅ 便于后续验证和补充
-
----
-
-## 5. 提取工作流程（推荐）
-
-### Twitter/X 文章
-
-```python
-# 1. 提取文章内容和图片
-article_url = "https://x.com/Khazix0918/status/2013812311388229792"
-content = extract_twitter_article(article_url)
-
-# 2. 收集图片信息（保留原始 URL）
-images = []
-for img in content.images:
-    images.append({
-        'url': img.url,  # 直接使用原始 URL
-        'alt_text': img.alt_text,
-        'description': extract_description_from_context(img)
-    })
-
-# 3. 创建图片映射缓存
-create_image_mapping(article_url, images, article_dir)
-
-# 4. 生成 markdown（直接使用原始 URL）
-markdown_content = generate_markdown(content, use_original_urls=True)
-
-# 5. 验证图片顺序
-verify_image_order(markdown_content, images)
-```
-
-### 小红书图文笔记
-
-```python
-# 1. 提取图片 URL
-image_urls = extract_xiaohongshu_images(article_url)
-
-# 2. 下载图片并使用描述性命名
-for i, url in enumerate(image_urls):
-    # 从 OCR 或上下文中提取描述
-    description = ocr_image(url)
-    filename = f"{description.lower().replace(' ', '-')}.jpg"
-    download_image(url, f"images/{filename}")
-
-# 3. 创建缓存映射
-create_image_mapping(article_url, image_data, article_dir)
-
-# 4. 生成 markdown
-markdown_content = generate_markdown(content, image_dir='images')
-```
-
----
-
-## 6. 验证清单
-
-提取完成后，验证以下检查项：
-
-### 图片完整性
-
-- [ ] 所有图片都有对应的描述
-- [ ] 图片顺序与原文一致
-- [ ] 没有重复的图片文件名
-- [ ] 外链图片 URL 可访问
-
-### 缓存完整性
-
-- [ ] `.cache/` 目录中有映射文件
-- [ ] 映射文件包含所有图片信息
-- [ ] 原始 URL 记录完整
-
-### 文件组织
-
-- [ ] 图片使用描述性命名或 Media ID
-- [ ] 外链友好平台直接使用原始 URL
-- [ ] 本地图片有清晰的目录结构
-
----
-
-## 附录：工具脚本
+## 验证工具脚本
 
 ### verify_images.py
 
-验证文章中的图片引用是否正确：
+验证文章中的图片引用是否正确，包括：
+- 检查是否有重复的图片引用
+- 验证每张图片是否在映射文件中
+- 根据 context_before 验证图片位置是否正确
 
 ```python
 import re
@@ -321,12 +159,14 @@ def verify_images(markdown_file, mapping_file):
 
     # 验证
     issues = []
+
+    # 1. 检查重复引用
     for i, (alt, url) in enumerate(images_in_md, 1):
-        # 检查是否有重复
         if images_in_md.count((alt, url)) > 1:
             issues.append(f"重复的图片: {alt} -> {url}")
 
-        # 检查是否在映射中
+    # 2. 检查是否在映射中
+    for alt, url in images_in_md:
         found = False
         for img in mapping['images']:
             if img['alt_text'] == alt or img['original_url'] == url:
@@ -335,6 +175,26 @@ def verify_images(markdown_file, mapping_file):
 
         if not found:
             issues.append(f"未在映射中找到: {alt} -> {url}")
+
+    # 3. 根据 context_before 验证图片位置
+    for img in mapping['images']:
+        if img.get('context_before'):
+            # 查找 context_before 在文章中出现的位置
+            before_pos = content.find(img['context_before'])
+            if before_pos == -1:
+                issues.append(f"找不到锚点文字: {img['context_before']}")
+                continue
+
+            # 查找图片引用的位置
+            img_ref = f"![{img['alt_text']}]"
+            img_pos = content.find(img_ref, before_pos)
+
+            # 验证图片是否紧跟在锚点文字后面（合理范围内）
+            if img_pos == -1 or img_pos - before_pos > 500:
+                issues.append(
+                    f"图片位置可能不对: {img['alt_text']} "
+                    f"（应该在 '{img['context_before']}' 附近）"
+                )
 
     if issues:
         print("❌ 发现问题：")
@@ -354,20 +214,86 @@ verify_images(
 
 ---
 
+## 提取工作流程示例
+
+### Twitter/X 文章
+
+```python
+# 1. 提取文章内容和图片
+article_url = "https://x.com/Khazix0918/status/2013812311388229792"
+content = extract_twitter_article(article_url)
+
+# 2. 收集图片信息（保留原始 URL，记录上下文）
+images = []
+for img in content.images:
+    # 提取图片前后的文字作为锚点
+    context_before = extract_text_before(img)
+    context_after = extract_text_after(img)
+
+    images.append({
+        'url': img.url,  # 直接使用原始 URL
+        'alt_text': img.alt_text,
+        'description': extract_description_from_context(img),
+        'context_before': context_before,
+        'context_after': context_after
+    })
+
+# 3. 创建图片映射缓存
+create_image_mapping(article_url, images, article_dir)
+
+# 4. 生成 markdown（直接使用原始 URL）
+markdown_content = generate_markdown(content, use_original_urls=True)
+
+# 5. 验证图片顺序
+verify_images(markdown_file, mapping_file)
+```
+
+### 小红书图文笔记
+
+```python
+# 1. 提取图片 URL
+image_urls = extract_xiaohongshu_images(article_url)
+
+# 2. 下载图片并使用描述性命名
+for i, url in enumerate(image_urls):
+    # 从 OCR 或上下文中提取描述
+    description = ocr_image(url)
+    filename = f"{description.lower().replace(' ', '-')}.jpg"
+    download_image(url, f"images/{filename}")
+
+# 3. 创建缓存映射（记录上下文锚点）
+image_data = extract_with_context(article_url)
+create_image_mapping(article_url, image_data, article_dir)
+
+# 4. 生成 markdown
+markdown_content = generate_markdown(content, image_dir='images')
+
+# 5. 验证图片顺序
+verify_images(markdown_file, mapping_file)
+```
+
+---
+
 ## 总结
 
-### 核心建议
+### 核心原则
 
 1. **外链优先**：Twitter/X、微信公众号等平台直接使用原始 URL
-2. **描述命名**：避免 image-01 这种编号，使用描述性名称或 Media ID
+2. **上下文锚点**：使用 context_before 精确定位图片位置，防止错位
 3. **缓存映射**：在 `.cache/` 记录图片映射关系，便于追溯和验证
 4. **工具验证**：使用脚本自动化验证，避免手动错误
 
-### 对比
+### 旧方式 vs 新方式
 
 | 维度 | 旧方式 | 新方式 |
 |------|--------|--------|
 | 命名 | `image-01.jpg` | `G_J8qXqaoAQ2xhu.jpg` 或 `user-comment.jpg` |
 | 存储 | 必须下载 | 外链平台直接用 URL |
+| 定位 | 靠顺序号 | context_before 锚点精确定位 |
 | 追溯 | 无记录 | `.cache/` 映射文件 |
 | 验证 | 人工检查 | 脚本自动化 |
+
+### 相关文档
+
+- [SKILL.md - 图片处理章节](../SKILL.md#图片处理)：外链策略、命名规范
+- [validation-checklist.md](validation-checklist.md)：完整的验证清单
