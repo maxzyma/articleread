@@ -30,6 +30,21 @@ MIME_MAP = {
     '.bmp': 'image/bmp',
 }
 
+def find_project_root(start_path: Path = None) -> Path:
+    """查找项目根目录（包含 .git 的目录）"""
+    if start_path is None:
+        start_path = Path(__file__).resolve().parent
+
+    # 从脚本目录向上查找 .git 目录
+    current = start_path
+    while current != current.parent:
+        if (current / '.git').exists():
+            return current
+        current = current.parent
+
+    # 如果找不到 .git，返回当前工作目录
+    return Path.cwd()
+
 def image_to_base64(image_path: Path) -> tuple[str, str]:
     """将图片文件转换为 base64 编码
 
@@ -144,9 +159,26 @@ def main():
     args = parser.parse_args()
     input_path = Path(args.input)
 
+    # 智能路径解析：支持从任意目录运行脚本
     if not input_path.exists():
-        print(f"错误: 路径不存在: {input_path}")
-        sys.exit(1)
+        # 尝试相对于项目根目录解析
+        project_root = find_project_root()
+        project_relative = project_root / args.input
+        if project_relative.exists():
+            input_path = project_relative
+        else:
+            # 尝试相对于当前工作目录解析
+            cwd_relative = Path.cwd() / args.input
+            if cwd_relative.exists():
+                input_path = cwd_relative
+            else:
+                print(f"错误: 路径不存在: {args.input}")
+                print(f"       项目根目录: {project_root}")
+                print(f"       尝试的路径:")
+                print(f"         - {input_path}")
+                print(f"         - {project_relative}")
+                print(f"         - {cwd_relative}")
+                sys.exit(1)
 
     if input_path.is_file():
         # 单文件模式
