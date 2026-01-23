@@ -167,6 +167,7 @@ general/article-slug/
 - [ ] 章节结构完整（无截断）
 - [ ] 图片引用正确（数量匹配、路径正确）
 - [ ] 三版本文件齐全（原始、standalone、remote）
+  - ⚠️ **standalone 版本仅检查文件存在，不读取内容**（文件太大，会卡死）
 - [ ] 元数据文件完整
 
 详见：[验证清单](references/validation-checklist.md)

@@ -1,7 +1,7 @@
 # Claude Code 效率暴涨 70%？你可能正在给 Anthropic 捐款
 
 > 来源：mark的AI笔记 微信公众号，2026-01-20
-> 原文链接：https://mp.weixin.qq.com/s?src=11&timestamp=1769144049&ver=6497&signature=PYEAlBOpYB*34KQa2XDCpOyjUnYSe4pf2kjyjs9GymL96csjgvW6Fx05xC2yX7w5I9S9u2S9yfEBw5cz6QuI0bOFaNVvN1cjLIlbNXXWy-glCVFSV35VSN6W1XyaddRQ&new=1
+> 原文链接：https://mp.weixin.qq.com/s/3fx75h4WDzVghSAKYlXEHg
 
 ## 核心观点
 

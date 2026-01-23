@@ -1,7 +1,7 @@
 # 提升 Claude 效率的优质 Skills 仓库推荐
 
 > 来源：微信公众号「已知」 有点儿西东，2025-01-20
-> 原文链接：https://mp.weixin.qq.com/s?src=11&timestamp=1769098921&ver=6496&signature=jLd78lKdBpTQI68pFueee-0uYBAj0y6xOUgBcKU8QrAs91lgTUJFo8iNN8Dc2cJV9Er1kq0uXSdm*hLkcb*O3izIyUpqOIAIQOuUuO-huUalbSq1f7r3QbMtPn46scOR
+> 原文链接：https://mp.weixin.qq.com/s/wtwItT95RMTqBpuPNY9MSA
 
 ## 核心观点
 

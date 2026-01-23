@@ -11,29 +11,40 @@
 
 ## 背景：什么是 Remotion？
 
-Remotion 是一个开源工具，通过**编写代码**的方式制作视频，实现：
+作为一名内容创作者，偶尔会有做演示视频需求，或者想搞点酷炫可视化数据作为演示。但每次使用 After Effects 这种专业软件时，面对复杂的参数设置，既耗时又耗力。
+
+后来在 GitHub 上找到了 **Remotion** 这个开源工具，通过**编写代码**的方式制作视频，实现：
 
 - 像素级精准控制
 - 组件复用
 - 批量自动化生成
 
-传统视频剪辑软件（如 After Effects）无法做到的代码化能力。
+这是传统视频剪辑软件无法做到的代码化能力。
 
-但传统 Remotion 上手门槛高：需要懂 React 代码和 CSS 布局。
+
+![Remotion 演示](https://mmbiz.qpic.cn/mmbiz_png/uDRkMWLia28hbxINQkibDkjOgPiaQUicDtugfiaxCb0Ughza4nUeZynia2NTaticAQGIqpHtDGgILQtwIkXyHciaXP4ib8w/640?wx_fmt=png)
+
+
+但它的上手门槛并不低，要求得懂 React 代码，还得会写 CSS 布局，让绝大部分人望而却步。
 
 ---
 
 ## Agent Skills：对话式视频生成
 
+直到最近，这一门槛被拉低了。Remotion 团队在 X 上宣布推出 **Agent Skills**，并晒出一条酷炫的演示视频。
 
-![Remotion Agent Skills 演示](./images/remotion-demo.png)
 
-### 1. **发布背景**
+![Agent Skills 演示](https://mmbiz.qpic.cn/mmbiz_gif/uDRkMWLia28hbxINQkibDkjOgPiaQUicDtugJPgibceY0p3hAiat3fdnpAlKcWI8taQiaSMTxZC2Ehgc9A4yFNgPDTXZQ/640?wx_fmt=gif)
 
-Remotion 团队在 X 上宣布推出 **Agent Skills**，演示视频在 Claude Code 上通过简单对话创建。
 
-- 推文浏览量：500 多万
-- 社区反响：Video editors are cooked（视频剪辑师要慌了）
+同时分享了视频制作的整个过程，在 Claude Code 上简单几轮对话，便创建出来了。
+
+### 1. **发布反响**
+
+这条消息一经发布，瞬间引爆了整个 AI 技术圈：
+
+- **推文浏览量**：500 多万
+- **社区反馈**：Video editors are cooked（视频剪辑师要慌了）
 
 ### 2. **实测效果**
 
@@ -42,15 +53,26 @@ Remotion 团队在 X 上宣布推出 **Agent Skills**，演示视频在 Claude C
 | 数据可视化视频 | 30 分钟 | 4-5 个 | 完整视频 |
 | 产品宣传视频 | 几分钟 | 1 条 | 30 秒视频（含背景音乐、转场、品牌配色、产品演示） |
 
+
+![数据可视化案例](https://mmbiz.qpic.cn/mmbiz_png/uDRkMWLia28hbxINQkibDkjOgPiaQUicDtug6ojlRfHGQ93oDku5GC2UdE6KmNCawxTZZyQRavmiblUhOYngfhsLyDQ/640?wx_fmt=png)
+
+
+包括背景音乐、转场特效、品牌配色、产品演示等等元素，说实话确实惊艳。
+
+
+![产品视频案例](https://mmbiz.qpic.cn/mmbiz_png/uDRkMWLia28hbxINQkibDkjOgPiaQUicDtugQUxw3ibcs0KZibAeDelZkwB2miansRS0CoLnWhUdX5SNBocSLkPuYdgnw/640?wx_fmt=png)
+
+
 ---
 
 ## 使用方式
 
 ### 前置要求
 
-需要本地安装：
-1. Remotion
-2. Claude Code
+上手使用还是存在一点门槛，需要：
+1. 稍微懂点编程知识
+2. 本地安装好 Remotion
+3. 本地安装好 Claude Code
 
 ### 安装命令
 
@@ -58,7 +80,9 @@ Remotion 团队在 X 上宣布推出 **Agent Skills**，演示视频在 Claude C
 npx skills add remotion-dev/skills
 ```
 
-安装后，即可在终端中通过对话对 Claude 发号施令生成视频。
+安装后，就可以在终端里对 Claude 发号施令了。
+
+官方还提供了安装使用过程的演示视频（时长 01:14）供参考。
 
 ---
 
@@ -66,14 +90,14 @@ npx skills add remotion-dev/skills
 
 ### 1. **渲染原理**
 
-无论人写代码还是 AI 写代码，底层依然是**逐帧截屏合成**。
+无论是由人写代码还是由 AI 写代码，它底层依然是**把组件一帧一帧地截屏合成**。
 
-- 复杂画面：渲染吃内存
-- 导出速度：不一定比专业软件快
+- **复杂画面**：渲染导出时比较吃内存
+- **导出速度**：不一定比专业软件快
 
 ### 2. **开源协议**
 
-Remotion **不采用 MIT 协议**，而是公司许可证。
+Remotion **不采用常见的 MIT 协议**，而是采用一种特殊的公司许可证。
 
 | 使用场景 | 授权要求 |
 |---------|---------|
@@ -85,13 +109,11 @@ Remotion **不采用 MIT 协议**，而是公司许可证。
 
 ---
 
-## 技术启示
+## 总结
 
-对于正在探索视频自动化的开发者：
+如果你受够了传统视频剪辑软件的繁琐，想要尝试一种更高效、更智能的创作方式，那现在的 Remotion 值得一试。
 
-1. **代码化视频 = 程序化生成**：适合批量、模板化场景，而非单次创意剪辑
-2. **AI + Low Code 组合**：Agent Skills 降低门槛，但仍需编程基础
-3. **许可证陷阱**：商业化前务必确认开源协议条款
+它让"用代码控制视频"这种硬核能力，变得前所未有的平易近人。
 
 ---
 
