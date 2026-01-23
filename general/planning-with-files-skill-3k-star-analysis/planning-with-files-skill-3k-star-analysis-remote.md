@@ -25,6 +25,8 @@ Manus 公开了自己的方法论，OthmanAdi 把它写成了一个可以直接�
 
 ## 文件结构
 
+![文件结构](https://cdn.jsdelivr.net/gh/maxzyma/articleread/planning-with-files-skill-3k-star-analysis/images/file-structure.png)
+
 整个技能就 4 个文件：
 
 ```
