@@ -85,6 +85,53 @@ general/article-slug/
 - ✅ 或使用 Media ID：`G_J8qXqaoAQ2xhu.jpg`
 - ❌ 不要用数字索引：`image-01.jpg`、`img-1.png`
 
+#### 图片顺序验证（避免错位）
+
+**核心规则**：必须使用缓存映射记录图片上下文，防止顺序错位。
+
+**创建缓存映射**（强制要求）：
+
+```bash
+# 缓存目录结构
+.claude/skills/article-parser/.cache/images/
+└── {article-slug}/
+    └── image-mapping.json
+```
+
+**映射文件格式**：
+```json
+{
+  "article_url": "https://example.com/article",
+  "extraction_date": "2026-01-23",
+  "images": [
+    {
+      "index": 1,
+      "original_url": "https://...",
+      "media_id": "G_J8qXqaoAQ2xhu",
+      "description": "图片描述",
+      "context_before": "图片前的文字（关键锚点）",
+      "context_after": "图片后的文字（辅助验证）"
+    }
+  ]
+}
+```
+
+**验证步骤**：
+1. 提取时记录每张图片的 `context_before`（图片前的文字）
+2. 整理文章时根据上下文精确定位图片位置
+3. 完成后验证：每张图片是否紧跟在正确的文字后面
+
+**错误模式示例**：
+```
+❌ 错误：靠"感觉"或顺序号放置图片
+   原文："...技能" → 图片A → "..."
+   文章："...技能" → 图片B ❌
+
+✅ 正确：根据 context_before 精确定位
+   context_before: "skill-creator，打包Github上的开源项目"
+   验证：这段文字后面紧跟图片A
+```
+
 详见：[图片处理最佳实践](references/image-handling-best-practices.md)
 
 ### 验证清单
