@@ -166,6 +166,9 @@ general/article-slug/
 - [ ] 基础信息完整（标题、作者、时间、来源链接）
 - [ ] 章节结构完整（无截断）
 - [ ] 图片引用正确（数量匹配、路径正确）
+- [ ] **视频链接完整**（如有）⚠️
+  - 检查 `take_snapshot` 中是否有 "播放视频" 按钮
+  - 使用 `evaluate_script` 提取 `<video>` 元素
 - [ ] 三版本文件齐全（原始、standalone、remote）
   - ⚠️ **standalone 版本仅检查文件存在，不读取内容**（文件太大，会卡死）
 - [ ] 元数据文件完整
@@ -179,9 +182,30 @@ general/article-slug/
 | 脚本 | 用途 |
 |------|------|
 | `scripts/extract_wechat_images.js` | **微信图片提取**（必须在 Console 运行） |
+| `scripts/extract_wechat_videos.js` | **微信视频提取**（必须在 Console 运行） |
 | `scripts/generate_standalone.py <file.md>` | 生成 base64 嵌入版 |
 | `scripts/generate_remote.py <file.md>` | 生成 CDN 版本 |
 | `scripts/cache_image_urls.sh <url> get/save` | 图片 URL 缓存 |
+
+### extract_wechat_videos.js 使用说明
+
+**用途**：自动提取微信公众号文章中的视频
+
+**使用方法**：
+```bash
+# 1. 在 Chrome DevTools 中打开微信文章
+navigate_page -> <微信文章URL>
+
+# 2. 打开 Console，运行脚本
+evaluate_script -> 复制 extract_wechat_videos.js 全部内容
+
+# 3. 等待脚本执行并输出视频信息
+```
+
+**输出内容**：
+- 视频 URL、时长、封面
+- Markdown 格式的视频链接
+- 视频前后的文本上下文
 
 ### extract_wechat_images.js 使用说明
 

@@ -116,6 +116,62 @@ function isAdImage(imgElement) {
 
 ---
 
+## 视频提取 ⚠️
+
+### 重要：`take_snapshot` 无法提取视频
+
+**微信公众号文章中的视频 `<video>` 元素不会在 `take_snapshot` 中显示 URL！**
+
+- ❌ **错误**：使用 `take_snapshot` → 只能看到 "播放视频" 按钮，看不到视频 URL
+- ✅ **正确**：运行 `evaluate_script` 查找 `<video>` 元素
+
+**原因**：`take_snapshot` 返回的是无障碍树（a11y tree），视频元素可能只显示为播放按钮。
+
+### 提取流程
+
+```javascript
+// 1. 查找所有视频元素
+const videos = document.querySelectorAll('#js_content video, video, iframe[src*="v.qq.com"]');
+const result = [];
+
+videos.forEach((v, i) => {
+  if (v.tagName === 'VIDEO') {
+    result.push({
+      type: 'video',
+      src: v.src || v.currentSrc,
+      poster: v.poster,
+      duration: v.duration
+    });
+  } else if (v.tagName === 'IFRAME') {
+    result.push({
+      type: 'iframe',
+      src: v.src
+    });
+  }
+});
+
+JSON.stringify(result, null, 2);
+```
+
+### 添加到文章
+
+在适当位置添加视频链接：
+
+```markdown
+> **演示视频**（时长 01:14）
+>
+> [安装使用演示视频](https://mpvideo.qpic.cn/...mp4)
+```
+
+### 验证清单
+
+- [ ] 检查 `take_snapshot` 中是否有 "播放视频" 按钮
+- [ ] 使用 `evaluate_script` 查找 `<video>` 元素
+- [ ] 提取视频 URL 和元数据（时长、封面）
+- [ ] 在文章中添加视频链接
+
+---
+
 ## 广告内容剔除策略
 
 ### 常见广告位置模式
