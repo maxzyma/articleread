@@ -1,0 +1,59 @@
+---
+title: "拆解一个 3k Star 的 Skills：它到底写了什么？顺便还能学习 Manus 的上下文管理"
+original_title: "拆解一个 3k Star 的 Skills：它到底写了什么？顺便还能学习manus的上下文管理"
+extraction_date: "2026-01-23"
+
+source:
+  platform: "知乎专栏"
+  url: "https://zhuanlan.zhihu.com/p/1992416332776498488"
+  author: "CYCHENYUE"
+  publish_date: "2026-01-08"
+
+content:
+  type: "技术教程/拆解分析"
+  topic: "Claude Code Skills"
+  core_point: "拆解 planning-with-files 技能的 9 个设计技巧，该技能复刻了 Manus 的核心工作方法（文件系统作为外部记忆、通过复述操控注意力、保留失败记录）"
+  key_topics:
+    - "Claude Code Skills"
+    - "Manus 工作流"
+    - "上下文管理"
+    - "文件系统作为外部记忆"
+    - "技能设计最佳实践"
+
+extraction_method:
+  - "知乎专栏全文提取"
+
+verification:
+  status: "completed"
+  verified_against: "知乎原文"
+  notes: "完整提取文章内容，保留所有 9 个技巧和用户反馈"
+
+content_file: "./planning-with-files-skill-3k-star-analysis.md"
+
+tags:
+  - "Claude Code"
+  - "Skills"
+  - "Manus"
+  - "上下文管理"
+  - "工作流"
+
+notes: |
+  核心观点：拆解 planning-with-files 技能的 9 个设计技巧
+
+  Manus 三大核心原理：
+  - 文件系统作为外部记忆
+  - 通过复述操控注意力
+  - 保留失败记录
+
+  9 条技巧：
+  1. description 塞满触发词
+  2. 重要信息存文件
+  3. 重要目标反复读取
+  4. 错误要记录
+  5. 写反模式
+  6. 规则要短、要强调
+  7. 主文件只写操作
+  8. 提供完整案例
+  9. 结构从"能用"到"用好"递进
+
+  目标受众：Claude Code 技能开发者、Agent 工程师

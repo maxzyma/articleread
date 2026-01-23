@@ -18,7 +18,7 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 16
+  total_completed: 17
   total_failed: 4
   total_skipped: 0
   last_updated: "2026-01-23"
@@ -116,6 +116,14 @@ general:
       completed_date: "2026-01-23"
       content_path: "general/remotion-agent-skills-video-generation/"
       notes: "Remotion 推出 Agent Skills，结合 Claude Code 实现对话式自动化视频生成。包含安装命令、渲染原理说明、开源协议注意事项。"
+
+    - url: "https://zhuanlan.zhihu.com/p/1992416332776498488"
+      title: "拆解一个 3k Star 的 Skills：它到底写了什么？顺便还能学习 Manus 的上下文管理"
+      platform: "知乎专栏"
+      forwarder: null
+      completed_date: "2026-01-23"
+      content_path: "general/planning-with-files-skill-3k-star-analysis/"
+      notes: "拆解 planning-with-files 技能的 9 个设计技巧，该技能复刻了 Manus 的核心工作方法（文件系统作为外部记忆、通过复述操控注意力、保留失败记录）"
 
   # 提取失败
   failed:
