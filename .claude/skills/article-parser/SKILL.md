@@ -54,10 +54,38 @@ general/article-slug/
 详见：[文件归档指南](references/file-archiving-guide.md)
 
 ### 图片处理
-- ✅ 所有平台图片都下载到 `images/` 目录
-- ✅ 使用描述性名称：`cover.jpg`、`workflow-diagram.png`
+
+**核心原则**：外链友好平台优先使用原始 URL，其他平台下载到本地。
+
+#### 外链策略
+
+| 平台类型 | 代表平台 | 策略 |
+|---------|---------|------|
+| **外链友好** | Twitter/X、微信公众号、知乎 | ✅ 直接使用原始 URL |
+| **需下载** | 小红书、抖音、个人博客 | ⬇️ 下载到 `images/` 目录 |
+
+**外链平台 URL 特征**：
+
+| 平台 | CDN 域名 | 稳定性 |
+|------|---------|--------|
+| Twitter/X | `pbs.twimg.com` | ⭐⭐⭐⭐⭐ |
+| 微信公众号 | `mmbiz.qpic.cn` | ⭐⭐⭐⭐⭐ |
+| 知乎 | `zxpic.cn` | ⭐⭐⭐⭐ |
+
+#### 图片命名规范
+
+| 策略 | 示例 | 适用场景 |
+|------|------|----------|
+| **描述性命名** | `workflow-diagram.png` | 推荐：语义清晰 |
+| **Media ID** | `G_J8qXqaoAQ2xhu.jpg` | Twitter（自动提取） |
+| **URL Hash** | `a1b2c3d4e5f6.jpg` | 其他平台（自动生成） |
+
+**命名原则**：
+- ✅ 使用描述性名称：`cover.jpg`、`google-search.png`
 - ✅ 或使用 Media ID：`G_J8qXqaoAQ2xhu.jpg`
-- ❌ 不用数字索引：`image-01.jpg`、`img-1.png`
+- ❌ 不要用数字索引：`image-01.jpg`、`img-1.png`
+
+详见：[图片处理最佳实践](references/image-handling-best-practices.md)
 
 ### 验证清单
 
@@ -88,6 +116,7 @@ general/article-slug/
 ### 通用参考（核心流程）
 - [跨平台搜索策略](references/platform-search-strategy.md) - 小红书/抖音搜索流程
 - [文件归档指南](references/file-archiving-guide.md) - 三版本策略
+- [图片处理最佳实践](references/image-handling-best-practices.md) - 外链策略、命名规范、缓存映射
 - [验证清单](references/validation-checklist.md) - 完整性检查
 - [元数据模板](references/metadata-template.yaml) - 通用元数据格式
 
