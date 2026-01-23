@@ -2,12 +2,12 @@
 
 ## 核心原则
 
-**小红书是图片/视频平台，提取成本高。**
+**小红书是图片/视频平台，提取成本高。优先搜索文字平台版本。**
 
-完整流程（搜索策略见 SKILL.md）：
+完整流程：
 1. 访问小红书页面 → **只提取元信息**（标题、作者、发布时间）
-2. 用元信息搜索文字平台（详见 SKILL.md 搜索技巧）
-3. **只有完全搜索不到**，才回到小红书使用 OCR 提取
+2. 用元信息搜索文字平台（详见 [搜索策略](platform-search-strategy.md)）
+3. **只有完全搜索不到**，才回到小红书使用 OCR 提取（详见 [详细提取指南](workflow-guide.md)）
 
 ---
 
@@ -76,7 +76,18 @@ navigate_page -> <用户提供的小红书URL>
 
 ---
 
-## 第二步：OCR 提取（最后手段）
+## 第二步：搜索文字平台
+
+详见 [跨平台搜索策略](platform-search-strategy.md)
+
+**快速参考**：
+1. 搜狗微信搜索：https://weixin.sogou.com/
+2. Google/Bing：`site:mp.weixin.qq.com "<作者名>" "<标题关键词>"`
+3. 知乎/简书/博客等
+
+---
+
+## 第三步：OCR 提取（最后手段）
 
 只有在以下情况才进入此步骤：
 - 微信公众号没有该文章
@@ -84,41 +95,14 @@ navigate_page -> <用户提供的小红书URL>
 - 用户明确要求从小红书提取
 - 内容是小红书原创（独家图文/视频）
 
-### 2.1 内容类型识别
+**详细 OCR 提取流程**：见 [小红书详细提取指南](workflow-guide.md)
+
+### 快速参考
 
 | 类型 | 特征 | 提取方式 |
 |------|------|----------|
 | **图文笔记** | 显示 "1/N" 图片计数 | 图片 OCR |
 | **视频笔记** | 有播放按钮、时长显示 | 视频字幕/描述提取 |
-
-### 2.2 图文笔记提取
-
-```javascript
-// 提取所有图片 URL
-() => {
-  const images = document.querySelectorAll('img');
-  const articleImages = [];
-  images.forEach(img => {
-    const src = img.src || img.getAttribute('data-src');
-    if (src && src.includes('xhscdn.com') && src.includes('!nd_dft_wlteh_webp')) {
-      articleImages.push(src);
-    }
-  });
-  return [...new Set(articleImages)];
-}
-```
-
-**OCR 流程**：
-1. 下载所有图片到本地
-2. 对每张图片进行 OCR 识别
-3. 按图片顺序整理文字内容
-4. 去除水印、表情等干扰内容
-
-### 2.3 视频笔记提取
-
-1. 提取视频描述文字（页面可见）
-2. 如有字幕，提取字幕内容
-3. 关键帧截图 + OCR（如果需要）
 
 ---
 
@@ -135,7 +119,7 @@ navigate_page -> <用户提供的小红书URL>
        │
        ▼
 ┌──────────────────┐
-│ 搜索文字平台     │  ← 详见 SKILL.md 搜索技巧
+│ 搜索文字平台     │  ← 详见 platform-search-strategy.md
 │ （搜狗/Google等）│
 └──────────────────┘
        │
@@ -145,10 +129,18 @@ navigate_page -> <用户提供的小红书URL>
               │
               ▼
     ┌──────────────────┐
-    │ 小红书 OCR 提取  │  ← 最后手段
+    │ 小红书 OCR 提取  │  ← 详见 workflow-guide.md
     │ 图片识别/视频提取│
     └──────────────────┘
               │
               ▼
             完成
 ```
+
+---
+
+## 相关文档
+
+- [跨平台搜索策略](platform-search-strategy.md) - 搜索方法详解
+- [小红书详细提取指南](workflow-guide.md) - 图文/视频笔记 OCR 提取操作
+- [元数据模板](metadata-template.yaml) - 小红书文章元数据格式

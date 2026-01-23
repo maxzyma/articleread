@@ -217,7 +217,9 @@ python scripts/generate_remote.py article-slug/article-slug.md --repo user/repo
 ### References（详细文档）
 
 - [微信最佳实践](references/wechat-best-practices.md) - 图片提取、懒加载处理、位置确定
-- [小红书提取](references/xiaohongshu-workflow.md) - 元信息提取、访问绕过、OCR提取
+- [小红书提取](references/xiaohongshu-workflow.md) - 入口文档：元信息提取→搜索→OCR流程
+- [小红书详细提取指南](references/workflow-guide.md) - 图文/视频笔记 OCR 提取操作
+- [跨平台搜索策略](references/platform-search-strategy.md) - 搜索方法详解
 - [双来源处理](references/dual-source.md) - 视频+文章双来源处理
 - [验证环节](references/validation.md) - 完整性验证检查清单
 - [内容整理](references/content-organization.md) - 忠于原文原则
