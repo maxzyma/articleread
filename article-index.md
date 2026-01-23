@@ -1,7 +1,7 @@
 # 文章索引
 
 **更新时间**: 2026-01-23
-**总计**: 22 篇
+**总计**: 23 篇
 
 ---
 
@@ -12,6 +12,7 @@
 |------|------|------|----------|
 | 01-23 | [Claude Code 效率暴涨 70%？你可能正在给 Anthropic 捐款](general/claude-code-efficiency-ask-user-question-tool/claude-code-efficiency-ask-user-question-tool.md) | 微信公众号 | `claude-code-efficiency-ask-user-question-tool/` |
 | 01-23 | [2026年Claude Code Skills排行榜：Top 20完整版（已去重）](general/claude-code-skills-ranking-2026/claude-code-skills-ranking-2026.md) | 微信公众号 | `claude-code-skills-ranking-2026/` |
+| 01-23 | [拆解一个 3k Star 的 Skills：它到底写了什么？顺便还能学习 Manus 的上下文管理](general/planning-with-files-skill-3k-star-analysis/planning-with-files-skill-3k-star-analysis.md) | 知乎专栏 | `planning-with-files-skill-3k-star-analysis/` |
 | 01-23 | [像写代码一样自动化生成短视频](general/remotion-agent-skills-video-generation/remotion-agent-skills-video-generation.md) | 微信公众号 | `remotion-agent-skills-video-generation/` |
 | 01-22 | [Skills 最正确用法：将整个 GitHub 压缩成你自己的超级技能库](general/skills-github-toolbox/skills-github-toolbox.md) | Twitter/X | `skills-github-toolbox/` |
 | 01-22 | [一个被忽视的 Prompt 技巧：重复提示词](general/prompt-repetition-trick/prompt-repetition-trick.md) | 微信公众号 | `prompt-repetition-trick/` |
@@ -42,7 +43,7 @@
 
 ## 按主题统计
 
-- **General (通用)**: 17 篇
+- **General (通用)**: 18 篇
 - **Knowledge & Memory (知识与记忆)**: 5 篇
 
 ---

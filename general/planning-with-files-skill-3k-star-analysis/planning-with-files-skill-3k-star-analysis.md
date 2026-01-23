@@ -1,5 +1,7 @@
 # 拆解一个 3k Star 的 Skills：它到底写了什么？顺便还能学习 Manus 的上下文管理
 
+![封面图片](./images/cover.jpg)
+
 > 来源：知乎专栏 CYCHENYUE，2026-01-08
 > 原文链接：https://zhuanlan.zhihu.com/p/1992416332776498488
 
