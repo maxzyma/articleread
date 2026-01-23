@@ -1,48 +1,35 @@
 ---
+# 通用元数据模板
+# 适用于所有平台的文章提取
+
 title: "文章标题"
-original_title: "原标题（如果不同）"
+original_title: "原标题（如果翻译或调整了标题）"
 extraction_date: "YYYY-MM-DD"
 
 source:
-  platform: "小红书 (Xiaohongshu)"
+  platform: "平台名称（微信公众号/Twitter/知乎/博客等）"
   url: "原始URL"
+  author: "作者姓名"
+  author_title: "作者职位/身份（可选）"
+  publish_date: "YYYY-MM-DD"
   forwarder: "转发者名称（如果有）"
   forwarder_note: "转发者处理说明（如：已去除转发者的个人评论）"
-  content_type: "图文笔记 / 视频笔记"
-
-original_author:
-  name: "原作者姓名"
-  title: "作者职位/身份"
-  user_id: "作者用户ID（从URL中提取）"
-  # 其他相关字段
 
 content:
-  type: "内容类型（技术教程/观点文章/新闻等）"
-  topic: "主题"
-  format: "格式（清单/长文/访谈等）"
-  description: "内容描述（从页面提取）"
-  tags: "标签列表（从页面提取）"
-  publish_time: "发布时间（如：3天前 浙江）"
-  # 视频笔记专用字段
-  video_url: "视频直链（仅视频笔记）"
-  video_format: "视频格式（如：video/mp4，仅视频笔记）"
-  video_size: "视频大小（如：6.9 MB，仅视频笔记）"
-  engagement:
-    likes: "点赞数"
-    favorites: "收藏数"
-    comments: "评论数"
-    shares: "分享数"
-  # 其他相关字段
+  type: "内容类型（技术教程/观点文章/新闻/分析等）"
+  topic: "主题分类"
+  core_point: "一句话总结核心观点"
+  key_topics:
+    - "关键主题1"
+    - "关键主题2"
+    - "关键主题3"
 
 extraction_method:
-  - "Chrome DevTools 页面快照"
-  - "图片识别"  # 仅图文笔记
-  - "网络请求监听"  # 仅视频笔记
-  - "人工校对"
+  - "使用的方法（如：WebFetch、Chrome DevTools、图片识别、人工校对）"
 
 verification:
-  status: "completed/pending"
-  verified_against: "对照来源（原始网页/原始图片/原始视频等）"
+  status: "completed / pending"
+  verified_against: "对照来源（原始网页/原始图片等）"
   issues_found_and_fixed:
     - "发现的问题及修复（如有）"
 
@@ -51,7 +38,11 @@ content_file: "./article-slug.md"
 tags:
   - "标签1"
   - "标签2"
+  - "标签3"
 
 notes: |
   其他备注信息
-  此文档由小红书页面提取，经完整性与一致性校验。
+  目标受众：[明确受众群体]
+  技术背景：
+  - 要点1
+  - 要点2

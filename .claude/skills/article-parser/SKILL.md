@@ -31,20 +31,45 @@ description: 从多平台提取文章内容并归档。图片/视频平台（小
 - ✅ 忠于原文，保留技术细节和代码示例
 - ❌ 删除"关于作者"、"关注我"、推广信息、二维码
 
-### 文件归档
+### 文件归档（三版本策略）
+
+**必须同时创建三个版本**：
+
+| 版本 | 文件名 | 图片处理 | 适用场景 |
+|------|--------|----------|----------|
+| 原始版 | `article-slug.md` | `./images/` 相对路径 | 日常阅读、编辑 |
+| standalone 版 | `article-slug-standalone.md` | base64 嵌入 | 离线分享、归档 |
+| remote 版 | `article-slug-remote.md` | 原始 CDN URL | 在线分享、GitHub 预览 |
+
+目录结构：
 ```
 general/article-slug/
-├── article-slug.md              # 原始版本（./images/ 相对路径）
-├── article-slug-standalone.md   # base64 嵌入版
-├── article-slug-remote.md       # jsDelivr CDN 版
+├── article-slug.md              # 原始版本
+├── article-slug-standalone.md   # standalone 版本
+├── article-slug-remote.md       # remote 版本
 ├── article-slug.metadata.yaml   # 元数据
-└── images/                      # 图片目录
+└── images/                      # 本地图片
 ```
 
-### 图片命名
-- ✅ 描述性名称：`cover.jpg`、`workflow-diagram.png`
-- ✅ Media ID：`G_J8qXqaoAQ2xhu.jpg`
-- ❌ 不用编号：`image-01.jpg`
+详见：[文件归档指南](references/file-archiving-guide.md)
+
+### 图片处理
+- ✅ 所有平台图片都下载到 `images/` 目录
+- ✅ 使用描述性名称：`cover.jpg`、`workflow-diagram.png`
+- ✅ 或使用 Media ID：`G_J8qXqaoAQ2xhu.jpg`
+- ❌ 不用数字索引：`image-01.jpg`、`img-1.png`
+
+### 验证清单
+
+提取完成后必须验证：
+
+- [ ] 基础信息完整（标题、作者、时间、来源链接）
+- [ ] 章节结构完整（无截断）
+- [ ] 图片引用正确（数量匹配、路径正确）
+- [ ] 三版本文件齐全（原始、standalone、remote）
+- [ ] 元数据文件完整
+
+详见：[验证清单](references/validation-checklist.md)
 
 ---
 
@@ -60,18 +85,20 @@ general/article-slug/
 
 ## References
 
-### 元数据提取（图片/视频平台）
+### 通用参考（核心流程）
+- [跨平台搜索策略](references/platform-search-strategy.md) - 小红书/抖音搜索流程
+- [文件归档指南](references/file-archiving-guide.md) - 三版本策略
+- [验证清单](references/validation-checklist.md) - 完整性检查
+- [元数据模板](references/metadata-template.yaml) - 通用元数据格式
+
+### 平台特定实践
+
+**元数据提取**（图片/视频平台）：
 - [小红书元数据提取](references/xiaohongshu-metadata-best-practices.md)
 - [抖音元数据提取](references/douyin-metadata-best-practices.md)
 
-### 全文提取（图文平台）
+**全文提取**（图文平台）：
 - [微信公众号全文提取](references/wechat-article-best-practices.md)
 - [Twitter 全文提取](references/twitter-article-best-practices.md)
 - [知乎全文提取](references/zhihu-article-best-practices.md)
 - [博客/个人站点全文提取](references/blog-article-best-practices.md)
-
-### 通用参考
-- [跨平台搜索策略](references/platform-search-strategy.md) - 搜索流程和方法
-- [文件归档](references/file-archiving.md) - 三版本策略
-- [验证清单](references/validation.md) - 完整性检查
-- [元数据模板](references/metadata-template.yaml)
