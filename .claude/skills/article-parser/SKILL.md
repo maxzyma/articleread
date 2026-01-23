@@ -85,9 +85,11 @@ general/article-slug/
 - ✅ 或使用 Media ID：`G_J8qXqaoAQ2xhu.jpg`
 - ❌ 不要用数字索引：`image-01.jpg`、`img-1.png`
 
-#### 图片顺序验证（避免错位）
+#### 图片顺序验证（避免错位）⚠️ **强制要求**
 
 **核心规则**：必须使用缓存映射记录图片上下文，防止顺序错位。
+
+**⚠️ 禁止跳过此步骤！** 图片位置错放是最常见的错误。
 
 **创建缓存映射**（强制要求）：
 
@@ -106,11 +108,13 @@ general/article-slug/
   "images": [
     {
       "index": 1,
+      "imgIndex": 0,
       "original_url": "https://...",
       "media_id": "G_J8qXqaoAQ2xhu",
       "description": "图片描述",
       "context_before": "图片前的文字（关键锚点）",
-      "context_after": "图片后的文字（辅助验证）"
+      "context_after": "图片后的文字（辅助验证）",
+      "placement": "放置位置说明"
     }
   ]
 }
@@ -159,10 +163,14 @@ general/article-slug/
 - 真实 URL 存储在 `data-src` 属性中
 - 快照只能获取已渲染的 `src`，无法获取 `data-src`
 
-### 验证清单
+### ⚠️ 提取完成验证清单（必查）
 
-提取完成后必须验证：
+**提取完成后必须逐项验证**，确保完整性：
 
+- [ ] **图片映射已创建** ⚠️ 最重要！
+  - `.cache/images/{article-slug}/image-mapping.json` 存在
+  - 每张图片都有 `context_before` 和 `context_after`
+  - 图片位置已根据上下文验证
 - [ ] 基础信息完整（标题、作者、时间、来源链接）
 - [ ] 章节结构完整（无截断）
 - [ ] 图片引用正确（数量匹配、路径正确）
@@ -246,3 +254,63 @@ evaluate_script -> 复制 extract_wechat_images.js 全部内容
 - [Twitter 全文提取](references/twitter-article-best-practices.md)
 - [知乎全文提取](references/zhihu-article-best-practices.md)
 - [博客/个人站点全文提取](references/blog-article-best-practices.md)
+
+---
+
+## 常见错误与规避
+
+### 图片位置错放 ❌
+
+**症状**：图片顺序与原文不符，或图片插错位置
+
+**原因**：
+- 没有创建 `image-mapping.json`
+- 靠"感觉"或数字顺序放置图片
+- 没有根据 `context_before` 验证
+
+**规避**：
+1. ⚠️ **必须**创建 `image-mapping.json`
+2. 记录每张图片的 `context_before` 和 `context_after`
+3. 根据上下文精确定位，不要凭感觉
+
+### 微信图片提取失败 ❌
+
+**症状**：只获取到 SVG 占位符，图片 URL 错误
+
+**原因**：
+- 使用 `take_snapshot` 而非 JavaScript 脚本
+- 只获取 `src` 属性而非 `data-src`
+- 未滚动页面触发懒加载
+
+**规避**：
+1. 使用 `scripts/extract_wechat_images.js`
+2. 在 Console 中运行，不要用 `take_snapshot`
+3. 脚本会自动滚动和提取
+
+### 跳过验证清单 ❌
+
+**症状**：文件不完整、元数据缺失、视频遗漏
+
+**原因**：
+- 提取完成后未逐项检查
+- 认为看起来对就行了
+
+**规避**：
+1. ⚠️ **必须**使用验证清单逐项检查
+2. 特别检查 `image-mapping.json` 是否创建
+3. 检查视频（如有）是否提取
+
+### 章节内容截断 ❌
+
+**症状**：文章末尾内容丢失
+
+**原因**：
+- 未滚动到页面底部
+- web_reader API 限制（使用中）
+- 快照未捕获完整内容
+
+**规避**：
+1. 滚动到页面底部再提取
+2. 检查文章末尾是否有"点赞/在看"等结束标记
+3. 对照原文验证完整性
+
