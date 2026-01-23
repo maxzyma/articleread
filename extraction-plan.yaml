@@ -18,7 +18,7 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 15
+  total_completed: 16
   total_failed: 4
   total_skipped: 0
   last_updated: "2026-01-23"
@@ -108,6 +108,14 @@ general:
       completed_date: "2026-01-23"
       content_path: "general/claude-code-efficiency-ask-user-question-tool/"
       notes: "从搜狗微信搜索找到原文。核心观点：AI编程工具的输出质量完全取决于输入质量，强调使用Ask User Question Tool进行充分规划的重要性。"
+
+    - url: "https://mp.weixin.qq.com/s/0bgrBvh-ebQo0nxdOtVwTw"
+      title: "像写代码一样自动化生成短视频"
+      platform: "微信公众号 (GitHubDaily)"
+      forwarder: null
+      completed_date: "2026-01-23"
+      content_path: "general/remotion-agent-skills-video-generation/"
+      notes: "Remotion 推出 Agent Skills，结合 Claude Code 实现对话式自动化视频生成。包含安装命令、渲染原理说明、开源协议注意事项。"
 
   # 提取失败
   failed:

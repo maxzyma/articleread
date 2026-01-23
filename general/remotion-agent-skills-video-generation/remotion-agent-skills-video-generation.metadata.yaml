@@ -1,0 +1,52 @@
+---
+title: "像写代码一样自动化生成短视频"
+original_title: "我发现了一个新思路：像写代码一样自动化生成短视频。"
+extraction_date: "2026-01-23"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/0bgrBvh-ebQo0nxdOtVwTw"
+  author: "小 G"
+  account: "GitHubDaily"
+  publish_date: "2026-01-22"
+
+content:
+  type: "工具介绍"
+  topic: "视频自动化"
+  core_point: "Remotion 推出 Agent Skills，结合 Claude Code 实现对话式自动化视频生成，大幅降低代码化视频制作门槛"
+  key_topics:
+    - "Remotion"
+    - "Agent Skills"
+    - "Claude Code"
+    - "视频自动化"
+    - "代码化视频"
+
+extraction_method:
+  - "Chrome DevTools"
+  - "JavaScript 提取"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页"
+  notes: "内容完整，图片使用微信 CDN 链接"
+
+content_file: "./remotion-agent-skills-video-generation.md"
+
+tags:
+  - "Remotion"
+  - "视频自动化"
+  - "Claude Code"
+  - "Agent Skills"
+  - "AI 视频生成"
+
+notes: |
+  核心观点：Remotion 通过 Agent Skills + Claude Code 实现对话式视频生成，降低代码化视频门槛
+
+  技术背景：
+  - Remotion：代码化视频生成工具
+  - Agent Skills：AI 驱动的对话接口
+  - 渲染原理：逐帧截屏合成
+
+  目标受众：开发者、内容创作者、视频自动化探索者
+
+  许可证：公司许可证（非 MIT），商业化需注意
