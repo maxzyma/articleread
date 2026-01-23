@@ -1,7 +1,7 @@
 # 文章索引
 
 **更新时间**: 2026-01-23
-**总计**: 24 篇
+**总计**: 25 篇
 
 ---
 
@@ -10,6 +10,7 @@
 
 | 日期 | 标题 | 来源 | 文件路径 |
 |------|------|------|----------|
+| 01-23 | [Agentic Memory：让LLM像人类一样自主管理记忆](knowledge&memory/basics/agentic-memory-agemem/agentic-memory-agemem.md) | 微信公众号 | `agentic-memory-agemem/` |
 | 01-23 | [AI编码实践：从Vibe Coding到SDD](general/ai-coding-vibe-to-sdd/ai-coding-vibe-to-sdd.md) | 微信公众号 | `ai-coding-vibe-to-sdd/` |
 | 01-23 | [Claude Code 效率暴涨 70%？你可能正在给 Anthropic 捐款](general/claude-code-efficiency-ask-user-question-tool/claude-code-efficiency-ask-user-question-tool.md) | 微信公众号 | `claude-code-efficiency-ask-user-question-tool/` |
 | 01-23 | [2026年Claude Code Skills排行榜：Top 20完整版（已去重）](general/claude-code-skills-ranking-2026/claude-code-skills-ranking-2026.md) | 微信公众号 | `claude-code-skills-ranking-2026/` |
@@ -45,7 +46,7 @@
 ## 按主题统计
 
 - **General (通用)**: 19 篇
-- **Knowledge & Memory (知识与记忆)**: 5 篇
+- **Knowledge & Memory (知识与记忆)**: 6 篇
 
 ---
 

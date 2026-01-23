@@ -1,0 +1,55 @@
+---
+title: "Agentic Memory：让LLM像人类一样自主管理记忆"
+extraction_date: "2026-01-23"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/dUajr-DP0fW7Lstn2dD2Kg"
+  author: "AI研究"
+  author_affiliation: "微信公众号"
+  publish_date: "2026-01-06"
+
+content:
+  type: "技术解读"
+  topic: "知识图谱、记忆与 RAG"
+  format: "论文解读"
+  core_point: "Agentic Memory (AgeMem) 将记忆管理权力交还给 Agent，通过工具调用让 LLM 自主决定何时记忆、何时遗忘，性能提升 49.59%"
+  key_topics:
+    - "Agentic Memory (AgeMem)"
+    - "工具调用 (Tool Use)"
+    - "强化学习 (RL)"
+    - "长期记忆 (LTM)"
+    - "短期记忆 (STM)"
+    - "Step-wise GRPO"
+
+extraction_method:
+  - "Chrome DevTools 提取正文"
+  - "JavaScript 脚本提取图片"
+
+verification:
+  status: "completed"
+  verified_against: "原始微信文章页面"
+  notes: "已验证章节完整、图片引用正确"
+
+content_file: "./agentic-memory-agemem.md"
+
+tags:
+  - "Agentic-Memory"
+  - "AgeMem"
+  - "LLM"
+  - "Agent"
+  - "Memory"
+  - "RAG"
+  - "Tool-Use"
+  - "Reinforcement-Learning"
+
+notes: |
+  核心观点：通过将记忆操作"工具化"，让 Agent 自主管理记忆，性能提升 49.59%
+
+  技术背景：
+  - 现有记忆方案痛点：窗口有限、管理割裂、缺乏自主性
+  - AgeMem 解决方案：通过工具调用（Add/Update/Delete/Retrieve/Summary/Filter）让 Agent 自主管理 LTM 和 STM
+  - 训练方法：三阶段渐进式强化学习 + Step-wise GRPO 算法
+  - 实验结果：5 个长程基准测试上性能暴涨 49.59%
+
+  目标受众：AI 研究人员、Agent 开发者、LLM 工程师
