@@ -1,0 +1,54 @@
+---
+title: "Claude Code 效率暴涨 70%？你可能正在给 Anthropic 捐款"
+original_title: "Claude Code让工程师效率暴涨70%?别急,你可能正在烧钱给Anthropic捐款"
+extraction_date: "2026-01-23"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s?src=11&timestamp=1769144049&ver=6497&signature=PYEAlBOpYB*34KQa2XDCpOyjUnYSe4pf2kjyjs9GymL96csjgvW6Fx05xC2yX7w5I9S9u2S9yfEBw5cz6QuI0bOFaNVvN1cjLIlbNXXWy-glCVFSV35VSN6W1XyaddRQ&new=1"
+  xiaohongshu_url: "https://www.xiaohongshu.com/explore/696f6fe3000000000a028216?app_platform=ios&app_version=9.17.2&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBPIRH4yfZKWB0wrQoa_ESpCE-ZnCGpwwF5s05X4u5R_I=&author_share=1&xhsshare=WeixinSession&shareRedId=N0czQzRHRkI3OEdHOjg1SD9IP0lGSz8-&apptime=1769001914&share_id=3a27a72133b247afb3093f7bca134523&wechatWid=7cc90c24bf873fc064a3a0f1ad64c8bb&wechatOrigin=menu"
+  author: "mark"
+  author_page: "mark的AI笔记"
+  publish_date: "2026-01-20"
+
+content:
+  type: "技术观点"
+  topic: "AI编程工具使用技巧"
+  core_point: "AI编程工具的输出质量完全取决于你的输入质量——大多数人效率低下的根本原因是规划太烂，而不是工具不行。使用Ask User Question Tool可以在规划阶段把需求问清楚，避免后续返工和Token浪费。"
+  key_topics:
+    - "Claude Code使用技巧"
+    - "Ask User Question Tool"
+    - "AI编程规划方法"
+    - "上下文管理"
+    - "Ralph Loop使用建议"
+    - "输入质量决定输出质量"
+
+extraction_method:
+  - "微信公众号全文提取"
+  - "先搜索微信公众号版本，成功找到原文"
+
+verification:
+  status: "completed"
+  verified_against: "微信公众号原文"
+  notes: "已通过搜狗微信搜索找到原始微信公众号文章，提取了完整的文字内容。"
+
+content_file: "./claude-code-efficiency-ask-user-question-tool.md"
+
+tags:
+  - "Claude Code"
+  - "AI编程"
+  - "Ask User Question Tool"
+  - "Ralph Loop"
+  - "规划技巧"
+  - "上下文管理"
+
+notes: |
+  核心观点：AI编程工具的输出质量完全取决于你的输入质量。
+
+  关键建议：
+  1. 使用Ask User Question Tool在规划阶段把需求问清楚
+  2. 如果还没有部署过任何能用的应用，不要碰Ralph
+  3. 当上下文使用超过50%时，就该开启新会话
+  4. 不要过度迷恋工具和插件，基础规划更重要
+
+  目标受众：正在使用Claude Code等AI编程工具的开发者和产品经理。
