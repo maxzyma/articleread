@@ -1,11 +1,16 @@
 # 大模型圈娱乐化逼疯人！OpenAI 七年元老离职首发声：谷歌赢麻？不过是 OpenAI 失误了！
 
-> 来源：InfoQ 公众号，编译 | Tina，2026-01-23
-> 原文链接：https://mp.weixin.qq.com/s/81OnMVR5svDURu_2mHUypQ
+> **原创 | Tina** · 2026年1月23日 15:41 · 北京
+>
+> 来源：InfoQ 公众号 | 原文链接：https://mp.weixin.qq.com/s/81OnMVR5svDURu_2mHUypQ
 
 ![封面图](./images/image_01.png)
+![InfoQ](./images/image_02.png)
+![分隔图](./images/image_03.gif)
 
 ---
+
+**编译 | Tina**
 
 这不是离职八卦，而是在一个把技术做成剧情、把研究变成围观的行业里，扛了七年高压后的选择。
 
@@ -391,5 +396,3 @@ OpenAI 确实在很多关键点上做对了事情，但也不可否认，在某�
 
 *图片来源：InfoQ 公众号原文*
 *播客来源：Core Memory，YouTube 链接：https://www.youtube.com/watch?v=VaCq4u5c78U*
-
-![二维码](./images/image_07.png)
