@@ -4,7 +4,7 @@
 >
 > 来源：InfoQ 公众号 | 原文链接：https://mp.weixin.qq.com/s/81OnMVR5svDURu_2mHUypQ
 
-![封面图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/image_01.png)
+![封面横幅](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/banner.jpg)
 
 ---
 
@@ -56,7 +56,7 @@ Jerry，你好。你身上有一种……"刚失业的光芒"。
 >
 > **这段旅程非常精彩。虽然我将离开，去探索一些在 OpenAI 很难开展的研究方向，但这依然是一家特别的公司、一个特别的地方，它已经在全人类的历史中占据了永恒的一席之地。**
 
-![Jerry Tworek](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/image_04.png)
+![Jerry Tworek 肖像](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/jerry-portrait.jpg)
 
 **主持人**：但说真的，你那条离职帖写得很好，而且挺真情实感的。你在那里待了七年，经历了巨大的变化。从你的视角看，这七年是什么感觉？
 
@@ -200,7 +200,7 @@ OpenAI 确实在很多关键点上做对了事情，但也不可否认，在某�
 
 ## 5 做点跟 OpenAI 不同的事情
 
-![访谈配图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/image_05.png)
+![访谈场景](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/interview-scene.jpg)
 
 **主持人**：结合我们前面的讨论，我对你的理解是：你一直是从一种很纯粹的智识和科学兴趣出发的人。你在 reasoning 上的很多工作，本质上都指向一个长期目标——你想创造"AI 科学家"。
 
@@ -290,7 +290,7 @@ OpenAI 确实在很多关键点上做对了事情，但也不可否认，在某�
 
 ## 8 为什么大模型行业叙事变成了肥皂剧、真人秀
 
-![章节图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/image_06.png)
+![章节分隔](https://cdn.jsdelivr.net/gh/maxzyma/articleread/openai-veteran-jerry-tworek-interview/images/section-divider.jpg)
 
 **主持人**：我一直在想，尤其"政变"那段时间：你做出来的东西被媒体炒得很热，还被卷进各种戏剧化叙事。我不知道"滑稽"这个词对不对，很多人其实还没弄清它到底是什么，就已经围观成现象了。你当时是什么感觉？
 
