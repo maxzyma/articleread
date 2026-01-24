@@ -1,0 +1,51 @@
+---
+title: "OpenAI 七年老将离职：大模型同质化竞赛下的行业反思"
+original_title: "大模型圈娱乐化逼疯人！OpenAI七年元老离职首发声：谷歌赢麻？不过是OpenAI失误了！"
+extraction_date: "2026-01-24"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/81OnMVR5svDURu_2mHUypQ"
+  author: "InfoQ（编译 | Tina）"
+  publish_date: "2026-01-23"
+
+content:
+  type: "访谈翻译"
+  topic: "AI 行业观察"
+  core_point: "OpenAI 前核心研究员 Jerry Tworek 离职访谈：所有主要 AI 公司都在开发几乎相同的技术，行业同质化严重"
+  key_topics:
+    - "OpenAI 内部问题"
+    - "行业同质化"
+    - "研究方向思考"
+    - "AI 行业娱乐化"
+    - "Anthropic 评价"
+
+extraction_method:
+  - "Chrome DevTools"
+  - "JavaScript 图片提取"
+
+verification:
+  status: "completed"
+  verified_against: "微信原文"
+  notes: "已提取完整内容，包含 9 张图片"
+
+content_file: "./openai-veteran-jerry-tworek-interview.md"
+
+tags:
+  - "OpenAI"
+  - "Jerry Tworek"
+  - "AI 行业"
+  - "大模型"
+  - "访谈"
+
+notes: |
+  核心观点：所有主要 AI 公司都在开发几乎相同的技术，产品几乎没有区别，这迫使研究者追求短期利益而非实验性突破。
+
+  关键信息：
+  - Jerry Tworek：OpenAI 七年老将，参与 Q-Star、Strawberry、o1 推理模型
+  - 离职原因：想从事有风险的基础研究，但在 OpenAI 已不可能
+  - 行业问题：五大体量巨大的 AI 公司使用完全同一套"配方"
+  - Google 追赶：本质上是 OpenAI 的失误
+  - Anthropic：高度聚焦，执行优秀，开发者满意度高
+
+  目标受众：AI 研究者、开发者、关注 AI 行业的人士
