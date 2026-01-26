@@ -29,9 +29,9 @@
 
 Figma界面：
 
-Pencil界面：
-
 ![Figma界面](https://mmbiz.qpic.cn/mmbiz_png/De5rakickIy8jkLlmzyQ9FcK7rDciadKaxmmf0H8U15PvL1ib8DTrzeAI8wiciaPtKWTUY7hkkvib9OPArzkAVX76kQg/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=1)
+
+Pencil界面：
 
 ![Pencil界面](https://mmbiz.qpic.cn/mmbiz_jpg/De5rakickIy8jkLlmzyQ9FcK7rDciadKaxibOafNsYstqJLQwicXv94pN6FcWbL9R3ibp2L1maaI4ZMSy60E34Wpz7A/640?wx_fmt=jpeg&from=appmsg&watermark=1#imgIndex=2)
 
