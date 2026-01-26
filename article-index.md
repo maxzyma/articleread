@@ -1,7 +1,7 @@
 # 文章索引
 
-**更新时间**: 2026-01-24
-**总计**: 26 篇
+**更新时间**: 2026-01-26
+**总计**: 27 篇
 
 ---
 
@@ -10,6 +10,7 @@
 
 | 日期 | 标题 | 来源 | 文件路径 |
 |------|------|------|----------|
+| 01-26 | [Clawdbot 趋势分析 - 全面发现](general/clawdbot-trend-analysis/clawdbot-trend-analysis.md) | Google Docs | `clawdbot-trend-analysis/` |
 | 01-24 | [OpenAI 七年老将离职：大模型同质化竞赛下的行业反思](general/openai-veteran-jerry-tworek-interview/openai-veteran-jerry-tworek-interview.md) | 微信公众号 | `openai-veteran-jerry-tworek-interview/` |
 | 01-23 | [Agentic Memory：让LLM像人类一样自主管理记忆](knowledge&memory/basics/agentic-memory-agemem/agentic-memory-agemem.md) | 微信公众号 | `agentic-memory-agemem/` |
 | 01-23 | [AI编码实践：从Vibe Coding到SDD](general/ai-coding-vibe-to-sdd/ai-coding-vibe-to-sdd.md) | 微信公众号 | `ai-coding-vibe-to-sdd/` |
@@ -46,7 +47,7 @@
 
 ## 按主题统计
 
-- **General (通用)**: 20 篇
+- **General (通用)**: 21 篇
 - **Knowledge & Memory (知识与记忆)**: 6 篇
 
 ---

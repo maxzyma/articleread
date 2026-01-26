@@ -18,10 +18,10 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 17
+  total_completed: 18
   total_failed: 4
   total_skipped: 0
-  last_updated: "2026-01-23"
+  last_updated: "2026-01-26"
 
 # ============================================================================
 # General 主题详细计划
@@ -124,6 +124,14 @@ general:
       completed_date: "2026-01-23"
       content_path: "general/planning-with-files-skill-3k-star-analysis/"
       notes: "拆解 planning-with-files 技能的 9 个设计技巧，该技能复刻了 Manus 的核心工作方法（文件系统作为外部记忆、通过复述操控注意力、保留失败记录）"
+
+    - url: "https://docs.google.com/document/d/1Mz4xt1yAqb2gDxjr0Vs_YOu9EeO-6JYQMSx4WWI8KUA/edit?tab=t.0"
+      title: "Clawdbot 趋势分析 - 全面发现"
+      platform: "Google Docs"
+      forwarder: null
+      completed_date: "2026-01-26"
+      content_path: "general/clawdbot-trend-analysis/"
+      notes: "Levangi Labs 分析了 5,620 条推文，总结 Clawdbot 开源个人 AI 助手的趋势。包含教程指南、应用场景、文化现象分析和跨列表模式洞察。"
 
   # 提取失败
   failed:
