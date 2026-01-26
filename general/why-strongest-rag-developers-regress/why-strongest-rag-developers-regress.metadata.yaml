@@ -1,0 +1,56 @@
+---
+title: "为什么最强的 RAG 开发者都在\"倒退\"？"
+original_title: "为什么最强的RAG开发者都在\"倒退\"？"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "抖音 (Douyin)"
+  url: "https://www.douyin.com/video/7598472806531124526"
+  video_id: "7598472806531124526"
+  author: "LLM-X-Factors"
+  publish_date: "2026-01-23"
+
+content:
+  type: "技术观点"
+  topic: "RAG 技术选型"
+  core_point: "126 位 RAG 开发者的实战经验揭示：85% 的情况下向量搜索并非必需，BM25、SQLite 等传统方法在代码搜索等场景表现更优"
+  key_topics:
+    - "RAG 技术选型"
+    - "向量数据库 vs 传统搜索"
+    - "BM25 全文检索"
+    - "SQLite/Postgres 数据库"
+
+extraction_method:
+  - "Chrome DevTools 访问抖音视频"
+  - "视频内容整理归档"
+
+verification:
+  status: "completed"
+  verified_against: "原视频内容"
+  notes: "从抖音视频提取内容并整理为文章格式"
+
+content_file: "./why-strongest-rag-developers-regress.md"
+
+tags:
+  - "RAG"
+  - "向量数据库"
+  - "BM25"
+  - "全文检索"
+  - "技术选型"
+
+notes: |
+  核心观点：
+  当多数人还在追捧向量数据库时，一批 RAG 高手却开始集体"倒退"——用 BM25、SQLite 搞定大部分场景。这不是技术退步，而是回归本质。
+
+  关键数据：
+  - 126 位 RAG 开发者的实战经验
+  - 85% 的情况下，向量搜索并非必需
+
+  技术背景：
+  - 向量数据库成本高昂，embedding 模型部署维护成本高
+  - 语义检索在代码搜索场景表现不佳
+  - 简单场景使用复杂向量方案反而降低效率
+
+  适用读者：
+  - 正在选型 RAG 方案的技术决策者
+  - 关注技术成本效益的开发者

@@ -446,6 +446,99 @@ verify_images(markdown_file, mapping_file)
 4. **缓存映射**：在 `.cache/` 记录图片映射关系，便于追溯和验证
 5. **工具验证**：使用脚本自动化验证，避免手动错误
 
+### 微信图片提取的异常处理
+
+⚠️ **微信文章使用懒加载机制**，`extract_wechat_images.js` 脚本可能产生异常输出，必须验证后才能使用。
+
+#### 常见异常
+
+| 异常类型 | 表现 | 原因 |
+|---------|------|------|
+| **空 context** | `context_before: ""` | 脚本无法从 DOM 提取上下文 |
+| **imgIndex 重复** | 两张图片 imgIndex=0 | 脚本重复提取同一位置 |
+| **浏览器截屏** | 图片包含浏览器标签栏 | 脚本提取了页面截图而非文章内容 |
+| **引流二维码** | 推广/课程图片 | 广告过滤关键词不完整 |
+
+#### 验证流程（必须执行）
+
+```
+1. 脚本输出图片列表
+         ↓
+2. 检查：是否存在异常信号？
+   - 任何图片的 context_before 为空？
+   - 是否存在重复的 imgIndex？
+         ↓  是 → 立即用快照手动验证
+3. 下载图片
+         ↓
+4. 立即验证每张图片：
+   - 图片内容是否与 context 匹配？
+   - 是否为浏览器截屏/推广内容？
+         ↓  否 → 删除该图片
+5. 确认无误后再插入文章
+```
+
+#### 异常处理规则
+
+```python
+def validate_script_output(script_output):
+    """验证脚本输出是否有异常信号"""
+    images = script_output['images']
+
+    issues = []
+
+    # 1. 检查空 context
+    for i, img in enumerate(images):
+        if not img.get('context_before'):
+            issues.append({
+                'type': 'empty_context',
+                'index': i + 1,
+                'imgIndex': img.get('imgIndex'),
+                'action': '使用快照手动验证该图片位置'
+            })
+
+    # 2. 检查重复的 imgIndex
+    img_indices = [img.get('imgIndex') for img in images]
+    duplicates = [idx for idx in set(img_indices) if img_indices.count(idx) > 1]
+    if duplicates:
+        issues.append({
+            'type': 'duplicate_imgIndex',
+            'duplicates': duplicates,
+            'action': '这是异常信号，必须用快照验证哪些图片是真实的'
+        })
+
+    # 3. 检查图片尺寸（异常大的可能是截屏）
+    for i, img in enumerate(images):
+        if img.get('width', 0) > 1200 and img.get('height', 0) > 800:
+            issues.append({
+                'type': 'possible_screenshot',
+                'index': i + 1,
+                'dimensions': f"{img['width']}x{img['height']}",
+                'action': '检查是否为浏览器截屏'
+            })
+
+    return issues
+```
+
+#### 快照验证模板
+
+当发现异常时，用快照验证图片位置：
+
+```markdown
+## 图片位置验证记录
+
+| 图片序号 | context_before (快照) | 快照中图片元素 | 是否匹配 |
+|---------|---------------------|--------------|---------|
+| 1 | "他在飞书中宣布：" | uid=5_13 image (SVG 占位符) | 待确认 |
+| 2 | "比如：美团、字节，都在逐步全栈化" | uid=5_19 image (SVG 占位符) | 待确认 |
+
+**验证方法**：
+1. 查看快照中图片元素的上下文
+2. 对比脚本返回的 context_before
+3. 下载后检查图片内容是否与上下文相关
+```
+
+---
+
 ### 三个版本的图片策略
 
 | 版本 | 图片来源 | 使用场景 | 示例 |

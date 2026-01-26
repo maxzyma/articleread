@@ -1,0 +1,40 @@
+{
+  "article_url": "https://mp.weixin.qq.com/s/SgwRaEFxVmqNvC2fyaD-qg",
+  "extraction_date": "2026-01-26",
+  "correction_date": "2026-01-26",
+  "correction_notes": "移除了错误的浏览器截屏(image_01.png)，原image_02变更为image_02，原image_03变更为image_03，以此类推。原image_06和image_07为引流二维码，已从文章中移除。",
+  "images": [
+    {
+      "index": 1,
+      "filename": "image_02.png",
+      "description": "毕玄飞书截图",
+      "context_before": "他在飞书中宣布：",
+      "context_after": "毕玄是阿里的前 P10 工程师",
+      "verified": true
+    },
+    {
+      "index": 2,
+      "filename": "image_03.png",
+      "description": "美团字节群聊讨论1",
+      "context_before": "比如：美团、字节，都在逐步全栈化",
+      "context_after": "昨天，我跟一位",
+      "verified": true
+    },
+    {
+      "index": 3,
+      "filename": "image_04.png",
+      "description": "美团字节群聊讨论2",
+      "context_before": "沟通时，他也提到公司目前正在全栈化",
+      "context_after": "在几个月之前，大家还都在网上讨论",
+      "verified": true
+    },
+    {
+      "index": 4,
+      "filename": "image_05.png",
+      "description": "大厂全栈能力要求",
+      "context_before": "在大厂中的全栈，也并不是让你从头去背 Java 八股文",
+      "context_after": "读懂逻辑：借助 AI 解释器",
+      "verified": true
+    }
+  ]
+}

@@ -18,7 +18,7 @@
 summary:
   total_pending: 0
   total_in_progress: 0
-  total_completed: 18
+  total_completed: 20
   total_failed: 4
   total_skipped: 0
   last_updated: "2026-01-26"
@@ -44,6 +44,14 @@ general:
       completed_date: "2026-01-17"
       content_path: "general/manus-claude-best-agent-model/"
       notes: "使用 Chrome DevTools 提取的抖音视频内容，包含标题、作者、互动数据和社区讨论"
+
+    - url: "https://www.douyin.com/video/7598472806531124526"
+      title: "为什么最强的 RAG 开发者都在\"倒退\"？"
+      platform: "抖音 (Douyin)"
+      forwarder: null
+      completed_date: "2026-01-27"
+      content_path: "general/why-strongest-rag-developers-regress/"
+      notes: "126 位 RAG 开发者的实战经验：85% 的情况下向量搜索并非必需，BM25、SQLite 等传统方法在代码搜索等场景表现更优"
 
     - url: "https://www.xiaohongshu.com/explore/..."
       title: "Claude Code 31条秘籍_完整版"
@@ -132,6 +140,14 @@ general:
       completed_date: "2026-01-26"
       content_path: "general/clawdbot-trend-analysis/"
       notes: "Levangi Labs 分析了 5,620 条推文，总结 Clawdbot 开源个人 AI 助手的趋势。包含教程指南、应用场景、文化现象分析和跨列表模式洞察。"
+
+    - url: "https://mp.weixin.qq.com/s/SgwRaEFxVmqNvC2fyaD-qg"
+      title: "前阿里 P10 毕玄：公司以后不再划分前端、后端，统一叫做 Agent 工程师"
+      platform: "微信公众号 (Sunday的程序员客栈)"
+      forwarder: null
+      completed_date: "2026-01-26"
+      content_path: "general/ali-p10-agent-engineer/"
+      notes: "AI 降低编码成本后，沟通成本成为效率瓶颈，大厂开始取消前后端划分，统一转向 Agent 工程师。包含毕玄飞书截图和美团字节群聊讨论。"
 
   # 提取失败
   failed:

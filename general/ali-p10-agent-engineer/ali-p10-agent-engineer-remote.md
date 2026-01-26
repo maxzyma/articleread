@@ -19,17 +19,17 @@
 
 > "公司决定以后不再按技术栈划分技术岗位，所有技术岗位统一为 Agent 工程师。并且以后的工作也不会按照技术栈来安排。"
 
-![毕玄飞书截图](./images/image_02.png)
+![毕玄飞书截图](https://cdn.jsdelivr.net/gh/maxzyma/articleread/ali-p10-agent-engineer/images/image_02.png)
 
 单独看这个可能还认为这是个例。无独有偶，很多大厂早在 25 年中旬就开始有了前后端不分离的全栈动作了。
 
 比如：美团、字节，都在逐步全栈化
 
-![美团字节群聊讨论1](./images/image_03.png)
+![美团字节群聊讨论1](https://cdn.jsdelivr.net/gh/maxzyma/articleread/ali-p10-agent-engineer/images/image_03.png)
 
 昨天，我跟一位训练营的同学沟通时，他也提到公司目前正在全栈化。
 
-![美团字节群聊讨论2](./images/image_04.png)
+![美团字节群聊讨论2](https://cdn.jsdelivr.net/gh/maxzyma/articleread/ali-p10-agent-engineer/images/image_04.png)
 
 ---
 
@@ -83,7 +83,7 @@
 
 ### 大厂全栈的核心能力
 
-![大厂全栈能力要求](./images/image_05.png)
+![大厂全栈能力要求](https://cdn.jsdelivr.net/gh/maxzyma/articleread/ali-p10-agent-engineer/images/image_05.png)
 
 在大厂中的全栈，也并不是让你从头去背 Java 八股文，而是：
 1. **读懂逻辑**：借助 AI 解释器，看懂现有的后端代码逻辑

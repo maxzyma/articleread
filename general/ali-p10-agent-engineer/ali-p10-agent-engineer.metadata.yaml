@@ -1,53 +1,64 @@
 ---
-title: "前阿里 P10 毕玄的一张聊天截图火了"
-original_title: "前阿里P10毕玄的一张聊天截图火了"
+title: "前阿里 P10 毕玄：公司以后不再划分前端、后端，统一叫做 Agent 工程师"
+original_title: "前阿里 P10 毕玄：公司以后不再划分 前端、后端，统一叫做 Agent 工程师"
 extraction_date: "2026-01-26"
 
 source:
-  platform: "小红书"
-  url: "https://www.xiaohongshu.com/explore/69758e0c000000001a02b418"
-  author: "MOSS进化论"
-  author_url: "https://www.xiaohongshu.com/user/profile/663e0183000000000b0303e8"
-  publish_date: "2026-01-25"
-  location: "山东"
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/SgwRaEFxVmqNvC2fyaD-qg"
+  author: "Sunday的程序员客栈"
+  publish_date: "2026-01-26"
 
 content:
-  type: "技术观点"
-  topic: "AI Coding / Agent 工程师"
-  format: "短文"
-  core_point: "AI Coding 的崛起正在重新定义技术岗位，不再按技术栈划分，统一称为 Agent 工程师"
+  type: "技术趋势分析"
+  topic: "AI 工程师转型"
+  core_point: "AI 降低编码成本后，沟通成本成为效率瓶颈，大厂取消前后端划分，统一转向 Agent 工程师"
   key_topics:
-    - "AI Coding"
-    - "Agent 工程师"
-    - "技术岗位转型"
-    - "全栈开发"
-    - "组织架构调整"
+    - "Agent 工程师概念"
+    - "大厂全栈化趋势"
+    - "AI 改变开发成本结构"
+    - "前端工程师机遇"
 
 extraction_method:
   - "Chrome DevTools 快照提取"
+  - "extract_wechat_images.js 脚本提取图片"
+  - "2026-01-26 修正：移除了错误的浏览器截屏"
 
 verification:
   status: "completed"
-  verified_against: "小红书原始页面"
-  notes: "纯文字笔记，无图片"
+  verified_against: "原文链接"
+  issues_found_and_fixed:
+    - "移除了错误的浏览器截屏(image_01.png)"
+    - "原image_06和image_07为引流二维码，从文章中移除"
 
 content_file: "./ali-p10-agent-engineer.md"
 
+images:
+  count: 4
+  local_path: "./images/"
+  mapping_file: "./image-mapping.json"
+  correction_notes: "原7张图片，移除了浏览器截屏和2张引流二维码，保留4张正文图片"
+
 tags:
-  - "AI"
-  - "Agent"
-  - "AI Coding"
-  - "技术岗位"
+  - "Agent 工程师"
+  - "前端"
+  - "后端"
+  - "AI 开发"
+  - "全栈"
   - "职业发展"
-  - "阿里"
+  - "毕玄"
 
 notes: |
-  核心观点：AI Coding 重新定义技术岗位
+  核心观点：
+  AI 降低编码成本后，沟通成本成为效率瓶颈，大厂开始取消前后端划分，统一转向 Agent 工程师。
 
-  技术背景：
-  - 前阿里 P10 毕玄分享的组织架构调整
-  - 取消按技术栈划分的传统岗位设置
-  - 统一称为 Agent 工程师
-  - 按产品和项目任务分配工作
+  关键信息：
+  - 阿里前 P10 毕玄提出 Agent 工程师概念
+  - 美团、字节等大厂已启动全栈化变革
+  - AI 全栈 ≠ 传统全栈，核心是懂业务逻辑 + 调用 AI
 
-  目标受众：正在经历或即将面临 AI 技术转型的开发者、技术管理者
+  启示：
+  对于前端工程师，这是史诗级利好，可以转型为"产品工程师"，独立交付完整产品。
+
+  勘误记录：
+  2026-01-26：发现 image_01.png 是浏览器截屏而非飞书截图，已删除并更正图片引用。
