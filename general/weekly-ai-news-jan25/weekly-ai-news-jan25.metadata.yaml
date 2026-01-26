@@ -6,9 +6,12 @@ extraction_date: "2025-01-26"
 source:
   platform: "小红书"
   url: "https://www.xiaohongshu.com/explore/69761dbe000000000a0314c0"
+  video_url: "https://www.xiaohongshu.com/explore/69761dbe000000000a0314c0"
   video_id: "69761dbe000000000a0314c0"
   author: "产品君"
   publish_date: "2025-01-25"
+  content_type: "视频"
+  notes: "视频使用 blob URL 动态加载，需在小红书平台观看"
 
 content:
   type: "行业动态"
