@@ -1,0 +1,53 @@
+---
+title: "前阿里 P10 毕玄的一张聊天截图火了"
+original_title: "前阿里P10毕玄的一张聊天截图火了"
+extraction_date: "2026-01-26"
+
+source:
+  platform: "小红书"
+  url: "https://www.xiaohongshu.com/explore/69758e0c000000001a02b418"
+  author: "MOSS进化论"
+  author_url: "https://www.xiaohongshu.com/user/profile/663e0183000000000b0303e8"
+  publish_date: "2026-01-25"
+  location: "山东"
+
+content:
+  type: "技术观点"
+  topic: "AI Coding / Agent 工程师"
+  format: "短文"
+  core_point: "AI Coding 的崛起正在重新定义技术岗位，不再按技术栈划分，统一称为 Agent 工程师"
+  key_topics:
+    - "AI Coding"
+    - "Agent 工程师"
+    - "技术岗位转型"
+    - "全栈开发"
+    - "组织架构调整"
+
+extraction_method:
+  - "Chrome DevTools 快照提取"
+
+verification:
+  status: "completed"
+  verified_against: "小红书原始页面"
+  notes: "纯文字笔记，无图片"
+
+content_file: "./ali-p10-agent-engineer.md"
+
+tags:
+  - "AI"
+  - "Agent"
+  - "AI Coding"
+  - "技术岗位"
+  - "职业发展"
+  - "阿里"
+
+notes: |
+  核心观点：AI Coding 重新定义技术岗位
+
+  技术背景：
+  - 前阿里 P10 毕玄分享的组织架构调整
+  - 取消按技术栈划分的传统岗位设置
+  - 统一称为 Agent 工程师
+  - 按产品和项目任务分配工作
+
+  目标受众：正在经历或即将面临 AI 技术转型的开发者、技术管理者

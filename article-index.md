@@ -1,7 +1,7 @@
 # 文章索引
 
 **更新时间**: 2026-01-26
-**总计**: 31 篇
+**总计**: 32 篇
 
 ---
 
@@ -12,6 +12,7 @@
 |------|------|------|----------|
 | 01-26 | [Clawdbot 趋势分析 - 全面发现](general/clawdbot-trend-analysis/clawdbot-trend-analysis.md) | Google Docs | `clawdbot-trend-analysis/` |
 | 01-26 | [Pencil.dev：设计与开发的真正融合](general/pencil-dev-ai-design-canvas/pencil-dev-ai-design-canvas.md) | 微信公众号 | `pencil-dev-ai-design-canvas/` |
+| 01-26 | [前阿里 P10 毕玄的一张聊天截图火了](general/ali-p10-agent-engineer/ali-p10-agent-engineer.md) | 小红书 | `ali-p10-agent-engineer/` |
 | 01-26 | [Clawdbot一夜爆红，首个0员工公司诞生！7×24h永不下班](general/clawdbot-silicon-valley-sensation/clawdbot-silicon-valley-sensation.md) | 微信公众号 | `clawdbot-silicon-valley-sensation/` |
 | 01-26 | [Anthropic 推出 Claude in Excel，正在拉大与 OpenAI 在企业级应用的差距（附测评建议）](general/claude-in-excel-vs-openai/claude-in-excel-vs-openai.md) | 微信公众号 | `claude-in-excel-vs-openai/` |
 | 01-24 | [OpenAI 七年老将离职：大模型同质化竞赛下的行业反思](general/openai-veteran-jerry-tworek-interview/openai-veteran-jerry-tworek-interview.md) | 微信公众号 | `openai-veteran-jerry-tworek-interview/` |
@@ -51,7 +52,7 @@
 
 ## 按主题统计
 
-- **General (通用)**: 25 篇
+- **General (通用)**: 26 篇
 - **Knowledge & Memory (知识与记忆)**: 6 篇
 
 ---
