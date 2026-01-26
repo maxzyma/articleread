@@ -42,6 +42,12 @@ images:
   - path: "./images/image_01.jpg"
     original_url: "https://mmbiz.qpic.cn/mmbiz_jpg/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEuIYmcEZPgXeLKNppXWevquP8mwiaIDX4rhCWTUeUuPdgJyohbp88wXg/640?wx_fmt=jpeg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0"
     description: "Claude in Excel 生成的复杂商业模型 excel 表"
+  - path: "./images/image_02.png"
+    original_url: "https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEHufz5MwHpsFCGrLRhYpBE8XkVxt5v2gCGLpXXibggLYL5RJTicEExOA/640?wx_fmt=png&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1"
+    description: "Claude in Excel 官方推文及 Excel 表格示例"
+  - path: "./images/image_03.png"
+    original_url: "https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEMPowCTrWdNQkZQ6OI8HibL94sEibTQicnhkbv9REfAb21qsVI88IEZuPw/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=2"
+    description: "产品分发的广泛采用（Distribution）是护城河"
 
 tags:
   - "Claude"

@@ -13,11 +13,11 @@ Anthropic 通过 Claude in Excel 双重路径强势渗透 Excel，在企业级�
 
 周末，Claude 推出了全新的 Claude in Excel 功能，群里立刻有人迫不及待地进行了测试。很快，一张由 Claude in Excel 生成的复杂商业模型 excel 表出现在了群里，引得大家纷纷惊叹："Claude 功能已经这么强大了吗？"
 
-![Claude in Excel 生成的复杂商业模型 excel 表](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-in-excel-vs-openai/images/image_01.jpg)
+![Claude in Excel 生成的复杂商业模型 excel 表](https://mmbiz.qpic.cn/mmbiz_jpg/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEuIYmcEZPgXeLKNppXWevquP8mwiaIDX4rhCWTUeUuPdgJyohbp88wXg/640?wx_fmt=jpeg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
 
 Claude in Excel 是由 Anthropic 最新推出的一个插件/集成，可以把 Claude 这个大模型直接带入到 Excel 工作簿里，帮助用户理解复杂表格、定位公式错误、自动生成内容、测试假设，提升处理数据和模型的效率。它目前在 beta 阶段，在 Claude Pro、Max、Team 和 Enterprise 计划中提供。
 
-![Claude in Excel 官方推文及 Excel 表格示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-in-excel-vs-openai/images/image_02.png)
+![Claude in Excel 官方推文及 Excel 表格示例](https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEHufz5MwHpsFCGrLRhYpBE8XkVxt5v2gCGLpXXibggLYL5RJTicEExOA/640?wx_fmt=png&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1)
 
 ---
 
@@ -60,6 +60,8 @@ Claude 能自动识别常见错误（像是 #REF!、#VALUE! 或循环引用等�
 Claude in Excel 发布后，圈内有很多评论，其中很火的一条评论来自产品专家 Aakash Gupta，他的评论最后一句话很形象：
 
 > **The best model isn't the one with the highest scores. It's the one running inside Excel when the analyst builds their quarterly report.**
+
+![产品分发的广泛采用是护城河](https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEMPowCTrWdNQkZQ6OI8HibL94sEibTQicnhkbv9REfAb21qsVI88IEZuPw/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=2)
 
 产品发布只是表象，一场分发渠道的"教科书级围猎"才是本质。
 

@@ -61,6 +61,8 @@ Claude in Excel 发布后，圈内有很多评论，其中很火的一条评论�
 
 > **The best model isn't the one with the highest scores. It's the one running inside Excel when the analyst builds their quarterly report.**
 
+![产品分发的广泛采用是护城河](./images/image_03.png)
+
 产品发布只是表象，一场分发渠道的"教科书级围猎"才是本质。
 
 如今，Claude 正通过双重路径强势渗透 Excel：其一，是 Anthropic 官方推出的独立插件；其二，是深度嵌入微软 Copilot 的代理模式。这种合作极具戏剧性，尽管亚马逊（AWS）是微软在云服务领域的头号宿敌，微软仍不惜向其支付巨额费用，只为获取 Claude 的接口。
