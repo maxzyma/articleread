@@ -1,0 +1,68 @@
+---
+title: "Anthropic 推出 Claude in Excel，正在拉大与 OpenAI 在企业级应用的差距（附测评建议）"
+original_title: "Anthropic 推出 Claude in Excel，正在拉大与 OpenAI 在企业级应用的差距 （ 附测评建议 ）"
+extraction_date: "2026-01-26"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/g_E6igNr5m47pHsAK4cK9w"
+  author: "Miss LN"
+  author_location: "广东"
+  publish_date: "2026-01-26"
+
+content:
+  type: "技术分析"
+  topic: "AI / 企业级应用 / Claude"
+  format: "长文分析"
+  core_point: "Anthropic 通过 Claude in Excel 双重路径强势渗透 Excel，在企业级应用市场已斩获 32% 部署份额，超越 OpenAI 的 25%。产品分发的广泛采用才是真正的护城河。"
+  key_topics:
+    - "Claude in Excel 功能"
+    - "企业级 AI 部署"
+    - "产品分发策略"
+    - "测评指南"
+    - "Claude Cowork 对比"
+
+extraction_method:
+  - "Chrome DevTools 快照提取"
+  - "微信图片下载"
+
+verification:
+  status: "completed"
+  verified_against: "原文快照"
+  notes: "基于 Chrome DevTools take_snapshot 提取完整内容，图片已下载"
+
+content_file: "./claude-in-excel-vs-openai.md"
+
+files:
+  original: "./claude-in-excel-vs-openai.md"
+  standalone: "./claude-in-excel-vs-openai-standalone.md"
+  remote: "./claude-in-excel-vs-openai-remote.md"
+
+images:
+  - path: "./images/image_01.jpg"
+    original_url: "https://mmbiz.qpic.cn/mmbiz_jpg/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEuIYmcEZPgXeLKNppXWevquP8mwiaIDX4rhCWTUeUuPdgJyohbp88wXg/640?wx_fmt=jpeg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0"
+    description: "Claude in Excel 生成的复杂商业模型 excel 表"
+
+tags:
+  - "Claude"
+  - "Anthropic"
+  - "Excel"
+  - "企业级应用"
+  - "OpenAI"
+  - "AI 评测"
+
+notes: |
+  核心观点：产品分发的广泛采用（Distribution）才是真正的护城河，而非纸面上的跑分（Benchmarks）
+
+  技术背景：
+  - Anthropic 通过 Claude in Excel 双重路径渗透 Excel（官方插件 + 微软 Copilot 集成）
+  - 企业级部署份额：Anthropic 32% vs OpenAI 25%
+  - 微软将 Claude 设为 Microsoft 365 企业用户默认 AI 选项
+
+  主要内容：
+  1. Claude in Excel 七大功能场景
+  2. 深度测评建议（四阶段测试流程）
+  3. 数据安全清单（脱敏、隐私保护、防范注入攻击）
+  4. Claude in Excel vs Claude Cowork 对比
+
+  目标受众：企业决策者、AI 产品经理、数据分析师、Excel 高级用户
