@@ -13,11 +13,11 @@ Anthropic 通过 Claude in Excel 双重路径强势渗透 Excel，在企业级�
 
 周末，Claude 推出了全新的 Claude in Excel 功能，群里立刻有人迫不及待地进行了测试。很快，一张由 Claude in Excel 生成的复杂商业模型 excel 表出现在了群里，引得大家纷纷惊叹："Claude 功能已经这么强大了吗？"
 
-![Claude in Excel 生成的复杂商业模型 excel 表](https://mmbiz.qpic.cn/mmbiz_jpg/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEuIYmcEZPgXeLKNppXWevquP8mwiaIDX4rhCWTUeUuPdgJyohbp88wXg/640?wx_fmt=jpeg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
+![Claude in Excel 生成的复杂商业模型 excel 表](./images/image_01.jpg)
 
 Claude in Excel 是由 Anthropic 最新推出的一个插件/集成，可以把 Claude 这个大模型直接带入到 Excel 工作簿里，帮助用户理解复杂表格、定位公式错误、自动生成内容、测试假设，提升处理数据和模型的效率。它目前在 beta 阶段，在 Claude Pro、Max、Team 和 Enterprise 计划中提供。
 
-![Claude in Excel 官方推文及 Excel 表格示例](https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEHufz5MwHpsFCGrLRhYpBE8XkVxt5v2gCGLpXXibggLYL5RJTicEExOA/640?wx_fmt=png&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1)
+![Claude in Excel 官方推文及 Excel 表格示例](./images/image_02.png)
 
 ---
 
@@ -61,7 +61,7 @@ Claude in Excel 发布后，圈内有很多评论，其中很火的一条评论�
 
 > **The best model isn't the one with the highest scores. It's the one running inside Excel when the analyst builds their quarterly report.**
 
-![产品分发的广泛采用是护城河](https://mmbiz.qpic.cn/mmbiz_png/gRaNO5Yiaz79MAcDDJpvgNVSQMPmlT1yEMPowCTrWdNQkZQ6OI8HibL94sEibTQicnhkbv9REfAb21qsVI88IEZuPw/640?wx_fmt=png&from=appmsg&watermark=1#imgIndex=2)
+![产品分发的广泛采用是护城河](./images/image_03.png)
 
 产品发布只是表象，一场分发渠道的"教科书级围猎"才是本质。
 
@@ -244,20 +244,6 @@ Claude in Excel 和 Claude Cowork，它们是 Anthropic 在 2026 年推出的工
 可以先用 Claude in Excel 在表格内部完成精细的数据整理和模型搭建。然后调用 Claude Cowork，**"把 Excel 刚才算出来的 Q4 盈利预测表截图，放进我的汇报幻灯片里，并发送给我的老板。"**
 
 **总结一句话，Claude in Excel 是帮你把表做对；而 Claude Cowork 是帮你把活干完。**
-
----
-
-## 继续阅读
-
-- [2026：视频剪辑迎来 AI Agent 之年](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488071&idx=1&sn=7d79d2c977ed3f64de02bdcee1fee701&scene=21#wechat_redirect)
-- [2025美国55家AI初创公司融资单轮破亿（附完整名单）](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488066&idx=1&sn=87fa7b3fe04733e1fe01f2810375a588&scene=21#wechat_redirect)
-- [为何谨慎的 TSMC（台积电）提高 2026 年资本支出？](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488061&idx=1&sn=6f010d9e124545ea45513de1ec508ef3&scene=21#wechat_redirect)
-- [OpenAI 投资 Altman 的脑机接口公司，一笔高度闭环的前沿押注？](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488049&idx=1&sn=b88f951aaa6cbed0a333f8e3daa94de7&scene=21#wechat_redirect)
-- [法律初创公司 Harvey AI 发布 2025 年总结](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488043&idx=1&sn=dfec83c4a59c7fe20527944b112d30b3&scene=21#wechat_redirect)
-- [把 Pitch Deck 交给 Claude Cowork ，会发生什么？](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488031&idx=1&sn=2728d33552fca68484754d9b794f0042&scene=21#wechat_redirect)
-- [以光扩展规模：共封装光学（CPO）如何支撑下一代 AI 互连（三）](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488018&idx=1&sn=f43a22bc23b720e0878db6bc140958e1&scene=21#wechat_redirect)
-- [以光扩展规模：共封装光学（CPO）如何支撑下一代 AI 互连（二）](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247488007&idx=1&sn=3c8b60b1016a1f96e802180f898bebd2&scene=21#wechat_redirect)
-- [以光扩展规模：共封装光学（CPO）如何支撑下一代 AI 互连（一）](https://mp.weixin.qq.com/s?__biz=Mzg3NTczNjIxNA==&mid=2247487998&idx=1&sn=4010bcbe2022d208cb067b580cf46c25&scene=21#wechat_redirect)
 
 ---
 
