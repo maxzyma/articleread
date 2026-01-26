@@ -1,0 +1,68 @@
+---
+title: "盘点一周AI大事(1月25日)｜Agent史诗进化"
+original_title: "盘点一周AI大事(1月25日)｜Agent史诗进化"
+extraction_date: "2025-01-26"
+
+source:
+  platform: "小红书"
+  url: "https://www.xiaohongshu.com/explore/69761dbe000000000a0314c0"
+  video_id: "69761dbe000000000a0314c0"
+  author: "产品君"
+  publish_date: "2025-01-25"
+
+content:
+  type: "行业动态"
+  topic: "AI行业新闻"
+  core_point: "本周AI领域迎来多项重大突破，Agent技术实现史诗级进化，视频生成、AI编程、数字人直播等领域均有重要进展"
+  key_topics:
+    - "Agent技术进化"
+    - "视频生成技术"
+    - "AI编程工具"
+    - "数字人直播"
+    - "开源AI项目"
+    - "字节跳动AI"
+    - "阿里AI"
+    - "Runway"
+    - "Claude"
+
+extraction_method:
+  - "小红书视频页面文字内容提取"
+  - "Chrome DevTools快照"
+
+verification:
+  status: "completed"
+  verified_against: "小红书原页面"
+  notes: "从视频页面的文字说明中提取内容，原文为视频形式的行业盘点"
+
+content_file: "./weekly-ai-news-jan25.md"
+
+tags:
+  - "AI行业动态"
+  - "Agent"
+  - "视频生成"
+  - "AI编程"
+  - "数字人"
+  - "开源项目"
+  - "字节跳动"
+  - "阿里巴巴"
+
+notes: |
+  核心观点：本周AI领域迎来多项重大突破，Agent技术实现史诗级进化，视频生成、AI编程、数字人直播等领域均有重要进展
+
+  技术背景：
+  - 开源视频制作工具Remotion Skills爆火
+  - AI编程无限画布插件Pencil爆火
+  - 开源个人AI助手Clawdbot爆火
+  - Claude Excel插件更新
+  - Runway上线最强视频模型Gen 4.5
+  - 字节开源视频参考模型OminiTransfer
+  - 字节发布最强数字人直播模型FlowACT R1
+  - 阿里开源最强文本转语音模型Qwen 3 TTS
+
+  目标受众：AI从业者、产品经理、开发者、技术观察者
+
+  内容特点：
+  - 原文为视频形式的行业盘点
+  - 内容为文字摘要整理
+  - 涵盖8个重要AI领域动态
+  - 包含趋势分析和从业者启示

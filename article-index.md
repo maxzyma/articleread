@@ -1,7 +1,7 @@
 # 文章索引
 
 **更新时间**: 2026-01-26
-**总计**: 27 篇
+**总计**: 29 篇
 
 ---
 
@@ -11,6 +11,7 @@
 | 日期 | 标题 | 来源 | 文件路径 |
 |------|------|------|----------|
 | 01-26 | [Clawdbot 趋势分析 - 全面发现](general/clawdbot-trend-analysis/clawdbot-trend-analysis.md) | Google Docs | `clawdbot-trend-analysis/` |
+| 01-26 | [Clawdbot一夜爆红，首个0员工公司诞生！7×24h永不下班](general/clawdbot-silicon-valley-sensation/clawdbot-silicon-valley-sensation.md) | 微信公众号 | `clawdbot-silicon-valley-sensation/` |
 | 01-24 | [OpenAI 七年老将离职：大模型同质化竞赛下的行业反思](general/openai-veteran-jerry-tworek-interview/openai-veteran-jerry-tworek-interview.md) | 微信公众号 | `openai-veteran-jerry-tworek-interview/` |
 | 01-23 | [Agentic Memory：让LLM像人类一样自主管理记忆](knowledge&memory/basics/agentic-memory-agemem/agentic-memory-agemem.md) | 微信公众号 | `agentic-memory-agemem/` |
 | 01-23 | [AI编码实践：从Vibe Coding到SDD](general/ai-coding-vibe-to-sdd/ai-coding-vibe-to-sdd.md) | 微信公众号 | `ai-coding-vibe-to-sdd/` |
@@ -35,6 +36,7 @@
 
 | 日期 | 标题 | 来源 | 文件路径 |
 |------|------|------|----------|
+| 01-26 | [盘点一周AI大事(1月25日)｜Agent史诗进化](general/weekly-ai-news-jan25/weekly-ai-news-jan25.md) | 小红书 | `weekly-ai-news-jan25/` |
 | 01-23 | [提升 Claude 效率的优质 Skills 仓库推荐](general/claude-skills-repos-recommendation/claude-skills-repos-recommendation.md) | 微信公众号 | `claude-skills-repos-recommendation/` |
 | 01-12 | [Memory vs RAG: Understanding the Difference](knowledge&memory/basics/memory-vs-rag.md) | 文档 (Supermemory) | `basics/` |
 | 01-12 | [AI 记忆（Memory）的五个场景——从通用大语言模型（GPT）到图谱检索增强（GraphRAG）的卓越之路](knowledge&memory/basics/ai-memory-in-five-scenes.md) | 博客 (Cognee) | `basics/` |
@@ -47,7 +49,7 @@
 
 ## 按主题统计
 
-- **General (通用)**: 21 篇
+- **General (通用)**: 23 篇
 - **Knowledge & Memory (知识与记忆)**: 6 篇
 
 ---
