@@ -1,0 +1,76 @@
+---
+title: "Clawdbot一夜爆红，首个0员工公司诞生！7×24h永不下班"
+original_title: "Clawdbot一夜爆红，首个0员工公司诞生！7×24h永不下班"
+extraction_date: "2026-01-26"
+
+source:
+  platform: "微信公众号"
+  url: "https://mp.weixin.qq.com/s/7GZxu1i4AGJ5S0uCkJyVig"
+  author: "新智元"
+  author_title: "科技媒体"
+  publish_date: "2026-01-26"
+  editor: "桃子"
+
+content:
+  type: "技术分析/趋势报道"
+  topic: "AI Agent / 人工智能智能体"
+  format: "长文分析"
+  core_point: "Clawdbot 作为「长了手」的 Claude AI 智能体，通过在个人电脑上执行实际任务，正在硅谷引发从「对话框」向「执行器」的革命性转变。"
+  key_topics:
+    - "AI Agent（人工智能智能体）"
+    - "Clawdbot（开源AI执行工具）"
+    - "零员工公司"
+    - "本地部署与隐私"
+    - "提示注入安全风险"
+    - "多模态交互（WhatsApp/Telegram/iMessage）"
+
+extraction_method:
+  - "Chrome DevTools 自动化提取"
+  - "微信公众号图片懒加载处理"
+
+verification:
+  status: "completed"
+  verified_against: "原始网页完整内容"
+  notes: "已验证文章完整性，包括标题、作者、正文、图片和参考资料"
+
+content_file: "./clawdbot-silicon-valley-sensation.md"
+
+tags:
+  - "AI Agent"
+  - "Clawdbot"
+  - "人工智能"
+  - "自动化"
+  - "开源项目"
+  - "硅谷趋势"
+  - "零员工公司"
+
+notes: |
+  核心观点：
+  Clawdbot = Claude + 执行能力，是一个开源免费的 AI 智能体，可以部署在个人电脑上，通过聊天软件直接操作电脑，具备永久记忆和自我进化能力。
+
+  技术亮点：
+  - 本地部署（Mac/Windows/Linux）
+  - 多平台控制（WhatsApp/Telegram/iMessage）
+  - Gateway 网关架构
+  - 支持多种 LLM（Claude/GPT/本地模型）
+  - 自我进化能力（自己写代码安装新技能）
+
+  实测效率：
+  - 文件整理：10分钟 → 10秒
+  - 文章总结：1小时 → 5分钟
+  - 数据提取：10分钟 → 2分钟
+
+  安全风险：
+  - 提示注入（Prompt Injection）攻击
+  - 配置错误可能导致财产损失
+  - 不稳定性（掉线、对接失灵）
+
+  目标受众：
+  - AI 开发者和研究者
+  - 自动化工具用户
+  - 企业决策者
+  - 科技趋势关注者
+
+  相关资源：
+  - GitHub: https://github.com/clawdbot/clawdbot
+  - 终极报告: https://docs.google.com/document/d/1Mz4xt1yAqb2gDxjr0Vs_YOu9EeO-6JYQMSx4WWI8KUA/edit?tab=t.0

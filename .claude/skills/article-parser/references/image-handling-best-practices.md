@@ -1,12 +1,26 @@
 # 图片处理最佳实践
 
-本文档详细说明图片处理的高级技术实现。
+**本文档是图片处理的唯一真相源（Single Source of Truth）**。
+
+本文档详细说明图片处理的所有高级技术实现，包括：外链策略、命名规范、缓存映射、验证工具等。
+
+## 📋 文档定位
+
+- **本文档**：完整的图片处理指南（唯一真相源）
+- **SKILL.md**：快速参考和摘要（指向本文档）
+
+---
 
 ## 核心原则
 
-**外链友好平台优先使用原始 URL**：Twitter/X、微信公众号、知乎等平台提供稳定 CDN，直接使用原始 URL 可减少本地存储需求。
+1. **外链友好平台优先使用原始 URL**：Twitter/X、微信公众号、知乎等平台提供稳定 CDN，直接使用原始 URL 可减少本地存储需求。
 
-详见 SKILL.md 的 [图片处理章节](../SKILL.md#图片处理) 了解外链策略和命名规范。
+2. **⚠️ Standalone 版本必须使用 base64 内嵌图片**：无论平台是否支持外链，standalone 版本的图片**必须**使用 base64 数据 URI 嵌入，确保文件完全独立可移植。
+
+**三个版本的图片处理规则**：
+- **Original 版本**：使用相对路径或外链 URL（根据平台类型）
+- **Standalone 版本**：**强制使用 base64**，不接受外链（这是唯一真正独立的版本）
+- **Remote 版本**：使用外链 CDN URL（便于在线分享）
 
 ---
 
@@ -214,6 +228,154 @@ verify_images(
 
 ---
 
+## 生成 Standalone 版本（Base64 内嵌）
+
+### ⚠️ 关键规则
+
+**Standalone 版本必须使用 base64 内嵌图片，无论平台是否支持外链。**
+
+### Python 实现示例
+
+```python
+import base64
+import re
+from pathlib import Path
+
+def generate_standalone_version(markdown_file, output_file):
+    """生成 standalone 版本，将所有图片转换为 base64 内嵌
+
+    Args:
+        markdown_file: 原始 markdown 文件路径
+        output_file: 输出的 standalone 文件路径
+    """
+    # 读取原始文件
+    with open(markdown_file, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # 提取所有图片 URL
+    image_urls = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', content)
+
+    # 为每个图片下载并转换为 base64
+    for alt_text, url in image_urls:
+        # 跳过已经是 base64 的图片
+        if url.startswith('data:'):
+            continue
+
+        try:
+            # 下载图片
+            import requests
+            response = requests.get(url)
+            response.raise_for_status()
+
+            # 转换为 base64
+            image_data = response.content
+            # 检测图片类型
+            content_type = response.headers.get('content-type', 'image/png')
+            base64_data = base64.b64encode(image_data).decode('utf-8')
+            data_uri = f"data:{content_type};base64,{base64_data}"
+
+            # 替换 URL 为 data URI
+            old_ref = f"[{alt_text}]({url})"
+            new_ref = f"[{alt_text}]({data_uri})"
+            content = content.replace(old_ref, new_ref)
+
+            print(f"✅ 转换图片: {alt_text}")
+
+        except Exception as e:
+            print(f"❌ 转换失败 {alt_text}: {e}")
+            # 保留原 URL
+            continue
+
+    # 写入 standalone 版本
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+    print(f"\n✅ Standalone 版本已生成: {output_file}")
+    print(f"文件大小: {Path(output_file).stat().st_size / 1024:.1f} KB")
+
+# 使用示例
+generate_standalone_version(
+    'general/article/article.md',
+    'general/article/article-standalone.md'
+)
+```
+
+### 批量转换脚本
+
+```bash
+#!/bin/bash
+# convert_to_base64.sh
+
+# 为每个图片 URL 下载并转换为 base64
+download_and_convert() {
+    local url="$1"
+    local output_file="$2"
+
+    # 下载图片
+    curl -s \
+        -H "Referer: https://mp.weixin.qq.com/" \
+        -H "User-Agent: Mozilla/5.0" \
+        "$url" \
+        -o "$output_file"
+
+    # 转换为 base64
+    base64_data=$(base64 -i "$output_file")
+    echo "data:image/png;base64,$base64_data" > "${output_file}.b64"
+}
+
+# 示例：转换微信文章图片
+imgIndex=1
+download_and_convert \
+    "https://mmbiz.qpic.cn/sz_mmbiz_png/...#imgIndex=${imgIndex}" \
+    "image_${imgIndex}.png"
+```
+
+### 验证 Standalone 版本
+
+```python
+def verify_standalone(markdown_file):
+    """验证 standalone 版本是否完全独立
+
+    检查：
+    1. 是否有外链 URL（应该为 0）
+    2. 所有图片是否为 base64 格式
+    3. 文件大小合理（base64 会显著增大）
+    """
+    with open(markdown_file, 'r') as f:
+        content = f.read()
+
+    # 检查外链
+    external_links = re.findall(r'!\[([^\]]*)\]\((https?://[^)]+)\)', content)
+
+    # 检查 base64 图片
+    base64_images = re.findall(r'!\[([^\]]*)\]\((data:[^)]+)\)', content)
+
+    issues = []
+
+    if external_links:
+        issues.append(f"发现 {len(external_links)} 个外链图片（standalone 不应有外链）")
+
+    if not base64_images:
+        issues.append("未找到 base64 图片")
+
+    if issues:
+        print("❌ Standalone 版本验证失败：")
+        for issue in issues:
+            print(f"  - {issue}")
+        return False
+    else:
+        print(f"✅ Standalone 版本验证通过")
+        print(f"  - Base64 图片: {len(base64_images)} 个")
+        print(f"  - 外链图片: 0 个")
+        print(f"  - 文件大小: {Path(markdown_file).stat().st_size / 1024:.1f} KB")
+        return True
+
+# 使用示例
+verify_standalone('general/article/article-standalone.md')
+```
+
+---
+
 ## 提取工作流程示例
 
 ### Twitter/X 文章
@@ -278,10 +440,21 @@ verify_images(markdown_file, mapping_file)
 
 ### 核心原则
 
-1. **外链优先**：Twitter/X、微信公众号等平台直接使用原始 URL
-2. **上下文锚点**：使用 context_before 精确定位图片位置，防止错位
-3. **缓存映射**：在 `.cache/` 记录图片映射关系，便于追溯和验证
-4. **工具验证**：使用脚本自动化验证，避免手动错误
+1. **外链优先**：Twitter/X、微信公众号等平台直接使用原始 URL（original 和 remote 版本）
+2. **Standalone 强制 base64**：standalone 版本**必须**使用 base64 内嵌，无论平台是否支持外链
+3. **上下文锚点**：使用 context_before 精确定位图片位置，防止错位
+4. **缓存映射**：在 `.cache/` 记录图片映射关系，便于追溯和验证
+5. **工具验证**：使用脚本自动化验证，避免手动错误
+
+### 三个版本的图片策略
+
+| 版本 | 图片来源 | 使用场景 | 示例 |
+|------|---------|---------|------|
+| **Original** | 相对路径或外链 | 本地归档，保留灵活性 | `./images/image-1.png` 或外链 URL |
+| **Standalone** | **Base64 内嵌** | 完全独立的单文件，便于分享 | `data:image/png;base64,iVBORw0KGgo...` |
+| **Remote** | CDN 外链 | 在线分享，快速加载 | `https://mmbiz.qpic.cn/...` |
+
+**⚠️ 关键规则**：Standalone 版本**必须**使用 base64，这是唯一确保文件完全独立可移植的方式。即使平台支持外链（如微信、Twitter），standalone 版本也不应使用外链。
 
 ### 旧方式 vs 新方式
 
@@ -293,7 +466,10 @@ verify_images(markdown_file, mapping_file)
 | 追溯 | 无记录 | `.cache/` 映射文件 |
 | 验证 | 人工检查 | 脚本自动化 |
 
+---
+
 ### 相关文档
 
-- [SKILL.md - 图片处理章节](../SKILL.md#图片处理)：外链策略、命名规范
 - [validation-checklist.md](validation-checklist.md)：完整的验证清单
+- [SKILL.md](../SKILL.md)：快速参考（本文档的摘要版）
+- [wechat-article-best-practices.md](wechat-article-best-practices.md)：微信公众号特殊处理

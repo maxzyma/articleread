@@ -90,6 +90,68 @@ const articleImages = images
 
 ### 图片位置确定 ⚠️ **重要**
 
+**关键规则：使用 imgIndex（真实索引）而非连续编号**
+
+微信公众号的图片索引（`imgIndex`）是**真实索引，可能不连续**！
+
+**常见错误**：
+```markdown
+![图片1](...#imgIndex=1)
+![图片2](...#imgIndex=3)  ❌ 跳过了 imgIndex=2！
+![图片3](...#imgIndex=7)  ❌ 又跳过了很多！
+```
+
+**正确做法**：
+```markdown
+![搜索趋势](...#imgIndex=1)
+![Logan Mac mini](...#imgIndex=2)
+![AGI雏形](...#imgIndex=3)
+![完全开源](...#imgIndex=4)
+![下单Mac mini](...#imgIndex=5)
+![GitHub星标](...#imgIndex=7)  ⚠️ 注意跳跃
+```
+
+#### imgIndex 的特点
+
+1. **不连续性**：imgIndex 可能是 1, 2, 3, 4, 5, 7, 8, 9, 10, 13, 15, 20, 23, 25, 27...
+2. **真实索引**：是微信公众号图片的真实索引，从 URL 参数 `#imgIndex=N` 读取
+3. **必须使用**：不能重新编号，必须保持原始 imgIndex
+
+#### 提取和定位流程
+
+**步骤1：使用 take_snapshot 获取所有图片**
+```javascript
+// 快照会显示所有图片的真实 imgIndex
+uid=2_17 image "图片" url="...#imgIndex=1"
+uid=2_23 image "图片" url="...#imgIndex=2"  // ← 真实索引
+uid=2_29 image "图片" url="...#imgIndex=3"
+```
+
+**步骤2：记录每张图片的上下文**
+```json
+{
+  "imgIndex": 2,
+  "context_before": "就连谷歌大佬Logan Kilpatrick也没忍住，跟风买了一台Mac mini",
+  "context_after": "简单讲，Clawdbot就是一个「长了手的Claude」"
+}
+```
+
+**步骤3：根据 context_before 精确定位**
+- 在文章中搜索 `context_before` 的关键文字
+- 在该位置插入对应 imgIndex 的图片
+- 验证 `context_after` 是否匹配
+
+#### ⚠️ 避免的错误
+
+| 错误做法 | 后果 | 正确做法 |
+|---------|------|----------|
+| 按出现顺序重新编号 1, 2, 3... | 图片位置错乱 | 保持原始 imgIndex |
+| 假设 imgIndex 连续 | 遗漏图片 | 检查所有 imgIndex（包括跳跃的） |
+| 只用 take_snapshot | 遗漏懒加载图片 | 结合快照和 imgIndex |
+| 不创建 image-mapping.json | 无法验证位置 | **必须创建** |
+
+---
+
 **方法1：使用 image-mapping.json（推荐）**
 
 ```json
@@ -97,6 +159,7 @@ const articleImages = images
   "images": [
     {
       "index": 1,
+      "imgIndex": 1,  // ← 使用真实 imgIndex
       "context_before": "主持人：那这期节目就算你的\"离职访谈\"了...",
       "context_after": "大家好，我做了一个艰难的决定...",
       "placement": "根据 context_before 定位"
@@ -108,13 +171,14 @@ const articleImages = images
 **步骤**：
 1. 打开 image-mapping.json
 2. 在文章中搜索 `context_before` 中的关键文字
-3. 在该位置插入对应的图片
+3. 在该位置插入对应的图片（使用原始 imgIndex）
 4. 验证 `context_after` 是否匹配
 
 **方法2：按 imgIndex 排序（备用）**
 
-- ✅ 使用 `imgIndex` 参数作为辅助验证
-- ❌ 不要只依赖 imgIndex，可能不连续
+- ✅ 使用 `imgIndex` 参数作为主要标识
+- ✅ 接受 imgIndex 不连续的事实
+- ❌ 不要重新编号或按顺序重排
 
 ### 自动广告识别 ⚠️ **新功能**
 
@@ -315,3 +379,26 @@ curl -s \
 ### 问题3：图片位置错乱
 - **原因**：DOM 顺序与显示顺序不一致
 - **解决**：按 `imgIndex` 参数排序
+
+### 问题4：imgIndex 不连续导致遗漏图片 ⚠️ **常见**
+- **原因**：假设 imgIndex 是连续的（1, 2, 3...），实际上可能跳跃（1, 2, 3, 4, 5, 7, 8...）
+- **后果**：遗漏了 imgIndex=7, 8, 9 等图片
+- **解决**：
+  1. 检查快照中所有图片的 imgIndex
+  2. 创建完整的 image-mapping.json
+  3. 按照真实的 imgIndex 插入图片，不跳过任何索引
+
+**示例错误**：
+```markdown
+![图片1](...#imgIndex=1)  ✅
+![图片2](...#imgIndex=3)  ❌ 遗漏了 imgIndex=2！
+![图片3](...#imgIndex=7)  ❌ 遗漏了 imgIndex=4, 5, 6!
+```
+
+### 问题5：图片内容和 imgIndex 不匹配
+- **原因**：根据上下文应该是"Logan Kilpatrick"的图，却用了"Clawdbot架构"的图（imgIndex=2）
+- **后果**：图片位置与上下文不符
+- **解决**：
+  1. 使用 take_snapshot 获取每张图片的上下文
+  2. 根据 context_before 和 context_after 精确定位
+  3. 验证图片内容是否与上下文匹配
