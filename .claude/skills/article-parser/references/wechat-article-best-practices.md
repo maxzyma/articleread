@@ -5,21 +5,26 @@
 **微信公众号使用图片懒加载，不能只依赖 `take_snapshot`！**
 
 - ❌ **错误**：使用 `take_snapshot` → 只能获取占位符 SVG
-- ✅ **正确**：运行 `extract_wechat_images.js` → 获取真实图片 URL
+- ✅ **正确**：运行 `extract_wechat_images.js` → 获取真实图片 URL + 上下文
 
 **原因**：微信图片的真实 URL 存储在 `data-src` 属性中，`src` 是占位符。
+
+**新功能（v2）**：
+- ✅ 自动提取图片上下文（context_before/context_after）
+- ✅ 自动识别并过滤广告图片
+- ✅ 自动生成 image-mapping.json
 
 ---
 
 ## 提取流程
 
 ```
-访问文章 → 滚动触发懒加载 → 提取文本 → 提取图片 → 验证完整性
+访问文章 → 滚动触发懒加载 → 提取图片（含上下文） → 过滤广告 → 保存 image-mapping.json → 下载图片
 ```
 
 ### 快速开始（推荐）
 
-**使用自动化脚本**：
+**使用自动化脚本（v2）**：
 ```bash
 # 1. 打开微信文章
 navigate_page -> <微信文章URL>
@@ -30,11 +35,20 @@ evaluate_script -> 复制 scripts/extract_wechat_images.js 全部内容
 # 3. 脚本会自动：
 #    - 滚动页面触发懒加载
 #    - 提取所有图片 URL（包括 data-src）
+#    - 提取每张图片的上下文（context_before/context_after）
+#    - 自动识别并过滤广告图片
+#    - 生成 image-mapping.json
 #    - 输出下载命令
-#    - 生成一键下载脚本
 
-# 4. 复制下载命令到终端执行
+# 4. ⚠️ 复制 image-mapping.json 并保存到 .cache/images/{article-slug}/
+# 5. 复制下载命令到终端执行
 ```
+
+**输出内容**：
+1. **图片列表**：包含 URL、尺寸、上下文
+2. **下载命令**：curl 和 bash 脚本
+3. **JSON 数据**：用于程序处理
+4. **image-mapping.json**：⚠️ 必须保存，用于验证图片位置
 
 ---
 
@@ -74,21 +88,39 @@ const articleImages = images
     !img.url.includes('data:image/svg'));
 ```
 
-### 图片位置确定
-- ✅ 按 `imgIndex` 参数顺序确定位置
-- ❌ 不要通过分析图片内容推断位置
+### 图片位置确定 ⚠️ **重要**
 
-### 过滤规则
-| 保留 | 过滤 |
-|------|------|
-| 技术架构图、流程图 | 作者头像 |
-| 界面截图、代码效果图 | 公众号二维码 |
-| 数据图表 | 分享引导图 |
-| 文章关键配图 | 宽度 < 200px 的小图 |
+**方法1：使用 image-mapping.json（推荐）**
 
-### 广告图片识别
+```json
+{
+  "images": [
+    {
+      "index": 1,
+      "context_before": "主持人：那这期节目就算你的\"离职访谈\"了...",
+      "context_after": "大家好，我做了一个艰难的决定...",
+      "placement": "根据 context_before 定位"
+    }
+  ]
+}
+```
 
-**关键词列表**：
+**步骤**：
+1. 打开 image-mapping.json
+2. 在文章中搜索 `context_before` 中的关键文字
+3. 在该位置插入对应的图片
+4. 验证 `context_after` 是否匹配
+
+**方法2：按 imgIndex 排序（备用）**
+
+- ✅ 使用 `imgIndex` 参数作为辅助验证
+- ❌ 不要只依赖 imgIndex，可能不连续
+
+### 自动广告识别 ⚠️ **新功能**
+
+脚本会自动识别并过滤包含以下关键词的图片：
+
+**广告关键词列表**：
 ```javascript
 const adKeywords = [
   // 交流群相关
@@ -98,21 +130,29 @@ const adKeywords = [
   // 推广引导
   '关注我们', '更多阅读', '推荐阅读', '长按识别',
   // 公众号推广
-  '本文完整版详见', '文章精校版参见', '公众号：', '未来的回响'
+  '本文完整版详见', '文章精校版参见', '公众号：',
+  // 常见广告词
+  '限时开放', '请持续关注', '未来的回响'
 ];
 ```
 
-**图片上下文检查**：
-```javascript
-// 检查图片前后文本是否包含广告关键词
-function isAdImage(imgElement) {
-  const beforeText = getPreviousText(imgElement, 100);
-  const afterText = getNextText(imgElement, 100);
-  const combined = beforeText + ' ' + afterText;
+**识别机制**：
+- 提取图片前后的文本（各150字符）
+- 检查是否包含广告关键词
+- 自动过滤广告图片，不在下载列表中显示
 
-  return adKeywords.some(keyword => combined.includes(keyword));
-}
-```
+**误判处理**：
+- 如果正常图片被误判为广告，手动调整 `adKeywords` 列表
+- 重新运行脚本或在下载命令中手动添加该图片
+
+### 过滤规则
+| 保留 | 过滤 |
+|------|------|
+| 技术架构图、流程图 | 作者头像 |
+| 界面截图、代码效果图 | 公众号二维码 |
+| 数据图表 | 分享引导图 |
+| 文章关键配图 | 宽度 < 200px 的小图 |
+| 内容图片 | 广告图片（自动识别） |
 
 ---
 

@@ -142,11 +142,18 @@ general/article-slug/
 
 **微信公众号使用懒加载，必须使用 JavaScript 提取图片！**
 
+**新功能（v2）**：
+- ✅ 自动提取图片上下文（context_before/context_after）
+- ✅ 自动识别并过滤广告图片
+- ✅ 自动生成 image-mapping.json
+
 | 错误做法 | 正确做法 |
 |---------|---------|
 | ❌ 使用 `take_snapshot` | ✅ 运行 `extract_wechat_images.js` |
 | ❌ 只获取 `src` 属性 | ✅ 获取 `data-src` 属性 |
 | ❌ 未滚动页面 | ✅ 滚动触发懒加载 |
+| ❌ 人工识别广告图片 | ✅ 自动过滤广告图片 |
+| ❌ 手动创建 image-mapping.json | ✅ 自动生成映射文件 |
 
 **正确流程**：
 1. 打开微信文章页面
@@ -155,13 +162,27 @@ general/article-slug/
    // 复制 scripts/extract_wechat_images.js 内容到 Console
    ```
 3. 等待脚本自动滚动和提取
-4. 复制输出的下载命令
+4. **⚠️ 复制输出的 image-mapping.json 并保存**
 5. 批量下载图片到 `images/` 目录
+
+**输出内容**：
+- 图片列表（包含上下文）
+- 下载命令（curl/bash）
+- JSON 格式数据
+- **image-mapping.json**（⚠️ 必须保存！）
+
+**自动广告识别**：
+脚本会自动识别并过滤包含以下关键词的图片：
+- 交流群：`进群后`、`扫码加入`、`欢迎加入`、`交流群`
+- 付费社群：`知识星球`、`请加入`
+- 推广引导：`关注我们`、`更多阅读`、`推荐阅读`、`长按识别`
+- 公众号推广：`本文完整版详见`、`文章精校版参见`、`公众号：`
 
 **为什么不能用 `take_snapshot`**？
 - 微信公众号图片使用懒加载：`src` 是 SVG 占位符
 - 真实 URL 存储在 `data-src` 属性中
 - 快照只能获取已渲染的 `src`，无法获取 `data-src`
+- 无法提取图片上下文，难以准确定位图片位置
 
 ### ⚠️ 提取完成验证清单（必查）
 
@@ -258,6 +279,19 @@ evaluate_script -> 复制 extract_wechat_images.js 全部内容
 ---
 
 ## 常见错误与规避
+
+### 未保存 image-mapping.json ❌
+
+**症状**：图片位置错放，无法验证图片是否在正确位置
+
+**原因**：
+- 运行脚本后没有复制 image-mapping.json
+- 以为下载图片就够了，不需要映射文件
+
+**规避**：
+1. ⚠️ **必须**复制并保存 image-mapping.json
+2. 保存到 `.cache/images/{article-slug}/image-mapping.json`
+3. 根据映射文件中的 context_before 精确定位图片
 
 ### 图片位置错放 ❌
 
