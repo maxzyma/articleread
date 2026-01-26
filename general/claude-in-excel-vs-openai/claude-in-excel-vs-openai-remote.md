@@ -17,6 +17,8 @@ Anthropic 通过 Claude in Excel 双重路径强势渗透 Excel，在企业级�
 
 Claude in Excel 是由 Anthropic 最新推出的一个插件/集成，可以把 Claude 这个大模型直接带入到 Excel 工作簿里，帮助用户理解复杂表格、定位公式错误、自动生成内容、测试假设，提升处理数据和模型的效率。它目前在 beta 阶段，在 Claude Pro、Max、Team 和 Enterprise 计划中提供。
 
+![Claude in Excel 官方推文及 Excel 表格示例](https://cdn.jsdelivr.net/gh/maxzyma/articleread/claude-in-excel-vs-openai/images/image_02.png)
+
 ---
 
 ## Claude in Excel 能做什么
