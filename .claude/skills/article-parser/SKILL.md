@@ -11,7 +11,7 @@ description: 从多平台提取文章内容并归档。图片/视频平台（小
 
 | 平台类型 | 代表平台 | 处理方式 |
 |---------|---------|---------|
-| 文字平台 | 微信公众号、博客、Medium | 直接提取 ✅ |
+| 文字平台 | 微信公众号、博客、Medium、Google Docs | 直接提取 ✅ |
 | 混合平台 | Twitter、知乎、简书 | 直接提取 ✅ |
 | 图片/视频平台 | 小红书、抖音、B站 | 先搜索文字版本 → 找不到才提取 |
 
@@ -271,6 +271,7 @@ evaluate_script -> 复制 extract_wechat_images.js 全部内容
 - [抖音元数据提取](references/douyin-metadata-best-practices.md)
 
 **全文提取**（图文平台）：
+- [Google Docs 全文提取](references/google-docs-best-practices.md)
 - [微信公众号全文提取](references/wechat-article-best-practices.md)
 - [Twitter 全文提取](references/twitter-article-best-practices.md)
 - [知乎全文提取](references/zhihu-article-best-practices.md)
