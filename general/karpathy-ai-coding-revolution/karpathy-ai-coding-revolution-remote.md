@@ -13,11 +13,13 @@
 
 "2026 年将是充满活力的一年，因为整个行业都在消化吸收这项新技术。"
 
+![Karpathy 的最新推文](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_01.jpg)
+
 ---
 
 ## 1. 一个月前，顶级工程师说"我落后了"
 
-![Karpathy 的 X 动态](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_01.jpg)
+![Karpathy 一个月前的推文](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_02.jpg)
 
 而就在一个月前，这位提出"vibe coding"一词的人，还在 X 上写过另一段让人印象深刻的话。
 
@@ -35,7 +37,7 @@
 
 在评论区里，另一位重量级人物也表达了强烈共鸣。**Claude Code 的核心作者、Anthropic 工程师 Boris Cherny** 坦言，自己"几乎每周"都会有类似的感受。
 
-![Karpathy 和 Boris Cherny 的讨论](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_02.jpg)
+![Karpathy 和 Boris Cherny 的讨论](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_03.jpg)
 
 他提到，有时会下意识按老办法去做，做着做着才突然反应过来："等等，Claude 可能可以直接搞定这个。"
 
@@ -55,8 +57,6 @@ Karpathy 则在评论里加了一个比喻：就像你拿着"激光枪"到处指
 
 ## 2. 工具用顺手了后："这是 20 年最大变化"
 
-![Karpathy 的工作流转变](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_03.jpg)
-
 到了今天，Karpathy 状态已经明显不一样：不再是"我跟不上"了，而是"我已经换了一种编程方式"。
 
 他用一种几乎夸张的方式描述了这种变化：**过去 20 年形成的编程习惯，在短短几周内被打断**；11 月还主要靠手写和自动补全，到了 12 月，已经变成大约 **80% 的代码交给 agent，自己只做 20% 的修改和收尾**。与此同时，他也给出了一个时间点上的判断：在他看来，Claude 和 Codex 大约是在 2025 年 12 月左右跨过了某种"一致性 / 连贯性门槛"，让 agent 编程从"偶尔好用"变成了"可以稳定纳入日常工作流"。
@@ -67,7 +67,7 @@ Karpathy 则在评论里加了一个比喻：就像你拿着"激光枪"到处指
 
 他引用 Karpathy 的一句话总结这种变化：**"不要告诉它怎么做，给它成功标准，然后看它自己跑。"**
 
-![社区讨论：80/20 比例变化](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_04.jpg)
+![工程负责人的评论](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_04.jpg)
 
 还有不少人盯住的是这组 80/20 的数字变化。
 
@@ -79,7 +79,7 @@ Karpathy 则在评论里加了一个比喻：就像你拿着"激光枪"到处指
 
 总之，工具在变强，角色在重排，瓶颈也在迁移：从"写得快"，变成"看得懂、审得住"。而这一轮变化，显然还没到终点。
 
-![完整推文翻译](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_05.jpg)
+![社区讨论：80/20 比例与理解债](https://cdn.jsdelivr.net/gh/maxzyma/articleread/karpathy-ai-coding-revolution/images/image_05.jpg)
 
 ---
 
