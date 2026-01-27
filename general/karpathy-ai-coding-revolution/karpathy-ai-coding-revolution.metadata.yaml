@@ -1,67 +1,59 @@
 ---
 title: "顶级工程师Karpathy的AI革命：一个月前还在焦虑落后，如今20年古法编程习惯被彻底颠覆，80%代码已交给AI！"
-original_title: "顶级工程师Karpathy的AI革命：一个月前还在焦虑落后，如今20年古法编程习惯被彻底颠覆，80%代码已交给AI！"
-extraction_date: "2026-01-27"
+original_title: "顶级工程师Karpathy的"AI革命"：一个月前还在焦虑"落后"，如今"20年古法编程习惯"被彻底颠覆，80%代码已交给AI！"
+extraction_date: "2026-01-28"
 
 source:
   platform: "微信公众号 (InfoQ)"
   url: "https://mp.weixin.qq.com/s/7et5CpHThYTh-vBwg7tUPg"
-  author: "Andrej Karpathy (编译：Tina)"
+  author: "InfoQ"
   publish_date: "2026-01-27"
 
 content:
-  type: "技术观点 / 个人分享"
-  topic: "AI编程 / Agent / 编程革命"
-  core_point: "Karpathy分享：从80%手写到80% agent编程，Claude/Codex在2025年12月跨过连贯性门槛，编程工作流发生20年来最大变化"
+  type: "访谈/技术观点"
+  topic: "AI编程 / Agent工作流 / 软件工程变革"
+  core_point: "Andrej Karpathy分享使用Claude编程体验：从80%手写+20%agent反转为80%agent+20%人工，2025年12月LLM跨过连贯性阈值引发相变"
   key_topics:
-    - "Andrej Karpathy"
-    - "AI编程革命"
-    - "Agent编程"
+    - "Karpathy AI编程体验"
+    - "80/20工作流反转"
     - "Claude Code"
-    - "80/20 法则"
+    - "一致性/连贯性阈值"
+    - "理解债务(Understanding Debt)"
     - "Feel the AGI"
-    - "理解债 (Understanding Debt)"
-    - "生成代码 vs 判别代码"
+    - "Declarative vs Imperative"
 
 extraction_method:
-  - "Chrome DevTools (take_snapshot + evaluate_script)"
-  - "图片 URL 提取"
+  - "Chrome DevTools (navigate_page + take_snapshot)"
+  - "完整文本提取与结构化整理"
 
 verification:
   status: "completed"
-  verified_against: "原文网页"
-  notes: "3张主要图片已下载（过滤3张小图标）"
+  verified_against: "原始网页快照"
+  notes: "基于119行完整快照提取，保留所有推文内容"
 
 content_file: "./karpathy-ai-coding-revolution.md"
 
 tags:
-  - "Karpathy"
-  - "AI编程"
-  - "Agent"
-  - "Claude Code"
-  - "编程革命"
-  - "2026趋势"
+  - "ai-coding"
+  - "karpathy"
+  - "claude"
+  - "agent"
+  - "software-engineering"
 
 notes: |
   核心观点：
-  - 20年编程习惯在短短几周内被颠覆
-  - 从80%手写+20%agent → 80%agent+20%手写
-  - Claude/Codex在2025年12月跨过"一致性/连贯性门槛"
-  - Agent编程更有趣，因填空式苦力活被拿掉
-  - 错误形态变了：从语法错 → 概念性错
-  - 理解债（Understanding Debt）成为新问题
-  - 角色对调：从程序员 → 项目经理
-  - 2026年将是高能量的一年
+  - Karpathy编程工作流在几周内发生根本变化：80%手写→80%agent
+  - Claude和Codex在2025年12月跨过"一致性/连贯性门槛"
+  - AI编程从"偶尔好用"变成"稳定可用"
+  - 新手工程师反而更容易把模型用到位（无历史记忆束缚）
+  - "理解债务"成为新挑战：审查AI代码太费劲
+  - 瓶颈从"写得快"变成"看得懂、审得住"
 
-  技术背景：
-  - Left: Claude Code会话 + 右边: IDE
-  - Plan mode仍有提升空间
-  - LLM擅长declarative指令胜过imperative
-  - 手写能力退化，判别能力保持
-  - Slopacolypse即将到来
+  关键洞察：
+  - Boris Cherny（Claude Code作者）每周都有类似感受
+  - 杠杆效应：给成功标准而非具体步骤
+  - 韧性提升：LLM不知疲倦，持续尝试
+  - 角色对调：从程序员变成项目经理
+  - Slopacolypse预警：2026年将迎来AI生成垃圾内容大爆发
 
-  目标受众：程序员、AI工程师、技术管理者
-
-  作者背景：
-  - Andrej Karpathy：OpenAI创始成员之一，特斯拉Autopilot AI负责人
-  - Boris Cherny：Claude Code核心作者，Anthropic工程师
+  目标受众：软件工程师、技术管理者、AI研究者
