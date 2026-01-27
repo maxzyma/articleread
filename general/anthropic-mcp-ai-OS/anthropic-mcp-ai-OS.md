@@ -60,10 +60,6 @@ Anthropic 没有开放一个鱼龙混杂的「市场」，而是以「精选」�
 
 Anthropic 的连接器，究竟如何，可以模拟一个真实的使用场景，来感受这种范式转变。
 
-![在 Figma 里用自然语言创建数据流程图](./images/image_01.jpg)
-
-![在 Asana 里用自然语言创建项目管理任务](./images/image_02.jpg)
-
 **旧模式下：**
 
 你在 Figma 中完成了一个网站首页设计。你想评估其设计系统的一致性，于是截图，打开 ChatGPT 或 Claude 网页版，上传图片，询问：「请分析这个设计稿的配色和间距是否符合 Material Design 规范？」
@@ -85,6 +81,10 @@ Claude 通过 MCP 直接读取 Figma 文件的**结构化数据**（不仅是图
 你接着说：「很好，基于这个设计，为我的 Next.js 项目生成一个对应的 React 组件骨架，并提交到 GitHub 仓库的 feat/homepage 分支。」
 
 Claude 调用 MCP 工具，生成代码文件，并通过 GitHub 接口完成提交。
+
+![在 Figma 里用自然语言创建数据流程图](./images/image_01.jpg)
+
+![在 Asana 里用自然语言创建项目管理任务](./images/image_02.jpg)
 
 从对比可以看出，**新模式下体验的飞跃在于，用户始终在一个对话界面中，用自然语言指挥。**
 
