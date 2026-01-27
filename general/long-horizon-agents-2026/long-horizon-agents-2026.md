@@ -1,6 +1,6 @@
 # 红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年
 
-![LangChain 创始人](./images/image_01.jpg)
+![LangChain 创始人 Harrison Chase](./images/image_01.jpg)
 
 > 来源：微信公众号 海外独角兽，2026-01-27
 > 原文链接：https://mp.weixin.qq.com/s/KX-k9r5FOwz2Yu6NQOSD3g
@@ -11,7 +11,7 @@
 
 ![Long-Horizon Agents 概念图](./images/image_02.png)
 
-作为 **LangChain 的创始人**，Harrison Chase 一直处于这场变革的最前沿。
+作为 **LangChain 的创始人**，Harrison Chase 一直处于这场变革的最前沿。本文编译了 Sequoia Capital Sonya Huang & Pat Grady 访谈 Harrison Chase 的最新播客。作为站在 Agent 基础设施最前沿的先行者，Harrison 揭示了为什么 Agent 正迎来其爆发的"第三个拐点"。
 
 ---
 
@@ -124,7 +124,11 @@ Harness 层面最难攻克的是什么？你认为个别公司真的能在 Harne
 
 比如 **Claude Code**，它之所以如此火爆，很大一部分原因在于它的 Harness 设计。
 
-我想提到的另一家公司是 **Factory**，还有 **Amp**，它们都是 Coding 类公司，并且都有非常出色的 Harness。
+### Pat Grady：
+这是否意味着 Harness 更适合由基础模型厂商自己构建，而不是第三方创业公司？
+
+### Harrison Chase：
+很难说。我想提到的另一家公司是 **Factory**，还有 **Amp**，它们都是 Coding 类公司，并且都有非常出色的 Harness。
 
 > **Factory** 是一家专注于构建全栈 AI 软件工程师的公司，能自动完成从需求到上线完整 SaaS 应用的开发，强调 agent 的自主性和生产级代码质量。构建的名为 Droid 的 Agent 位居 Terminal-Bench 2.0 榜首。
 
@@ -153,6 +157,24 @@ Harness 层面最难攻克的是什么？你认为个别公司真的能在 Harne
 我们见过一些失败案例：Sub-agent 做了一堆工作，最后只回一句"见上文"，主模型没有收到任何有效信息。**协调组件工作的 Prompting 至关重要**。
 
 看看现在的开源 Harness，System Prompt 动辄几百行，就是为了解决协同问题。
+
+### Pat Grady：
+聊聊演变路径。你一直处在让模型落地现实世界的配套基建最前沿。
+
+若简化看过去五年的拐点，一是 Pre-training（ChatGPT）；二是 Reasoning（OpenAI o1）；最近伴随 Claude Code 和 Opus 4.5 级别模型，迎来了 Long Horizon Agents 的第三个拐点。
+
+在你构建的世界里，拐点是否不同？从认知架构到 Framework 再到 Agent Harness，核心跃迁是什么？
+
+### Harrison Chase：
+我认为可以分为三个时代：
+
+第一阶段是早期，即 LangChain 刚起步时。模型还是原始的 Text-in/Text-out，甚至没有 Chat 模式，没有 Tool Calling，没有推理能力。大家能做的就是简单的 Prompt 或链式调用。
+
+第二阶段是模型实验室开始引入 Tool Calling，试图让模型学会思考和规划。虽然当时的效果不如今天，但已经足以做决策了。这时自定义认知架构开始流行，你需要显式地写代码问模型："现在该做什么？"，然后按分支走。这更像是在模型外面搭 Scaffolding。
+
+第三阶段的拐点，大概发生在 2025 年六七月份。Claude Code、Deep Research、Manus 集中爆发。底层架构其实一样，把 LLM 放在循环里运行。但它们巧妙地运用了 Context Engineering，包括围绕压缩、Sub-Agent、Context Skills 的一切。核心算法没变，但 Context Engineering 变了。这让我们意识到"这和以前不一样了"，于是我们开始做 Deep Agents。
+
+对 Coding 社区来说，随着 Opus 4.5 发布或大家寒假狂用 Claude Code，这种感觉尤为强烈。11、12 月发生了巨大的 Vibe Shift。大家意识到，把难题扔进去，Long Horizon Agent 真的能搞定。那一刻，模型足够好了，我们从 Scaffolds 时代正式迈入 Harness 时代。
 
 ---
 
@@ -210,9 +232,27 @@ Harness 层面最难攻克的是什么？你认为个别公司真的能在 Harne
 
 这意味着 Trace 成了你思考 Testing 的地方。你更需要 **Online Testing**，因为行为只有在遇到真实世界输入时才会涌现。
 
+Trace 正成为团队协作的支点。出问题时，大家不是说"去 GitHub 看代码"，而是说"看看 Trace"。开源社区也是，用户反馈 Deep Agents 跑偏，我们会要 LangSmith Trace 而非代码。
+
 还有一点，构建 Agent 更加 **Iterative**。软件是你设定好目标再迭代，发布前行为已知。Agent 在发布前行为未知。你有个大概，但没十足把握。为了让它达标、通过概念上的 Unit Test，你需要更多迭代。
 
 这也是为何 **Memory** 重要。Memory 是从交互中学习。如果系统能自我学习，就减少了开发者手动修改 System Prompt 的频率。
+
+### Pat Grady：
+我也很好奇。现有软件公司能活下来吗？类比当年本地转云部署，鲜有成功者。你认为这次能跨越吗？年轻创始人似乎更有白板优势。
+
+### Harrison Chase：
+我们确实看到很多 Agent 团队成员更 Junior，没有思维定势。
+
+但在公司层面，数据仍然非常有价值。如果你想让 Harness 包含什么，就是 Prompt、Instructions 和工具。现有软件公司拥有所有数据和 API。接入 Agent，价值巨大。
+
+但另一部分是，关于如何处理这些数据的 Instructions。这部分可能是全新的。以前这是人做的，你只提供工具，没尝试自动化。
+
+像 **Rogo** 这样的垂直初创公司之所以有效，是因为很多 Agent 是由 Knowledge 驱动的。不是通用知识，而是关于如何执行 Specific Patterns 的知识。
+
+> **Rogo** 是 2025 年爆火的 Wall Street AI 工具，一家专注于金融行业的安全生成式 AI 平台，能自动生成 pitch deck、财务模型、IPO 文件草稿、实时研究报告和洞察，目标是大幅取代/辅助 junior banker 的重复性手动工作。
+
+所以，构建软件的人是构建 Agent 的合适人选吗？很多非常资深的开发者也采用了 Agentic Coding，所以人才上是心态问题，同时可能确实有年轻化偏差；但公司层面，取决于数据。
 
 ---
 
@@ -314,6 +354,20 @@ Anthropic 的 **Cowork** 做了一个极好的范式。你设置一个目录作�
 
 否则我们注定要在 Async 和 Sync 之间来回切换。
 
+### Sonya Huang：
+你怎么看 Code Sandboxes？每个 Agent 都要有沙箱、CLI 或 Browser 访问权限吗？
+
+### Harrison Chase：
+好问题。
+
+目前 **Code Execution 显然比 Browser Use 更有用、更落地**。
+
+- **关于文件系统**，我是坚定的 "File System Pilled"。我认为某种形式上，所有 Agent 都应该能访问文件系统。
+- **关于 Coding**，我大概 90% 确信这是标配。对于 Long Tail 的复杂用例，Coding 能力是无可替代的。
+- **关于 Browser Use**，目前的模型还不够好。虽然有一些很酷的尝试（比如给 Coding Agent 一个 CLI 来操作浏览器），但尚未成熟。
+
+所以，Code Sandboxes 绝对是未来的核心组件。
+
 ---
 
 ## 延伸阅读
@@ -321,4 +375,5 @@ Anthropic 的 **Cowork** 做了一个极好的范式。你设置一个目录作�
 - 2026年的 Coding 时刻是 Excel
 - 当顶级视频模型半衰期只有 30 天，fal.ai 为什么收入反而一年增长 60 倍？
 - TPU vs GPU 全面技术对比：谁拥有 AI 算力最优解？
-
+- 当 AI 接管钱包：Agentic Commerce 如何重构互联网经济？
+- 深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断
