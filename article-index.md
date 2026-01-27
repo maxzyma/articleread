@@ -1,7 +1,7 @@
 # 文章索引
 
 **更新时间**: 2026-01-27
-**总计**: 34 篇
+**总计**: 39 篇
 
 ---
 
@@ -10,7 +10,13 @@
 
 | 日期 | 标题 | 来源 | 文件路径 |
 |------|------|------|----------|
+| 01-27 | [让Agent画思维导图稳固长期记忆：新框架实现稳定长期学习，准确率提升38%](knowledge&memory/solutions/telemem-dag-memory/telemem-dag-memory.md) | 微信公众号 (量子位) | `telemem-dag-memory/` |
+| 01-27 | [顶级工程师Karpathy的AI革命：一个月前还在焦虑落后，如今20年古法编程习惯被彻底颠覆，80%代码已交给AI！](general/karpathy-ai-coding-revolution/karpathy-ai-coding-revolution.md) | 微信公众号 (InfoQ) | `karpathy-ai-coding-revolution/` |
 | 01-27 | [为什么最强的 RAG 开发者都在"倒退"？](general/why-strongest-rag-developers-regress/why-strongest-rag-developers-regress.md) | 抖音 (Douyin) | `why-strongest-rag-developers-regress/` |
+| 01-27 | [红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年](general/long-horizon-agents-2026/long-horizon-agents-2026.md) | 微信公众号 (海外独角兽) | `long-horizon-agents-2026/` |
+| 01-27 | [刷新 Google AlphaEvolve 进化结果，百度开源 Agent 开发框架 LoongFlow](general/loongflow-baidu-agent-framework/loongflow-baidu-agent-framework.md) | 微信公众号 (百度Geek说) | `loongflow-baidu-agent-framework/` |
+| 01-27 | [Skills刚火，就有零Skill的Agent来了…](general/zero-skill-agent/zero-skill-agent.md) | 微信公众号 (量子位) | `zero-skill-agent/` |
+| 01-27 | [OpenAI 的最强对手，离「AI Windows」又近了一步](general/anthropic-mcp-ai-OS/anthropic-mcp-ai-OS.md) | 微信公众号 (极客公园) | `anthropic-mcp-ai-OS/` |
 | 01-26 | [Clawdbot 趋势分析 - 全面发现](general/clawdbot-trend-analysis/clawdbot-trend-analysis.md) | Google Docs | `clawdbot-trend-analysis/` |
 | 01-26 | [Pencil.dev：设计与开发的真正融合](general/pencil-dev-ai-design-canvas/pencil-dev-ai-design-canvas.md) | 微信公众号 | `pencil-dev-ai-design-canvas/` |
 | 01-26 | [前阿里 P10 毕玄：公司以后不再划分前端、后端，统一叫做 Agent 工程师](general/ali-p10-agent-engineer/ali-p10-agent-engineer.md) | 微信公众号 | `ali-p10-agent-engineer/` |
@@ -53,8 +59,8 @@
 
 ## 按主题统计
 
-- **General (通用)**: 27 篇
-- **Knowledge & Memory (知识与记忆)**: 6 篇
+- **General (通用)**: 32 篇
+- **Knowledge & Memory (知识与记忆)**: 7 篇
 
 ---
 

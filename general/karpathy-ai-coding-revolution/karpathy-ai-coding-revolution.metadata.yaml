@@ -1,0 +1,67 @@
+---
+title: "顶级工程师Karpathy的AI革命：一个月前还在焦虑落后，如今20年古法编程习惯被彻底颠覆，80%代码已交给AI！"
+original_title: "顶级工程师Karpathy的AI革命：一个月前还在焦虑落后，如今20年古法编程习惯被彻底颠覆，80%代码已交给AI！"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "微信公众号 (InfoQ)"
+  url: "https://mp.weixin.qq.com/s/7et5CpHThYTh-vBwg7tUPg"
+  author: "Andrej Karpathy (编译：Tina)"
+  publish_date: "2026-01-27"
+
+content:
+  type: "技术观点 / 个人分享"
+  topic: "AI编程 / Agent / 编程革命"
+  core_point: "Karpathy分享：从80%手写到80% agent编程，Claude/Codex在2025年12月跨过连贯性门槛，编程工作流发生20年来最大变化"
+  key_topics:
+    - "Andrej Karpathy"
+    - "AI编程革命"
+    - "Agent编程"
+    - "Claude Code"
+    - "80/20 法则"
+    - "Feel the AGI"
+    - "理解债 (Understanding Debt)"
+    - "生成代码 vs 判别代码"
+
+extraction_method:
+  - "Chrome DevTools (take_snapshot + evaluate_script)"
+  - "图片 URL 提取"
+
+verification:
+  status: "completed"
+  verified_against: "原文网页"
+  notes: "3张主要图片已下载（过滤3张小图标）"
+
+content_file: "./karpathy-ai-coding-revolution.md"
+
+tags:
+  - "Karpathy"
+  - "AI编程"
+  - "Agent"
+  - "Claude Code"
+  - "编程革命"
+  - "2026趋势"
+
+notes: |
+  核心观点：
+  - 20年编程习惯在短短几周内被颠覆
+  - 从80%手写+20%agent → 80%agent+20%手写
+  - Claude/Codex在2025年12月跨过"一致性/连贯性门槛"
+  - Agent编程更有趣，因填空式苦力活被拿掉
+  - 错误形态变了：从语法错 → 概念性错
+  - 理解债（Understanding Debt）成为新问题
+  - 角色对调：从程序员 → 项目经理
+  - 2026年将是高能量的一年
+
+  技术背景：
+  - Left: Claude Code会话 + 右边: IDE
+  - Plan mode仍有提升空间
+  - LLM擅长declarative指令胜过imperative
+  - 手写能力退化，判别能力保持
+  - Slopacolypse即将到来
+
+  目标受众：程序员、AI工程师、技术管理者
+
+  作者背景：
+  - Andrej Karpathy：OpenAI创始成员之一，特斯拉Autopilot AI负责人
+  - Boris Cherny：Claude Code核心作者，Anthropic工程师

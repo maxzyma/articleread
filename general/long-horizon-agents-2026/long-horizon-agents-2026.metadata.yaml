@@ -1,0 +1,68 @@
+---
+title: "红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年"
+original_title: "红杉对话 LangChain 创始人：2026 年 AI 告别对话框，步入 Long-Horizon Agents 元年"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "微信公众号 (海外独角兽)"
+  url: "https://mp.weixin.qq.com/s/KX-k9r5FOwz2Yu6NQOSD3g"
+  author: "Sequoia Capital (红杉资本)"
+  publish_date: "2026-01-27"
+
+content:
+  type: "访谈 / 技术观点"
+  topic: "Agent / Long-Horizon Agents / LangChain"
+  core_point: "LangChain创始人Harrison Chase访谈：2026年是从Talkers到Doers的元年，Long-Horizon Agents爆发，文件系统权限是标配，Traces成为新的Source of Truth"
+  key_topics:
+    - "Long-Horizon Agents"
+    - "Harrison Chase (LangChain创始人)"
+    - "Harness 架构"
+    - "Framework vs Harness"
+    - "Traces"
+    - "Memory"
+    - "Coding Agent"
+    - "Sync vs Async"
+    - "Recursive Self-improvement"
+
+extraction_method:
+  - "Chrome DevTools (take_snapshot + evaluate_script)"
+  - "图片 URL 提取"
+
+verification:
+  status: "completed"
+  verified_against: "原文网页"
+  notes: "2张主要图片已下载（过滤3张小图标）"
+
+content_file: "./long-horizon-agents-2026.md"
+
+tags:
+  - "Agent"
+  - "Long-Horizon"
+  - "LangChain"
+  - "Harrison Chase"
+  - "Sequoia"
+  - "2026趋势"
+
+notes: |
+  核心观点：
+  - 2026是AI从Talkers到Doers的元年
+  - Long-Horizon Agents终于开始真正work
+  - 文件系统权限将成为所有Agent的标配
+  - Traces成为新的Source of Truth
+  - Coding Agent可能是通用Agent的终局形态
+  - Memory是真正的Moat
+  - Pure Async跑不通，需要Sync + Async的Hybrid Mode
+  - LLM-as-a-Judge和Recursive Self-improvement
+
+  技术背景：
+  - 三阶段演进：Pre-training → Reasoning → Long-Horizon Agents
+  - AutoGPT是早期尝试，但模型和Harness都不够好
+  - Claude Code、Deep Research、Manus集中爆发标志第三拐点
+  - Context Engineering成为核心竞争点
+
+  目标受众：Agent开发者、AI工程师、投资者、产品经理
+
+  访谈嘉宾：
+  - Harrison Chase (LangChain创始人)
+  - Sonya Huang (Sequoia合伙人)
+  - Pat Grady (Sequoia合伙人)

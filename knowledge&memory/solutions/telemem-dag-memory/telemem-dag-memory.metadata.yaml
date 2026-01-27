@@ -1,0 +1,60 @@
+---
+title: "让Agent画思维导图稳固长期记忆：新框架实现稳定长期学习，准确率提升38%"
+original_title: "让Agent画思维导图稳固长期记忆：新框架实现稳定长期学习，准确率提升38%"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "微信公众号 (量子位)"
+  url: "https://mp.weixin.qq.com/s/_OPVPZ1PU3X4XpLfOfQuoQ"
+  author: "TeleMem团队"
+  publish_date: "2026-01-26"
+
+content:
+  type: "技术方案"
+  topic: "AI记忆 / DAG / 持续学习"
+  core_point: "中国电信TeleAI提出基于DAG的记忆框架TeleMem，准确率86.33%，相比RAG提升38%"
+  key_topics:
+    - "TeleMem"
+    - "DAG (有向无环图)"
+    - "长期记忆"
+    - "持续学习"
+    - "因果闭包"
+    - "TeleAI (中国电信研究院)"
+
+extraction_method:
+  - "Chrome DevTools (take_snapshot + evaluate_script)"
+  - "图片 URL 提取 (data-src 属性)"
+
+verification:
+  status: "completed"
+  verified_against: "原文网页"
+  notes: "6张图片已下载"
+
+content_file: "./telemem-dag-memory.md"
+
+tags:
+  - "AI记忆"
+  - "DAG"
+  - "持续学习"
+  - "TeleMem"
+  - "长期记忆"
+
+notes: |
+  核心观点：
+  - TeleMem 将记忆从向量集合升级为可演化的时序因果图（DAG）
+  - 准确率 86.33%，相比 RAG 提升 38 个百分点
+  - 双层协同更新：表征层 + 索引层
+  - Offline Batch + Online Stream 两条更新路径
+  - 最小闭包子图（Minimal Closure Subgraph）实现因果回溯
+
+  技术背景：
+  - 传统 RAG 缺乏时间与因果结构
+  - 上下文碎片化严重
+  - 索引随规模恶化
+  - DAG 结构天然避免循环依赖
+
+  目标受众：Agent 开发者、AI 研究人员
+
+  团队背景：
+  - 中国电信人工智能研究院（TeleAI）
+  - 中国电信集团 CTO、首席科学家李学龙教授指导

@@ -1,0 +1,63 @@
+---
+title: "刷新 Google AlphaEvolve 进化结果，百度开源 Agent 开发框架 LoongFlow"
+original_title: "刷新 Google AlphaEvolve 进化结果，百度开源 Agent 开发框架 LoongFlow"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "微信公众号 (百度Geek说)"
+  url: "https://mp.weixin.qq.com/s/P46itmfjs9Xs5fdHoxJKlw"
+  author: "百度百舸团队"
+  publish_date: "2026-01-26"
+
+content:
+  type: "技术方案 / 开源项目"
+  topic: "Agent / 进化算法 / 框架"
+  core_point: "百度开源 LoongFlow 框架，PES 范式 + 混合进化记忆系统，在数学和 MLE-bench 上超越 AlphaEvolve，效率提升60%"
+  key_topics:
+    - "LoongFlow (龙流)"
+    - "PES 范式 (Plan-Execute-Summarize)"
+    - "混合进化记忆系统 (Hybrid Evolutionary Memory)"
+    - "进化智能体"
+    - "长程复杂推理"
+    - "AlphaEvolve"
+    - "MLE-bench"
+
+extraction_method:
+  - "Chrome DevTools (take_snapshot + evaluate_script)"
+  - "图片 URL 提取 (data-src 属性)"
+
+verification:
+  status: "completed"
+  verified_against: "原文网页"
+  notes: "7张图片已下载（过滤2张装饰性小GIF）"
+
+content_file: "./loongflow-baidu-agent-framework.md"
+
+tags:
+  - "Agent"
+  - "进化算法"
+  - "百度"
+  - "LoongFlow"
+  - "PES"
+  - "长程推理"
+
+notes: |
+  核心观点：
+  - LoongFlow 实现从"随机演化"到"定向认知进化"的范式升维
+  - 数学：11个问题超越人类数学家，7个问题超越 AlphaEvolve
+  - MLE-bench：独立斩获 23 块金牌
+  - 效率：进化效率提升超 60%，迭代成功率 100%
+  - PES 范式：Plan-Execute-Summarize，为进化注入"科学家思维"
+  - 混合进化记忆：多岛模型 + MAP-Elites + 自适应玻尔兹曼选择
+
+  技术背景：
+  - ReAct 范式：单任务序列决策
+  - AlphaEvolve/OpenEvolve：种群进化，但把 LLM 当随机调整器
+  - LoongFlow 融合推理智能体和进化智能体的优势
+
+  目标受众：Agent 开发者、进化算法研究者、AI 研究人员
+
+  团队背景：
+  - 百度百舸团队
+  - 开源框架
+  - GitHub: https://github.com/baidu-baige/LoongFlow

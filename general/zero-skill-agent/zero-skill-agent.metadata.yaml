@@ -1,0 +1,65 @@
+---
+title: "Skills刚火，就有零Skill的Agent来了…"
+original_title: "Skills刚火，就有零Skill的Agent来了…"
+extraction_date: "2026-01-27"
+
+source:
+  platform: "微信公众号 (量子位)"
+  url: "https://mp.weixin.qq.com/s/55j_SxPGtIFTOhzkQQuGog"
+  author: "量子位 (Jay)"
+  publish_date: "2026-01-26"
+
+content:
+  type: "技术观点"
+  topic: "Agent / 自进化"
+  core_point: "云玦科技发布原位自进化Agent，无需Skills，能从零开始自己造工具，在HLE等评测中超越Gemini 3 Pro"
+  key_topics:
+    - "原位自进化 (In-situ Self-evolving Agent)"
+    - "工具优先 (Tool-First)"
+    - "零Skill Agent"
+    - "测试时收敛 (Test-Time Convergence)"
+    - "云玦科技"
+    - "齐炜祯"
+
+extraction_method:
+  - "Chrome DevTools (take_snapshot + evaluate_script)"
+  - "图片 URL 提取 (data-src 属性)"
+
+verification:
+  status: "completed"
+  verified_against: "原文网页"
+  notes: "14张图片已下载并创建 image-mapping.json"
+
+content_file: "./zero-skill-agent.md"
+
+tags:
+  - "Agent"
+  - "自进化"
+  - "工具优先"
+  - "零Skill"
+  - "原位自进化"
+
+notes: |
+  核心观点：
+  - 原位自进化 Agent 无需 Skills，能从零开始自己造工具
+  - 在 HLE、DeepSearchQA、FinSearch Comp、XBench 等 5 项评测中一骑绝尘
+  - 工具数量收敛在 128 个，具备可复用性
+  - 四角色架构：Manager、Tool Developer、Executor、Integrator
+  - 使用 Parallel batch 提高进化效率
+  - 完全开源，包括所有日志数据、评测脚本和结果
+
+  技术背景：
+  - 普通自进化发生在训练阶段，需要外部监督信号
+  - 原位自进化发生在推理阶段，无需外部监督
+  - 工具执行自带二元判别信号，无需人类标注
+  - 通过形式化验证保证安全性
+
+  目标受众：Agent 开发者、AI 工程师、研究人员
+
+  作者背景：
+  - 云玦科技（前阿里副总裁彭超创办）
+  - 通讯作者：齐炜祯（联合创始人兼 CTO）
+  - ProphetNet (MTP 架构) 第一作者
+  - Visual ChatGPT 核心作者
+  - 业界首批提出 KV Cache 优化的学者
+  - 研究经费：15 万元
