@@ -368,12 +368,3 @@ Anthropic 的 **Cowork** 做了一个极好的范式。你设置一个目录作�
 
 所以，Code Sandboxes 绝对是未来的核心组件。
 
----
-
-## 延伸阅读
-
-- 2026年的 Coding 时刻是 Excel
-- 当顶级视频模型半衰期只有 30 天，fal.ai 为什么收入反而一年增长 60 倍？
-- TPU vs GPU 全面技术对比：谁拥有 AI 算力最优解？
-- 当 AI 接管钱包：Agentic Commerce 如何重构互联网经济？
-- 深度解读 AGI-Next 2026：分化、新范式、Agent 与全球 AI 竞赛的 40 条重要判断
